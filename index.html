@@ -560,29 +560,22 @@
     msgEl.textContent = '';
 
     try {
-      const res = await fetch('https://api.brevo.com/v3/contacts', {
+      const res = await fetch('/api/subscribe', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'api-key': 'BREVO_PUBLIC_KEY_PLACEHOLDER'
-        },
-        body: JSON.stringify({
-          email: email,
-          listIds: [3],
-          updateEnabled: true
-        })
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email })
       });
 
-      if (res.ok || res.status === 204) {
+      const data = await res.json();
+
+      if (data.success) {
         msgEl.className = 'form-msg ok';
-        msgEl.textContent = '✓ Inscrit ! On te contacte au lancement.';
+        msgEl.textContent = data.already
+          ? '✓ Tu es déjà dans la liste !'
+          : '✓ Inscrit ! On te contacte au lancement.';
         emailInput.value = '';
-      } else if (res.status === 400) {
-        // Contact existe déjà
-        msgEl.className = 'form-msg ok';
-        msgEl.textContent = '✓ Tu es déjà dans la liste !';
       } else {
-        throw new Error('Erreur ' + res.status);
+        throw new Error('Erreur serveur');
       }
     } catch {
       msgEl.className = 'form-msg err';
