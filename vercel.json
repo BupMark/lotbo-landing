@@ -1,1 +1,10 @@
-{}
+{
+    "buildCommand": null,
+    "outputDirectory": ".",
+    "functions": {
+      "api/subscribe.js": {
+        "memory": 128,
+        "maxDuration": 10
+      }
+    }
+  }
