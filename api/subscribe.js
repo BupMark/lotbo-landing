@@ -1,4 +1,14 @@
 export default async function handler(req, res) {
+  // Headers CORS
+  res.setHeader('Access-Control-Allow-Origin', 'https://lotbo.app')
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS')
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type')
+
+  // Preflight OPTIONS
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end()
+  }
+
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Méthode non autorisée' })
   }
@@ -11,7 +21,6 @@ export default async function handler(req, res) {
     } else if (typeof req.body === 'object' && req.body !== null) {
       body = req.body
     } else {
-      // Lire le stream manuellement
       const chunks = []
       for await (const chunk of req) {
         chunks.push(chunk)
