@@ -71,34 +71,49 @@
     }
 
     /* ── Hero ──────────────────────────────────────── */
+    /* ── Hero ──────────────────────────────────────── */
     .hero {
-      position: relative;
-      overflow: hidden;
-      padding: 0;
-      min-height: 600px;
+      background: var(--night);
+      min-height: 100vh;
       display: flex;
       align-items: center;
-      justify-content: center;
     }
-    .hero img.hero-bg {
-      position: absolute;
-      inset: 0;
+    .hero-inner {
+      display: flex;
+      align-items: center;
+      gap: 48px;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 80px 40px;
       width: 100%;
-      height: 100%;
+    }
+    .hero-text {
+      flex: 1;
+      text-align: left;
+    }
+    .hero-photo {
+      flex: 1;
+      max-width: 480px;
+      border-radius: 20px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .hero-photo img {
+      width: 100%;
+      height: 580px;
       object-fit: cover;
       object-position: center top;
+      display: block;
     }
-    .hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to bottom, rgba(26,20,16,0.55) 0%, rgba(26,20,16,0.82) 100%);
-    }
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      text-align: center;
-      padding: 80px 24px 72px;
-      width: 100%;
+    @media (max-width: 768px) {
+      .hero-inner {
+        flex-direction: column-reverse;
+        padding: 40px 20px 60px;
+        gap: 32px;
+      }
+      .hero-text { text-align: center; }
+      .hero-photo { max-width: 100%; width: 100%; }
+      .hero-photo img { height: 320px; }
     }
 
     /* ── Formulaire inline ──────────────────────────── */
@@ -343,21 +358,31 @@
 </nav>
 
 <!-- HERO -->
+/* ── Hero ──────────────────────────────────────── */
+   <!-- HERO -->
 <section class="hero" id="hero">
-  <img class="hero-bg" src="./hero-femme.jpg" alt="Lotbo" />
-  <div class="hero-overlay"></div>
-  <div class="hero-content">
-    <div class="hero-badge label">Bientôt disponible · Rejoins les premiers</div>
-    <h1 class="hero-h1">Kisa k'ap pase <span class="accent">lotbo</span>?</h1>
-    <p class="hero-sub h2">Tous les événements, un seul endroit.</p>
-    <p class="hero-body">
-      Touriste, voyageur ou résident — trouve ce qui se passe autour de toi en ce moment.
-    </p>
-    <div class="inline-form" id="hero-form">
-      <input type="email" id="hero-email" placeholder="ton@email.com" autocomplete="email" />
-      <button onclick="inscrire('hero-email', 'hero-msg')">S'inscrire →</button>
+  <div class="hero-inner">
+
+    <!-- Texte gauche -->
+    <div class="hero-text">
+      <div class="hero-badge label">Bientôt disponible · Rejoins les premiers</div>
+      <h1 class="hero-h1">Kisa k'ap pase <span class="accent">lotbo</span>?</h1>
+      <p class="hero-sub h2">Tous les événements, un seul endroit.</p>
+      <p class="hero-body">
+        Touriste, voyageur ou résident — trouve ce qui se passe autour de toi en ce moment.
+      </p>
+      <div class="inline-form" id="hero-form">
+        <input type="email" id="hero-email" placeholder="ton@email.com" autocomplete="email" />
+        <button onclick="inscrire('hero-email', 'hero-msg')">S'inscrire →</button>
+      </div>
+      <div class="form-msg" id="hero-msg"></div>
     </div>
-    <div class="form-msg" id="hero-msg"></div>
+
+    <!-- Photo droite -->
+    <div class="hero-photo">
+      <img src="./hero-femme.jpg" alt="Lotbo — découvrez les événements près de vous" />
+    </div>
+
   </div>
 </section>
 
