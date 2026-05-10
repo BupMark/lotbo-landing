@@ -188,6 +188,23 @@
     .form-msg.ok { color: var(--or); }
     .form-msg.err { color: #e57373; }
 
+    <!-- STATS -->
+<div style="background:#1A1410;padding:0 40px 64px;">
+  <div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:24px;text-align:center;">
+    <div>
+      <p id="stat-events" style="font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:clamp(36px,5vw,56px);color:#C8431A;margin-bottom:6px;">—</p>
+      <p style="font-family:'DM Sans',sans-serif;font-size:13px;color:#8C5A40;text-transform:uppercase;letter-spacing:.08em;">Événements</p>
+    </div>
+    <div>
+      <p id="stat-villes" style="font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:clamp(36px,5vw,56px);color:#D4A820;margin-bottom:6px;">—</p>
+      <p style="font-family:'DM Sans',sans-serif;font-size:13px;color:#8C5A40;text-transform:uppercase;letter-spacing:.08em;">Villes</p>
+    </div>
+    <div>
+      <p id="stat-pays" style="font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:clamp(36px,5vw,56px);color:#F7F2E8;margin-bottom:6px;">—</p>
+      <p style="font-family:'DM Sans',sans-serif;font-size:13px;color:#8C5A40;text-transform:uppercase;letter-spacing:.08em;">Régions du monde</p>
+    </div>
+  </div>
+</div>
     /* ── Map mockup ─────────────────────────────────── */
     .map-section {
       background: var(--night); padding: 0 24px 64px;
@@ -728,6 +745,38 @@
     btn.disabled = false;
     btn.textContent = 'S\'inscrire →';
   }
+
+  // ── Compteurs dynamiques ──
+  async function chargerStats() {
+    try {
+      const res = await fetch('https://app.lotbo.app/api/stats')
+      const data = await res.json()
+      
+      function animerCompteur(el, cible) {
+        let debut = 0
+        const duree = 1500
+        const increment = cible / (duree / 16)
+        const timer = setInterval(() => {
+          debut += increment
+          if (debut >= cible) {
+            debut = cible
+            clearInterval(timer)
+          }
+          el.textContent = Math.floor(debut).toLocaleString('fr-FR')
+        }, 16)
+      }
+
+      animerCompteur(document.getElementById('stat-events'), data.total)
+      animerCompteur(document.getElementById('stat-villes'), data.villes)
+      animerCompteur(document.getElementById('stat-pays'), data.pays)
+    } catch {
+      document.getElementById('stat-events').textContent = '185+'
+      document.getElementById('stat-villes').textContent = '55+'
+      document.getElementById('stat-pays').textContent = '3'
+    }
+  }
+
+  chargerStats()
 </script>
 
 </body>
