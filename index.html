@@ -80,7 +80,7 @@
     .hero-inner {
       display: flex;
       align-items: center;
-      gap: 48px;
+      gap: 64px;
       max-width: 1100px;
       margin: 0 auto;
       padding: 80px 40px;
@@ -89,13 +89,15 @@
     .hero-text {
       flex: 1;
       text-align: left;
+      color: var(--creme);
     }
     .hero-photo {
       flex: 1;
-      max-width: 480px;
+      max-width: 460px;
       border-radius: 20px;
       overflow: hidden;
       flex-shrink: 0;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.4);
     }
     .hero-photo img {
       width: 100%;
@@ -104,6 +106,27 @@
       object-position: center top;
       display: block;
     }
+    .hero-badge {
+      display: inline-block;
+      font-size: 11px; letter-spacing: .08em; text-transform: uppercase;
+      padding: 6px 16px; border-radius: 20px; margin-bottom: 28px;
+      border: 1px solid var(--terre); color: var(--brume);
+    }
+    .hero-h1 {
+      font-family: 'Playfair Display', serif; font-weight: 700; font-style: italic;
+      font-size: clamp(32px, 5vw, 52px); line-height: 1.15;
+      color: var(--creme); margin-bottom: 10px;
+    }
+    .hero-h1 .accent { color: var(--brique); }
+    .hero-sub {
+      font-family: 'DM Serif Display', serif; font-style: italic;
+      font-size: clamp(18px, 3vw, 26px); color: var(--or);
+      margin-bottom: 20px;
+    }
+    .hero-body {
+      font-size: 15px; color: var(--brume); line-height: 1.7;
+      max-width: 460px; margin-bottom: 32px;
+    }
     @media (max-width: 768px) {
       .hero-inner {
         flex-direction: column-reverse;
@@ -111,22 +134,15 @@
         gap: 32px;
       }
       .hero-text { text-align: center; }
+      .hero-body { margin: 0 auto 32px; }
       .hero-photo { max-width: 100%; width: 100%; }
       .hero-photo img { height: 320px; }
-    }
-    .hero-text {
-      flex: 1;
-      text-align: left;
-      color: var(--creme);
-    }
-    .hero-text .hero-body {
-      color: var(--brume);
+      .inline-form { justify-content: center; }
     }
 
     /* ── Formulaire inline ──────────────────────────── */
     .inline-form {
-      max-width: 480px; margin: 0 auto;
-      display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;
+      display: flex; gap: 10px; flex-wrap: wrap;
     }
     .inline-form input[type="email"] {
       flex: 1; min-width: 220px; padding: 13px 18px; font-size: 14px;
@@ -151,10 +167,6 @@
     }
     .form-msg.ok { color: var(--or); }
     .form-msg.err { color: #e57373; }
-    .form-note {
-      margin-top: 10px; font-size: 12px; color: var(--terre);
-      font-family: 'DM Sans', sans-serif;
-    }
 
     /* ── Map mockup ─────────────────────────────────── */
     .map-section {
@@ -344,7 +356,6 @@
     /* ── Responsive ─────────────────────────────────── */
     @media (max-width: 600px) {
       nav { padding: 12px 16px; }
-      .hero { padding: 56px 20px 52px; }
       .features, .steps, .quotes { padding: 52px 20px; }
       footer { padding: 18px 20px; }
       .inline-form { flex-direction: column; }
@@ -364,8 +375,7 @@
   </div>
 </nav>
 
-
-   <!-- HERO -->
+<!-- HERO -->
 <section class="hero" id="hero">
   <div class="hero-inner">
 
@@ -564,19 +574,16 @@
 </footer>
 
 <script>
-  // ── Scroll vers le formulaire ──
   function scrollToForm() {
     document.getElementById('hero-email').focus();
     document.getElementById('hero').scrollIntoView({ behavior: 'smooth' });
   }
 
-  // ── Basculer les pills ──
   function togglePill(el) {
     document.querySelectorAll('.map-pill').forEach(function(p) { p.classList.remove('on'); });
     el.classList.add('on');
   }
 
-  // ── Inscription Brevo ──
   async function inscrire(inputId, msgId) {
     const emailInput = document.getElementById(inputId);
     const msgEl = document.getElementById(msgId);
