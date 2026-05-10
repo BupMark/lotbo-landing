@@ -302,6 +302,15 @@
       font-size: 17px; color: var(--creme); margin-bottom: 4px;
     }
     .step-desc { font-size: 13px; color: var(--brume); line-height: 1.6; }
+    
+    @media (max-width: 768px) {
+      .steps > div {
+        grid-template-columns: 1fr !important;
+      }
+      .steps > div > div:last-child {
+        display: none;
+      }
+    }
 
     /* ── Quotes ─────────────────────────────────────── */
     .quotes { background: var(--brume); padding: 72px 40px; }
@@ -527,31 +536,104 @@
 
 <!-- STEPS -->
 <section class="steps">
-  <p class="section-label label">Comment ça marche</p>
-  <h2 class="section-h2 h2">Simple comme bonjour</h2>
-  <p class="section-body">Trois étapes, et tu es dans le feu de l'action.</p>
-  <div class="step-list">
-    <div class="step-item">
-      <div class="step-num label">1</div>
-      <div>
-        <div class="step-title h3">Ouvre et localise-toi</div>
-        <p class="step-desc">La carte s'affiche avec tous les événements proches de toi ou d'une ville de ton choix.</p>
+  <div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;">
+    
+    <!-- Étapes gauche -->
+    <div>
+      <p class="section-label label">Comment ça marche</p>
+      <h2 class="section-h2 h2">Simple comme bonjour</h2>
+      <p class="section-body">Trois étapes, et tu es dans le feu de l'action.</p>
+      <div class="step-list">
+        <div class="step-item">
+          <div class="step-num label">1</div>
+          <div>
+            <div class="step-title h3">Ouvre et localise-toi</div>
+            <p class="step-desc">La carte s'affiche avec tous les événements proches de toi ou d'une ville de ton choix.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num label">2</div>
+          <div>
+            <div class="step-title h3">Filtre selon tes envies</div>
+            <p class="step-desc">Culture, business, sport, gratuit, ce soir, ce week-end — tu trouves exactement ce que tu cherches.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num label">3</div>
+          <div>
+            <div class="step-title h3">Participe ou publie</div>
+            <p class="step-desc">Sauvegarde, partage, ou ajoute ton propre événement en quelques clics.</p>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="step-item">
-      <div class="step-num label">2</div>
-      <div>
-        <div class="step-title h3">Filtre selon tes envies</div>
-        <p class="step-desc">Culture, business, sport, gratuit, ce soir, ce week-end — tu trouves exactement ce que tu cherches.</p>
+
+    <!-- Mockup téléphone droite -->
+    <div style="display:flex;justify-content:center;align-items:center;">
+      <div style="width:260px;background:#1E1813;border-radius:36px;padding:12px;box-shadow:0 32px 80px rgba(0,0,0,0.5);border:1px solid rgba(232,224,208,0.1);">
+        <!-- Notch -->
+        <div style="width:80px;height:6px;background:#2a2a2a;border-radius:3px;margin:0 auto 12px;"></div>
+        <!-- Header app -->
+        <div style="background:#F7F2E8;border-radius:16px 16px 0 0;padding:10px 12px;display:flex;justify-content:space-between;align-items:center;">
+          <span style="font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:16px;color:#1A1410;">lot<span style="color:#C8431A;">bo</span></span>
+          <span style="font-size:10px;color:#8C5A40;font-family:'DM Sans',sans-serif;">+ Ajouter</span>
+        </div>
+        <!-- Carte mockup -->
+        <div style="background:#e8e0d4;height:180px;position:relative;overflow:hidden;">
+          <svg viewBox="0 0 240 180" style="width:100%;height:100%;" xmlns="http://www.w3.org/2000/svg">
+            <rect width="240" height="180" fill="#ddd5c8"/>
+            <line x1="0" y1="60" x2="240" y2="60" stroke="#c8bfb4" stroke-width="1"/>
+            <line x1="0" y1="120" x2="240" y2="120" stroke="#c8bfb4" stroke-width="1"/>
+            <line x1="80" y1="0" x2="80" y2="180" stroke="#c8bfb4" stroke-width="1"/>
+            <line x1="160" y1="0" x2="160" y2="180" stroke="#c8bfb4" stroke-width="1"/>
+            <rect x="10" y="20" width="60" height="8" rx="2" fill="#c8bfb4"/>
+            <rect x="90" y="65" width="70" height="8" rx="2" fill="#c8bfb4"/>
+            <rect x="170" y="30" width="55" height="8" rx="2" fill="#c8bfb4"/>
+            <rect x="20" y="110" width="80" height="8" rx="2" fill="#c8bfb4"/>
+          </svg>
+          <!-- Pins -->
+          <div style="position:absolute;top:30px;left:40px;text-align:center;">
+            <div style="width:28px;height:28px;background:#C8431A;border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:12px;margin:0 auto;">♫</div>
+            <div style="font-size:8px;color:#1A1410;font-family:'DM Sans',sans-serif;margin-top:2px;">Concert</div>
+          </div>
+          <div style="position:absolute;top:55px;left:130px;text-align:center;">
+            <div style="width:28px;height:28px;background:#D4A820;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#1A1410;font-size:12px;margin:0 auto;">M</div>
+            <div style="font-size:8px;color:#1A1410;font-family:'DM Sans',sans-serif;margin-top:2px;">Marché</div>
+          </div>
+          <div style="position:absolute;top:100px;left:70px;text-align:center;">
+            <div style="width:28px;height:28px;background:#8C5A40;border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:12px;margin:0 auto;">F</div>
+            <div style="font-size:8px;color:#1A1410;font-family:'DM Sans',sans-serif;margin-top:2px;">Festival</div>
+          </div>
+        </div>
+        <!-- Tab bar -->
+        <div style="background:#F7F2E8;border-radius:0 0 16px 16px;padding:8px 12px;display:flex;justify-content:space-around;border-top:1px solid #E8E0D0;">
+          <div style="text-align:center;">
+            <div style="font-size:14px;">🏠</div>
+            <div style="font-size:7px;color:#C8431A;font-family:'DM Sans',sans-serif;font-weight:500;">Home</div>
+          </div>
+          <div style="text-align:center;">
+            <div style="font-size:14px;">📅</div>
+            <div style="font-size:7px;color:#8C5A40;font-family:'DM Sans',sans-serif;">Événements</div>
+          </div>
+          <div style="text-align:center;">
+            <div style="width:28px;height:28px;background:#C8431A;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto -6px;">
+              <span style="color:white;font-size:10px;">📍</span>
+            </div>
+          </div>
+          <div style="text-align:center;">
+            <div style="font-size:14px;">🔔</div>
+            <div style="font-size:7px;color:#8C5A40;font-family:'DM Sans',sans-serif;">Alertes</div>
+          </div>
+          <div style="text-align:center;">
+            <div style="font-size:14px;">👤</div>
+            <div style="font-size:7px;color:#8C5A40;font-family:'DM Sans',sans-serif;">Profil</div>
+          </div>
+        </div>
+        <!-- Home button -->
+        <div style="width:60px;height:4px;background:#2a2a2a;border-radius:2px;margin:8px auto 0;"></div>
       </div>
     </div>
-    <div class="step-item">
-      <div class="step-num label">3</div>
-      <div>
-        <div class="step-title h3">Participe ou publie</div>
-        <p class="step-desc">Sauvegarde, partage, ou ajoute ton propre événement en quelques clics.</p>
-      </div>
-    </div>
+
   </div>
 </section>
 
