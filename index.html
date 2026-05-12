@@ -55,15 +55,23 @@
     }
     .nav-logo {
       font-family: 'Playfair Display', serif; font-weight: 700; font-style: italic;
-      font-size: 22px; color: var(--creme); letter-spacing: -.01em;
+      font-size: 22px; color: var(--creme); letter-spacing: -.01em; flex-shrink: 0;
     }
     .nav-logo span { color: var(--brique); }
+    .nav-links {
+      display: flex; gap: 24px; align-items: center; flex: 1; justify-content: center;
+    }
+    .nav-link {
+      font-family: 'DM Sans', sans-serif; font-size: 13px; color: rgba(247,242,232,.6);
+      text-decoration: none; transition: color .15s;
+    }
+    .nav-link:hover { color: var(--creme); }
     .nav-actions { display: flex; gap: 8px; align-items: center; flex-shrink: 0; }
     .nav-cta {
       font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 14px;
       padding: 9px 22px; background: var(--brique); color: var(--creme);
       border: none; border-radius: 6px; cursor: pointer; transition: opacity .15s;
-      white-space: nowrap; display: inline-block;
+      white-space: nowrap; display: inline-block; text-decoration: none;
     }
     .nav-cta:hover { opacity: .88; }
     .nav-ghost {
@@ -73,10 +81,45 @@
       cursor: pointer; transition: border-color .15s; white-space: nowrap;
     }
     .nav-ghost:hover { border-color: rgba(247,242,232,.5); }
-    @media (max-width: 600px) {
+    .nav-hamburger {
+      display: none; background: none; border: 1px solid rgba(247,242,232,.2);
+      color: var(--creme); border-radius: 6px; padding: 7px 10px;
+      font-size: 16px; cursor: pointer;
+    }
+    /* Drawer mobile */
+    .nav-drawer {
+      position: fixed; top: 0; left: 0; bottom: 0; width: 280px; z-index: 200;
+      background: #1A1410; border-right: 1px solid rgba(232,224,208,.1);
+      transform: translateX(-100%); transition: transform .3s ease;
+      display: flex; flex-direction: column;
+    }
+    .nav-drawer.open { transform: translateX(0); }
+    .nav-drawer-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 20px; border-bottom: 1px solid rgba(232,224,208,.1);
+    }
+    .nav-drawer-close {
+      background: none; border: none; color: rgba(247,242,232,.5);
+      font-size: 20px; cursor: pointer;
+    }
+    .nav-drawer-links { display: flex; flex-direction: column; padding: 16px 0; }
+    .nav-drawer-link {
+      font-family: 'DM Sans', sans-serif; font-size: 15px; color: rgba(247,242,232,.8);
+      text-decoration: none; padding: 13px 20px; transition: background .15s;
+    }
+    .nav-drawer-link:hover { background: rgba(255,255,255,.05); color: var(--creme); }
+    .nav-drawer-divider { height: 1px; background: rgba(232,224,208,.1); margin: 8px 0; }
+    .nav-overlay {
+      display: none; position: fixed; inset: 0; z-index: 199;
+      background: rgba(0,0,0,.5);
+    }
+    .nav-overlay.open { display: block; }
+    @media (max-width: 768px) {
       nav { padding: 10px 16px; }
+      .nav-links { display: none; }
+      .nav-desktop { display: none; }
+      .nav-hamburger { display: flex; }
       .nav-cta { padding: 7px 12px; font-size: 12px; }
-      .nav-ghost { padding: 7px 12px; font-size: 12px; }
     }
 
    /* ── Hero ──────────────────────────────────────── */
@@ -407,11 +450,36 @@
 <!-- NAV -->
 <nav>
   <div class="nav-logo">lot<span>bo</span></div>
+  <div class="nav-links">
+    <a href="https://app.lotbo.app/apropos" class="nav-link">À propos</a>
+    <a href="https://app.lotbo.app/aide" class="nav-link">Aide</a>
+    <a href="https://app.lotbo.app/politique-confidentialite" class="nav-link">Confidentialité</a>
+    <a href="https://app.lotbo.app/cgu" class="nav-link">CGU</a>
+  </div>
   <div class="nav-actions">
-    <button class="nav-ghost label" onclick="scrollToForm()">Rejoindre la liste</button>
+    <button class="nav-ghost label nav-desktop" onclick="scrollToForm()">Rejoindre la liste</button>
     <a href="https://app.lotbo.app" class="nav-cta label">Voir les événements →</a>
+    <button class="nav-hamburger" onclick="toggleMobileMenu()" aria-label="Menu">☰</button>
   </div>
 </nav>
+
+<!-- Drawer mobile -->
+<div class="nav-drawer" id="navDrawer">
+  <div class="nav-drawer-header">
+    <div class="nav-logo">lot<span>bo</span></div>
+    <button onclick="toggleMobileMenu()" class="nav-drawer-close">✕</button>
+  </div>
+  <div class="nav-drawer-links">
+    <a href="https://app.lotbo.app" class="nav-drawer-link">🗺️ Voir les événements</a>
+    <button onclick="scrollToForm(); toggleMobileMenu()" class="nav-drawer-link" style="background:none;border:none;text-align:left;cursor:pointer;width:100%">📧 Rejoindre la liste</button>
+    <div class="nav-drawer-divider"></div>
+    <a href="https://app.lotbo.app/apropos" class="nav-drawer-link">ℹ️ À propos</a>
+    <a href="https://app.lotbo.app/aide" class="nav-drawer-link">❓ Aide</a>
+    <a href="https://app.lotbo.app/politique-confidentialite" class="nav-drawer-link">🔒 Confidentialité</a>
+    <a href="https://app.lotbo.app/cgu" class="nav-drawer-link">�� CGU</a>
+  </div>
+</div>
+<div class="nav-overlay" id="navOverlay" onclick="toggleMobileMenu()"></div>
 
 <!-- HERO -->
 <section class="hero" id="hero">
@@ -691,6 +759,7 @@
   <div class="footer-logo">lot<span>bo</span></div>
   <div class="footer-links">
     <a href="https://app.lotbo.app" class="footer-app">Ouvrir l'app →</a>
+    <a href="https://app.lotbo.app/politique-confidentialite" class="footer-note" style="text-decoration:none;transition:color .15s;" onmouseover="this.style.color='#C8431A'" onmouseout="this.style.color=''">Confidentialité</a>
     <div class="footer-note">2026 · Né en Haïti, pour le monde entier 🇭🇹</div>
   </div>
 </footer>
@@ -784,5 +853,13 @@
   setInterval(chargerStats, 5 * 60 * 1000)
 </script>
 
+  <script>
+    function toggleMobileMenu() {
+      const drawer = document.getElementById('navDrawer');
+      const overlay = document.getElementById('navOverlay');
+      drawer.classList.toggle('open');
+      overlay.classList.toggle('open');
+    }
+  </script>
 </body>
 </html>
