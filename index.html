@@ -754,7 +754,7 @@
         <div id="top-villes"><div style="color:#8C5A40; font-size:13px;">Chargement...</div></div>
       </div>
       <div style="background:white; border:1px solid #E8E0D0; border-radius:16px; padding:24px;">
-        <p style="color:#8C5A40; font-size:12px; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:16px; font-family:'DM Sans',sans-serif;">🎪 Top Organisateurs — <span id="mois-label"></span></p>
+        <p style="color:#8C5A40; font-size:12px; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:16px; font-family:'DM Sans',sans-serif;">🎭 Top Catégories</p>
         <div id="top-orgs"><div style="color:#8C5A40; font-size:13px;">Chargement...</div></div>
       </div>
     </div>
@@ -784,19 +784,15 @@
 
       // Top Organisateurs
       const orgsEl = document.getElementById('top-orgs')
-      if (data.topOrganisateurs.length === 0) {
-        orgsEl.innerHTML = '<p style="color:#8C5A40; font-size:13px;">Aucun organisateur ce mois-ci</p>'
-      } else {
-        orgsEl.innerHTML = data.topOrganisateurs.map((o, i) => `
+      orgsEl.innerHTML = (data.topCategories || []).map((c, i) => `
           <div style="display:flex; align-items:center; gap:12px; padding:10px 0; border-bottom:1px solid #F0EAE0;">
             <span style="font-family:'Playfair Display',serif; font-style:italic; font-weight:700; font-size:18px; color:#C8431A; width:24px;">${i+1}</span>
             <div style="flex:1;">
-              <p style="font-weight:600; font-size:14px; color:#1A1410; font-family:'DM Sans',sans-serif;">${o.organisateur}</p>
+              <p style="font-weight:600; font-size:14px; color:#1A1410; font-family:'DM Sans',sans-serif;">${c.categorie}</p>
             </div>
-            <span style="font-size:12px; color:#8C5A40; font-family:'DM Sans',sans-serif;">${o.count} événements</span>
+            <span style="font-size:12px; color:#8C5A40; font-family:'DM Sans',sans-serif;">${c.count} événements</span>
           </div>
         `).join('')
-      }
     })
     .catch(() => {
       document.getElementById('top-villes').innerHTML = '<p style="color:#8C5A40;font-size:13px;">Données indisponibles</p>'
