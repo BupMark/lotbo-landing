@@ -742,6 +742,68 @@
   </div>
 </section>
 
+<!-- TOP DYNAMIQUE -->
+<section style="background:#F7F2E8; padding:72px 40px;">
+  <div style="max-width:1100px; margin:0 auto;">
+    <p style="color:#C8431A; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.12em; margin-bottom:8px; font-family:'DM Sans',sans-serif;">Classements</p>
+    <h2 style="font-family:'Playfair Display',serif; font-style:italic; font-size:clamp(24px,3vw,36px); color:#1A1410; margin-bottom:40px;">Ce qui bouge sur Lotbo</h2>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:24px;" id="top-grid">
+      <!-- Chargé dynamiquement -->
+      <div style="background:white; border:1px solid #E8E0D0; border-radius:16px; padding:24px;">
+        <p style="color:#8C5A40; font-size:12px; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:16px; font-family:'DM Sans',sans-serif;">📍 Top Villes</p>
+        <div id="top-villes"><div style="color:#8C5A40; font-size:13px;">Chargement...</div></div>
+      </div>
+      <div style="background:white; border:1px solid #E8E0D0; border-radius:16px; padding:24px;">
+        <p style="color:#8C5A40; font-size:12px; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:16px; font-family:'DM Sans',sans-serif;">🎪 Top Organisateurs — <span id="mois-label"></span></p>
+        <div id="top-orgs"><div style="color:#8C5A40; font-size:13px;">Chargement...</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Mois courant
+  const moisNoms = ['Jan','Fév','Mar','Avr','Mai','Juin','Juil','Août','Sep','Oct','Nov','Déc']
+  const now = new Date()
+  document.getElementById('mois-label').textContent = moisNoms[now.getMonth()] + ' ' + now.getFullYear()
+
+  fetch('https://app.lotbo.app/api/top')
+    .then(r => r.json())
+    .then(data => {
+      // Top Villes
+      const villesEl = document.getElementById('top-villes')
+      villesEl.innerHTML = data.topVilles.map((v, i) => `
+        <div style="display:flex; align-items:center; gap:12px; padding:10px 0; border-bottom:1px solid #F0EAE0;">
+          <span style="font-family:'Playfair Display',serif; font-style:italic; font-weight:700; font-size:18px; color:#C8431A; width:24px;">${i+1}</span>
+          <div style="flex:1;">
+            <p style="font-weight:600; font-size:14px; color:#1A1410; font-family:'DM Sans',sans-serif;">${v.ville}</p>
+          </div>
+          <span style="font-size:12px; color:#8C5A40; font-family:'DM Sans',sans-serif;">${v.count} événements</span>
+        </div>
+      `).join('')
+
+      // Top Organisateurs
+      const orgsEl = document.getElementById('top-orgs')
+      if (data.topOrganisateurs.length === 0) {
+        orgsEl.innerHTML = '<p style="color:#8C5A40; font-size:13px;">Aucun organisateur ce mois-ci</p>'
+      } else {
+        orgsEl.innerHTML = data.topOrganisateurs.map((o, i) => `
+          <div style="display:flex; align-items:center; gap:12px; padding:10px 0; border-bottom:1px solid #F0EAE0;">
+            <span style="font-family:'Playfair Display',serif; font-style:italic; font-weight:700; font-size:18px; color:#C8431A; width:24px;">${i+1}</span>
+            <div style="flex:1;">
+              <p style="font-weight:600; font-size:14px; color:#1A1410; font-family:'DM Sans',sans-serif;">${o.organisateur}</p>
+            </div>
+            <span style="font-size:12px; color:#8C5A40; font-family:'DM Sans',sans-serif;">${o.count} événements</span>
+          </div>
+        `).join('')
+      }
+    })
+    .catch(() => {
+      document.getElementById('top-villes').innerHTML = '<p style="color:#8C5A40;font-size:13px;">Données indisponibles</p>'
+      document.getElementById('top-orgs').innerHTML = '<p style="color:#8C5A40;font-size:13px;">Données indisponibles</p>'
+    })
+</script>
+
 <!-- CTA FINAL -->
 <section class="cta-section" id="inscription">
   <h2 class="cta-h1 h1">Sois parmi les premiers</h2>
