@@ -762,11 +762,13 @@
 </section>
 
 <script>
+  document.addEventListener('DOMContentLoaded', function() {
   // Mois courant
   const moisNoms = ['Jan','Fév','Mar','Avr','Mai','Juin','Juil','Août','Sep','Oct','Nov','Déc']
   const now = new Date()
   document.getElementById('mois-label').textContent = moisNoms[now.getMonth()] + ' ' + now.getFullYear()
-
+  const moisEl = document.getElementById('mois-label')
+  if (moisEl) moisEl.textContent = moisNoms[now.getMonth()] + ' ' + now.getFullYear()
   fetch('https://app.lotbo.app/api/top')
     .then(r => r.json())
     .then(data => {
@@ -798,6 +800,7 @@
       document.getElementById('top-villes').innerHTML = '<p style="color:#8C5A40;font-size:13px;">Données indisponibles</p>'
       document.getElementById('top-orgs').innerHTML = '<p style="color:#8C5A40;font-size:13px;">Données indisponibles</p>'
     })
+  }) // DOMContentLoaded
 </script>
 
 <!-- CTA FINAL -->
