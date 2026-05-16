@@ -766,7 +766,6 @@
   // Mois courant
   const moisNoms = ['Jan','Fév','Mar','Avr','Mai','Juin','Juil','Août','Sep','Oct','Nov','Déc']
   const now = new Date()
-  document.getElementById('mois-label').textContent = moisNoms[now.getMonth()] + ' ' + now.getFullYear()
   const moisEl = document.getElementById('mois-label')
   if (moisEl) moisEl.textContent = moisNoms[now.getMonth()] + ' ' + now.getFullYear()
   fetch('https://app.lotbo.app/api/top')
