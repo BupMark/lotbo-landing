@@ -275,7 +275,7 @@
       font-size: 15px; color: rgba(247,242,232,.55);
       line-height: 1.8; max-width: 420px; margin-bottom: 44px;
     }
-    .hero-ctas { display: flex; flex-direction: column; gap: 12px; margin-bottom: 12px; }
+    .hero-ctas { display: flex; flex-direction: row; gap: 12px; margin-bottom: 12px; flex-wrap: wrap; }
     .hero-btn-main {
       display: inline-flex; align-items: center; gap: 8px;
       padding: 15px 32px; font-size: 15px; font-weight: 500;
@@ -311,6 +311,7 @@
       .hero-stat-card { display: none; }
       .blob-1 { width: 300px; height: 300px; }
       .blob-2 { width: 250px; height: 250px; }
+      .hero-ctas { flex-direction: column; }
     }
 
     /* ── STATS — Section dégradée ────────────── */
