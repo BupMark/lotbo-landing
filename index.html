@@ -9,15 +9,6 @@
   <meta property="og:description" content="Touriste, voyageur ou résident — trouve ce qui se passe autour de toi en ce moment."/>
   <meta property="og:type" content="website"/>
   <meta name="twitter:card" content="summary_large_image"/>
-
-  <!-- Favicon -->
-  <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
-  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png"/>
-  <meta name="theme-color" content="#1A1410"/>
-
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700&family=DM+Serif+Display:ital@1&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet"/>
@@ -51,194 +42,76 @@
       display: flex; align-items: center; justify-content: space-between;
       padding: 14px 40px; background: var(--night);
       border-bottom: 1px solid rgba(232,224,208,.1);
-      gap: 10px;
     }
     .nav-logo {
       font-family: 'Playfair Display', serif; font-weight: 700; font-style: italic;
-      font-size: 22px; color: var(--creme); letter-spacing: -.01em; flex-shrink: 0;
+      font-size: 22px; color: var(--creme); letter-spacing: -.01em;
     }
     .nav-logo span { color: var(--brique); }
-    .nav-links {
-      display: flex; gap: 24px; align-items: center; flex: 1; justify-content: center;
-    }
-    .nav-link {
-      font-family: 'DM Sans', sans-serif; font-size: 13px; color: rgba(247,242,232,.6);
-      text-decoration: none; transition: color .15s;
-    }
-    .nav-link:hover { color: var(--creme); }
-    .nav-actions { display: flex; gap: 8px; align-items: center; flex-shrink: 0; }
     .nav-cta {
       font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 14px;
       padding: 9px 22px; background: var(--brique); color: var(--creme);
       border: none; border-radius: 6px; cursor: pointer; transition: opacity .15s;
-      white-space: nowrap; display: inline-block; text-decoration: none;
     }
     .nav-cta:hover { opacity: .88; }
-    .nav-ghost {
-      font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 14px;
-      padding: 9px 22px; background: transparent; color: var(--creme);
-      border: 1px solid rgba(247,242,232,.2); border-radius: 6px;
-      cursor: pointer; transition: border-color .15s; white-space: nowrap;
-    }
-    .nav-ghost:hover { border-color: rgba(247,242,232,.5); }
-    .nav-hamburger {
-      display: none; background: none; border: 1px solid rgba(247,242,232,.2);
-      color: var(--creme); border-radius: 6px; padding: 7px 10px;
-      font-size: 16px; cursor: pointer;
-    }
-    /* Drawer mobile */
-    .nav-drawer {
-      position: fixed; top: 0; left: 0; bottom: 0; width: 280px; z-index: 200;
-      background: #1A1410; border-right: 1px solid rgba(232,224,208,.1);
-      transform: translateX(-100%); transition: transform .3s ease;
-      display: flex; flex-direction: column;
-    }
-    .nav-drawer.open { transform: translateX(0); }
-    .nav-drawer-header {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 16px 20px; border-bottom: 1px solid rgba(232,224,208,.1);
-    }
-    .nav-drawer-close {
-      background: none; border: none; color: rgba(247,242,232,.5);
-      font-size: 20px; cursor: pointer;
-    }
-    .nav-drawer-links { display: flex; flex-direction: column; padding: 16px 0; }
-    .nav-drawer-link {
-      font-family: 'DM Sans', sans-serif; font-size: 15px; color: rgba(247,242,232,.8);
-      text-decoration: none; padding: 13px 20px; transition: background .15s;
-    }
-    .nav-drawer-link:hover { background: rgba(255,255,255,.05); color: var(--creme); }
-    .nav-drawer-divider { height: 1px; background: rgba(232,224,208,.1); margin: 8px 0; }
-    .nav-overlay {
-      display: none; position: fixed; inset: 0; z-index: 199;
-      background: rgba(0,0,0,.5);
-    }
-    .nav-overlay.open { display: block; }
-    @media (max-width: 768px) {
-      nav { padding: 10px 16px; }
-      .nav-links { display: none; }
-      .nav-desktop { display: none; }
-      .nav-hamburger { display: flex; }
-      .nav-cta { padding: 7px 12px; font-size: 12px; }
-    }
 
-   /* ── Hero ──────────────────────────────────────── */
-   .hero {
-      background: var(--night);
-      min-height: 100vh;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      overflow: hidden;
-    }
-    .hero-text {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 80px 56px 80px 64px;
-      color: var(--creme);
-    }
-    .hero-photo {
-      position: relative;
-      min-height: 600px;
-    }
-    .hero-photo img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center top;
-      display: block;
+    /* ── Hero ──────────────────────────────────────── */
+    .hero {
+      background: var(--night); padding: 80px 24px 72px;
+      text-align: center;
     }
     .hero-badge {
       display: inline-block;
-      font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
-      padding: 6px 14px; border-radius: 20px; margin-bottom: 24px;
-      border: 1px solid rgba(140,90,64,0.5); color: var(--terre);
-      width: fit-content;
+      font-family: 'DM Sans', sans-serif; font-weight: 500;
+      font-size: 11px; letter-spacing: .08em; text-transform: uppercase;
+      padding: 6px 16px; border-radius: 20px; margin-bottom: 28px;
+      border: 1px solid var(--terre); color: var(--brume);
     }
     .hero-h1 {
       font-family: 'Playfair Display', serif; font-weight: 700; font-style: italic;
-      font-size: clamp(36px, 4.5vw, 60px); line-height: 1.1;
-      color: var(--creme); margin-bottom: 12px;
+      font-size: clamp(32px, 5vw, 52px); line-height: 1.15;
+      color: var(--creme); margin-bottom: 10px;
     }
     .hero-h1 .accent { color: var(--brique); }
     .hero-sub {
       font-family: 'DM Serif Display', serif; font-style: italic;
-      font-size: clamp(18px, 2.5vw, 26px); color: var(--or);
+      font-size: clamp(18px, 3vw, 26px); color: var(--or);
       margin-bottom: 20px;
     }
     .hero-body {
-      font-size: 15px; color: var(--brume); line-height: 1.8;
-      max-width: 420px; margin-bottom: 36px;
+      font-size: 15px; color: var(--brume); line-height: 1.7;
+      max-width: 460px; margin: 0 auto 32px;
     }
     .hero-form {
-      display: flex; gap: 10px; flex-wrap: wrap;
+      display: flex; gap: 10px; max-width: 420px;
+      margin: 0 auto; flex-wrap: wrap; justify-content: center;
     }
-    .hero-form input[type="email"] {
-      flex: 1; min-width: 200px; padding: 13px 18px; font-size: 14px;
+    .hero-form input {
+      flex: 1; min-width: 210px; padding: 13px 18px; font-size: 14px;
       font-family: 'DM Sans', sans-serif;
-      background: rgba(247,242,232,.08); border: 1px solid rgba(247,242,232,.2);
-      border-radius: 8px; color: var(--creme); outline: none;
-    }
-    .hero-form input[type="email"]::placeholder { color: rgba(247,242,232,.35); }
-    .hero-form input[type="email"]:focus { border-color: rgba(247,242,232,.5); }
-    .hero-form button {
-      padding: 13px 28px; font-family: 'DM Sans', sans-serif; font-weight: 500;
-      font-size: 14px; background: var(--brique); color: var(--creme);
-      border: none; border-radius: 8px; cursor: pointer; transition: opacity .15s;
-      white-space: nowrap;
-    }
-    .hero-form button:hover { opacity: .88; }
-    .hero-form button:disabled { opacity: .5; cursor: not-allowed; }
-    .hero-note {
-      margin-top: 12px; font-size: 12px; color: var(--terre);
-    }
-    @media (max-width: 860px) {
-      .hero {
-        grid-template-columns: 1fr;
-        grid-template-rows: auto auto;
-      }
-      .hero-photo {
-        min-height: 360px;
-        order: -1;
-      }
-      .hero-photo img { position: absolute; }
-      .hero-text {
-        padding: 48px 24px 56px;
-        text-align: center;
-        align-items: center;
-      }
-      .hero-body { max-width: 100%; }
-      .hero-form { justify-content: center; }
-    }
-    /* ── Formulaire inline ──────────────────────────── */
-    .inline-form {
-      display: flex; gap: 10px; flex-wrap: wrap;
-    }
-    .inline-form input[type="email"] {
-      flex: 1; min-width: 220px; padding: 13px 18px; font-size: 14px;
-      font-family: 'DM Sans', sans-serif;
-      background: rgba(247,242,232,.1); border: 1px solid rgba(247,242,232,.25);
+      background: rgba(247,242,232,.07); border: 1px solid var(--terre);
       border-radius: 6px; color: var(--creme); outline: none;
       transition: border-color .15s;
     }
-    .inline-form input[type="email"]:focus { border-color: rgba(247,242,232,.6); }
-    .inline-form input[type="email"]::placeholder { color: rgba(247,242,232,.4); }
-    .inline-form button {
-      padding: 13px 24px; font-family: 'DM Sans', sans-serif; font-weight: 500;
+    .hero-form input:focus { border-color: var(--or); }
+    .hero-form input::placeholder { color: var(--terre); }
+    .hero-form button {
+      padding: 13px 26px; font-family: 'DM Sans', sans-serif; font-weight: 500;
       font-size: 14px; background: var(--brique); color: var(--creme);
       border: none; border-radius: 6px; cursor: pointer; transition: opacity .15s;
       white-space: nowrap;
     }
-    .inline-form button:hover { opacity: .88; }
-    .inline-form button:disabled { opacity: .5; cursor: not-allowed; }
-    .form-msg {
-      margin-top: 12px; font-size: 13px; font-family: 'DM Sans', sans-serif;
-      min-height: 20px;
+    .hero-form button:hover { opacity: .88; }
+    .hero-count {
+      margin-top: 18px; font-size: 13px; color: var(--terre);
     }
-    .form-msg.ok { color: var(--or); }
-    .form-msg.err { color: #e57373; }
+    .hero-count strong { color: var(--or); font-weight: 500; }
+    .success-msg {
+      display: none; max-width: 400px; margin: 14px auto 0;
+      padding: 11px 18px; border: 1px solid var(--or);
+      border-radius: 6px; color: var(--or); font-size: 13px;
+      background: rgba(212,168,32,.1);
+    }
 
     /* ── Map mockup ─────────────────────────────────── */
     .map-section {
@@ -264,9 +137,12 @@
     .map-time { font-size: 12px; color: var(--terre); font-family: 'DM Sans', sans-serif; }
     .map-area {
       position: relative; height: 180px;
-      background: #1E1813; overflow: hidden;
+      background: #1E1813;
+      overflow: hidden;
     }
-    .map-grid { position: absolute; inset: 0; }
+    .map-grid {
+      position: absolute; inset: 0;
+    }
     .map-pin {
       position: absolute; display: flex; flex-direction: column; align-items: center;
       cursor: pointer; transition: transform .15s;
@@ -318,7 +194,8 @@
     }
     .feat-card {
       background: var(--creme); border: 1px solid var(--brume);
-      border-radius: 12px; padding: 22px 20px; transition: border-color .15s;
+      border-radius: 12px; padding: 22px 20px;
+      transition: border-color .15s;
     }
     .feat-card:hover { border-color: var(--terre); }
     .feat-icon {
@@ -355,15 +232,6 @@
     }
     .step-desc { font-size: 13px; color: var(--brume); line-height: 1.6; }
 
-    @media (max-width: 768px) {
-      .steps > div {
-        grid-template-columns: 1fr !important;
-      }
-      .steps > div > div:last-child {
-        display: none;
-      }
-    }
-
     /* ── Quotes ─────────────────────────────────────── */
     .quotes { background: var(--brume); padding: 72px 40px; }
     .quotes .section-h2 { color: var(--night); margin-bottom: 28px; }
@@ -395,22 +263,21 @@
       display: flex; gap: 10px; max-width: 400px;
       margin: 0 auto; flex-wrap: wrap; justify-content: center;
     }
-    .cta-form input[type="email"] {
+    .cta-form input {
       flex: 1; min-width: 200px; padding: 13px 18px; font-size: 14px;
       font-family: 'DM Sans', sans-serif;
       background: rgba(247,242,232,.15); border: 1px solid rgba(247,242,232,.3);
       border-radius: 6px; color: var(--creme); outline: none;
       transition: border-color .15s;
     }
-    .cta-form input[type="email"]:focus { border-color: rgba(247,242,232,.7); }
-    .cta-form input[type="email"]::placeholder { color: rgba(247,242,232,.5); }
+    .cta-form input:focus { border-color: rgba(247,242,232,.7); }
+    .cta-form input::placeholder { color: rgba(247,242,232,.5); }
     .cta-form button {
       padding: 13px 24px; font-family: 'DM Sans', sans-serif; font-weight: 500;
       font-size: 14px; background: var(--night); color: var(--creme);
       border: none; border-radius: 6px; cursor: pointer; transition: opacity .15s;
     }
     .cta-form button:hover { opacity: .85; }
-    .cta-form button:disabled { opacity: .5; cursor: not-allowed; }
     .cta-note {
       margin-top: 14px; font-size: 12px;
       color: rgba(247,242,232,.45); font-family: 'DM Sans', sans-serif;
@@ -426,22 +293,14 @@
       font-size: 18px; color: var(--creme);
     }
     .footer-logo span { color: var(--brique); }
-    .footer-links { display: flex; gap: 20px; align-items: center; }
     .footer-note { font-size: 12px; color: var(--terre); font-family: 'DM Sans', sans-serif; }
-    .footer-app {
-      font-size: 12px; color: var(--brique); font-family: 'DM Sans', sans-serif;
-      font-weight: 500; transition: opacity .15s;
-    }
-    .footer-app:hover { opacity: .8; }
 
     /* ── Responsive ─────────────────────────────────── */
     @media (max-width: 600px) {
-      nav { padding: 12px 16px; }
+      nav { padding: 12px 20px; }
+      .hero { padding: 56px 20px 52px; }
       .features, .steps, .quotes { padding: 52px 20px; }
       footer { padding: 18px 20px; }
-      .inline-form { flex-direction: column; }
-      .inline-form input[type="email"] { min-width: unset; width: 100%; }
-      .cta-form { flex-direction: column; }
     }
   </style>
 </head>
@@ -450,80 +309,26 @@
 <!-- NAV -->
 <nav>
   <div class="nav-logo">lot<span>bo</span></div>
-  <div class="nav-links">
-    <a href="https://app.lotbo.app/apropos" class="nav-link">À propos</a>
-    <a href="https://app.lotbo.app/aide" class="nav-link">Aide</a>
-    <a href="https://app.lotbo.app/politique-confidentialite" class="nav-link">Confidentialité</a>
-    <a href="https://app.lotbo.app/cgu" class="nav-link">CGU</a>
-  </div>
-  <div class="nav-actions">
-    <button class="nav-ghost label nav-desktop" onclick="scrollToForm()">Rejoindre la liste</button>
-    <a href="https://app.lotbo.app" class="nav-cta label">Voir les événements →</a>
-    <button class="nav-hamburger" onclick="toggleMobileMenu()" aria-label="Menu">☰</button>
-  </div>
+  <button class="nav-cta label" onclick="document.getElementById('hero-email').focus()">Rejoindre la liste</button>
 </nav>
 
-<!-- Drawer mobile -->
-<div class="nav-drawer" id="navDrawer">
-  <div class="nav-drawer-header">
-    <div class="nav-logo">lot<span>bo</span></div>
-    <button onclick="toggleMobileMenu()" class="nav-drawer-close">✕</button>
-  </div>
-  <div class="nav-drawer-links">
-    <a href="https://app.lotbo.app" class="nav-drawer-link">🗺️ Voir les événements</a>
-    <button onclick="scrollToForm(); toggleMobileMenu()" class="nav-drawer-link" style="background:none;border:none;text-align:left;cursor:pointer;width:100%">📧 Rejoindre la liste</button>
-    <div class="nav-drawer-divider"></div>
-    <a href="https://app.lotbo.app/apropos" class="nav-drawer-link">ℹ️ À propos</a>
-    <a href="https://app.lotbo.app/aide" class="nav-drawer-link">❓ Aide</a>
-    <a href="https://app.lotbo.app/politique-confidentialite" class="nav-drawer-link">🔒 Confidentialité</a>
-    <a href="https://app.lotbo.app/cgu" class="nav-drawer-link">�� CGU</a>
-  </div>
-</div>
-<div class="nav-overlay" id="navOverlay" onclick="toggleMobileMenu()"></div>
-
 <!-- HERO -->
-<section class="hero" id="hero">
-
-  <!-- Texte gauche -->
-  <div class="hero-text">
-    <div class="hero-badge label">🇭🇹 Né en Haïti · Pour le monde entier</div>
-    <h1 class="hero-h1">Kisa k'ap pase<br><span class="accent">lotbo</span>?</h1>
-    <p class="hero-sub h2">Tous les événements,<br>un seul endroit.</p>
-    <p class="hero-body">
-      Touriste, voyageur ou résident — trouve ce qui se passe autour de toi en ce moment. Concerts, expos, matchs, marchés. Tout, partout.
-    </p>
-    <div class="hero-form" id="hero-form">
-      <input type="email" id="hero-email" placeholder="ton@email.com" autocomplete="email" />
-      <button onclick="inscrire('hero-email', 'hero-msg')">S'inscrire →</button>
-    </div>
-    <div class="form-msg" id="hero-msg"></div>
-    <p class="hero-note">Aucun spam · Accès prioritaire au lancement</p>
+<section class="hero">
+  <div class="hero-badge label">Bientôt disponible · Rejoins les premiers</div>
+  <h1 class="hero-h1">Kisa k'ap pase <span class="accent">lotbo</span>?</h1>
+  <p class="hero-sub h2">Tous les événements, un seul endroit.</p>
+  <p class="hero-body">
+    Touriste, voyageur ou résident — trouve ce qui se passe autour de toi en ce moment. Concerts, marchés, conférences, fêtes culturelles et bien plus.
+  </p>
+  <div class="hero-form">
+    <input id="hero-email" type="email" placeholder="ton@email.com" autocomplete="email"/>
+    <button class="label" onclick="subscribe('hero')">Rejoindre Lotbo →</button>
   </div>
-
-  <!-- Photo droite pleine hauteur -->
-  <div class="hero-photo">
-    <img src="./hero-femme.jpg" alt="Lotbo — découvrez les événements près de vous" />
-  </div>
-
+  <div class="success-msg" id="hero-msg">Ou la ! Tu es sur la liste. On te contacte en priorité au lancement.</div>
+  <p class="hero-count">
+    <strong id="count-num">247</strong> personnes déjà inscrites
+  </p>
 </section>
-
-<!-- STATS -->
-<div style="background:#1A1410;padding:48px 40px 64px;border-top:1px solid rgba(232,224,208,0.08);">
-  <div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:24px;text-align:center;">
-    <div>
-      <p id="stat-events" style="font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:clamp(36px,5vw,56px);color:#C8431A;margin-bottom:6px;">—</p>
-      <p style="font-family:'DM Sans',sans-serif;font-size:13px;color:#8C5A40;text-transform:uppercase;letter-spacing:.08em;">Événements</p>
-    </div>
-    <div>
-      <p id="stat-villes" style="font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:clamp(36px,5vw,56px);color:#D4A820;margin-bottom:6px;">—</p>
-      <p style="font-family:'DM Sans',sans-serif;font-size:13px;color:#8C5A40;text-transform:uppercase;letter-spacing:.08em;">Villes</p>
-    </div>
-    <div>
-      <p id="stat-pays" style="font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:clamp(36px,5vw,56px);color:#F7F2E8;margin-bottom:6px;">—</p>
-      <p style="font-family:'DM Sans',sans-serif;font-size:13px;color:#8C5A40;text-transform:uppercase;letter-spacing:.08em;">Pays</p>
-    </div>
-  </div>
-</div>
 
 <!-- MAP MOCKUP -->
 <div class="map-section">
@@ -624,105 +429,38 @@
         </svg>
       </div>
       <h3 class="feat-h3 h3">Fiabilité communautaire</h3>
-      <p class="feat-body">Les événements sont vérifiés et signalés par la communauté. Tu ne rates jamais une mauvaise info.</p>
+      <p class="feat-body">Les événements sont vérifiés et notés par la communauté. Tu ne rates jamais une mauvaise info.</p>
     </div>
   </div>
 </section>
 
 <!-- STEPS -->
 <section class="steps">
-  <div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;">
-
-    <!-- Étapes gauche -->
-    <div>
-      <p class="section-label label">Comment ça marche</p>
-      <h2 class="section-h2 h2">Simple comme bonjour</h2>
-      <p class="section-body">Trois étapes, et tu es dans le feu de l'action.</p>
-      <div class="step-list">
-        <div class="step-item">
-          <div class="step-num label">1</div>
-          <div>
-            <div class="step-title h3">Ouvre et localise-toi</div>
-            <p class="step-desc">La carte s'affiche avec tous les événements proches de toi ou d'une ville de ton choix.</p>
-          </div>
-        </div>
-        <div class="step-item">
-          <div class="step-num label">2</div>
-          <div>
-            <div class="step-title h3">Filtre selon tes envies</div>
-            <p class="step-desc">Culture, business, sport, gratuit, ce soir, ce week-end — tu trouves exactement ce que tu cherches.</p>
-          </div>
-        </div>
-        <div class="step-item">
-          <div class="step-num label">3</div>
-          <div>
-            <div class="step-title h3">Participe ou publie</div>
-            <p class="step-desc">Sauvegarde, partage, ou ajoute ton propre événement en quelques clics.</p>
-          </div>
-        </div>
+  <p class="section-label label">Comment ça marche</p>
+  <h2 class="section-h2 h2">Simple comme bonjour</h2>
+  <p class="section-body">Trois étapes, et tu es dans le feu de l'action.</p>
+  <div class="step-list">
+    <div class="step-item">
+      <div class="step-num label">1</div>
+      <div>
+        <div class="step-title h3">Ouvre et localise-toi</div>
+        <p class="step-desc">La carte s'affiche avec tous les événements proches de toi ou d'une ville de ton choix.</p>
       </div>
     </div>
-
-    <!-- Mockup téléphone droite -->
-    <div style="display:flex;justify-content:center;align-items:center;">
-      <div style="width:260px;background:#1E1813;border-radius:36px;padding:12px;box-shadow:0 32px 80px rgba(0,0,0,0.5);border:1px solid rgba(232,224,208,0.1);">
-        <div style="width:80px;height:6px;background:#2a2a2a;border-radius:3px;margin:0 auto 12px;"></div>
-        <div style="background:#F7F2E8;border-radius:16px 16px 0 0;padding:10px 12px;display:flex;justify-content:space-between;align-items:center;">
-          <span style="font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:16px;color:#1A1410;">lot<span style="color:#C8431A;">bo</span></span>
-          <span style="font-size:10px;color:#8C5A40;font-family:'DM Sans',sans-serif;">+ Ajouter</span>
-        </div>
-        <div style="background:#e8e0d4;height:180px;position:relative;overflow:hidden;">
-          <svg viewBox="0 0 240 180" style="width:100%;height:100%;" xmlns="http://www.w3.org/2000/svg">
-            <rect width="240" height="180" fill="#ddd5c8"/>
-            <line x1="0" y1="60" x2="240" y2="60" stroke="#c8bfb4" stroke-width="1"/>
-            <line x1="0" y1="120" x2="240" y2="120" stroke="#c8bfb4" stroke-width="1"/>
-            <line x1="80" y1="0" x2="80" y2="180" stroke="#c8bfb4" stroke-width="1"/>
-            <line x1="160" y1="0" x2="160" y2="180" stroke="#c8bfb4" stroke-width="1"/>
-            <rect x="10" y="20" width="60" height="8" rx="2" fill="#c8bfb4"/>
-            <rect x="90" y="65" width="70" height="8" rx="2" fill="#c8bfb4"/>
-            <rect x="170" y="30" width="55" height="8" rx="2" fill="#c8bfb4"/>
-            <rect x="20" y="110" width="80" height="8" rx="2" fill="#c8bfb4"/>
-          </svg>
-          <div style="position:absolute;top:30px;left:40px;text-align:center;">
-            <div style="width:28px;height:28px;background:#C8431A;border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:12px;margin:0 auto;">♫</div>
-            <div style="font-size:8px;color:#1A1410;font-family:'DM Sans',sans-serif;margin-top:2px;">Concert</div>
-          </div>
-          <div style="position:absolute;top:55px;left:130px;text-align:center;">
-            <div style="width:28px;height:28px;background:#D4A820;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#1A1410;font-size:12px;margin:0 auto;">M</div>
-            <div style="font-size:8px;color:#1A1410;font-family:'DM Sans',sans-serif;margin-top:2px;">Marché</div>
-          </div>
-          <div style="position:absolute;top:100px;left:70px;text-align:center;">
-            <div style="width:28px;height:28px;background:#8C5A40;border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:12px;margin:0 auto;">F</div>
-            <div style="font-size:8px;color:#1A1410;font-family:'DM Sans',sans-serif;margin-top:2px;">Festival</div>
-          </div>
-        </div>
-        <div style="background:#F7F2E8;border-radius:0 0 16px 16px;padding:8px 12px;display:flex;justify-content:space-around;border-top:1px solid #E8E0D0;">
-          <div style="text-align:center;">
-            <div style="font-size:14px;">🏠</div>
-            <div style="font-size:7px;color:#C8431A;font-family:'DM Sans',sans-serif;font-weight:500;">Home</div>
-          </div>
-          <div style="text-align:center;">
-            <div style="font-size:14px;">📅</div>
-            <div style="font-size:7px;color:#8C5A40;font-family:'DM Sans',sans-serif;">Événements</div>
-          </div>
-          <div style="text-align:center;">
-            <div style="width:28px;height:28px;background:#C8431A;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto -6px;">
-              <span style="color:white;font-size:10px;">📍</span>
-            </div>
-          </div>
-          <div style="text-align:center;">
-            <div style="font-size:14px;">🔔</div>
-            <div style="font-size:7px;color:#8C5A40;font-family:'DM Sans',sans-serif;">Alertes</div>
-          </div>
-          <div style="text-align:center;">
-            <div style="font-size:14px;">👤</div>
-            <div style="font-size:7px;color:#8C5A40;font-family:'DM Sans',sans-serif;">Profil</div>
-          </div>
-        </div>
-        <div style="width:60px;height:4px;background:#2a2a2a;border-radius:2px;margin:8px auto 0;"></div>
+    <div class="step-item">
+      <div class="step-num label">2</div>
+      <div>
+        <div class="step-title h3">Filtre selon tes envies</div>
+        <p class="step-desc">Culture, business, sport, gratuit, ce soir, ce week-end — tu trouves exactement ce que tu cherches.</p>
       </div>
     </div>
-
+    <div class="step-item">
+      <div class="step-num label">3</div>
+      <div>
+        <div class="step-title h3">Participe ou publie</div>
+        <p class="step-desc">Sauvegarde, partage, ou ajoute ton propre événement en quelques clics.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -742,194 +480,52 @@
   </div>
 </section>
 
-<!-- TOP DYNAMIQUE -->
-<section style="background:#F7F2E8; padding:72px 40px;">
-  <div style="max-width:1100px; margin:0 auto;">
-    <p style="color:#C8431A; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.12em; margin-bottom:8px; font-family:'DM Sans',sans-serif;">Classements</p>
-    <h2 style="font-family:'Playfair Display',serif; font-style:italic; font-size:clamp(24px,3vw,36px); color:#1A1410; margin-bottom:40px;">Ce qui bouge sur Lotbo</h2>
-    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:24px;" id="top-grid">
-      <!-- Chargé dynamiquement -->
-      <div style="background:white; border:1px solid #E8E0D0; border-radius:16px; padding:24px;">
-        <p style="color:#8C5A40; font-size:12px; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:16px; font-family:'DM Sans',sans-serif;">📍 Top Villes</p>
-        <div id="top-villes"><div style="color:#8C5A40; font-size:13px;">Chargement...</div></div>
-      </div>
-      <div style="background:white; border:1px solid #E8E0D0; border-radius:16px; padding:24px;">
-        <p style="color:#8C5A40; font-size:12px; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:16px; font-family:'DM Sans',sans-serif;">🎭 Top Catégories</p>
-        <div id="top-orgs"><div style="color:#8C5A40; font-size:13px;">Chargement...</div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-  // Mois courant
-  const moisNoms = ['Jan','Fév','Mar','Avr','Mai','Juin','Juil','Août','Sep','Oct','Nov','Déc']
-  const now = new Date()
-  const moisEl = document.getElementById('mois-label')
-  if (moisEl) moisEl.textContent = moisNoms[now.getMonth()] + ' ' + now.getFullYear()
-  fetch('https://app.lotbo.app/api/top')
-    .then(r => r.json())
-    .then(data => {
-      // Top Villes
-      const villesEl = document.getElementById('top-villes')
-      villesEl.innerHTML = data.topVilles.map((v, i) => `
-        <div style="display:flex; align-items:center; gap:12px; padding:10px 0; border-bottom:1px solid #F0EAE0;">
-          <span style="font-family:'Playfair Display',serif; font-style:italic; font-weight:700; font-size:18px; color:#C8431A; width:24px;">${i+1}</span>
-          <div style="flex:1;">
-            <p style="font-weight:600; font-size:14px; color:#1A1410; font-family:'DM Sans',sans-serif;">${v.ville}</p>
-          </div>
-          <span style="font-size:12px; color:#8C5A40; font-family:'DM Sans',sans-serif;">${v.count} événements</span>
-        </div>
-      `).join('')
-
-      // Top Organisateurs
-      const orgsEl = document.getElementById('top-orgs')
-      orgsEl.innerHTML = (data.topCategories || []).map((c, i) => `
-          <div style="display:flex; align-items:center; gap:12px; padding:10px 0; border-bottom:1px solid #F0EAE0;">
-            <span style="font-family:'Playfair Display',serif; font-style:italic; font-weight:700; font-size:18px; color:#C8431A; width:24px;">${i+1}</span>
-            <div style="flex:1;">
-              <p style="font-weight:600; font-size:14px; color:#1A1410; font-family:'DM Sans',sans-serif;">${c.categorie}</p>
-            </div>
-            <span style="font-size:12px; color:#8C5A40; font-family:'DM Sans',sans-serif;">${c.count} événements</span>
-          </div>
-        `).join('')
-    })
-    .catch(() => {
-      document.getElementById('top-villes').innerHTML = '<p style="color:#8C5A40;font-size:13px;">Données indisponibles</p>'
-      document.getElementById('top-orgs').innerHTML = '<p style="color:#8C5A40;font-size:13px;">Données indisponibles</p>'
-    })
-  }) // DOMContentLoaded
-</script>
-
 <!-- CTA FINAL -->
-<section class="cta-section" id="inscription">
+<section class="cta-section">
   <h2 class="cta-h1 h1">Sois parmi les premiers</h2>
   <p class="cta-body">Inscris-toi maintenant et reçois un accès prioritaire au lancement de Lotbo.</p>
   <div class="cta-form">
-    <input type="email" id="cta-email" placeholder="ton@email.com" autocomplete="email" />
-    <button onclick="inscrire('cta-email', 'cta-msg')">S'inscrire →</button>
+    <input id="cta-email" type="email" placeholder="ton@email.com" autocomplete="email"/>
+    <button class="label" onclick="subscribe('cta')">Je veux accès en premier</button>
   </div>
-  <div class="form-msg" id="cta-msg"></div>
+  <div class="success-msg" id="cta-msg" style="background:rgba(247,242,232,.15);border-color:rgba(247,242,232,.4);color:var(--creme)">Ou la ! Tu es sur la liste.</div>
   <p class="cta-note">Aucun spam. Juste un email au lancement.</p>
 </section>
 
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">lot<span>bo</span></div>
-  <div class="footer-links">
-    <a href="https://app.lotbo.app" class="footer-app">Ouvrir l'app →</a>
-    <a href="https://app.lotbo.app/politique-confidentialite" class="footer-note" style="text-decoration:none;transition:color .15s;" onmouseover="this.style.color='#C8431A'" onmouseout="this.style.color=''">Confidentialité</a>
-    <div class="footer-note">2026 · Né en Haïti, pour le monde entier 🇭🇹</div>
-  </div>
+  <div class="footer-note">2025 · Né en Haïti, pour le monde entier</div>
 </footer>
 
 <script>
-  function scrollToForm() {
-    document.getElementById('hero-email').focus();
-    document.getElementById('hero').scrollIntoView({ behavior: 'smooth' });
+  let count = 247;
+
+  function subscribe(zone) {
+    const input = document.getElementById(zone + '-email');
+    const msg   = document.getElementById(zone + '-msg');
+    if (!input.value.includes('@')) { input.focus(); return; }
+    count++;
+    document.getElementById('count-num').textContent = count;
+    msg.style.display = 'block';
+    input.value = '';
+    input.blur();
   }
+
+  document.querySelectorAll('input[type=email]').forEach(function(el) {
+    el.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') {
+        const zone = el.id.split('-')[0];
+        subscribe(zone);
+      }
+    });
+  });
 
   function togglePill(el) {
     document.querySelectorAll('.map-pill').forEach(function(p) { p.classList.remove('on'); });
     el.classList.add('on');
   }
-
-  async function inscrire(inputId, msgId) {
-    const emailInput = document.getElementById(inputId);
-    const msgEl = document.getElementById(msgId);
-    const email = emailInput.value.trim();
-
-    if (!email || !email.includes('@')) {
-      msgEl.className = 'form-msg err';
-      msgEl.textContent = 'Entre une adresse email valide.';
-      return;
-    }
-
-    const btn = emailInput.nextElementSibling;
-    btn.disabled = true;
-    btn.textContent = '...';
-    msgEl.className = 'form-msg';
-    msgEl.textContent = '';
-
-    try {
-      const res = await fetch('/api/subscribe', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email })
-      });
-
-      const data = await res.json();
-
-      if (data.success) {
-        msgEl.className = 'form-msg ok';
-        msgEl.textContent = data.already
-          ? '✓ Tu es déjà dans la liste !'
-          : '✓ Inscrit ! On te contacte au lancement.';
-        emailInput.value = '';
-      } else {
-        throw new Error('Erreur serveur');
-      }
-    } catch {
-      msgEl.className = 'form-msg err';
-      msgEl.textContent = 'Erreur réseau. Réessaie dans un instant.';
-    }
-
-    btn.disabled = false;
-    btn.textContent = 'S\'inscrire →';
-  }
-
-  // ── Compteurs dynamiques ──
-  async function chargerStats() {
-    try {
-      const res = await fetch('https://app.lotbo.app/api/stats')
-      const data = await res.json()
-
-      function animerCompteur(el, cible) {
-        let debut = 0
-        const duree = 1500
-        const increment = cible / (duree / 16)
-        const timer = setInterval(() => {
-          debut += increment
-          if (debut >= cible) {
-            debut = cible
-            clearInterval(timer)
-          }
-          el.textContent = Math.floor(debut).toLocaleString('fr-FR')
-        }, 16)
-      }
-
-      animerCompteur(document.getElementById('stat-events'), data.total)
-      animerCompteur(document.getElementById('stat-villes'), data.villes)
-      animerCompteur(document.getElementById('stat-pays'), data.pays)
-    } catch {
-      // Compteurs temps réel depuis l'API
-      fetch('https://app.lotbo.app/api/stats')
-        .then(r => r.json())
-        .then(data => {
-          document.getElementById('stat-events').textContent = (data.total || 185) + '+'
-          document.getElementById('stat-villes').textContent = (data.villes || 55) + '+'
-          document.getElementById('stat-pays').textContent = (data.pays || 12) + '+'
-        })
-        .catch(() => {
-          document.getElementById('stat-events').textContent = '185+'
-          document.getElementById('stat-villes').textContent = '55+'
-          document.getElementById('stat-pays').textContent = '12+'
-        })
-    }
-  }
-
-  chargerStats()
-  setInterval(chargerStats, 5 * 60 * 1000)
 </script>
 
-  <script>
-    function toggleMobileMenu() {
-      const drawer = document.getElementById('navDrawer');
-      const overlay = document.getElementById('navOverlay');
-      drawer.classList.toggle('open');
-      overlay.classList.toggle('open');
-    }
-  </script>
 </body>
 </html>
