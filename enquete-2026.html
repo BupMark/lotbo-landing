@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LOTBO — Enquête 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F7F2E8;
+    --white: #ffffff;
+    --black: #1A1410;
+    --orange: #C8431A;
+    --gray: #8C5A40;
+    --gray-light: #E8E0D0;
+    --radius: 12px;
+    --shadow: 0 2px 12px rgba(26,20,16,0.08);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); font-family: 'DM Sans', sans-serif; color: var(--black); min-height: 100vh; }
+
+  /* Header */
+  .top-bar { background: var(--black); padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; }
+  .logo { font-family: 'Playfair Display', serif; font-size: 22px; color: #fff; font-style: italic; text-decoration: none; }
+  .logo span { color: var(--orange); }
+  .lang-switch { display: flex; gap: 6px; }
+  .lang-btn { background: rgba(255,255,255,0.1); border: none; color: rgba(255,255,255,0.6); font-size: 11px; padding: 4px 8px; border-radius: 4px; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: all 0.15s; }
+  .lang-btn.active { background: var(--orange); color: #fff; }
+
+  /* Hero */
+  .hero { background: var(--orange); padding: 32px 24px 28px; }
+  .hero h1 { font-family: 'Playfair Display', serif; font-size: 26px; color: #fff; font-style: italic; line-height: 1.3; margin-bottom: 8px; }
+  .hero p { font-size: 14px; color: rgba(255,255,255,0.88); line-height: 1.6; }
+
+  /* Progress */
+  .progress-bar { height: 3px; background: var(--gray-light); }
+  .progress-fill { height: 3px; background: var(--orange); width: 0%; transition: width 0.4s; }
+
+  /* Form */
+  .form-wrap { max-width: 540px; margin: 0 auto; padding: 24px 16px 60px; }
+
+  .section-label { font-size: 10px; font-family: 'DM Sans', monospace; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); margin: 20px 0 12px; display: flex; align-items: center; gap: 8px; font-weight: 500; }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--gray-light); }
+
+  .q-block { background: var(--white); border-radius: var(--radius); padding: 20px; margin-bottom: 12px; box-shadow: var(--shadow); }
+  .q-text { font-size: 15px; font-weight: 500; color: var(--black); margin-bottom: 4px; line-height: 1.4; }
+  .q-sub { font-size: 13px; color: var(--gray); margin-bottom: 14px; line-height: 1.5; }
+  .required { color: var(--orange); }
+
+  /* Options */
+  .options { display: flex; flex-direction: column; gap: 8px; }
+  .opt { display: flex; align-items: flex-start; gap: 10px; cursor: pointer; padding: 8px 10px; border-radius: 8px; border: 1px solid transparent; transition: all 0.15s; }
+  .opt:hover { background: var(--bg); border-color: var(--gray-light); }
+  .opt input { display: none; }
+  .opt-box { width: 20px; height: 20px; border: 2px solid var(--gray-light); border-radius: 6px; flex-shrink: 0; margin-top: 1px; display: flex; align-items: center; justify-content: center; transition: all 0.15s; }
+  .opt input[type="radio"] ~ .opt-box { border-radius: 50%; }
+  .opt input:checked ~ .opt-box { background: var(--orange); border-color: var(--orange); }
+  .opt input:checked ~ .opt-box::after { content: '✓'; color: #fff; font-size: 11px; font-weight: 700; }
+  .opt input[type="radio"]:checked ~ .opt-box::after { content: ''; width: 8px; height: 8px; background: #fff; border-radius: 50%; }
+  .opt-label { font-size: 14px; color: var(--black); line-height: 1.4; }
+
+  /* Scale */
+  .scale-row { display: flex; gap: 8px; margin-bottom: 8px; }
+  .scale-btn { flex: 1; padding: 10px 4px; border: 2px solid var(--gray-light); border-radius: 8px; background: var(--white); cursor: pointer; font-size: 14px; font-weight: 500; color: var(--gray); transition: all 0.15s; text-align: center; }
+  .scale-btn.active { border-color: var(--orange); background: var(--orange); color: #fff; }
+  .scale-labels { display: flex; justify-content: space-between; font-size: 11px; color: var(--gray); }
+
+  /* Input */
+  .text-input { width: 100%; padding: 12px 14px; border: 2px solid var(--gray-light); border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--black); outline: none; transition: border-color 0.15s; background: var(--white); }
+  .text-input:focus { border-color: var(--orange); }
+  .text-input::placeholder { color: var(--gray); }
+
+  /* Row 2 cols */
+  .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+  /* Toggle */
+  .toggle-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .toggle-label { font-size: 14px; color: var(--black); line-height: 1.4; }
+  .toggle { position: relative; width: 44px; height: 24px; flex-shrink: 0; }
+  .toggle input { display: none; }
+  .toggle-track { width: 44px; height: 24px; background: var(--gray-light); border-radius: 12px; cursor: pointer; display: block; transition: background 0.2s; }
+  .toggle input:checked ~ .toggle-track { background: var(--orange); }
+  .toggle-thumb { position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; background: #fff; border-radius: 50%; transition: transform 0.2s; pointer-events: none; box-shadow: 0 1px 4px rgba(0,0,0,0.2); }
+  .toggle input:checked ~ .toggle-thumb { transform: translateX(20px); }
+
+  .note-text { font-size: 12px; color: var(--gray); margin-top: 10px; line-height: 1.5; background: var(--bg); padding: 10px 12px; border-radius: 6px; }
+
+  /* Submit */
+  .submit-btn { width: 100%; padding: 16px; background: var(--orange); color: #fff; border: none; border-radius: var(--radius); font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 500; cursor: pointer; transition: opacity 0.15s; margin-top: 8px; }
+  .submit-btn:hover { opacity: 0.9; }
+  .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+  /* Confirm */
+  .confirm-screen { display: none; text-align: center; padding: 60px 24px; }
+  .confirm-icon { font-size: 52px; margin-bottom: 16px; }
+  .confirm-title { font-family: 'Playfair Display', serif; font-size: 26px; font-style: italic; color: var(--orange); margin-bottom: 10px; }
+  .confirm-sub { font-size: 15px; color: var(--gray); line-height: 1.7; margin-bottom: 28px; }
+  .cta-row { display: flex; flex-direction: column; gap: 10px; max-width: 400px; margin: 0 auto; }
+  .cta-btn { display: block; padding: 14px 20px; border-radius: var(--radius); font-size: 15px; font-weight: 500; text-decoration: none; text-align: center; }
+  .cta-primary { background: var(--orange); color: #fff; }
+  .cta-secondary { background: var(--white); color: var(--black); border: 2px solid var(--gray-light); font-size: 14px; }
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <a href="https://lotbo.app" class="logo">lot<span>bo</span></a>
+  <div class="lang-switch">
+    <button class="lang-btn active" onclick="setLang('fr')">FR</button>
+    <button class="lang-btn" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" onclick="setLang('es')">ES</button>
+    <button class="lang-btn" onclick="setLang('pt')">PT</button>
+    <button class="lang-btn" onclick="setLang('ht')">HT</button>
+  </div>
+</div>
+
+<div class="hero">
+  <h1 id="hero-title">Aidez-nous à améliorer LOTBO 🌍</h1>
+  <p id="hero-sub">2–3 minutes · Anonyme · Aucune bonne ou mauvaise réponse.</p>
+</div>
+<div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
+
+<div class="form-wrap" id="form-screen">
+
+  <!-- Q1 -->
+  <div class="section-label" id="label-q1">Comment vous trouvez les événements</div>
+  <div class="q-block">
+    <div class="q-text" id="q1-text">Comment vous informez-vous des événements locaux ? <span class="required">*</span></div>
+    <div class="options" id="q1-opts">
+      <label class="opt"><input type="radio" name="q1" value="bouche" onchange="updateProgress()"><span class="opt-box"></span><span class="opt-label" id="q1-a">👥 Bouche à oreille / amis</span></label>
+      <label class="opt"><input type="radio" name="q1" value="facebook" onchange="updateProgress()"><span class="opt-box"></span><span class="opt-label" id="q1-b">📱 Facebook / réseaux sociaux</span></label>
+      <label class="opt"><input type="radio" name="q1" value="affiches" onchange="updateProgress()"><span class="opt-box"></span><span class="opt-label" id="q1-c">📋 Affiches dans la rue</span></label>
+      <label class="opt"><input type="radio" name="q1" value="radio" onchange="updateProgress()"><span class="opt-box"></span><span class="opt-label" id="q1-d">📻 Radio locale</span></label>
+      <label class="opt"><input type="radio" name="q1" value="unknown" onchange="updateProgress()"><span class="opt-box"></span><span class="opt-label" id="q1-e">❓ Je ne sais généralement pas</span></label>
+      <label class="opt"><input type="radio" name="q1" value="other" onchange="updateProgress()"><span class="opt-box"></span><span class="opt-label" id="q1-f">Autre</span></label>
+    </div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="q-block">
+    <div class="q-text" id="q2-text">Avez-vous déjà raté un événement par manque d'information ?</div>
+    <div class="options">
+      <label class="opt"><input type="radio" name="q2" value="oui_souvent"><span class="opt-box"></span><span class="opt-label" id="q2-a">Oui, souvent</span></label>
+      <label class="opt"><input type="radio" name="q2" value="oui_parfois"><span class="opt-box"></span><span class="opt-label" id="q2-b">Oui, parfois</span></label>
+      <label class="opt"><input type="radio" name="q2" value="non"><span class="opt-box"></span><span class="opt-label" id="q2-c">Non, jamais</span></label>
+    </div>
+  </div>
+
+  <!-- Q3 — Scale -->
+  <div class="section-label" id="label-q3">Intérêt pour LOTBO</div>
+  <div class="q-block">
+    <div class="q-text" id="q3-text">Une app gratuite qui centralise tous les événements près de vous avec une carte. Vous l'utiliseriez ? <span class="required">*</span></div>
+    <div class="scale-row">
+      <button class="scale-btn" onclick="selectScale(this,'q3','1')">1</button>
+      <button class="scale-btn" onclick="selectScale(this,'q3','2')">2</button>
+      <button class="scale-btn" onclick="selectScale(this,'q3','3')">3</button>
+      <button class="scale-btn" onclick="selectScale(this,'q3','4')">4</button>
+      <button class="scale-btn" onclick="selectScale(this,'q3','5')">5</button>
+    </div>
+    <div class="scale-labels"><span id="scale-min">Pas du tout</span><span id="scale-max">Absolument</span></div>
+    <input type="hidden" name="q3" id="q3-val">
+  </div>
+
+  <!-- Q4 -->
+  <div class="q-block">
+    <div class="q-text" id="q4-text">Qu'est-ce qui vous empêche d'aller à des événements ?</div>
+    <div class="q-sub" id="q4-sub">Plusieurs réponses possibles</div>
+    <div class="options">
+      <label class="opt"><input type="checkbox" name="q4" value="info"><span class="opt-box"></span><span class="opt-label" id="q4-a">Je ne sais pas qu'ils existent</span></label>
+      <label class="opt"><input type="checkbox" name="q4" value="transport"><span class="opt-box"></span><span class="opt-label" id="q4-b">🚌 Transport difficile</span></label>
+      <label class="opt"><input type="checkbox" name="q4" value="prix"><span class="opt-box"></span><span class="opt-label" id="q4-c">💰 Prix d'entrée</span></label>
+      <label class="opt"><input type="checkbox" name="q4" value="securite"><span class="opt-box"></span><span class="opt-label" id="q4-d">🔒 Sécurité</span></label>
+      <label class="opt"><input type="checkbox" name="q4" value="seul"><span class="opt-box"></span><span class="opt-label" id="q4-e">👤 Personne pour y aller</span></label>
+      <label class="opt"><input type="checkbox" name="q4" value="temps"><span class="opt-box"></span><span class="opt-label" id="q4-f">⏰ Manque de temps</span></label>
+    </div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="q-block">
+    <div class="q-text" id="q5-text">Suivre un événement en direct sur téléphone vous intéresserait ?</div>
+    <div class="options">
+      <label class="opt"><input type="radio" name="q5" value="oui"><span class="opt-box"></span><span class="opt-label" id="q5-a">Oui, bonne idée</span></label>
+      <label class="opt"><input type="radio" name="q5" value="petet"><span class="opt-box"></span><span class="opt-label" id="q5-b">Peut-être</span></label>
+      <label class="opt"><input type="radio" name="q5" value="non"><span class="opt-box"></span><span class="opt-label" id="q5-c">Non</span></label>
+    </div>
+  </div>
+
+  <!-- Q6 — Téléphone -->
+  <div class="section-label" id="label-q6">Votre profil</div>
+  <div class="q-block">
+    <div class="q-text" id="q6-text">Quel type de téléphone utilisez-vous ?</div>
+    <div class="options">
+      <label class="opt"><input type="radio" name="q6" value="android"><span class="opt-box"></span><span class="opt-label">📱 Android</span></label>
+      <label class="opt"><input type="radio" name="q6" value="iphone"><span class="opt-box"></span><span class="opt-label">📱 iPhone</span></label>
+      <label class="opt"><input type="radio" name="q6" value="basique"><span class="opt-box"></span><span class="opt-label" id="q6-a">Téléphone basique</span></label>
+      <label class="opt"><input type="radio" name="q6" value="connexion"><span class="opt-box"></span><span class="opt-label" id="q6-b">Smartphone mais connexion difficile</span></label>
+    </div>
+  </div>
+
+  <!-- Q7 — Langue -->
+  <div class="q-block">
+    <div class="q-text" id="q7-text">Langue préférée pour l'application ? <span class="required">*</span></div>
+    <div class="options">
+      <label class="opt"><input type="checkbox" name="q7" value="kreyol" onchange="updateProgress()"><span class="opt-box"></span><span class="opt-label">🇭🇹 Kreyòl ayisyen</span></label>
+      <label class="opt"><input type="checkbox" name="q7" value="francais" onchange="updateProgress()"><span class="opt-box"></span><span class="opt-label">🇫🇷 Français</span></label>
+      <label class="opt"><input type="checkbox" name="q7" value="anglais" onchange="updateProgress()"><span class="opt-box"></span><span class="opt-label">🇺🇸 Anglais</span></label>
+      <label class="opt"><input type="checkbox" name="q7" value="espagnol" onchange="updateProgress()"><span class="opt-box"></span><span class="opt-label">🇪🇸 Español</span></label>
+      <label class="opt"><input type="checkbox" name="q7" value="portugais" onchange="updateProgress()"><span class="opt-box"></span><span class="opt-label">🇧🇷 Português</span></label>
+    </div>
+  </div>
+
+  <!-- Q8 — Ville / Pays -->
+  <div class="q-block">
+    <div class="q-text" id="q8-text">Votre ville et pays</div>
+    <div class="row2" style="gap:10px;">
+      <input type="text" class="text-input" id="ville" placeholder="Ville" style="margin-bottom:0;">
+      <input type="text" class="text-input" id="pays" placeholder="Pays" style="margin-bottom:0;">
+    </div>
+  </div>
+
+  <!-- Contact -->
+  <div class="section-label" id="label-contact">Rester connecté</div>
+  <div class="q-block">
+    <div class="q-text" id="contact-text">Être notifié au lancement officiel de LOTBO ?</div>
+    <div class="q-sub" id="contact-sub">Optionnel — aucun spam, données jamais revendues.</div>
+    <input type="email" class="text-input" id="email" placeholder="✉️ Email" style="margin-bottom:10px;">
+    <input type="tel" class="text-input" id="whatsapp" placeholder="📱 WhatsApp">
+  </div>
+
+  <!-- Newsletter toggle -->
+  <div class="q-block">
+    <div class="toggle-row">
+      <span class="toggle-label" id="newsletter-label">Recevoir les actualités LOTBO chaque semaine</span>
+      <label class="toggle">
+        <input type="checkbox" id="newsletter">
+        <span class="toggle-track"></span>
+        <span class="toggle-thumb"></span>
+      </label>
+    </div>
+    <div class="note-text" id="newsletter-note">Décoché par défaut. Vous pouvez vous désabonner à tout moment.</div>
+  </div>
+
+  <!-- Commentaire -->
+  <div class="q-block">
+    <div class="q-text" id="comment-text">Un commentaire ou suggestion ? <span style="color:var(--gray); font-weight:400;">(optionnel)</span></div>
+    <textarea class="text-input" id="commentaire" rows="3" placeholder="..."></textarea>
+  </div>
+
+  <button class="submit-btn" id="submit-btn" onclick="submitForm()">
+    <span id="submit-text">Envoyer mes réponses →</span>
+  </button>
+
+</div>
+
+<!-- CONFIRMATION -->
+<div class="confirm-screen" id="confirm-screen">
+  <div style="max-width:400px; margin:0 auto;">
+    <div class="confirm-icon">🙏</div>
+    <div class="confirm-title" id="confirm-title">Merci beaucoup !</div>
+    <div class="confirm-sub" id="confirm-sub">Votre réponse est enregistrée. Vous nous aidez à construire une meilleure plateforme pour votre communauté.</div>
+    <div class="cta-row">
+      <a href="https://app.lotbo.app/login" class="cta-btn cta-primary" id="cta-primary">Créer mon compte gratuitement →</a>
+      <a href="https://app.lotbo.app" class="cta-btn cta-secondary" id="cta-secondary">Voir les événements</a>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── Traductions ────────────────────────────────────────────────────────────────
+const T = {
+  fr: {
+    heroTitle: 'Aidez-nous à améliorer LOTBO 🌍',
+    heroSub: '2–3 minutes · Anonyme · Aucune bonne ou mauvaise réponse.',
+    labelQ1: 'Comment vous trouvez les événements',
+    q1: 'Comment vous informez-vous des événements locaux ?',
+    q1a: '👥 Bouche à oreille / amis', q1b: '📱 Facebook / réseaux sociaux', q1c: '📋 Affiches dans la rue',
+    q1d: '📻 Radio locale', q1e: '❓ Je ne sais généralement pas', q1f: 'Autre',
+    q2: 'Avez-vous déjà raté un événement par manque d\'information ?',
+    q2a: 'Oui, souvent', q2b: 'Oui, parfois', q2c: 'Non, jamais',
+    labelQ3: 'Intérêt pour LOTBO',
+    q3: 'Une app gratuite qui centralise tous les événements près de vous avec une carte. Vous l\'utiliseriez ?',
+    scaleMin: 'Pas du tout', scaleMax: 'Absolument',
+    q4: 'Qu\'est-ce qui vous empêche d\'aller à des événements ?',
+    q4sub: 'Plusieurs réponses possibles',
+    q4a: 'Je ne sais pas qu\'ils existent', q4b: '🚌 Transport difficile', q4c: '💰 Prix d\'entrée',
+    q4d: '🔒 Sécurité', q4e: '👤 Personne pour y aller', q4f: '⏰ Manque de temps',
+    q5: 'Suivre un événement en direct sur téléphone vous intéresserait ?',
+    q5a: 'Oui, bonne idée', q5b: 'Peut-être', q5c: 'Non',
+    labelQ6: 'Votre profil',
+    q6: 'Quel type de téléphone utilisez-vous ?',
+    q6a: 'Téléphone basique', q6b: 'Smartphone mais connexion difficile',
+    q7: 'Langue préférée pour l\'application ?',
+    q8: 'Votre ville et pays',
+    labelContact: 'Rester connecté',
+    contactText: 'Être notifié au lancement officiel de LOTBO ?',
+    contactSub: 'Optionnel — aucun spam, données jamais revendues.',
+    newsletterLabel: 'Recevoir les actualités LOTBO chaque semaine',
+    newsletterNote: 'Décoché par défaut. Vous pouvez vous désabonner à tout moment.',
+    commentText: 'Un commentaire ou suggestion ?',
+    submit: 'Envoyer mes réponses →',
+    submitting: 'Envoi en cours...',
+    alert: 'Merci de répondre aux questions obligatoires (*)',
+    confirmTitle: 'Merci beaucoup !',
+    confirmSub: 'Votre réponse est enregistrée. Vous nous aidez à construire une meilleure plateforme pour votre communauté.',
+    ctaPrimary: 'Créer mon compte gratuitement →',
+    ctaSecondary: 'Voir les événements',
+  },
+  en: {
+    heroTitle: 'Help us improve LOTBO 🌍',
+    heroSub: '2–3 minutes · Anonymous · No right or wrong answer.',
+    labelQ1: 'How you find events',
+    q1: 'How do you find out about local events?',
+    q1a: '👥 Word of mouth / friends', q1b: '📱 Facebook / social media', q1c: '📋 Street posters',
+    q1d: '📻 Local radio', q1e: '❓ I usually don\'t know', q1f: 'Other',
+    q2: 'Have you ever missed an event because you didn\'t know about it?',
+    q2a: 'Yes, often', q2b: 'Yes, sometimes', q2c: 'No, never',
+    labelQ3: 'Interest in LOTBO',
+    q3: 'A free app that centralizes all events near you with a map. Would you use it?',
+    scaleMin: 'Not at all', scaleMax: 'Absolutely',
+    q4: 'What prevents you from attending events?',
+    q4sub: 'Multiple answers possible',
+    q4a: 'I don\'t know they exist', q4b: '🚌 Transportation issues', q4c: '💰 Entry price',
+    q4d: '🔒 Safety concerns', q4e: '👤 No one to go with', q4f: '⏰ Lack of time',
+    q5: 'Would you be interested in following an event live on your phone?',
+    q5a: 'Yes, great idea', q5b: 'Maybe', q5c: 'No',
+    labelQ6: 'Your profile',
+    q6: 'What type of phone do you use?',
+    q6a: 'Basic phone', q6b: 'Smartphone but poor connection',
+    q7: 'Preferred language for the app?',
+    q8: 'Your city and country',
+    labelContact: 'Stay connected',
+    contactText: 'Be notified when LOTBO officially launches?',
+    contactSub: 'Optional — no spam, data never sold.',
+    newsletterLabel: 'Receive LOTBO news every week',
+    newsletterNote: 'Unchecked by default. Unsubscribe anytime.',
+    commentText: 'Any comment or suggestion?',
+    submit: 'Send my answers →',
+    submitting: 'Sending...',
+    alert: 'Please answer required questions (*)',
+    confirmTitle: 'Thank you!',
+    confirmSub: 'Your answer has been recorded. You\'re helping us build a better platform for your community.',
+    ctaPrimary: 'Create my free account →',
+    ctaSecondary: 'See events',
+  },
+  es: {
+    heroTitle: 'Ayúdanos a mejorar LOTBO 🌍',
+    heroSub: '2–3 minutos · Anónimo · No hay respuestas correctas o incorrectas.',
+    labelQ1: 'Cómo encuentras eventos',
+    q1: '¿Cómo te enteras de los eventos locales?',
+    q1a: '👥 Boca a boca / amigos', q1b: '📱 Facebook / redes sociales', q1c: '📋 Carteles en la calle',
+    q1d: '📻 Radio local', q1e: '❓ Generalmente no sé', q1f: 'Otro',
+    q2: '¿Has perdido algún evento por falta de información?',
+    q2a: 'Sí, seguido', q2b: 'Sí, a veces', q2c: 'No, nunca',
+    labelQ3: 'Interés en LOTBO',
+    q3: 'Una app gratuita que centraliza todos los eventos cerca de ti con un mapa. ¿La usarías?',
+    scaleMin: 'Para nada', scaleMax: 'Absolutamente',
+    q4: '¿Qué te impide ir a eventos?',
+    q4sub: 'Varias respuestas posibles',
+    q4a: 'No sé que existen', q4b: '🚌 Transporte difícil', q4c: '💰 Precio de entrada',
+    q4d: '🔒 Seguridad', q4e: '👤 Nadie con quien ir', q4f: '⏰ Falta de tiempo',
+    q5: '¿Te interesaría seguir un evento en vivo por teléfono?',
+    q5a: 'Sí, buena idea', q5b: 'Quizás', q5c: 'No',
+    labelQ6: 'Tu perfil',
+    q6: '¿Qué tipo de teléfono usas?',
+    q6a: 'Teléfono básico', q6b: 'Smartphone pero conexión difícil',
+    q7: '¿Idioma preferido para la app?',
+    q8: 'Tu ciudad y país',
+    labelContact: 'Mantenerse conectado',
+    contactText: '¿Ser notificado en el lanzamiento oficial de LOTBO?',
+    contactSub: 'Opcional — sin spam, datos nunca vendidos.',
+    newsletterLabel: 'Recibir noticias de LOTBO cada semana',
+    newsletterNote: 'Desmarcado por defecto. Puedes darte de baja en cualquier momento.',
+    commentText: '¿Algún comentario o sugerencia?',
+    submit: 'Enviar mis respuestas →',
+    submitting: 'Enviando...',
+    alert: 'Por favor responde las preguntas obligatorias (*)',
+    confirmTitle: '¡Muchas gracias!',
+    confirmSub: 'Tu respuesta ha sido registrada. Nos ayudas a construir una mejor plataforma para tu comunidad.',
+    ctaPrimary: 'Crear mi cuenta gratis →',
+    ctaSecondary: 'Ver eventos',
+  },
+  pt: {
+    heroTitle: 'Ajude-nos a melhorar o LOTBO 🌍',
+    heroSub: '2–3 minutos · Anônimo · Não há respostas certas ou erradas.',
+    labelQ1: 'Como você encontra eventos',
+    q1: 'Como você fica sabendo dos eventos locais?',
+    q1a: '👥 Boca a boca / amigos', q1b: '📱 Facebook / redes sociais', q1c: '📋 Cartazes na rua',
+    q1d: '📻 Rádio local', q1e: '❓ Geralmente não sei', q1f: 'Outro',
+    q2: 'Você já perdeu um evento por falta de informação?',
+    q2a: 'Sim, frequentemente', q2b: 'Sim, às vezes', q2c: 'Não, nunca',
+    labelQ3: 'Interesse no LOTBO',
+    q3: 'Um app gratuito que centraliza todos os eventos perto de você com um mapa. Você usaria?',
+    scaleMin: 'De jeito nenhum', scaleMax: 'Com certeza',
+    q4: 'O que te impede de ir a eventos?',
+    q4sub: 'Várias respostas possíveis',
+    q4a: 'Não sei que existem', q4b: '🚌 Transporte difícil', q4c: '💰 Preço de entrada',
+    q4d: '🔒 Segurança', q4e: '👤 Ninguém para ir junto', q4f: '⏰ Falta de tempo',
+    q5: 'Teria interesse em acompanhar um evento ao vivo pelo celular?',
+    q5a: 'Sim, boa ideia', q5b: 'Talvez', q5c: 'Não',
+    labelQ6: 'Seu perfil',
+    q6: 'Que tipo de celular você usa?',
+    q6a: 'Celular básico', q6b: 'Smartphone mas conexão ruim',
+    q7: 'Idioma preferido para o app?',
+    q8: 'Sua cidade e país',
+    labelContact: 'Ficar conectado',
+    contactText: 'Ser notificado no lançamento oficial do LOTBO?',
+    contactSub: 'Opcional — sem spam, dados nunca vendidos.',
+    newsletterLabel: 'Receber novidades do LOTBO toda semana',
+    newsletterNote: 'Desmarcado por padrão. Você pode cancelar a qualquer momento.',
+    commentText: 'Algum comentário ou sugestão?',
+    submit: 'Enviar minhas respostas →',
+    submitting: 'Enviando...',
+    alert: 'Por favor responda as perguntas obrigatórias (*)',
+    confirmTitle: 'Muito obrigado!',
+    confirmSub: 'Sua resposta foi registrada. Você nos ajuda a construir uma plataforma melhor para sua comunidade.',
+    ctaPrimary: 'Criar minha conta grátis →',
+    ctaSecondary: 'Ver eventos',
+  },
+  ht: {
+    heroTitle: 'Ede nou fè LOTBO pi bon 🌍',
+    heroSub: '2–3 minit · Anonim · Pa gen bon ni move repons.',
+    labelQ1: 'Kijan ou jwenn evènman',
+    q1: 'Kijan ou konn sa k ap pase kòm evènman lokal?',
+    q1a: '👥 Bouche à oreille / zanmi', q1b: '📱 Facebook / rezo sosyal', q1c: '📋 Afich nan lari',
+    q1d: '📻 Radyo lokal', q1e: '❓ Mwen pa konn souvan', q1f: 'Lòt',
+    q2: 'Ou deja rate yon evènman paske ou pat konnen?',
+    q2a: 'Wi, souvan', q2b: 'Wi, pafwa', q2c: 'Non, jamais',
+    labelQ3: 'Enterè pou LOTBO',
+    q3: 'Yon aplikasyon gratis ki montre tout evènman pre ou ak yon kat. Ou ta itilize l?',
+    scaleMin: 'Non ditou', scaleMax: 'Wi anpil',
+    q4: 'Sa ki anpeche ou ale nan evènman?',
+    q4sub: 'Plizyè repons possib',
+    q4a: 'Pa konn yo egziste', q4b: '🚌 Transpò difisil', q4c: '💰 Pri antre',
+    q4d: '🔒 Sekirite', q4e: '👤 Pa gen moun pou ale avèk', q4f: '⏰ Manke tan',
+    q5: 'Swiv yon evènman an dirèk sou telefòn enterese ou?',
+    q5a: 'Wi, bon lide', q5b: 'Petèt', q5c: 'Non',
+    labelQ6: 'Pwofil ou',
+    q6: 'Ki kalite telefòn ou itilize?',
+    q6a: 'Telefòn senp', q6b: 'Smartphone men koneksyon difisil',
+    q7: 'Lang ou prefere pou aplikasyon an?',
+    q8: 'Vil ak peyi ou',
+    labelContact: 'Rete konekte',
+    contactText: 'Resevwa notifikasyon lè LOTBO lanse ofisyèlman?',
+    contactSub: 'Opsyonèl — pa gen spam, nou pa vann done ou.',
+    newsletterLabel: 'Resevwa nouvèl LOTBO chak semèn',
+    newsletterNote: 'Pa koché pa defo. Ou ka dezabòne nenpòt lè.',
+    commentText: 'Yon kòmantè oswa sijesyon?',
+    submit: 'Voye repons mwen →',
+    submitting: 'Ap voye...',
+    alert: 'Tanpri reponn kesyon obligatwa yo (*)',
+    confirmTitle: 'Mèsi anpil!',
+    confirmSub: 'Repons ou a anrejistre. Ou ede nou fè yon pi bon platfòm pou kominote ou.',
+    ctaPrimary: 'Kreye kont mwen gratis →',
+    ctaSecondary: 'Wè evènman yo',
+  },
+}
+
+// ── État ───────────────────────────────────────────────────────────────────────
+let currentLang = 'fr'
+
+function detectLang() {
+  const l = navigator.language?.slice(0, 2)?.toLowerCase()
+  if (['fr','en','es','pt','ht'].includes(l)) return l
+  return 'fr'
+}
+
+function setLang(lang) {
+  currentLang = lang
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'))
+  document.querySelectorAll('.lang-btn').forEach(b => { if (b.textContent === lang.toUpperCase()) b.classList.add('active') })
+  const t = T[lang]
+  document.getElementById('hero-title').textContent = t.heroTitle
+  document.getElementById('hero-sub').textContent = t.heroSub
+  document.getElementById('label-q1').childNodes[0].textContent = t.labelQ1 + ' '
+  document.getElementById('q1-text').innerHTML = t.q1 + ' <span class="required">*</span>'
+  document.getElementById('q1-a').textContent = t.q1a
+  document.getElementById('q1-b').textContent = t.q1b
+  document.getElementById('q1-c').textContent = t.q1c
+  document.getElementById('q1-d').textContent = t.q1d
+  document.getElementById('q1-e').textContent = t.q1e
+  document.getElementById('q1-f').textContent = t.q1f
+  document.getElementById('q2-text').textContent = t.q2
+  document.getElementById('q2-a').textContent = t.q2a
+  document.getElementById('q2-b').textContent = t.q2b
+  document.getElementById('q2-c').textContent = t.q2c
+  document.getElementById('label-q3').childNodes[0].textContent = t.labelQ3 + ' '
+  document.getElementById('q3-text').innerHTML = t.q3 + ' <span class="required">*</span>'
+  document.getElementById('scale-min').textContent = t.scaleMin
+  document.getElementById('scale-max').textContent = t.scaleMax
+  document.getElementById('q4-text').textContent = t.q4
+  document.getElementById('q4-sub').textContent = t.q4sub
+  document.getElementById('q4-a').textContent = t.q4a
+  document.getElementById('q4-b').textContent = t.q4b
+  document.getElementById('q4-c').textContent = t.q4c
+  document.getElementById('q4-d').textContent = t.q4d
+  document.getElementById('q4-e').textContent = t.q4e
+  document.getElementById('q4-f').textContent = t.q4f
+  document.getElementById('q5-text').textContent = t.q5
+  document.getElementById('q5-a').textContent = t.q5a
+  document.getElementById('q5-b').textContent = t.q5b
+  document.getElementById('q5-c').textContent = t.q5c
+  document.getElementById('label-q6').childNodes[0].textContent = t.labelQ6 + ' '
+  document.getElementById('q6-text').textContent = t.q6
+  document.getElementById('q6-a').textContent = t.q6a
+  document.getElementById('q6-b').textContent = t.q6b
+  document.getElementById('q7-text').innerHTML = t.q7 + ' <span class="required">*</span>'
+  document.getElementById('q8-text').textContent = t.q8
+  document.getElementById('label-contact').childNodes[0].textContent = t.labelContact + ' '
+  document.getElementById('contact-text').textContent = t.contactText
+  document.getElementById('contact-sub').textContent = t.contactSub
+  document.getElementById('newsletter-label').textContent = t.newsletterLabel
+  document.getElementById('newsletter-note').textContent = t.newsletterNote
+  document.getElementById('comment-text').innerHTML = t.commentText + ' <span style="color:var(--gray); font-weight:400;">(optionnel)</span>'
+  document.getElementById('submit-text').textContent = t.submit
+  document.getElementById('confirm-title').textContent = t.confirmTitle
+  document.getElementById('confirm-sub').textContent = t.confirmSub
+  document.getElementById('cta-primary').textContent = t.ctaPrimary
+  document.getElementById('cta-secondary').textContent = t.ctaSecondary
+}
+
+function selectScale(btn, name, val) {
+  btn.parentElement.querySelectorAll('.scale-btn').forEach(b => b.classList.remove('active'))
+  btn.classList.add('active')
+  document.getElementById(name + '-val').value = val
+  updateProgress()
+}
+
+function updateProgress() {
+  const q1 = document.querySelector('input[name="q1"]:checked')
+  const q3 = document.getElementById('q3-val').value
+  const q7 = document.querySelector('input[name="q7"]:checked')
+  const filled = [q1, q3, q7].filter(Boolean).length
+  document.getElementById('progress').style.width = Math.round((filled / 3) * 100) + '%'
+}
+
+async function submitForm() {
+  const t = T[currentLang]
+  const q1 = document.querySelector('input[name="q1"]:checked')
+  const q3 = document.getElementById('q3-val').value
+  const q7 = document.querySelector('input[name="q7"]:checked')
+  if (!q1 || !q3 || !q7) { alert(t.alert); return }
+
+  const btn = document.getElementById('submit-btn')
+  btn.disabled = true
+  document.getElementById('submit-text').textContent = t.submitting
+
+  const reponses = {
+    q1: q1?.value,
+    q2: document.querySelector('input[name="q2"]:checked')?.value,
+    q3,
+    q4: [...document.querySelectorAll('input[name="q4"]:checked')].map(i => i.value),
+    q5: document.querySelector('input[name="q5"]:checked')?.value,
+    q6: document.querySelector('input[name="q6"]:checked')?.value,
+    q7: [...document.querySelectorAll('input[name="q7"]:checked')].map(i => i.value),
+    commentaire: document.getElementById('commentaire').value,
+  }
+
+  const payload = {
+    type: 'public',
+    email: document.getElementById('email').value || null,
+    whatsapp: document.getElementById('whatsapp').value || null,
+    ville: document.getElementById('ville').value || null,
+    pays: document.getElementById('pays').value || null,
+    langue: currentLang,
+    reponses,
+  }
+
+  try {
+    await fetch('/api/enquete', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    })
+  } catch { /* continuer même si erreur réseau */ }
+
+  document.getElementById('progress').style.width = '100%'
+  document.getElementById('form-screen').style.display = 'none'
+  document.getElementById('confirm-screen').style.display = 'block'
+  window.scrollTo(0, 0)
+}
+
+// Init
+document.addEventListener('DOMContentLoaded', () => {
+  const detected = detectLang()
+  setLang(detected)
+})
+</script>
+</body>
+</html>

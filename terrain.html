@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LOTBO — Fiche Terrain Jacmel</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0f1923; --surface: #1a2535; --surface2: #243044;
+    --white: #e8edf5; --muted: #7a8fa8;
+    --orange: #C8431A; --green: #2eb87a; --yellow: #f5a623; --red: #e84040;
+    --border: rgba(255,255,255,0.08); --radius: 10px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); font-family: 'DM Sans', sans-serif; color: var(--white); min-height: 100vh; }
+
+  .top-bar { background: var(--surface); padding: 14px 20px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--border); }
+  .logo { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--white); font-style: italic; }
+  .logo span { color: var(--orange); }
+  .top-badge { background: var(--orange); color: #fff; font-size: 10px; font-family: 'DM Mono', monospace; padding: 3px 8px; border-radius: 4px; letter-spacing: 1px; }
+  .top-tag { margin-left: auto; font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); letter-spacing: 1.5px; }
+
+  .wrap { max-width: 600px; margin: 0 auto; padding: 20px 16px 60px; }
+
+  .page-title { font-family: 'Playfair Display', serif; font-size: 20px; font-style: italic; color: var(--white); margin: 16px 0 4px; }
+  .page-sub { font-size: 13px; color: var(--muted); line-height: 1.5; margin-bottom: 20px; }
+
+  .context-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 18px; margin-bottom: 20px; }
+  .context-title { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px; color: #6aaeff; text-transform: uppercase; margin-bottom: 12px; }
+  .context-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .ctx-field label { display: block; font-size: 11px; color: var(--muted); margin-bottom: 4px; font-family: 'DM Mono', monospace; letter-spacing: 1px; }
+  .ctx-field input, .ctx-field select { width: 100%; padding: 9px 12px; background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 13px; outline: none; transition: border-color 0.15s; }
+  .ctx-field input:focus, .ctx-field select:focus { border-color: #3b8cf0; }
+  .ctx-field select option { background: var(--surface2); }
+  .ctx-field.full { grid-column: 1 / -1; }
+
+  .profil-selector { margin-bottom: 20px; }
+  .profil-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px; color: var(--orange); text-transform: uppercase; margin-bottom: 10px; }
+  .profil-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .profil-btn { padding: 18px 12px; border: 2px solid var(--border); border-radius: var(--radius); background: var(--surface); cursor: pointer; text-align: center; transition: all 0.2s; color: var(--white); }
+  .profil-btn.active-gp { border-color: var(--green); background: rgba(46,184,122,0.1); }
+  .profil-btn.active-org { border-color: var(--yellow); background: rgba(245,166,35,0.1); }
+  .profil-icon { font-size: 28px; margin-bottom: 8px; }
+  .profil-name { font-size: 14px; font-weight: 500; margin-bottom: 4px; }
+  .profil-desc { font-size: 11px; color: var(--muted); line-height: 1.4; }
+
+  .section-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px; color: #6aaeff; text-transform: uppercase; margin: 20px 0 10px; display: flex; align-items: center; gap: 8px; }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  .section-label.green { color: var(--green); }
+  .section-label.yellow { color: var(--yellow); }
+
+  .q-block { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; margin-bottom: 10px; }
+  .q-text { font-size: 14px; font-weight: 500; color: var(--white); margin-bottom: 3px; line-height: 1.4; }
+  .q-kreyol { font-size: 12px; color: var(--muted); margin-bottom: 12px; font-style: italic; line-height: 1.4; }
+  .required { color: var(--orange); }
+
+  .opts { display: flex; flex-direction: column; gap: 6px; }
+  .opt { display: flex; align-items: flex-start; gap: 8px; cursor: pointer; padding: 8px 10px; border-radius: 6px; border: 1px solid transparent; transition: all 0.15s; }
+  .opt:hover { background: var(--surface2); border-color: var(--border); }
+  .opt input { display: none; }
+  .opt-box { width: 18px; height: 18px; border: 2px solid var(--muted); border-radius: 5px; flex-shrink: 0; margin-top: 1px; display: flex; align-items: center; justify-content: center; transition: all 0.15s; }
+  .opt input[type="radio"] ~ .opt-box { border-radius: 50%; }
+  .opt input:checked ~ .opt-box { background: #3b8cf0; border-color: #3b8cf0; }
+  .opt input:checked ~ .opt-box::after { content: '✓'; color: #fff; font-size: 11px; }
+  .opt input[type="radio"]:checked ~ .opt-box::after { content: ''; width: 7px; height: 7px; background: #fff; border-radius: 50%; }
+  .opt-label { font-size: 13px; color: var(--white); line-height: 1.4; }
+
+  .scale-row { display: flex; gap: 6px; margin-bottom: 6px; }
+  .scale-btn { flex: 1; padding: 9px 4px; border: 1px solid var(--border); border-radius: 6px; background: var(--surface2); cursor: pointer; font-size: 13px; font-weight: 500; color: var(--muted); transition: all 0.15s; text-align: center; font-family: 'DM Mono', monospace; }
+  .scale-btn.active { border-color: #3b8cf0; background: #3b8cf0; color: #fff; }
+  .scale-labels { display: flex; justify-content: space-between; font-size: 10px; color: var(--muted); font-family: 'DM Mono', monospace; }
+
+  .field-input { width: 100%; padding: 10px 12px; background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 13px; outline: none; transition: border-color 0.15s; margin-top: 8px; }
+  .field-input:focus { border-color: #3b8cf0; }
+  .field-input::placeholder { color: var(--muted); }
+  textarea.field-input { resize: vertical; min-height: 70px; }
+
+  .obs-block { background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; margin-bottom: 10px; }
+  .obs-title { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); letter-spacing: 1px; margin-bottom: 10px; }
+
+  .contact-block { background: rgba(46,184,122,0.08); border: 1px solid rgba(46,184,122,0.25); border-radius: var(--radius); padding: 16px; margin-bottom: 10px; }
+  .contact-block .obs-title { color: var(--green); }
+  .contact-note { font-size: 11px; color: var(--green); margin-top: 8px; line-height: 1.5; }
+
+  .submit-btn { width: 100%; padding: 15px; background: #3b8cf0; color: #fff; border: none; border-radius: var(--radius); font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 500; cursor: pointer; transition: opacity 0.15s; }
+  .submit-btn:hover { opacity: 0.9; }
+  .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+  .next-btn { width: 100%; padding: 12px; background: transparent; color: var(--muted); border: 1px solid var(--border); border-radius: var(--radius); font-family: 'DM Mono', monospace; font-size: 12px; cursor: pointer; margin-top: 8px; transition: all 0.15s; letter-spacing: 1px; }
+  .next-btn:hover { border-color: var(--muted); color: var(--white); }
+
+  .hidden { display: none; }
+  .bloc-gp { display: none; }
+  .bloc-org { display: none; }
+
+  .confirm-screen { display: none; text-align: center; padding: 60px 24px; }
+  .confirm-icon { font-size: 44px; margin-bottom: 14px; }
+  .confirm-title { font-family: 'Playfair Display', serif; font-size: 24px; font-style: italic; color: var(--green); margin-bottom: 8px; }
+  .confirm-sub { font-size: 14px; color: var(--muted); line-height: 1.6; margin-bottom: 24px; }
+  .confirm-stat { background: var(--surface); border-radius: var(--radius); padding: 14px; margin-bottom: 16px; }
+  .confirm-stat-num { font-family: 'Playfair Display', serif; font-size: 32px; color: var(--orange); }
+  .confirm-stat-label { font-size: 12px; color: var(--muted); font-family: 'DM Mono', monospace; letter-spacing: 1px; }
+  .next-interview-btn { width: 100%; padding: 14px; background: #3b8cf0; color: #fff; border: none; border-radius: var(--radius); font-size: 15px; font-weight: 500; cursor: pointer; font-family: 'DM Sans', sans-serif; }
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <div class="logo">lot<span>bo</span></div>
+  <span class="top-badge">TERRAIN</span>
+  <div class="top-tag">JACMEL · FICHE ENQUÊTEUR</div>
+</div>
+
+<div class="wrap" id="form-screen">
+  <div class="page-title">Fiche de saisie terrain</div>
+  <div class="page-sub">Remplir pendant ou juste après chaque interview. Lien privé — équipe LOTBO uniquement.</div>
+
+  <!-- CONTEXTE -->
+  <div class="section-label">Contexte de l'interview</div>
+  <div class="context-card">
+    <div class="context-title">Informations de base</div>
+    <div class="context-grid">
+      <div class="ctx-field">
+        <label>ENQUÊTEUR</label>
+        <select name="enqueteur" id="enqueteur">
+          <option value="">Choisir...</option>
+          <option value="gaetchens">Gaetchens Pierre Louis</option>
+          <option value="nancy">Nancy Gilot</option>
+          <option value="enqueteur3">Enquêteur 3</option>
+          <option value="enqueteur4">Enquêteur 4</option>
+          <option value="enqueteur5">Enquêteur 5</option>
+        </select>
+      </div>
+      <div class="ctx-field">
+        <label>DATE</label>
+        <input type="date" name="date" id="date-field">
+      </div>
+      <div class="ctx-field">
+        <label>HEURE</label>
+        <input type="time" name="heure" id="heure-field">
+      </div>
+      <div class="ctx-field">
+        <label>TRANCHE D'ÂGE</label>
+        <select name="age">
+          <option value="">Estimer...</option>
+          <option value="moins25">Moins de 25 ans</option>
+          <option value="25_40">25 – 40 ans</option>
+          <option value="plus40">Plus de 40 ans</option>
+        </select>
+      </div>
+      <div class="ctx-field">
+        <label>GENRE</label>
+        <select name="genre">
+          <option value="">...</option>
+          <option value="h">Homme</option>
+          <option value="f">Femme</option>
+          <option value="autre">Autre / NSP</option>
+        </select>
+      </div>
+      <div class="ctx-field">
+        <label>LIEU EXACT</label>
+        <input type="text" name="lieu" placeholder="Rue, quartier...">
+      </div>
+      <div class="ctx-field full">
+        <label>ZONE JACMEL</label>
+        <select name="zone">
+          <option value="">Sélectionner...</option>
+          <option>Centre-ville Jacmel</option>
+          <option>Cayes-Jacmel</option>
+          <option>Marigot</option>
+          <option>La Vallée</option>
+          <option>Autre zone</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- SÉLECTEUR PROFIL -->
+  <div class="profil-selector">
+    <div class="profil-label">Type de répondant <span style="color:var(--red)">*</span></div>
+    <div class="profil-btns">
+      <div class="profil-btn" id="btn-gp" onclick="selectProfil('gp')">
+        <div class="profil-icon">👥</div>
+        <div class="profil-name">Grand public</div>
+        <div class="profil-desc">Passant, résident, visiteur</div>
+      </div>
+      <div class="profil-btn" id="btn-org" onclick="selectProfil('org')">
+        <div class="profil-icon">🏪</div>
+        <div class="profil-name">Organisateur</div>
+        <div class="profil-desc">Bar, hôtel, asso, salle, event manager</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BLOC GRAND PUBLIC -->
+  <div class="bloc-gp" id="bloc-gp">
+    <div class="section-label green">Questions grand public — A1 à A7</div>
+
+    <div class="q-block">
+      <div class="q-text">A1 — Comment il/elle trouve les événements à Jacmel ? <span class="required">*</span></div>
+      <div class="q-kreyol">"Ki jan ou konn sa k ap pase kòm evènman Jacmel ?"</div>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="a1" value="bouche"><span class="opt-box"></span><span class="opt-label">Bouche à oreille / amis</span></label>
+        <label class="opt"><input type="radio" name="a1" value="facebook"><span class="opt-box"></span><span class="opt-label">Facebook / réseaux sociaux</span></label>
+        <label class="opt"><input type="radio" name="a1" value="affiches"><span class="opt-box"></span><span class="opt-label">Affiches dans la rue</span></label>
+        <label class="opt"><input type="radio" name="a1" value="radio"><span class="opt-box"></span><span class="opt-label">Radio locale</span></label>
+        <label class="opt"><input type="radio" name="a1" value="unknown"><span class="opt-box"></span><span class="opt-label">Ne sait généralement pas</span></label>
+        <label class="opt"><input type="radio" name="a1" value="other"><span class="opt-box"></span><span class="opt-label">Autre</span></label>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <div class="q-text">A2 — A déjà raté un événement par manque d'info ?</div>
+      <div class="q-kreyol">"Eske ou deja rate yon evènman paske ou pat konnen ?"</div>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="a2" value="oui_souvent"><span class="opt-box"></span><span class="opt-label">Oui, souvent</span></label>
+        <label class="opt"><input type="radio" name="a2" value="oui_parfois"><span class="opt-box"></span><span class="opt-label">Oui, parfois</span></label>
+        <label class="opt"><input type="radio" name="a2" value="non"><span class="opt-box"></span><span class="opt-label">Non, jamais</span></label>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <div class="q-text">A3 — Intérêt pour une app gratuite d'événements locaux ? <span class="required">*</span></div>
+      <div class="q-kreyol">"Yon aplikasyon gratis ki montre tout evènman pre ou — ou ta itilize l ?"</div>
+      <div class="scale-row">
+        <button class="scale-btn" onclick="selectScale(this,'a3','1')">1</button>
+        <button class="scale-btn" onclick="selectScale(this,'a3','2')">2</button>
+        <button class="scale-btn" onclick="selectScale(this,'a3','3')">3</button>
+        <button class="scale-btn" onclick="selectScale(this,'a3','4')">4</button>
+        <button class="scale-btn" onclick="selectScale(this,'a3','5')">5</button>
+      </div>
+      <div class="scale-labels"><span>Pas du tout</span><span>Absolument</span></div>
+      <input type="hidden" name="a3" id="a3-val">
+    </div>
+
+    <div class="q-block">
+      <div class="q-text">A4 — Freins à la participation aux événements ?</div>
+      <div class="q-kreyol">"Sa ki anpeche ou ale nan evènman ?"</div>
+      <div class="opts">
+        <label class="opt"><input type="checkbox" name="a4" value="info"><span class="opt-box"></span><span class="opt-label">Ne sait pas qu'ils existent</span></label>
+        <label class="opt"><input type="checkbox" name="a4" value="transport"><span class="opt-box"></span><span class="opt-label">Transport difficile</span></label>
+        <label class="opt"><input type="checkbox" name="a4" value="prix"><span class="opt-box"></span><span class="opt-label">Prix d'entrée</span></label>
+        <label class="opt"><input type="checkbox" name="a4" value="securite"><span class="opt-box"></span><span class="opt-label">Sécurité</span></label>
+        <label class="opt"><input type="checkbox" name="a4" value="seul"><span class="opt-box"></span><span class="opt-label">Personne pour y aller</span></label>
+        <label class="opt"><input type="checkbox" name="a4" value="temps"><span class="opt-box"></span><span class="opt-label">Manque de temps</span></label>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <div class="q-text">A5 — Intérêt pour suivre un événement en live sur téléphone ?</div>
+      <div class="q-kreyol">"Si ou pa ka deplase — ou ta renmen swiv yon evènman an dirèk sou telefòn ou ?"</div>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="a5" value="oui"><span class="opt-box"></span><span class="opt-label">Oui, bonne idée</span></label>
+        <label class="opt"><input type="radio" name="a5" value="petet"><span class="opt-box"></span><span class="opt-label">Peut-être</span></label>
+        <label class="opt"><input type="radio" name="a5" value="non"><span class="opt-box"></span><span class="opt-label">Non</span></label>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <div class="q-text">A6 — Type de smartphone / connexion ?</div>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="a6" value="android"><span class="opt-box"></span><span class="opt-label">Android</span></label>
+        <label class="opt"><input type="radio" name="a6" value="iphone"><span class="opt-box"></span><span class="opt-label">iPhone</span></label>
+        <label class="opt"><input type="radio" name="a6" value="basique"><span class="opt-box"></span><span class="opt-label">Téléphone basique</span></label>
+        <label class="opt"><input type="radio" name="a6" value="connexion_faible"><span class="opt-box"></span><span class="opt-label">Smartphone mais connexion difficile</span></label>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <div class="q-text">A7 — Langue préférée pour l'app ? <span class="required">*</span></div>
+      <div class="opts">
+        <label class="opt"><input type="checkbox" name="a7" value="kreyol"><span class="opt-box"></span><span class="opt-label">🇭🇹 Kreyòl ayisyen</span></label>
+        <label class="opt"><input type="checkbox" name="a7" value="francais"><span class="opt-box"></span><span class="opt-label">🇫🇷 Français</span></label>
+        <label class="opt"><input type="checkbox" name="a7" value="anglais"><span class="opt-box"></span><span class="opt-label">🇺🇸 Anglais</span></label>
+        <label class="opt"><input type="checkbox" name="a7" value="espagnol"><span class="opt-box"></span><span class="opt-label">🇪🇸 Espagnol</span></label>
+      </div>
+    </div>
+  </div>
+
+  <!-- BLOC ORGANISATEUR -->
+  <div class="bloc-org" id="bloc-org">
+    <div class="section-label yellow">Questions organisateur — B1 à B6</div>
+
+    <div class="q-block">
+      <div class="q-text">B1 — Type d'événements organisés <span class="required">*</span></div>
+      <div class="q-kreyol">"Ki kalite evènman ou òganize ?"</div>
+      <div class="opts">
+        <label class="opt"><input type="checkbox" name="b1" value="concerts"><span class="opt-box"></span><span class="opt-label">Concerts / Spectacles</span></label>
+        <label class="opt"><input type="checkbox" name="b1" value="fetes"><span class="opt-box"></span><span class="opt-label">Fêtes privées / Soirées</span></label>
+        <label class="opt"><input type="checkbox" name="b1" value="conferences"><span class="opt-box"></span><span class="opt-label">Conférences / Formations</span></label>
+        <label class="opt"><input type="checkbox" name="b1" value="expos"><span class="opt-box"></span><span class="opt-label">Expositions / Art</span></label>
+        <label class="opt"><input type="checkbox" name="b1" value="religieux"><span class="opt-box"></span><span class="opt-label">Événements religieux</span></label>
+        <label class="opt"><input type="checkbox" name="b1" value="sport"><span class="opt-box"></span><span class="opt-label">Sport / Compétitions</span></label>
+        <label class="opt"><input type="checkbox" name="b1" value="resto_bar"><span class="opt-box"></span><span class="opt-label">Soirées régulières (resto / bar)</span></label>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <div class="q-text">B2 — Comment il/elle fait la promotion actuellement ? <span class="required">*</span></div>
+      <div class="q-kreyol">"Kijan ou fè pwomosyon evènman ou yo kounye a ?"</div>
+      <div class="opts">
+        <label class="opt"><input type="checkbox" name="b2" value="facebook"><span class="opt-box"></span><span class="opt-label">Page / profil Facebook</span></label>
+        <label class="opt"><input type="checkbox" name="b2" value="whatsapp"><span class="opt-box"></span><span class="opt-label">Groupe WhatsApp</span></label>
+        <label class="opt"><input type="checkbox" name="b2" value="bouche"><span class="opt-box"></span><span class="opt-label">Bouche à oreille</span></label>
+        <label class="opt"><input type="checkbox" name="b2" value="affiches"><span class="opt-box"></span><span class="opt-label">Affiches / Banderoles</span></label>
+        <label class="opt"><input type="checkbox" name="b2" value="radio"><span class="opt-box"></span><span class="opt-label">Radio locale</span></label>
+        <label class="opt"><input type="checkbox" name="b2" value="rien"><span class="opt-box"></span><span class="opt-label">Aucune promotion vraiment</span></label>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <div class="q-text">B3 — Budget communication par événement ?</div>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="b3" value="zero"><span class="opt-box"></span><span class="opt-label">Rien — gratuit seulement</span></label>
+        <label class="opt"><input type="radio" name="b3" value="moins500"><span class="opt-box"></span><span class="opt-label">Moins de 500 HTG</span></label>
+        <label class="opt"><input type="radio" name="b3" value="500_2000"><span class="opt-box"></span><span class="opt-label">500 – 2 000 HTG</span></label>
+        <label class="opt"><input type="radio" name="b3" value="plus2000"><span class="opt-box"></span><span class="opt-label">Plus de 2 000 HTG</span></label>
+        <label class="opt"><input type="radio" name="b3" value="nsp"><span class="opt-box"></span><span class="opt-label">Je ne sais pas exactement</span></label>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <div class="q-text">B4 — Intérêt pour LOTBO (gratuit, sans commission) ? <span class="required">*</span></div>
+      <div class="q-kreyol">"Yon platfòm gratis — pa gen komisyon, pa gen abònman — sa enterese ou ?"</div>
+      <div class="scale-row">
+        <button class="scale-btn" onclick="selectScale(this,'b4','1')">1</button>
+        <button class="scale-btn" onclick="selectScale(this,'b4','2')">2</button>
+        <button class="scale-btn" onclick="selectScale(this,'b4','3')">3</button>
+        <button class="scale-btn" onclick="selectScale(this,'b4','4')">4</button>
+        <button class="scale-btn" onclick="selectScale(this,'b4','5')">5</button>
+      </div>
+      <div class="scale-labels"><span>Pas intéressé</span><span>Très intéressé</span></div>
+      <input type="hidden" name="b4" id="b4-val">
+    </div>
+
+    <div class="q-block">
+      <div class="q-text">B5 — Intérêt pour diffuser son événement en live ?</div>
+      <div class="q-kreyol">"Si LOTBO ba ou posibilite fè yon live evènman ou — ou ta fè l ?"</div>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="b5" value="oui"><span class="opt-box"></span><span class="opt-label">Oui, excellente idée</span></label>
+        <label class="opt"><input type="radio" name="b5" value="petet"><span class="opt-box"></span><span class="opt-label">Peut-être si c'est simple</span></label>
+        <label class="opt"><input type="radio" name="b5" value="non"><span class="opt-box"></span><span class="opt-label">Non</span></label>
+      </div>
+    </div>
+
+    <div class="q-block" style="border-color:rgba(245,166,35,0.3); background:rgba(245,166,35,0.05);">
+      <div class="q-text" style="color:var(--yellow);">B6 — Prêt à ajouter un événement maintenant ? 🎯</div>
+      <div class="q-kreyol">"Ou ta renmen nou ajoute premye evènman ou gratis kounye a ?"</div>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="b6" value="oui" onchange="toggleEventDetails(true)"><span class="opt-box"></span><span class="opt-label" style="color:var(--yellow); font-weight:500;">Oui — ajouter maintenant</span></label>
+        <label class="opt"><input type="radio" name="b6" value="lien" onchange="toggleEventDetails(false)"><span class="opt-box"></span><span class="opt-label">Envoyer le lien pour qu'il/elle le fasse seul(e)</span></label>
+        <label class="opt"><input type="radio" name="b6" value="non" onchange="toggleEventDetails(false)"><span class="opt-box"></span><span class="opt-label">Non merci</span></label>
+      </div>
+      <div id="event-details" style="display:none; margin-top:12px;">
+        <input type="text" class="field-input" placeholder="Nom de l'événement" style="margin-bottom:8px;">
+        <input type="text" class="field-input" placeholder="Date et heure" style="margin-bottom:8px;">
+        <input type="text" class="field-input" placeholder="Lieu exact">
+      </div>
+    </div>
+
+    <div class="q-block">
+      <div class="q-text">Nom de l'établissement</div>
+      <input type="text" class="field-input" placeholder="Nom du bar, hôtel, salle, association...">
+    </div>
+  </div>
+
+  <!-- OBSERVATIONS -->
+  <div id="bloc-obs" class="hidden">
+    <div class="section-label">Observations enquêteur</div>
+
+    <div class="obs-block">
+      <div class="obs-title">CITATION MÉMORABLE</div>
+      <textarea class="field-input" placeholder='"Ce que la personne a dit exactement..."'></textarea>
+    </div>
+
+    <div class="obs-block">
+      <div class="obs-title">NIVEAU D'ENTHOUSIASME GÉNÉRAL</div>
+      <div class="opts" style="flex-direction:row; gap:6px;">
+        <label class="opt" style="flex:1; justify-content:center;"><input type="radio" name="enthousiasme" value="faible"><span class="opt-box"></span><span class="opt-label">😐 Faible</span></label>
+        <label class="opt" style="flex:1; justify-content:center;"><input type="radio" name="enthousiasme" value="moyen"><span class="opt-box"></span><span class="opt-label">🙂 Moyen</span></label>
+        <label class="opt" style="flex:1; justify-content:center;"><input type="radio" name="enthousiasme" value="fort"><span class="opt-box"></span><span class="opt-label">🔥 Fort</span></label>
+      </div>
+    </div>
+
+    <div class="obs-block">
+      <div class="obs-title">NOTES LIBRES</div>
+      <textarea class="field-input" placeholder="Observations, contexte, comportement..."></textarea>
+    </div>
+
+    <div class="contact-block">
+      <div class="obs-title">CONTACT COLLECTÉ → Brevo Jacmel-Terrain</div>
+      <input type="tel" class="field-input" id="terrain-whatsapp" placeholder="📱 WhatsApp" style="margin-bottom:8px;">
+      <input type="email" class="field-input" id="terrain-email" placeholder="✉️ Email">
+      <div class="contact-note">→ Ce contact sera ajouté automatiquement à la liste Brevo Jacmel-Terrain</div>
+    </div>
+
+    <div style="margin-top:20px;">
+      <button class="submit-btn" id="terrain-submit" onclick="submitTerrain()">Enregistrer cette fiche →</button>
+      <button class="next-btn" onclick="submitTerrain()">PASSER À L'INTERVIEW SUIVANTE ↓</button>
+    </div>
+  </div>
+</div>
+
+<!-- CONFIRMATION -->
+<div class="confirm-screen" id="confirm-screen">
+  <div class="wrap">
+    <div class="confirm-icon">✅</div>
+    <div class="confirm-title">Fiche enregistrée</div>
+    <div class="confirm-sub">Les données sont sauvegardées. Brevo a été mis à jour si un contact a été collecté.</div>
+    <div class="confirm-stat">
+      <div class="confirm-stat-num" id="counter">1</div>
+      <div class="confirm-stat-label">INTERVIEW(S) ENREGISTRÉE(S) AUJOURD'HUI</div>
+    </div>
+    <button class="next-interview-btn" onclick="newInterview()">Nouvelle interview →</button>
+  </div>
+</div>
+
+<script>
+let profilCurrent = null
+let interviewCount = 0
+
+// Date et heure auto
+document.getElementById('date-field').value = new Date().toISOString().split('T')[0]
+const now = new Date()
+document.getElementById('heure-field').value = now.getHours().toString().padStart(2,'0') + ':' + now.getMinutes().toString().padStart(2,'0')
+
+function selectProfil(type) {
+  profilCurrent = type
+  document.getElementById('btn-gp').className = 'profil-btn' + (type === 'gp' ? ' active-gp' : '')
+  document.getElementById('btn-org').className = 'profil-btn' + (type === 'org' ? ' active-org' : '')
+  document.getElementById('bloc-gp').style.display = type === 'gp' ? 'block' : 'none'
+  document.getElementById('bloc-org').style.display = type === 'org' ? 'block' : 'none'
+  document.getElementById('bloc-obs').classList.remove('hidden')
+  setTimeout(() => document.getElementById('bloc-obs').scrollIntoView({ behavior: 'smooth', block: 'start' }), 200)
+}
+
+function selectScale(btn, name, val) {
+  btn.parentElement.querySelectorAll('.scale-btn').forEach(b => b.classList.remove('active'))
+  btn.classList.add('active')
+  const el = document.getElementById(name + '-val')
+  if (el) el.value = val
+}
+
+function toggleEventDetails(show) {
+  document.getElementById('event-details').style.display = show ? 'block' : 'none'
+}
+
+async function submitTerrain() {
+  if (!profilCurrent) { alert('Choisir le type de répondant avant de continuer.'); return }
+
+  const btn = document.getElementById('terrain-submit')
+  btn.disabled = true
+
+  const email = document.getElementById('terrain-email').value
+  const whatsapp = document.getElementById('terrain-whatsapp').value
+  const enqueteur = document.getElementById('enqueteur').value
+
+  const payload = {
+    type: 'terrain',
+    email: email || null,
+    whatsapp: whatsapp || null,
+    enqueteur,
+    profil: profilCurrent,
+    reponses: { profil: profilCurrent }
+  }
+
+  try {
+    await fetch('/api/enquete', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+  } catch { /* continuer */ }
+
+  interviewCount++
+  document.getElementById('counter').textContent = interviewCount
+  document.getElementById('form-screen').style.display = 'none'
+  document.getElementById('confirm-screen').style.display = 'block'
+  window.scrollTo(0, 0)
+}
+
+function newInterview() {
+  profilCurrent = null
+  document.getElementById('btn-gp').className = 'profil-btn'
+  document.getElementById('btn-org').className = 'profil-btn'
+  document.getElementById('bloc-gp').style.display = 'none'
+  document.getElementById('bloc-org').style.display = 'none'
+  document.getElementById('bloc-obs').classList.add('hidden')
+  document.querySelectorAll('.scale-btn').forEach(b => b.classList.remove('active'))
+  document.querySelectorAll('input[type="radio"], input[type="checkbox"]').forEach(i => i.checked = false)
+  document.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"], textarea').forEach(i => i.value = '')
+  document.getElementById('date-field').value = new Date().toISOString().split('T')[0]
+  const n = new Date()
+  document.getElementById('heure-field').value = n.getHours().toString().padStart(2,'0') + ':' + n.getMinutes().toString().padStart(2,'0')
+  document.getElementById('terrain-submit').disabled = false
+  document.getElementById('confirm-screen').style.display = 'none'
+  document.getElementById('form-screen').style.display = 'block'
+  window.scrollTo(0, 0)
+}
+</script>
+</body>
+</html>
