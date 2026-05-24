@@ -1180,5 +1180,100 @@
   }, { threshold: 0.08 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
+
+<!-- ── PRELOADER UX-ANIM1 ───────────────────────────────────────── -->
+<div id="lotbo-preloader" aria-hidden="true">
+  <div class="pl-inner">
+    <div class="pl-mark">
+      <span class="pl-l">L</span>
+      <span class="pl-dot"></span>
+      <span class="pl-pulse"></span>
+    </div>
+    <div class="pl-wordmark"><span class="pl-lot">lot</span><span class="pl-bo">bo</span></div>
+  </div>
+</div>
+
+<style>
+#lotbo-preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #1A1410;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.5s ease;
+}
+#lotbo-preloader.pl-hide {
+  opacity: 0;
+  pointer-events: none;
+}
+.pl-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.pl-mark {
+  position: relative;
+  width: 90px;
+  height: 72px;
+}
+.pl-l {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 700;
+  font-size: 72px;
+  color: #ffffff;
+  line-height: 1;
+  display: block;
+  user-select: none;
+}
+.pl-dot {
+  position: absolute;
+  top: 22px;
+  left: 73px;
+  width: 10px;
+  height: 10px;
+  background: #E8620A;
+  border-radius: 50%;
+}
+.pl-pulse {
+  position: absolute;
+  top: 22px;
+  left: 73px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid #E8620A;
+  animation: pl-ring 1.4s ease-out infinite;
+}
+@keyframes pl-ring {
+  0%   { transform: scale(1);   opacity: 0.9; }
+  100% { transform: scale(3.2); opacity: 0;   }
+}
+.pl-wordmark {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 700;
+  font-size: 26px;
+  letter-spacing: 0.01em;
+  user-select: none;
+}
+.pl-lot { color: #ffffff; }
+.pl-bo  { color: #C8431A; }
+</style>
+
+<script>
+(function () {
+  const el = document.getElementById('lotbo-preloader');
+  function hide() {
+    el.classList.add('pl-hide');
+    setTimeout(function () { el.style.display = 'none'; }, 520);
+  }
+  const t = setTimeout(hide, 1500);
+  window.addEventListener('load', function () { clearTimeout(t); hide(); });
+})();
+</script>
 </body>
 </html>
