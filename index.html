@@ -116,6 +116,12 @@
     .nav-links { display: flex; gap: 28px; flex: 1; justify-content: center; }
     .nav-link { font-size: 13px; color: rgba(247,242,232,.45); transition: color .2s; }
     .nav-link:hover { color: var(--creme); }
+    .nav-link-app {
+      color: var(--brique) !important;
+      border: 1px solid rgba(200,67,26,.3);
+      border-radius: 6px; padding: 4px 12px;
+    }
+    .nav-link-app:hover { background: rgba(200,67,26,.08); color: var(--brique2) !important; border-color: var(--brique); }
     .nav-actions { display: flex; gap: 10px; align-items: center; flex-shrink: 0; }
     .btn-ghost {
       font-size: 13px; font-weight: 500; padding: 8px 20px;
@@ -711,27 +717,46 @@
 
     /* ── FOOTER ─────────────────────────────── */
     footer {
-      background: #080503; padding: 22px 48px;
+      background: #1A1410;
+      border-top: 1px solid rgba(247,242,232,.06);
+      padding: 64px 48px 32px;
+    }
+    .footer-grid {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(5,1fr);
+      gap: 32px; margin-bottom: 48px;
+    }
+    .footer-col-title {
+      font-family: 'Playfair Display', serif; font-style: italic; font-weight: 700;
+      font-size: 14px; color: var(--creme); margin-bottom: 16px;
+    }
+    .footer-col-links { display: flex; flex-direction: column; gap: 10px; }
+    .footer-col-link { font-size: 13px; color: #8C5A40; transition: color .15s; }
+    .footer-col-link:hover { color: var(--brique); }
+    .footer-bottom {
+      max-width: 1100px; margin: 0 auto;
+      padding-top: 24px; border-top: 1px solid rgba(247,242,232,.06);
       display: flex; justify-content: space-between; align-items: center;
-      flex-wrap: wrap; gap: 8px;
-      border-top: 1px solid rgba(247,242,232,.05);
+      flex-wrap: wrap; gap: 12px;
     }
     .footer-logo {
       font-family: 'Playfair Display', serif; font-weight: 700; font-style: italic;
       font-size: 20px; color: var(--creme);
     }
     .footer-logo span { color: var(--brique); }
-    .footer-links { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
-    .footer-note { font-size: 12px; color: rgba(140,90,64,.7); }
-    .footer-link { font-size: 12px; color: rgba(140,90,64,.7); transition: color .15s; }
-    .footer-link:hover { color: var(--brique); }
-    .footer-app { font-size: 12px; color: var(--brique); font-weight: 500; transition: opacity .15s; }
-    .footer-app:hover { opacity: .8; }
+    .footer-note { font-size: 12px; color: rgba(140,90,64,.6); }
 
+    @media (max-width: 900px) {
+      .footer-grid { grid-template-columns: repeat(2,1fr); }
+    }
     @media (max-width: 600px) {
       .features, .quotes, .top-section { padding: 64px 20px; }
       .steps { padding: 64px 20px; }
-      footer { padding: 18px 20px; flex-direction: column; text-align: center; }
+      footer { padding: 48px 20px 24px; }
+      .footer-grid { grid-template-columns: repeat(2,1fr); gap: 24px; }
+    }
+    @media (max-width: 375px) {
+      .footer-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -739,15 +764,15 @@
 
 <!-- NAV -->
 <nav>
-  <div class="nav-logo">lot<span>bo</span></div>
+  <a href="/" class="nav-logo">lot<span>bo</span></a>
   <div class="nav-links">
-    <a href="https://app.lotbo.app/apropos" class="nav-link">À propos</a>
-    <a href="https://app.lotbo.app/aide" class="nav-link">Aide</a>
-    <a href="https://app.lotbo.app/politique-confidentialite" class="nav-link">Confidentialité</a>
-    <a href="https://app.lotbo.app/cgu" class="nav-link">CGU</a>
+    <a href="/" class="nav-link">Accueil</a>
+    <a href="#" class="nav-link">À propos</a>
+    <a href="#" class="nav-link">FAQ</a>
+    <a href="#" class="nav-link">Contact</a>
+    <a href="https://app.lotbo.app" class="nav-link nav-link-app">Ouvrir l'app →</a>
   </div>
   <div class="nav-actions">
-    <button class="btn-ghost nav-desktop" onclick="scrollToNewsletter()">Newsletter</button>
     <a href="https://app.lotbo.app/login" class="btn-primary">Créer un compte →</a>
     <button class="nav-hamburger" onclick="toggleMobileMenu()" aria-label="Menu">☰</button>
   </div>
@@ -756,18 +781,17 @@
 <!-- Drawer -->
 <div class="nav-drawer" id="navDrawer">
   <div class="nav-drawer-header">
-    <div class="nav-logo">lot<span>bo</span></div>
+    <a href="/" class="nav-logo">lot<span>bo</span></a>
     <button onclick="toggleMobileMenu()" class="nav-drawer-close">✕</button>
   </div>
   <div class="nav-drawer-links">
-    <a href="https://app.lotbo.app" class="nav-drawer-link">🗺️ Voir les événements</a>
+    <a href="/" class="nav-drawer-link">🏠 Accueil</a>
+    <a href="https://app.lotbo.app" class="nav-drawer-link">🗺️ Ouvrir l'app</a>
     <a href="https://app.lotbo.app/login" class="nav-drawer-link">👤 Créer un compte</a>
-    <button onclick="scrollToNewsletter();toggleMobileMenu()" class="nav-drawer-link" style="background:none;border:none;text-align:left;cursor:pointer;width:100%;font-family:'DM Sans',sans-serif;font-size:15px;color:rgba(247,242,232,.7);padding:13px 20px;">📧 Newsletter</button>
     <div class="nav-drawer-divider"></div>
-    <a href="https://app.lotbo.app/apropos" class="nav-drawer-link">ℹ️ À propos</a>
-    <a href="https://app.lotbo.app/aide" class="nav-drawer-link">❓ Aide</a>
-    <a href="https://app.lotbo.app/politique-confidentialite" class="nav-drawer-link">🔒 Confidentialité</a>
-    <a href="https://app.lotbo.app/cgu" class="nav-drawer-link">📄 CGU</a>
+    <a href="#" class="nav-drawer-link">ℹ️ À propos</a>
+    <a href="#" class="nav-drawer-link">❓ FAQ</a>
+    <a href="#" class="nav-drawer-link">✉️ Contact</a>
   </div>
 </div>
 <div class="nav-overlay" id="navOverlay" onclick="toggleMobileMenu()"></div>
@@ -1057,12 +1081,59 @@
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo">lot<span>bo</span></div>
-  <div class="footer-links">
-    <a href="https://app.lotbo.app" class="footer-app">Ouvrir l'app →</a>
-    <a href="https://app.lotbo.app/politique-confidentialite" class="footer-link">Confidentialité</a>
-    <a href="https://app.lotbo.app/cgu" class="footer-link">CGU</a>
-    <div class="footer-note">2026 · Né en Haïti, pour le monde entier 🇭🇹</div>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-col-title">LOTBO</div>
+      <div class="footer-col-links">
+        <a href="#" class="footer-col-link">À propos</a>
+        <a href="#" class="footer-col-link">Notre histoire</a>
+        <a href="#" class="footer-col-link">Né en Haïti 🇭🇹</a>
+        <a href="#" class="footer-col-link">Presse</a>
+        <a href="#" class="footer-col-link">Carrières</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Communauté</div>
+      <div class="footer-col-links">
+        <a href="#" class="footer-col-link">Nos utilisateurs</a>
+        <a href="#" class="footer-col-link">Charte membres</a>
+        <a href="#" class="footer-col-link">Charte contributeurs</a>
+        <a href="#" class="footer-col-link">Charte organisateurs</a>
+        <a href="#" class="footer-col-link">Devenir ambassadeur</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Légal</div>
+      <div class="footer-col-links">
+        <a href="#" class="footer-col-link">CGU</a>
+        <a href="#" class="footer-col-link">Confidentialité</a>
+        <a href="#" class="footer-col-link">Modération</a>
+        <a href="#" class="footer-col-link">Cookies</a>
+        <a href="#" class="footer-col-link">Mentions légales</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Collaboration</div>
+      <div class="footer-col-links">
+        <a href="#" class="footer-col-link">Partenariats</a>
+        <a href="#" class="footer-col-link">Institutions</a>
+        <a href="#" class="footer-col-link">Médias &amp; Presse</a>
+        <a href="#" class="footer-col-link">Formulaire contact</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Ressources</div>
+      <div class="footer-col-links">
+        <a href="#" class="footer-col-link">Blog</a>
+        <a href="#" class="footer-col-link">Centre d'aide</a>
+        <a href="#" class="footer-col-link">Guide organisateurs</a>
+        <a href="#" class="footer-col-link">Roadmap</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <a href="/" class="footer-logo">lot<span>bo</span></a>
+    <div class="footer-note">© 2026 · Né en Haïti, pour le monde entier 🇭🇹</div>
   </div>
 </footer>
 

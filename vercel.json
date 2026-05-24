@@ -25,6 +25,38 @@
         "dest": "/terrain.html"
       },
       {
+        "src": "/a-propos",
+        "dest": "/a-propos.html"
+      },
+      {
+        "src": "/faq",
+        "dest": "/faq.html"
+      },
+      {
+        "src": "/contact",
+        "dest": "/contact.html"
+      },
+      {
+        "src": "/legal/cgu",
+        "dest": "/legal/cgu.html"
+      },
+      {
+        "src": "/legal/confidentialite",
+        "dest": "/legal/confidentialite.html"
+      },
+      {
+        "src": "/legal/moderation",
+        "dest": "/legal/moderation.html"
+      },
+      {
+        "src": "/legal/cookies",
+        "dest": "/legal/cookies.html"
+      },
+      {
+        "src": "/legal/mentions-legales",
+        "dest": "/legal/mentions-legales.html"
+      },
+      {
         "src": "/(.*)",
         "dest": "/$1"
       },
