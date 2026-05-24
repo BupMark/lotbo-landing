@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Page introuvable — lotbo</title>
+  <meta name="robots" content="noindex" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100dvh;
+      background: #F7F2E8;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 24px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      text-align: center;
+      color: #1A1410;
+    }
+
+    .logo {
+      text-decoration: none;
+      font-family: Georgia, serif;
+      font-style: italic;
+      font-weight: 700;
+      font-size: 26px;
+      margin-bottom: 48px;
+      display: block;
+    }
+    .logo span:first-child { color: #1A1410; }
+    .logo span:last-child  { color: #C8431A; }
+
+    .pin { margin-bottom: 32px; }
+
+    h1 {
+      font-family: Georgia, serif;
+      font-style: italic;
+      font-size: clamp(26px, 6vw, 36px);
+      font-weight: 700;
+      color: #1A1410;
+      margin-bottom: 16px;
+    }
+
+    p {
+      font-size: 15px;
+      color: #8C5A40;
+      line-height: 1.65;
+      max-width: 360px;
+      margin-bottom: 40px;
+    }
+
+    .ctas {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      width: 100%;
+      max-width: 320px;
+    }
+
+    .btn-primary {
+      display: block;
+      background: #C8431A;
+      color: white;
+      padding: 14px 24px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 15px;
+      text-decoration: none;
+    }
+    .btn-primary:hover { background: #b03815; }
+
+    .btn-secondary {
+      display: block;
+      background: transparent;
+      color: #8C5A40;
+      padding: 14px 24px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 14px;
+      text-decoration: none;
+      border: 1px solid #E8E0D0;
+    }
+    .btn-secondary:hover { background: #EDE8DC; }
+  </style>
+</head>
+<body>
+
+  <a class="logo" href="https://app.lotbo.app">
+    <span>lot</span><span>bo</span>
+  </a>
+
+  <!-- Pin SVG avec "?" -->
+  <svg class="pin" width="80" height="100" viewBox="0 0 80 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M40 2C22.327 2 8 16.327 8 34C8 57.5 40 98 40 98C40 98 72 57.5 72 34C72 16.327 57.673 2 40 2Z" fill="#C8431A" />
+    <circle cx="40" cy="34" r="17" fill="#F7F2E8" />
+    <text x="40" y="41" text-anchor="middle" font-family="Georgia, serif" font-size="22" font-weight="700" fill="#C8431A">?</text>
+  </svg>
+
+  <h1>Oops… lòt bò !</h1>
+  <p id="subtitle">Cette page s'est perdue en chemin. Mais il y a sûrement un événement près de toi qui t'attend.</p>
+
+  <div class="ctas">
+    <a class="btn-primary" href="https://app.lotbo.app">Découvrir les événements →</a>
+    <a class="btn-secondary" href="/">Retour à l'accueil</a>
+  </div>
+
+  <script>
+    var subtitles = {
+      fr: "Cette page s'est perdue en chemin. Mais il y a sûrement un événement près de toi qui t'attend.",
+      en: "This page got lost along the way. But there's surely an event near you waiting.",
+      es: "Esta página se perdió en el camino. Pero seguro hay un evento cerca de ti esperándote.",
+      pt: "Esta página se perdeu no caminho. Mas certamente há um evento perto de você esperando.",
+      ht: "Paj sa a pèdi nan wout li. Men siman gen yon evènman pre ou k ap tann ou."
+    };
+    var lang = (navigator.language || 'fr').toLowerCase().split('-')[0];
+    var el = document.getElementById('subtitle');
+    if (el && subtitles[lang]) el.textContent = subtitles[lang];
+  </script>
+
+</body>
+</html>
