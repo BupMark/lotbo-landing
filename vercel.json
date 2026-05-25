@@ -25,6 +25,10 @@
         "dest": "/terrain.html"
       },
       {
+        "src": "/partenariats",
+        "dest": "/partenariats.html"
+      },
+      {
         "src": "/a-propos",
         "dest": "/a-propos.html"
       },

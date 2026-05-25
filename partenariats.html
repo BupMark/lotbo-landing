@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Partenariats — Lotbo</title>
+  <meta name="description" content="Construisons ensemble l'agenda mondial des événements. LOTBO connecte les événements locaux au monde entier."/>
+  <meta property="og:title" content="Partenariats — Lotbo"/>
+  <meta property="og:description" content="Rejoignez les organisations qui façonnent la mission de LOTBO."/>
+  <meta property="og:type" content="website"/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png"/>
+  <meta name="theme-color" content="#0B0603"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --night:   #0B0603;
+      --night2:  #110C08;
+      --brique:  #C8431A;
+      --brique2: #FF5A1F;
+      --or:      #D4A820;
+      --creme:   #F7F2E8;
+      --terre:   #8C5A40;
+      --brume:   #E8E0D0;
+      --border:  rgba(247,242,232,0.08);
+      --glass:   rgba(247,242,232,0.04);
+      --glass2:  rgba(247,242,232,0.08);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--night);
+      color: var(--creme);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── ANIMATIONS ─────────────────────────── */
+    @keyframes blobFloat1 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33%       { transform: translate(40px, -30px) scale(1.05); }
+      66%       { transform: translate(-20px, 20px) scale(0.95); }
+    }
+    @keyframes blobFloat2 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33%       { transform: translate(-40px, 20px) scale(1.08); }
+      66%       { transform: translate(30px, -40px) scale(0.92); }
+    }
+    @keyframes blobFloat3 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50%       { transform: translate(20px, 30px) scale(1.06); }
+    }
+    @keyframes gradMove {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    @keyframes shimmer {
+      0%   { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: .1s; }
+    .reveal-delay-2 { transition-delay: .2s; }
+    .reveal-delay-3 { transition-delay: .3s; }
+    .reveal-delay-4 { transition-delay: .4s; }
+
+    /* ── NAV ────────────────────────────────── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 48px;
+      background: rgba(11,6,3,0.8);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700; font-style: italic;
+      font-size: 24px; color: var(--creme); flex-shrink: 0;
+    }
+    .nav-logo span { color: var(--brique); }
+    .nav-links { display: flex; gap: 28px; flex: 1; justify-content: center; }
+    .nav-link { font-size: 13px; color: rgba(247,242,232,.45); transition: color .2s; }
+    .nav-link:hover { color: var(--creme); }
+    .nav-link-app {
+      color: var(--brique) !important;
+      border: 1px solid rgba(200,67,26,.3);
+      border-radius: 6px; padding: 4px 12px;
+    }
+    .nav-link-app:hover { background: rgba(200,67,26,.08); color: var(--brique2) !important; border-color: var(--brique); }
+    .nav-actions { display: flex; gap: 10px; align-items: center; flex-shrink: 0; }
+    .btn-ghost {
+      font-size: 13px; font-weight: 500; padding: 8px 20px;
+      background: var(--glass); border: 1px solid var(--border);
+      border-radius: 8px; color: rgba(247,242,232,.7);
+      cursor: pointer; transition: all .2s; white-space: nowrap;
+    }
+    .btn-ghost:hover { background: var(--glass2); color: var(--creme); }
+    .btn-primary {
+      font-size: 13px; font-weight: 500; padding: 9px 22px;
+      background: var(--brique); border: none; border-radius: 8px;
+      color: var(--creme); cursor: pointer; transition: all .25s;
+      white-space: nowrap; display: inline-block;
+      box-shadow: 0 0 24px rgba(200,67,26,.35);
+      position: relative; overflow: hidden;
+    }
+    .btn-primary::after {
+      content: '';
+      position: absolute; top: 0; left: -100%;
+      width: 60%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.15), transparent);
+      animation: shimmer 3s infinite;
+    }
+    .btn-primary:hover { box-shadow: 0 0 40px rgba(200,67,26,.6); transform: translateY(-1px); }
+    .nav-hamburger {
+      display: none; background: var(--glass); border: 1px solid var(--border);
+      color: var(--creme); border-radius: 6px; padding: 7px 10px;
+      font-size: 16px; cursor: pointer;
+    }
+
+    /* Drawer */
+    .nav-drawer {
+      position: fixed; top: 0; left: 0; bottom: 0; width: 280px; z-index: 200;
+      background: #0F0A07; border-right: 1px solid var(--border);
+      transform: translateX(-100%); transition: transform .3s ease;
+      display: flex; flex-direction: column;
+    }
+    .nav-drawer.open { transform: translateX(0); }
+    .nav-drawer-header { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; border-bottom: 1px solid var(--border); }
+    .nav-drawer-close { background: none; border: none; color: rgba(247,242,232,.4); font-size: 20px; cursor: pointer; }
+    .nav-drawer-links { display: flex; flex-direction: column; padding: 16px 0; }
+    .nav-drawer-link { font-size: 15px; color: rgba(247,242,232,.7); text-decoration: none; padding: 13px 20px; transition: background .15s; display: block; }
+    .nav-drawer-link:hover { background: var(--glass); color: var(--creme); }
+    .nav-drawer-divider { height: 1px; background: var(--border); margin: 8px 0; }
+    .nav-overlay { display: none; position: fixed; inset: 0; z-index: 199; background: rgba(0,0,0,.7); }
+    .nav-overlay.open { display: block; }
+
+    @media (max-width: 768px) {
+      nav { padding: 12px 16px; }
+      .nav-links, .nav-desktop { display: none; }
+      .nav-hamburger { display: flex; }
+      .btn-primary { padding: 7px 14px; font-size: 12px; }
+    }
+
+    /* ── BLOBS ──────────────────────────────── */
+    .hero-blobs { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
+    .blob { position: absolute; border-radius: 50%; filter: blur(100px); opacity: .25; }
+    .blob-1 {
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, #FF5A1F, #C8431A);
+      top: -200px; left: -150px;
+      animation: blobFloat1 12s ease-in-out infinite;
+    }
+    .blob-2 {
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, #D4A820, #C8431A);
+      bottom: -150px; right: -100px;
+      animation: blobFloat2 15s ease-in-out infinite;
+    }
+
+    /* ── HERO PARTENARIATS ──────────────────── */
+    .hero-part {
+      position: relative; overflow: hidden;
+      background: var(--night);
+      min-height: 72vh;
+      display: flex; align-items: center; justify-content: center;
+      padding: 120px 24px 100px;
+      text-align: center;
+    }
+    .hero-part-inner {
+      position: relative; z-index: 1;
+      max-width: 740px; margin: 0 auto;
+      display: flex; flex-direction: column; align-items: center; gap: 0;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
+      padding: 6px 14px; border-radius: 20px; margin-bottom: 28px;
+      border: 1px solid rgba(200,67,26,.3);
+      background: rgba(200,67,26,.06);
+      color: rgba(200,67,26,.9);
+    }
+    .hero-part-h1 {
+      font-family: 'DM Serif Display', serif; font-style: italic;
+      font-size: clamp(34px, 5.5vw, 62px);
+      line-height: 1.1; margin-bottom: 22px;
+      color: var(--creme);
+    }
+    .hero-part-sub {
+      font-size: clamp(15px, 2vw, 18px);
+      color: rgba(247,242,232,.55);
+      line-height: 1.75; max-width: 540px;
+      margin-bottom: 40px;
+    }
+    .hero-part-cta {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 15px 36px; font-size: 15px; font-weight: 500;
+      background: linear-gradient(135deg, var(--brique), var(--brique2));
+      background-size: 200% 200%;
+      color: var(--creme); border: none; border-radius: 12px;
+      cursor: pointer; transition: all .3s;
+      box-shadow: 0 0 40px rgba(200,67,26,.4);
+      text-decoration: none;
+      animation: gradMove 4s ease infinite;
+    }
+    .hero-part-cta:hover { transform: translateY(-2px); box-shadow: 0 0 60px rgba(200,67,26,.6); color: var(--creme); }
+
+    @media (max-width: 560px) {
+      .hero-part { padding: 90px 20px 72px; min-height: 60vh; }
+      .hero-part-cta { width: 100%; justify-content: center; }
+    }
+
+    /* ── SECTIONS PARTAGÉES ─────────────────── */
+    .section-label {
+      font-size: 11px; font-weight: 500;
+      text-transform: uppercase; letter-spacing: .12em;
+      color: var(--brique); margin-bottom: 10px;
+    }
+    .section-h2 {
+      font-family: 'DM Serif Display', serif; font-style: italic;
+      font-size: clamp(28px, 4vw, 44px); margin-bottom: 10px;
+    }
+    .section-body {
+      font-size: 15px; line-height: 1.7;
+      max-width: 500px; margin-bottom: 52px;
+      color: var(--terre);
+    }
+
+    /* ── CE QU'ON OFFRE (section claire) ────── */
+    .offre-section {
+      position: relative; overflow: hidden;
+      padding: 100px 40px;
+      background: linear-gradient(180deg, #F7F2E8 0%, #EDE6D8 100%);
+      color: var(--night);
+    }
+    .offre-section::before {
+      content: '';
+      position: absolute; top: -150px; right: -100px;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(200,67,26,.07) 0%, transparent 70%);
+    }
+    .offre-inner { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
+    .feat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+    }
+    .feat-card {
+      background: white; border: 1px solid var(--brume);
+      border-radius: 20px; padding: 30px 26px;
+      transition: all .35s cubic-bezier(.16,1,.3,1);
+      position: relative; overflow: hidden;
+    }
+    .feat-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--brique), var(--or));
+      opacity: 0; transition: opacity .3s;
+    }
+    .feat-card:hover { transform: translateY(-6px); box-shadow: 0 24px 60px rgba(26,20,16,.12); }
+    .feat-card:hover::before { opacity: 1; }
+    .feat-icon {
+      width: 48px; height: 48px; border-radius: 14px;
+      display: flex; align-items: center; justify-content: center; margin-bottom: 18px;
+    }
+    .feat-h3 {
+      font-family: 'DM Serif Display', serif; font-style: italic;
+      font-size: 19px; color: var(--night); margin-bottom: 8px;
+    }
+    .feat-body { font-size: 13px; color: var(--terre); line-height: 1.65; }
+
+    @media (max-width: 600px) {
+      .offre-section { padding: 64px 20px; }
+    }
+
+    /* ── TYPES DE PARTENARIATS (section sombre) */
+    .partner-types {
+      position: relative; overflow: hidden;
+      background: linear-gradient(135deg, #0F0906 0%, #1A0E08 45%, #160C07 100%);
+      padding: 100px 40px;
+    }
+    .partner-types::before {
+      content: '';
+      position: absolute; top: -200px; right: -150px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(200,67,26,.09) 0%, transparent 65%);
+      animation: blobFloat3 14s ease-in-out infinite;
+    }
+    .partner-types-inner {
+      position: relative; z-index: 1;
+      max-width: 1100px; margin: 0 auto;
+    }
+    .partner-types .section-h2 { color: var(--creme); }
+    .partner-types .section-body { color: rgba(247,242,232,.45); margin-bottom: 48px; }
+    .partner-types-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .partner-type-card {
+      background: rgba(247,242,232,.03);
+      border: 1px solid rgba(247,242,232,.08);
+      border-radius: 20px; padding: 36px 28px;
+      transition: all .3s cubic-bezier(.16,1,.3,1);
+    }
+    .partner-type-card:hover {
+      background: rgba(200,67,26,.06);
+      border-color: rgba(200,67,26,.25);
+      transform: translateY(-4px);
+    }
+    .pt-emoji { font-size: 30px; margin-bottom: 18px; line-height: 1; }
+    .pt-title {
+      font-family: 'DM Serif Display', serif; font-style: italic;
+      font-size: 22px; color: var(--creme); margin-bottom: 10px;
+    }
+    .pt-body { font-size: 14px; color: rgba(247,242,232,.45); line-height: 1.65; }
+
+    @media (max-width: 768px) {
+      .partner-types { padding: 64px 20px; }
+      .partner-types-grid { grid-template-columns: 1fr; gap: 16px; }
+    }
+
+    /* ── FORMULAIRE (section claire) ────────── */
+    .form-section {
+      position: relative; overflow: hidden;
+      padding: 100px 24px;
+      background: linear-gradient(180deg, #F7F2E8 0%, #EDE6D8 100%);
+      color: var(--night);
+    }
+    .form-section::before {
+      content: '';
+      position: absolute; bottom: -100px; left: -80px;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(200,67,26,.06) 0%, transparent 70%);
+    }
+    .form-inner {
+      position: relative; z-index: 1;
+      max-width: 640px; margin: 0 auto;
+    }
+    .form-section .section-h2 { margin-bottom: 8px; }
+    .form-section .section-body { margin-bottom: 40px; max-width: 100%; }
+
+    #partner-form { display: flex; flex-direction: column; gap: 20px; }
+    .form-field { display: flex; flex-direction: column; gap: 6px; }
+    .form-label { font-size: 13px; font-weight: 500; color: var(--terre); }
+    .form-input,
+    .form-select,
+    .form-textarea {
+      padding: 13px 16px; font-size: 14px;
+      font-family: 'DM Sans', sans-serif;
+      background: white; border: 1px solid #D8D0C4;
+      border-radius: 10px; color: var(--night); outline: none;
+      transition: border-color .2s, box-shadow .2s;
+      width: 100%;
+    }
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus {
+      border-color: var(--brique);
+      box-shadow: 0 0 0 3px rgba(200,67,26,.1);
+    }
+    .form-input::placeholder,
+    .form-textarea::placeholder { color: rgba(140,90,64,.45); }
+    .form-textarea { min-height: 140px; resize: vertical; }
+    .form-select {
+      appearance: none; -webkit-appearance: none; cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238C5A40' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      background-size: 12px;
+      color: var(--night);
+    }
+    .form-select option { color: var(--night); background: white; }
+    .form-select.placeholder-shown { color: rgba(140,90,64,.45); }
+    .form-submit {
+      padding: 15px 32px; font-size: 15px; font-weight: 500;
+      background: var(--brique); color: white;
+      border: none; border-radius: 12px;
+      cursor: pointer; transition: all .25s;
+      box-shadow: 0 0 24px rgba(200,67,26,.3);
+      align-self: flex-start;
+      position: relative; overflow: hidden;
+    }
+    .form-submit::after {
+      content: '';
+      position: absolute; top: 0; left: -100%;
+      width: 60%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.15), transparent);
+      animation: shimmer 3s infinite;
+    }
+    .form-submit:hover { box-shadow: 0 0 40px rgba(200,67,26,.5); transform: translateY(-1px); }
+    .form-submit:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+    .form-msg { font-size: 13px; min-height: 20px; margin-top: -8px; }
+    .form-msg.ok { color: #2D6A2D; }
+    .form-msg.err { color: #B83030; }
+
+    @media (max-width: 560px) {
+      .form-section { padding: 64px 20px; }
+      .form-submit { width: 100%; text-align: center; align-self: stretch; }
+    }
+
+    /* ── FOOTER ─────────────────────────────── */
+    footer {
+      background: #1A1410;
+      border-top: 1px solid rgba(247,242,232,.06);
+      padding: 64px 48px 32px;
+    }
+    .footer-grid {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(5,1fr);
+      gap: 32px; margin-bottom: 48px;
+    }
+    .footer-col-title {
+      font-family: 'Playfair Display', serif; font-style: italic; font-weight: 700;
+      font-size: 14px; color: var(--creme); margin-bottom: 16px;
+    }
+    .footer-col-links { display: flex; flex-direction: column; gap: 10px; }
+    .footer-col-link { font-size: 13px; color: #8C5A40; transition: color .15s; }
+    .footer-col-link:hover { color: var(--brique); }
+    .footer-bottom {
+      max-width: 1100px; margin: 0 auto;
+      padding-top: 24px; border-top: 1px solid rgba(247,242,232,.06);
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 12px;
+    }
+    .footer-logo {
+      font-family: 'Playfair Display', serif; font-weight: 700; font-style: italic;
+      font-size: 20px; color: var(--creme);
+    }
+    .footer-logo span { color: var(--brique); }
+    .footer-note { font-size: 12px; color: rgba(140,90,64,.6); }
+
+    @media (max-width: 900px) { .footer-grid { grid-template-columns: repeat(2,1fr); } }
+    @media (max-width: 600px) {
+      footer { padding: 48px 20px 24px; }
+      .footer-grid { grid-template-columns: repeat(2,1fr); gap: 24px; }
+    }
+    @media (max-width: 375px) { .footer-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">lot<span>bo</span></a>
+  <div class="nav-links">
+    <a href="/" class="nav-link">Accueil</a>
+    <a href="#" class="nav-link">À propos</a>
+    <a href="#" class="nav-link">FAQ</a>
+    <a href="#" class="nav-link">Contact</a>
+    <a href="https://app.lotbo.app" class="nav-link nav-link-app">Ouvrir l'app →</a>
+  </div>
+  <div class="nav-actions">
+    <a href="https://app.lotbo.app/login" class="btn-primary">Créer un compte →</a>
+    <button class="nav-hamburger" onclick="toggleMobileMenu()" aria-label="Menu">☰</button>
+  </div>
+</nav>
+
+<!-- Drawer -->
+<div class="nav-drawer" id="navDrawer">
+  <div class="nav-drawer-header">
+    <a href="/" class="nav-logo">lot<span>bo</span></a>
+    <button onclick="toggleMobileMenu()" class="nav-drawer-close">✕</button>
+  </div>
+  <div class="nav-drawer-links">
+    <a href="/" class="nav-drawer-link">🏠 Accueil</a>
+    <a href="https://app.lotbo.app" class="nav-drawer-link">🗺️ Ouvrir l'app</a>
+    <a href="https://app.lotbo.app/login" class="nav-drawer-link">👤 Créer un compte</a>
+    <div class="nav-drawer-divider"></div>
+    <a href="#" class="nav-drawer-link">ℹ️ À propos</a>
+    <a href="#" class="nav-drawer-link">❓ FAQ</a>
+    <a href="#" class="nav-drawer-link">✉️ Contact</a>
+  </div>
+</div>
+<div class="nav-overlay" id="navOverlay" onclick="toggleMobileMenu()"></div>
+
+<!-- ── 1. HERO ──────────────────────────────── -->
+<section class="hero-part">
+  <div class="hero-blobs">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+  </div>
+  <div class="hero-part-inner">
+    <div class="hero-badge">✦ Partenariats</div>
+    <h1 class="hero-part-h1">Construisons ensemble l'agenda mondial</h1>
+    <p class="hero-part-sub">
+      LOTBO connecte les événements locaux au monde entier.
+      Rejoignez les organisations qui façonnent cette mission.
+    </p>
+    <a href="#formulaire" class="hero-part-cta">Proposer un partenariat →</a>
+  </div>
+</section>
+
+<!-- ── 2. CE QU'ON OFFRE ─────────────────────── -->
+<section class="offre-section reveal">
+  <div class="offre-inner">
+    <p class="section-label">Ce qu'on offre</p>
+    <h2 class="section-h2" style="color:var(--night);">Un partenariat qui crée de la valeur</h2>
+    <p class="section-body">Des bénéfices concrets pour les organisations qui rejoignent la mission LOTBO.</p>
+    <div class="feat-grid">
+      <div class="feat-card reveal reveal-delay-1">
+        <div class="feat-icon" style="background:rgba(200,67,26,.08);">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="11" cy="11" r="9.25" stroke="#C8431A" stroke-width="1.5"/>
+            <path d="M2 11h18M11 2c-2.5 3-4 5.5-4 9s1.5 6 4 9M11 2c2.5 3 4 5.5 4 9s-1.5 6-4 9" stroke="#C8431A" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3 class="feat-h3">Visibilité mondiale</h3>
+        <p class="feat-body">Vos événements devant une audience internationale multilingue.</p>
+      </div>
+      <div class="feat-card reveal reveal-delay-2">
+        <div class="feat-icon" style="background:rgba(212,168,32,.08);">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="2" width="18" height="18" rx="3" stroke="#D4A820" stroke-width="1.5"/>
+            <path d="M2 8h18M8 2v18" stroke="#D4A820" stroke-width="1.5" stroke-linecap="round"/>
+            <circle cx="14" cy="14" r="2" fill="#D4A820"/>
+          </svg>
+        </div>
+        <h3 class="feat-h3">Intégration carte</h3>
+        <p class="feat-body">Vos données directement sur la carte LOTBO dans 35 villes.</p>
+      </div>
+      <div class="feat-card reveal reveal-delay-3">
+        <div class="feat-icon" style="background:rgba(140,90,64,.08);">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M7 11c0-2.21 1.79-4 4-4s4 1.79 4 4-1.79 4-4 4" stroke="#8C5A40" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M3 11C3 6.58 6.58 3 11 3M19 11c0 4.42-3.58 8-8 8" stroke="#8C5A40" stroke-width="1.5" stroke-linecap="round"/>
+            <circle cx="11" cy="11" r="1.5" fill="#8C5A40"/>
+          </svg>
+        </div>
+        <h3 class="feat-h3">Co-branding</h3>
+        <p class="feat-body">Votre logo et votre identité mis en avant sur notre plateforme.</p>
+      </div>
+      <div class="feat-card reveal reveal-delay-4">
+        <div class="feat-icon" style="background:rgba(26,20,16,.04);">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 17l4-5 4 3 4-7 4 3" stroke="#1A1410" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M3 20h16" stroke="#1A1410" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3 class="feat-h3">Impact mesurable</h3>
+        <p class="feat-body">Statistiques de visibilité et rapports d'engagement.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 3. TYPES DE PARTENARIATS ──────────────── -->
+<section class="partner-types reveal">
+  <div class="partner-types-inner">
+    <p class="section-label">Pour qui</p>
+    <h2 class="section-h2">Types de partenariats</h2>
+    <p class="section-body">Trois familles de partenariats, pensées pour des besoins différents.</p>
+    <div class="partner-types-grid">
+      <div class="partner-type-card reveal reveal-delay-1">
+        <div class="pt-emoji">🏛️</div>
+        <h3 class="pt-title">Institutionnel</h3>
+        <p class="pt-body">Villes, offices du tourisme, ambassades</p>
+      </div>
+      <div class="partner-type-card reveal reveal-delay-2">
+        <div class="pt-emoji">🎭</div>
+        <h3 class="pt-title">Médias & Culture</h3>
+        <p class="pt-body">Presse, festivals, institutions culturelles</p>
+      </div>
+      <div class="partner-type-card reveal reveal-delay-3">
+        <div class="pt-emoji">⚙️</div>
+        <h3 class="pt-title">Technologie</h3>
+        <p class="pt-body">Plateformes, APIs, outils événementiels</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 4. FORMULAIRE ─────────────────────────── -->
+<section class="form-section reveal" id="formulaire">
+  <div class="form-inner">
+    <p class="section-label">Nous écrire</p>
+    <h2 class="section-h2" style="color:var(--night);">Parlons-en</h2>
+    <p class="section-body">Décrivez votre organisation et vos objectifs. Nous vous répondons sous 48h.</p>
+
+    <form id="partner-form" onsubmit="soumettrePartenariat(event)" novalidate>
+      <div class="form-field">
+        <label class="form-label" for="f-nom">Nom complet *</label>
+        <input class="form-input" type="text" id="f-nom" name="nom" placeholder="Jean-Marie Dupont" required/>
+      </div>
+      <div class="form-field">
+        <label class="form-label" for="f-org">Organisation *</label>
+        <input class="form-input" type="text" id="f-org" name="organisation" placeholder="Office du tourisme de Port-au-Prince" required/>
+      </div>
+      <div class="form-field">
+        <label class="form-label" for="f-email">Email professionnel *</label>
+        <input class="form-input" type="email" id="f-email" name="email" placeholder="jean@organisation.com" required/>
+      </div>
+      <div class="form-field">
+        <label class="form-label" for="f-type">Type de partenariat *</label>
+        <select class="form-select" id="f-type" name="type_partenariat" required>
+          <option value="" disabled selected>Choisissez un type</option>
+          <option value="Institutionnel">Institutionnel</option>
+          <option value="Médias &amp; Culture">Médias &amp; Culture</option>
+          <option value="Technologie">Technologie</option>
+          <option value="Autre">Autre</option>
+        </select>
+      </div>
+      <div class="form-field">
+        <label class="form-label" for="f-message">Message *</label>
+        <textarea class="form-textarea" id="f-message" name="message" placeholder="Décrivez votre organisation, vos événements ou votre idée de collaboration..." required></textarea>
+      </div>
+      <div class="form-msg" id="form-msg"></div>
+      <button type="submit" class="form-submit" id="form-submit">Envoyer ma proposition →</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-col-title">LOTBO</div>
+      <div class="footer-col-links">
+        <a href="#" class="footer-col-link">À propos</a>
+        <a href="#" class="footer-col-link">Notre histoire</a>
+        <a href="#" class="footer-col-link">Né en Haïti 🇭🇹</a>
+        <a href="#" class="footer-col-link">Presse</a>
+        <a href="#" class="footer-col-link">Carrières</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Communauté</div>
+      <div class="footer-col-links">
+        <a href="#" class="footer-col-link">Nos utilisateurs</a>
+        <a href="#" class="footer-col-link">Charte membres</a>
+        <a href="#" class="footer-col-link">Charte contributeurs</a>
+        <a href="#" class="footer-col-link">Charte organisateurs</a>
+        <a href="#" class="footer-col-link">Devenir ambassadeur</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Légal</div>
+      <div class="footer-col-links">
+        <a href="#" class="footer-col-link">CGU</a>
+        <a href="#" class="footer-col-link">Confidentialité</a>
+        <a href="#" class="footer-col-link">Modération</a>
+        <a href="#" class="footer-col-link">Cookies</a>
+        <a href="#" class="footer-col-link">Mentions légales</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Collaboration</div>
+      <div class="footer-col-links">
+        <a href="#" class="footer-col-link">Partenariats</a>
+        <a href="#" class="footer-col-link">Institutions</a>
+        <a href="#" class="footer-col-link">Médias &amp; Presse</a>
+        <a href="#" class="footer-col-link">Formulaire contact</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Ressources</div>
+      <div class="footer-col-links">
+        <a href="#" class="footer-col-link">Blog</a>
+        <a href="#" class="footer-col-link">Centre d'aide</a>
+        <a href="#" class="footer-col-link">Guide organisateurs</a>
+        <a href="#" class="footer-col-link">Roadmap</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <a href="/" class="footer-logo">lot<span>bo</span></a>
+    <div class="footer-note">© 2026 · Né en Haïti, pour le monde entier 🇭🇹</div>
+  </div>
+</footer>
+
+<script>
+  function toggleMobileMenu() {
+    document.getElementById('navDrawer').classList.toggle('open');
+    document.getElementById('navOverlay').classList.toggle('open');
+  }
+
+  async function soumettrePartenariat(e) {
+    e.preventDefault();
+    const btn = document.getElementById('form-submit');
+    const msg = document.getElementById('form-msg');
+
+    const nom             = document.getElementById('f-nom').value.trim();
+    const organisation    = document.getElementById('f-org').value.trim();
+    const email           = document.getElementById('f-email').value.trim();
+    const type_partenariat = document.getElementById('f-type').value;
+    const message         = document.getElementById('f-message').value.trim();
+
+    if (!nom || !organisation || !email || !type_partenariat || !message) {
+      msg.className = 'form-msg err';
+      msg.textContent = 'Merci de remplir tous les champs.';
+      return;
+    }
+    if (!email.includes('@')) {
+      msg.className = 'form-msg err';
+      msg.textContent = 'Adresse email invalide.';
+      return;
+    }
+
+    btn.disabled = true; btn.textContent = '...';
+    msg.className = 'form-msg'; msg.textContent = '';
+
+    try {
+      const res = await fetch('/api/partenariat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nom, organisation, email, type_partenariat, message })
+      });
+      const data = await res.json();
+      if (data.success) {
+        msg.className = 'form-msg ok';
+        msg.textContent = '✓ Votre proposition a été envoyée ! Nous vous répondrons dans les 48h.';
+        document.getElementById('partner-form').reset();
+      } else {
+        throw new Error(data.error || 'Erreur serveur');
+      }
+    } catch {
+      msg.className = 'form-msg err';
+      msg.textContent = 'Erreur réseau. Réessayez dans un instant.';
+    }
+
+    btn.disabled = false;
+    btn.textContent = 'Envoyer ma proposition →';
+  }
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+<!-- ── PRELOADER ─────────────────────────────── -->
+<div id="lotbo-preloader" aria-hidden="true">
+  <div class="pl-inner">
+    <div class="pl-mark">
+      <span class="pl-l">L</span>
+      <span class="pl-dot"></span>
+      <span class="pl-pulse"></span>
+    </div>
+    <div class="pl-wordmark"><span class="pl-lot">lot</span><span class="pl-bo">bo</span></div>
+  </div>
+</div>
+
+<style>
+#lotbo-preloader {
+  position: fixed; inset: 0; z-index: 9999;
+  background: #1A1410;
+  display: flex; align-items: center; justify-content: center;
+  transition: opacity 0.5s ease;
+}
+#lotbo-preloader.pl-hide { opacity: 0; pointer-events: none; }
+.pl-inner { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.pl-mark { position: relative; width: 90px; height: 72px; }
+.pl-l {
+  font-family: 'Playfair Display', serif; font-style: italic; font-weight: 700;
+  font-size: 72px; color: #ffffff; line-height: 1; display: block; user-select: none;
+}
+.pl-dot { position: absolute; top: 22px; left: 60px; width: 10px; height: 10px; background: #E8620A; border-radius: 50%; }
+.pl-pulse {
+  position: absolute; top: 22px; left: 60px; width: 10px; height: 10px;
+  border-radius: 50%; border: 2px solid #E8620A;
+  animation: pl-ring 1.4s ease-out infinite;
+}
+@keyframes pl-ring {
+  0%   { transform: scale(1);   opacity: 0.9; }
+  100% { transform: scale(3.2); opacity: 0;   }
+}
+.pl-wordmark {
+  font-family: 'Playfair Display', serif; font-style: italic; font-weight: 700;
+  font-size: 26px; letter-spacing: 0.01em; user-select: none;
+}
+.pl-lot { color: #ffffff; }
+.pl-bo  { color: #C8431A; }
+</style>
+
+<script>
+(function () {
+  const el = document.getElementById('lotbo-preloader');
+  function hide() {
+    el.classList.add('pl-hide');
+    setTimeout(function () { el.style.display = 'none'; }, 520);
+  }
+  const t = setTimeout(hide, 1500);
+  window.addEventListener('load', function () { clearTimeout(t); hide(); });
+})();
+</script>
+</body>
+</html>
