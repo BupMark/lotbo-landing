@@ -110,15 +110,26 @@ async function sendSupporterEmail({ toEmail, toName, palier }) {
   }
 }
 
+// ── Raw body (Vercel désactive bodyParser via export config) ──────────────────
+function getRawBody(req) {
+  return new Promise((resolve, reject) => {
+    const chunks = [];
+    req.on('data', chunk => chunks.push(chunk));
+    req.on('end',  () => resolve(Buffer.concat(chunks)));
+    req.on('error', reject);
+  });
+}
+
 // ── Handler ────────────────────────────────────────────────────────────────────
 export default async function handler(req, res) {
+  console.log('[Webhook] reçu — secret présent:', !!process.env.STRIPE_WEBHOOK_SECRET);
+
   if (req.method !== 'POST') return res.status(405).end();
 
   // Lire le raw body (obligatoire pour la vérification de signature Stripe)
-  const chunks = [];
-  for await (const chunk of req) chunks.push(chunk);
-  const rawBody   = Buffer.concat(chunks).toString('utf8');
-  const sigHeader = req.headers['stripe-signature'];
+  const rawBodyBuffer = await getRawBody(req);
+  const rawBody       = rawBodyBuffer.toString('utf8');
+  const sigHeader     = req.headers['stripe-signature'];
 
   const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
   if (!webhookSecret) {
@@ -198,3 +209,9 @@ export default async function handler(req, res) {
 
   return res.status(200).json({ received: true });
 }
+
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};
