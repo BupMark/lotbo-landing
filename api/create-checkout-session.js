@@ -1,5 +1,9 @@
 export default async function handler(req, res) {
-  // CORS — accepte l'origine de la requête (même Vercel preview URLs)
+  // ── Diagnostic Stripe au démarrage ────────────────────────────────────────
+  console.log('STRIPE_SECRET_KEY présente ?', !!process.env.STRIPE_SECRET_KEY);
+  console.log('STRIPE_SECRET_KEY prefix:', process.env.STRIPE_SECRET_KEY?.substring(0, 7));
+
+  // CORS — accepte l'origine de la requête (Vercel preview URLs incluses)
   const origin = req.headers.origin;
   res.setHeader('Access-Control-Allow-Origin', origin || 'https://lotbo.app');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
@@ -38,11 +42,25 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'palier invalide' });
   }
 
-  // Clé secrète Stripe — essaie les deux noms possibles (le .env.local utilise STRIPE_WEBHOOK_SECRET pour sk_live_...)
-  const secretKey = process.env.STRIPE_SECRET_KEY || process.env.STRIPE_WEBHOOK_SECRET;
-  if (!secretKey || !secretKey.startsWith('sk_')) {
-    console.error('[create-checkout-session] Clé Stripe manquante ou invalide. STRIPE_SECRET_KEY=', process.env.STRIPE_SECRET_KEY ? 'défini' : 'indéfini', '| STRIPE_WEBHOOK_SECRET=', process.env.STRIPE_WEBHOOK_SECRET ? 'défini' : 'indéfini');
-    return res.status(500).json({ error: 'Configuration Stripe manquante côté serveur' });
+  // Clé secrète Stripe — lire process.env.STRIPE_SECRET_KEY en priorité
+  const secretKey = process.env.STRIPE_SECRET_KEY;
+
+  if (!secretKey) {
+    console.error(
+      '[create-checkout-session] STRIPE_SECRET_KEY absente du runtime Vercel.\n' +
+      'Action requise : ajouter STRIPE_SECRET_KEY dans Settings → Environment Variables de ton projet Vercel,\n' +
+      'puis redéployer. Valeur attendue : sk_live_... (ou sk_test_... en mode test).'
+    );
+    return res.status(500).json({
+      error: 'STRIPE_SECRET_KEY absente — ajouter la variable dans Vercel Settings et redéployer'
+    });
+  }
+
+  if (!secretKey.startsWith('sk_')) {
+    console.error('[create-checkout-session] STRIPE_SECRET_KEY invalide — prefix:', secretKey.substring(0, 7));
+    return res.status(500).json({
+      error: 'STRIPE_SECRET_KEY invalide (doit commencer par sk_live_ ou sk_test_)'
+    });
   }
 
   // URL de base : utilise l'origin de la requête ou lotbo.app

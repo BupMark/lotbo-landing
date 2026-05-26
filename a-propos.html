@@ -4,7 +4,7 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>À propos — LOTBO</title>
-  <meta name="description" content="LOTBO est né en Haïti le 5 mai 2026. Découvrez l'histoire, la mission et l'équipe derrière la plateforme."/>
+  <meta name="description" content="LOTBO est né le 5 mai 2026 à Petit-Goâve, Haïti. Tous les événements, un seul endroit."/>
   <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
@@ -14,61 +14,344 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   <style>
     :root {
-      --bg: #F7F2E8; --brand: #C8431A; --brand2: #A63515;
-      --dark: #1A0A00; --mid: #5C3D2E; --light: #E8E0D0;
-      --white: #FFFFFF; --cream: #f5ede0; --shadow: rgba(26,10,0,0.07);
+      --bg:     #F7F2E8;
+      --brand:  #C8431A;
+      --brand2: #A63515;
+      --dark:   #1A0A00;
+      --mid:    #5C3D2E;
+      --light:  #E8E0D0;
+      --white:  #FFFFFF;
+      --cream:  #f5ede0;
+      --shadow: rgba(26,10,0,0.07);
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--dark); line-height: 1.7; overflow-x: hidden; min-height: 100vh; display: flex; flex-direction: column; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--dark);
+      line-height: 1.7;
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
     a { color: inherit; text-decoration: none; }
     main { flex: 1; }
-    nav { position: sticky; top: 0; z-index: 100; background: rgba(247,242,232,0.96); backdrop-filter: blur(10px); border-bottom: 1px solid var(--light); padding: 0 20px; height: 60px; display: flex; align-items: center; justify-content: space-between; }
-    .nav-logo { font-family: 'DM Serif Display', serif; font-size: 1.4rem; color: var(--brand); letter-spacing: 0.04em; }
-    .nav-back { font-size: 0.82rem; font-weight: 500; color: var(--mid); border: 1.5px solid var(--light); border-radius: 20px; padding: 6px 14px; transition: all 0.2s; }
+
+    /* NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(247,242,232,0.96);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--light);
+      padding: 0 20px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.4rem;
+      color: var(--brand);
+      letter-spacing: 0.04em;
+    }
+    .nav-back {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--mid);
+      border: 1.5px solid var(--light);
+      border-radius: 20px;
+      padding: 6px 14px;
+      transition: all 0.2s;
+    }
     .nav-back:hover { background: var(--brand); color: var(--white); border-color: var(--brand); }
-    .page-hero { padding: 56px 20px 44px; text-align: center; border-bottom: 1px solid var(--light); }
-    .page-eyebrow { display: inline-block; background: rgba(200,67,26,0.08); color: var(--brand); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; border: 1px solid rgba(200,67,26,0.2); margin-bottom: 18px; }
-    .page-title { font-family: 'DM Serif Display', serif; font-size: 2.2rem; color: var(--dark); line-height: 1.2; margin-bottom: 14px; }
-    .page-title em { font-style: italic; color: var(--brand); }
-    .page-sub { font-size: 1rem; color: var(--mid); max-width: 440px; margin: 0 auto; line-height: 1.75; }
-    .content-wrap { max-width: 720px; margin: 0 auto; padding: 48px 20px 64px; }
+
+    /* HERO */
+    .page-hero {
+      padding: 56px 20px 44px;
+      text-align: center;
+      border-bottom: 1px solid var(--light);
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .page-eyebrow {
+      display: inline-block;
+      background: rgba(200,67,26,0.08);
+      color: var(--brand);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 20px;
+      border: 1px solid rgba(200,67,26,0.2);
+      margin-bottom: 18px;
+    }
+    .page-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.2rem;
+      color: var(--dark);
+      line-height: 1.2;
+      margin-bottom: 14px;
+    }
+    .page-sub {
+      font-size: 1rem;
+      color: var(--mid);
+      max-width: 420px;
+      margin: 0 auto;
+      line-height: 1.75;
+    }
+
+    /* CONTENT */
+    .content-wrap {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 48px 20px 64px;
+    }
     .content-section { margin-bottom: 44px; }
-    .content-section h2 { font-family: 'DM Serif Display', serif; font-size: 1.4rem; color: var(--dark); margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
-    .content-section p { font-size: 0.97rem; color: var(--mid); margin-bottom: 14px; line-height: 1.8; }
+    .content-section h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.35rem;
+      color: var(--dark);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .content-section p {
+      font-size: 0.96rem;
+      color: var(--mid);
+      margin-bottom: 12px;
+      line-height: 1.8;
+    }
     .content-section p:last-child { margin-bottom: 0; }
     .content-section strong { color: var(--dark); font-weight: 600; }
     .divider { height: 1px; background: var(--light); margin: 36px 0; }
-    .info-card { background: var(--white); border-radius: 14px; padding: 20px 22px; box-shadow: 0 2px 10px var(--shadow); }
-    .info-card .label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--brand); margin-bottom: 5px; }
-    .info-card .value { font-size: 0.97rem; font-weight: 600; color: var(--dark); }
-    .info-card .detail { font-size: 0.82rem; color: var(--mid); margin-top: 2px; }
-    .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+    /* TAGLINE BLOCK */
+    .tagline-block {
+      background: var(--dark);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin: 16px 0;
+      text-align: center;
+    }
+    .tagline-block .tagline-text {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.25rem;
+      font-style: italic;
+      color: var(--cream);
+      line-height: 1.4;
+    }
+    .tagline-block .tagline-sub {
+      font-size: 0.78rem;
+      color: rgba(245,237,224,0.45);
+      margin-top: 6px;
+    }
+
+    /* ÉTYMOLOGIE */
+    .etym-block {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 18px 20px;
+      box-shadow: 0 2px 8px var(--shadow);
+      border-left: 3px solid var(--brand);
+      margin: 14px 0;
+    }
+    .etym-word {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.15rem;
+      color: var(--brand);
+      font-style: italic;
+      margin-bottom: 4px;
+    }
+    .etym-def {
+      font-size: 0.88rem;
+      color: var(--mid);
+      line-height: 1.6;
+    }
+
+    /* FOUNDER CARD */
+    .founder-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 2px 12px var(--shadow);
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+      margin-top: 14px;
+    }
+    .founder-avatar {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: var(--brand);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.4rem;
+      color: var(--white);
+      flex-shrink: 0;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+    .founder-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.15rem;
+      color: var(--dark);
+      margin-bottom: 3px;
+    }
+    .founder-role {
+      font-size: 0.84rem;
+      color: var(--mid);
+      margin-bottom: 4px;
+      line-height: 1.4;
+    }
+    .founder-loc {
+      font-size: 0.78rem;
+      color: var(--brand);
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    .founder-bio {
+      font-size: 0.87rem;
+      color: var(--mid);
+      line-height: 1.65;
+      padding-top: 10px;
+      border-top: 1px solid var(--light);
+    }
+    .founder-bio em {
+      font-style: normal;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(92,61,46,0.5);
+    }
+
+    /* INFO GRID */
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 14px;
+    }
     @media (max-width: 480px) { .info-grid { grid-template-columns: 1fr; } }
-    .values-grid { display: flex; flex-direction: column; gap: 12px; margin-top: 18px; }
-    .value-item { background: var(--white); border-radius: 12px; padding: 16px 18px; box-shadow: 0 2px 8px var(--shadow); display: flex; gap: 14px; align-items: flex-start; }
-    .value-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 1px; }
-    .value-title { font-family: 'DM Serif Display', serif; font-size: 1rem; color: var(--dark); margin-bottom: 3px; }
-    .value-desc { font-size: 0.84rem; color: var(--mid); line-height: 1.55; }
-    .founder-card { background: var(--white); border-radius: 14px; padding: 22px; box-shadow: 0 2px 10px var(--shadow); display: flex; gap: 16px; align-items: center; margin-top: 14px; }
-    .founder-avatar { width: 56px; height: 56px; border-radius: 50%; background: rgba(200,67,26,0.1); border: 2px solid rgba(200,67,26,0.2); display: flex; align-items: center; justify-content: center; font-family: 'DM Serif Display', serif; font-size: 1.5rem; color: var(--brand); flex-shrink: 0; }
-    .founder-name { font-family: 'DM Serif Display', serif; font-size: 1.1rem; color: var(--dark); }
-    .founder-role { font-size: 0.84rem; color: var(--mid); margin-top: 3px; }
-    .founder-loc { font-size: 0.78rem; color: var(--brand); font-weight: 600; margin-top: 4px; }
-    .cta-block { background: var(--dark); border-radius: 16px; padding: 32px 24px; text-align: center; margin-top: 44px; }
-    .cta-block h3 { font-family: 'DM Serif Display', serif; font-size: 1.5rem; color: var(--cream); margin-bottom: 10px; }
-    .cta-block p { font-size: 0.88rem; color: rgba(245,237,224,0.5); margin-bottom: 20px; line-height: 1.7; }
-    .btn-cta { display: inline-block; background: var(--brand); color: var(--white); border-radius: 10px; padding: 13px 28px; font-weight: 600; font-size: 0.95rem; transition: all 0.2s; }
-    .btn-cta:hover { background: var(--brand2); transform: translateY(-1px); }
-    footer { background: var(--dark); color: rgba(245,237,224,0.4); text-align: center; padding: 28px 20px 20px; font-size: 0.78rem; }
-    .footer-logo { font-family: 'DM Serif Display', serif; font-size: 1.2rem; color: var(--cream); margin-bottom: 8px; }
-    .footer-links { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 12px; }
-    .footer-links a { color: rgba(245,237,224,0.45); font-size: 0.76rem; transition: color 0.2s; }
+    .info-card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 16px 18px;
+      box-shadow: 0 2px 8px var(--shadow);
+    }
+    .info-card .label {
+      font-size: 0.66rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--brand);
+      margin-bottom: 4px;
+    }
+    .info-card .value {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--dark);
+    }
+    .info-card .detail {
+      font-size: 0.8rem;
+      color: var(--mid);
+      margin-top: 2px;
+    }
+
+    /* CONTACT SECTION */
+    .contact-card {
+      background: var(--white);
+      border-radius: 14px;
+      padding: 24px;
+      box-shadow: 0 2px 10px var(--shadow);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 14px;
+    }
+    .contact-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .contact-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: rgba(200,67,26,0.08);
+      border: 1px solid rgba(200,67,26,0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .contact-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--brand); margin-bottom: 2px; }
+    .contact-value { font-size: 0.93rem; font-weight: 600; color: var(--dark); }
+    .contact-detail { font-size: 0.78rem; color: var(--mid); }
+    .contact-value a { color: var(--brand); }
+    .btn-app {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--brand);
+      color: var(--white);
+      border-radius: 10px;
+      padding: 13px 22px;
+      font-weight: 600;
+      font-size: 0.92rem;
+      transition: all 0.2s;
+      align-self: flex-start;
+    }
+    .btn-app:hover { background: var(--brand2); transform: translateY(-1px); }
+
+    /* FOOTER */
+    footer {
+      background: var(--dark);
+      color: rgba(245,237,224,0.4);
+      text-align: center;
+      padding: 28px 20px 20px;
+      font-size: 0.78rem;
+    }
+    .footer-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.2rem;
+      color: var(--cream);
+      margin-bottom: 8px;
+    }
+    .footer-tagline { font-size: 0.72rem; color: rgba(245,237,224,0.28); margin-bottom: 14px; }
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 12px;
+    }
+    .footer-links a {
+      color: rgba(245,237,224,0.45);
+      font-size: 0.76rem;
+      transition: color 0.2s;
+    }
     .footer-links a:hover { color: var(--brand); }
     .footer-copy { font-size: 0.68rem; color: rgba(245,237,224,0.2); }
+
+    /* RESPONSIVE */
     @media (min-width: 640px) {
-      .page-title { font-size: 2.8rem; }
-      .values-grid { display: grid; grid-template-columns: 1fr 1fr; }
+      .page-title { font-size: 2.7rem; }
+      .founder-card { flex-direction: row; }
+    }
+    @media (min-width: 900px) {
+      .page-hero { padding: 72px 20px 56px; }
     }
   </style>
 </head>
@@ -80,91 +363,68 @@
   </nav>
 
   <main>
+
+    <!-- HERO -->
     <div class="page-hero">
-      <div class="page-eyebrow">🇭🇹 Notre histoire</div>
-      <h1 class="page-title">À propos de <em>LOTBO</em></h1>
-      <p class="page-sub">Une plateforme née en Haïti pour connecter les gens avec les événements qui les entourent — partout dans le monde.</p>
+      <div class="page-eyebrow">🇭🇹 Petit-Goâve · 5 mai 2026</div>
+      <h1 class="page-title">À propos de LOTBO</h1>
+      <p class="page-sub">Une plateforme mondiale de découverte d'événements locaux, née en Haïti.</p>
     </div>
 
     <div class="content-wrap">
 
+      <!-- LE PROJET -->
       <div class="content-section">
-        <h2><span>📖</span> Notre histoire</h2>
+        <h2><span>📖</span> Le projet</h2>
         <p>
-          <strong>LOTBO est né le 5 mai 2026 en Haïti.</strong> Le nom vient du créole haïtien —
-          « lotbo » signifie « de l'autre côté », « autour de toi ». C'est exactement ce que nous voulons être :
-          la plateforme qui te dit ce qui se passe <em style="font-style:italic; color:var(--brand)">autour de toi</em>.
+          <strong>LOTBO est né le 5 mai 2026 à Petit-Goâve, Haïti.</strong>
+          Sa mission est simple et universelle : permettre à chacun de découvrir ce qui se passe
+          près de lui, où qu'il soit dans le monde.
         </p>
         <p>
-          L'idée est née d'un constat simple : trouver des événements locaux reste trop difficile.
-          Les concerts, marchés, expositions, conférences — tout est dispersé sur des dizaines de plateformes,
-          souvent mal répertorié, rarement présenté avec soin. LOTBO veut changer ça.
+          Touriste en déplacement, voyageur dans une nouvelle ville, ou résident qui veut savoir
+          quoi faire ce week-end — LOTBO est ton compagnon événementiel.
+          Un seul endroit. Tous les événements autour de toi.
         </p>
-        <p>
-          Développé depuis Manchester, Royaume-Uni, LOTBO a une âme haïtienne — créative, résiliente, communautaire.
-          Nous construisons une plateforme mondiale en partant de là où personne n'aurait pensé démarrer.
-        </p>
-      </div>
 
-      <div class="divider"></div>
+        <div class="tagline-block">
+          <div class="tagline-text">"Tous les événements, un seul endroit."</div>
+          <div class="tagline-sub">La promesse de LOTBO</div>
+        </div>
 
-      <div class="content-section">
-        <h2><span>🎯</span> Notre mission</h2>
-        <p><strong>Rendre la découverte d'événements locaux simple, belle et accessible à tous.</strong></p>
-        <p>
-          Que tu sois touriste en déplacement, voyageur dans une nouvelle ville, ou résident qui veut savoir
-          ce qui se passe ce week-end — LOTBO est ton compagnon événementiel.
-          Un seul endroit, toutes les sorties autour de toi, présentées avec soin.
-        </p>
-        <div class="values-grid">
-          <div class="value-item">
-            <span class="value-icon">🗺️</span>
-            <div>
-              <div class="value-title">Découverte locale</div>
-              <div class="value-desc">Trouve ce qui se passe autour de toi maintenant — concerts, expos, marchés, conférences.</div>
-            </div>
-          </div>
-          <div class="value-item">
-            <span class="value-icon">🌍</span>
-            <div>
-              <div class="value-title">Portée mondiale</div>
-              <div class="value-desc">Né en Haïti, pensé pour le monde. Chaque ville mérite sa plateforme événementielle.</div>
-            </div>
-          </div>
-          <div class="value-item">
-            <span class="value-icon">🤝</span>
-            <div>
-              <div class="value-title">Communauté d'abord</div>
-              <div class="value-desc">Les organisateurs locaux au cœur du produit — des outils pensés pour eux, pas contre eux.</div>
-            </div>
-          </div>
-          <div class="value-item">
-            <span class="value-icon">✨</span>
-            <div>
-              <div class="value-title">Design &amp; soin</div>
-              <div class="value-desc">Chaque écran pensé pour donner envie de sortir et de vivre des expériences réelles.</div>
-            </div>
+        <div class="etym-block">
+          <div class="etym-word">lòt bò</div>
+          <div class="etym-def">
+            Du <strong>kreyòl haïtien</strong> — « là-bas, de l'autre côté ».
+            LOTBO, c'est tout ce qui se passe <em style="font-style:italic">de l'autre côté de ta porte</em>.
           </div>
         </div>
       </div>
 
       <div class="divider"></div>
 
+      <!-- LE FONDATEUR -->
       <div class="content-section">
         <h2><span>👤</span> Le fondateur</h2>
-        <p>LOTBO est porté par une équipe déterminée, sous la direction de son fondateur basé à Manchester.</p>
+
         <div class="founder-card">
-          <div class="founder-avatar">H</div>
-          <div>
+          <div class="founder-avatar">HG</div>
+          <div style="flex: 1; min-width: 0;">
             <div class="founder-name">Handgod Abraham</div>
             <div class="founder-role">Fondateur &amp; CEO — LOTBO / Bup Mark Ltd</div>
-            <div class="founder-loc">Manchester, Royaume-Uni 🇬🇧</div>
+            <div class="founder-loc">Petit-Goâve, Haïti 🇭🇹</div>
+            <div class="founder-bio">
+              Opérateur culturel et entrepreneur, fondateur et directeur stratégique chez Bup Mark,
+              et Directeur d'Opération chez Mon Succès Marketing.<br/>
+              <em style="margin-top: 8px; display: block;">Bio · À enrichir</em>
+            </div>
           </div>
         </div>
       </div>
 
       <div class="divider"></div>
 
+      <!-- ENTITÉ LÉGALE -->
       <div class="content-section">
         <h2><span>🏢</span> Entité légale</h2>
         <div class="info-grid">
@@ -184,17 +444,33 @@
             <div class="detail">lotbo.app</div>
           </div>
           <div class="info-card">
-            <div class="label">Contact</div>
-            <div class="value">hello@lotbo.app</div>
-            <div class="detail">Réponse sous 48h</div>
+            <div class="label">Statut</div>
+            <div class="value">Limited Company</div>
+            <div class="detail">England &amp; Wales</div>
           </div>
         </div>
       </div>
 
-      <div class="cta-block">
-        <h3>Rejoins les fondateurs</h3>
-        <p>Soutiens LOTBO et ton nom sera dans l'histoire de la plateforme.<br/>Campagne ouverte jusqu'au 31 mai 2026.</p>
-        <a href="/supporter-fondateur" class="btn-cta">Devenir Fondateur →</a>
+      <div class="divider"></div>
+
+      <!-- CONTACT -->
+      <div class="content-section">
+        <h2><span>✉️</span> Contact</h2>
+
+        <div class="contact-card">
+          <div class="contact-row">
+            <div class="contact-icon">📧</div>
+            <div>
+              <div class="contact-label">Email</div>
+              <div class="contact-value"><a href="mailto:lotbo@bup-mark.com">lotbo@bup-mark.com</a></div>
+              <div class="contact-detail">Réponse sous 48h</div>
+            </div>
+          </div>
+
+          <a href="https://app.lotbo.app" class="btn-app" target="_blank" rel="noopener">
+            <span>🚀</span> Ouvrir l'app
+          </a>
+        </div>
       </div>
 
     </div>
@@ -202,6 +478,7 @@
 
   <footer>
     <div class="footer-logo">LOTBO</div>
+    <div class="footer-tagline">Kisa k'ap pase lotbo?</div>
     <div class="footer-links">
       <a href="/supporter-fondateur">Soutenir</a>
       <a href="/supporters">Fondateurs</a>
@@ -210,7 +487,7 @@
       <a href="/legal/confidentialite">Confidentialité</a>
       <a href="/legal/mentions-legales">Mentions légales</a>
     </div>
-    <div class="footer-copy">© 2026 LOTBO · Bup Mark Ltd · Manchester, UK</div>
+    <div class="footer-copy">© 2026 LOTBO · Bup Mark Ltd · Company 15840780 · Manchester, UK</div>
   </footer>
 
 </body>
