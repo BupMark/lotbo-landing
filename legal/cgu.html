@@ -3,122 +3,180 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>CGU — Lotbo</title>
+  <title>Conditions générales d'utilisation — LOTBO</title>
   <meta name="robots" content="noindex"/>
   <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
-  <meta name="theme-color" content="#0B0603"/>
+  <meta name="theme-color" content="#F7F2E8"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
   <style>
-    :root { --night: #0B0603; --night2: #110C08; --brique: #C8431A; --brique2: #FF5A1F; --or: #D4A820; --creme: #F7F2E8; --terre: #8C5A40; --brume: #E8E0D0; --border: rgba(247,242,232,0.08); --glass: rgba(247,242,232,0.04); --glass2: rgba(247,242,232,0.08); }
+    :root { --bg: #F7F2E8; --brand: #C8431A; --dark: #1A0A00; --mid: #5C3D2E; --light: #E8E0D0; --white: #FFFFFF; --cream: #f5ede0; --shadow: rgba(26,10,0,0.07); }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body { font-family: 'DM Sans', sans-serif; background: var(--night); color: var(--creme); line-height: 1.6; overflow-x: hidden; min-height: 100vh; display: flex; flex-direction: column; }
-    a { color: inherit; text-decoration: none; }
-    @keyframes shimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
-    nav { position: sticky; top: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 16px 48px; background: rgba(11,6,3,0.8); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid var(--border); }
-    .nav-logo { font-family: 'Playfair Display', serif; font-weight: 700; font-style: italic; font-size: 24px; color: var(--creme); flex-shrink: 0; }
-    .nav-logo span { color: var(--brique); }
-    .nav-links { display: flex; gap: 28px; flex: 1; justify-content: center; }
-    .nav-link { font-size: 13px; color: rgba(247,242,232,.45); transition: color .2s; }
-    .nav-link:hover { color: var(--creme); }
-    .nav-link-app { color: var(--brique) !important; border: 1px solid rgba(200,67,26,.3); border-radius: 6px; padding: 4px 12px; }
-    .nav-link-app:hover { background: rgba(200,67,26,.08); color: var(--brique2) !important; border-color: var(--brique); }
-    .nav-actions { display: flex; gap: 10px; align-items: center; flex-shrink: 0; }
-    .btn-primary { font-size: 13px; font-weight: 500; padding: 9px 22px; background: var(--brique); border: none; border-radius: 8px; color: var(--creme); cursor: pointer; transition: all .25s; white-space: nowrap; display: inline-block; box-shadow: 0 0 24px rgba(200,67,26,.35); position: relative; overflow: hidden; }
-    .btn-primary::after { content: ''; position: absolute; top: 0; left: -100%; width: 60%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,.15), transparent); animation: shimmer 3s infinite; }
-    .btn-primary:hover { box-shadow: 0 0 40px rgba(200,67,26,.6); transform: translateY(-1px); }
-    .nav-hamburger { display: none; background: var(--glass); border: 1px solid var(--border); color: var(--creme); border-radius: 6px; padding: 7px 10px; font-size: 16px; cursor: pointer; }
-    .nav-drawer { position: fixed; top: 0; left: 0; bottom: 0; width: 280px; z-index: 200; background: #0F0A07; border-right: 1px solid var(--border); transform: translateX(-100%); transition: transform .3s ease; display: flex; flex-direction: column; }
-    .nav-drawer.open { transform: translateX(0); }
-    .nav-drawer-header { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; border-bottom: 1px solid var(--border); }
-    .nav-drawer-close { background: none; border: none; color: rgba(247,242,232,.4); font-size: 20px; cursor: pointer; }
-    .nav-drawer-links { display: flex; flex-direction: column; padding: 16px 0; }
-    .nav-drawer-link { font-size: 15px; color: rgba(247,242,232,.7); text-decoration: none; padding: 13px 20px; transition: background .15s; display: block; }
-    .nav-drawer-link:hover { background: var(--glass); color: var(--creme); }
-    .nav-drawer-divider { height: 1px; background: var(--border); margin: 8px 0; }
-    .nav-overlay { display: none; position: fixed; inset: 0; z-index: 199; background: rgba(0,0,0,.7); }
-    .nav-overlay.open { display: block; }
-    @media (max-width: 768px) { nav { padding: 12px 16px; } .nav-links { display: none; } .nav-hamburger { display: flex; } .btn-primary { padding: 7px 14px; font-size: 12px; } }
-    .wip-section { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 100px 24px; text-align: center; gap: 16px; }
-    .wip-badge { display: inline-flex; align-items: center; gap: 6px; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; padding: 6px 14px; border-radius: 20px; border: 1px solid rgba(200,67,26,.3); background: rgba(200,67,26,.06); color: rgba(200,67,26,.9); }
-    .wip-h1 { font-family: 'DM Serif Display', serif; font-style: italic; font-size: clamp(28px, 4vw, 44px); color: var(--creme); }
-    .wip-body { font-size: 15px; color: rgba(247,242,232,.45); max-width: 420px; line-height: 1.7; }
-    .wip-back { display: inline-flex; align-items: center; gap: 6px; padding: 10px 22px; font-size: 14px; font-weight: 500; background: var(--glass); border: 1px solid var(--border); border-radius: 8px; color: rgba(247,242,232,.7); transition: all .2s; margin-top: 8px; }
-    .wip-back:hover { background: var(--glass2); color: var(--creme); }
-    footer { background: #1A1410; border-top: 1px solid rgba(247,242,232,.06); padding: 64px 48px 32px; }
-    .footer-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(5,1fr); gap: 32px; margin-bottom: 48px; }
-    .footer-col-title { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 700; font-size: 14px; color: var(--creme); margin-bottom: 16px; }
-    .footer-col-links { display: flex; flex-direction: column; gap: 10px; }
-    .footer-col-link { font-size: 13px; color: #8C5A40; transition: color .15s; }
-    .footer-col-link:hover { color: var(--brique); }
-    .footer-bottom { max-width: 1100px; margin: 0 auto; padding-top: 24px; border-top: 1px solid rgba(247,242,232,.06); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
-    .footer-logo { font-family: 'Playfair Display', serif; font-weight: 700; font-style: italic; font-size: 20px; color: var(--creme); }
-    .footer-logo span { color: var(--brique); }
-    .footer-note { font-size: 12px; color: rgba(140,90,64,.6); }
-    @media (max-width: 900px) { .footer-grid { grid-template-columns: repeat(2,1fr); } }
-    @media (max-width: 600px) { footer { padding: 48px 20px 24px; } .footer-grid { grid-template-columns: repeat(2,1fr); gap: 24px; } }
-    @media (max-width: 375px) { .footer-grid { grid-template-columns: 1fr; } }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--dark); line-height: 1.7; overflow-x: hidden; min-height: 100vh; display: flex; flex-direction: column; }
+    a { color: var(--brand); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    main { flex: 1; }
+    nav { position: sticky; top: 0; z-index: 100; background: rgba(247,242,232,0.96); backdrop-filter: blur(10px); border-bottom: 1px solid var(--light); padding: 0 20px; height: 60px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: 'DM Serif Display', serif; font-size: 1.4rem; color: var(--brand); letter-spacing: 0.04em; text-decoration: none; }
+    .nav-back { font-size: 0.82rem; font-weight: 500; color: var(--mid); border: 1.5px solid var(--light); border-radius: 20px; padding: 6px 14px; transition: all 0.2s; }
+    .nav-back:hover { background: var(--brand); color: var(--white); border-color: var(--brand); text-decoration: none; }
+    .page-hero { padding: 48px 20px 36px; border-bottom: 1px solid var(--light); max-width: 720px; margin: 0 auto; }
+    .page-hero h1 { font-family: 'DM Serif Display', serif; font-size: 2rem; color: var(--dark); margin-bottom: 8px; }
+    .page-hero p { font-size: 0.87rem; color: var(--mid); }
+    .content-wrap { max-width: 720px; margin: 0 auto; padding: 40px 20px 64px; }
+    .legal-section { margin-bottom: 36px; }
+    .legal-section h2 { font-family: 'DM Serif Display', serif; font-size: 1.2rem; color: var(--dark); margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--light); }
+    .legal-section p { font-size: 0.93rem; color: var(--mid); margin-bottom: 8px; line-height: 1.75; }
+    .legal-section strong { color: var(--dark); font-weight: 600; }
+    .legal-section ul { list-style: none; margin: 10px 0; }
+    .legal-section ul li { font-size: 0.93rem; color: var(--mid); padding: 5px 0; display: flex; gap: 8px; align-items: flex-start; line-height: 1.55; }
+    .legal-section ul li::before { content: '—'; color: var(--brand); font-weight: 700; flex-shrink: 0; }
+    footer { background: var(--dark); color: rgba(245,237,224,0.4); text-align: center; padding: 24px 20px; font-size: 0.78rem; }
+    .footer-logo { font-family: 'DM Serif Display', serif; font-size: 1.2rem; color: var(--cream); margin-bottom: 8px; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 10px; }
+    .footer-links a { color: rgba(245,237,224,0.45); font-size: 0.76rem; transition: color 0.2s; text-decoration: none; }
+    .footer-links a:hover { color: var(--brand); }
+    .footer-copy { font-size: 0.68rem; color: rgba(245,237,224,0.2); }
   </style>
 </head>
 <body>
-<nav>
-  <a href="/" class="nav-logo">lot<span>bo</span></a>
-  <div class="nav-links">
-    <a href="/" class="nav-link">Accueil</a>
-    <a href="#" class="nav-link">À propos</a>
-    <a href="#" class="nav-link">FAQ</a>
-    <a href="#" class="nav-link">Contact</a>
-    <a href="https://app.lotbo.app" class="nav-link nav-link-app">Ouvrir l'app →</a>
-  </div>
-  <div class="nav-actions">
-    <a href="https://app.lotbo.app/login" class="btn-primary">Créer un compte →</a>
-    <button class="nav-hamburger" onclick="toggleMobileMenu()" aria-label="Menu">☰</button>
-  </div>
-</nav>
-<div class="nav-drawer" id="navDrawer">
-  <div class="nav-drawer-header">
-    <a href="/" class="nav-logo">lot<span>bo</span></a>
-    <button onclick="toggleMobileMenu()" class="nav-drawer-close">✕</button>
-  </div>
-  <div class="nav-drawer-links">
-    <a href="/" class="nav-drawer-link">🏠 Accueil</a>
-    <a href="https://app.lotbo.app" class="nav-drawer-link">🗺️ Ouvrir l'app</a>
-    <a href="https://app.lotbo.app/login" class="nav-drawer-link">👤 Créer un compte</a>
-    <div class="nav-drawer-divider"></div>
-    <a href="#" class="nav-drawer-link">ℹ️ À propos</a>
-    <a href="#" class="nav-drawer-link">❓ FAQ</a>
-    <a href="#" class="nav-drawer-link">✉️ Contact</a>
-  </div>
-</div>
-<div class="nav-overlay" id="navOverlay" onclick="toggleMobileMenu()"></div>
-<section class="wip-section">
-  <div class="wip-badge">✦ En cours</div>
-  <h1 class="wip-h1">Conditions générales d'utilisation</h1>
-  <p class="wip-body">Cette page est en cours de rédaction. Revenez bientôt !</p>
-  <a href="/" class="wip-back">← Retour à l'accueil</a>
-</section>
-<footer>
-  <div class="footer-grid">
-    <div><div class="footer-col-title">LOTBO</div><div class="footer-col-links"><a href="#" class="footer-col-link">À propos</a><a href="#" class="footer-col-link">Notre histoire</a><a href="#" class="footer-col-link">Né en Haïti 🇭🇹</a><a href="#" class="footer-col-link">Presse</a><a href="#" class="footer-col-link">Carrières</a></div></div>
-    <div><div class="footer-col-title">Communauté</div><div class="footer-col-links"><a href="#" class="footer-col-link">Nos utilisateurs</a><a href="#" class="footer-col-link">Charte membres</a><a href="#" class="footer-col-link">Charte contributeurs</a><a href="#" class="footer-col-link">Charte organisateurs</a><a href="#" class="footer-col-link">Devenir ambassadeur</a></div></div>
-    <div><div class="footer-col-title">Légal</div><div class="footer-col-links"><a href="#" class="footer-col-link">CGU</a><a href="#" class="footer-col-link">Confidentialité</a><a href="#" class="footer-col-link">Modération</a><a href="#" class="footer-col-link">Cookies</a><a href="#" class="footer-col-link">Mentions légales</a></div></div>
-    <div><div class="footer-col-title">Collaboration</div><div class="footer-col-links"><a href="#" class="footer-col-link">Partenariats</a><a href="#" class="footer-col-link">Institutions</a><a href="#" class="footer-col-link">Médias &amp; Presse</a><a href="#" class="footer-col-link">Formulaire contact</a></div></div>
-    <div><div class="footer-col-title">Ressources</div><div class="footer-col-links"><a href="#" class="footer-col-link">Blog</a><a href="#" class="footer-col-link">Centre d'aide</a><a href="#" class="footer-col-link">Guide organisateurs</a><a href="#" class="footer-col-link">Roadmap</a></div></div>
-  </div>
-  <div class="footer-bottom">
-    <a href="/" class="footer-logo">lot<span>bo</span></a>
-    <div class="footer-note">© 2026 · Né en Haïti, pour le monde entier 🇭🇹</div>
-  </div>
-</footer>
-<script>
-  function toggleMobileMenu() {
-    document.getElementById('navDrawer').classList.toggle('open');
-    document.getElementById('navOverlay').classList.toggle('open');
-  }
-</script>
+
+  <nav>
+    <a href="/" class="nav-logo">LOTBO</a>
+    <a href="/" class="nav-back">← Accueil</a>
+  </nav>
+
+  <main>
+    <div class="page-hero">
+      <h1>Conditions générales d'utilisation</h1>
+      <p>CGU applicables à l'utilisation de la plateforme LOTBO (lotbo.app) — mise à jour le 26 mai 2026.</p>
+    </div>
+
+    <div class="content-wrap">
+
+      <div class="legal-section">
+        <h2>1. Présentation</h2>
+        <p>
+          LOTBO est une plateforme de découverte d'événements locaux éditée par <strong>Bup Mark Ltd</strong>
+          (company number 15840780, Manchester, Royaume-Uni).
+          L'accès et l'utilisation de la plateforme impliquent l'acceptation sans réserve des présentes CGU.
+        </p>
+      </div>
+
+      <div class="legal-section">
+        <h2>2. Accès à la plateforme</h2>
+        <p>
+          LOTBO est accessible à toute personne disposant d'une connexion internet.
+          L'inscription est nécessaire pour accéder à certaines fonctionnalités (création d'événements, profil, etc.).
+          LOTBO se réserve le droit de modifier, suspendre ou interrompre tout ou partie du service à tout moment.
+        </p>
+      </div>
+
+      <div class="legal-section">
+        <h2>3. Utilisation de la plateforme</h2>
+        <p>En utilisant LOTBO, vous vous engagez à :</p>
+        <ul>
+          <li>Fournir des informations exactes et à jour lors de l'inscription</li>
+          <li>Ne pas publier de contenu illicite, trompeur, diffamatoire ou portant atteinte à des droits tiers</li>
+          <li>Ne pas utiliser la plateforme à des fins de spam, phishing ou activités frauduleuses</li>
+          <li>Respecter les droits de propriété intellectuelle de LOTBO et des autres utilisateurs</li>
+          <li>Ne pas tenter de contourner les mécanismes de sécurité de la plateforme</li>
+        </ul>
+      </div>
+
+      <div class="legal-section">
+        <h2>4. Contenu soumis par les organisateurs</h2>
+        <p>
+          Les organisateurs d'événements sont <strong>seuls responsables</strong> du contenu qu'ils publient
+          sur LOTBO (description, images, informations de l'événement, etc.).
+          LOTBO agit en qualité d'hébergeur et ne peut être tenu responsable des contenus publiés par les tiers.
+        </p>
+        <p>
+          LOTBO se réserve le droit de supprimer tout contenu contraire aux présentes CGU
+          ou à la législation applicable, sans préavis ni indemnité.
+        </p>
+      </div>
+
+      <div class="legal-section">
+        <h2>5. Campagne de soutien fondateurs</h2>
+        <p>
+          Les contributions financières à la campagne de soutien fondateurs sont des <strong>dons uniques irrévocables</strong>
+          effectués en contrepartie d'avantages non garantis dont la livraison dépend du développement de la plateforme.
+        </p>
+        <p>
+          Les avantages listés (badges, accès premium, mentions) seront activés au lancement officiel de LOTBO.
+          Bup Mark Ltd s'engage à fournir ces avantages dans des délais raisonnables.
+        </p>
+        <p>
+          Les paiements sont définitifs et non remboursables sauf en cas de manquement grave de la part de LOTBO.
+        </p>
+      </div>
+
+      <div class="legal-section">
+        <h2>6. Propriété intellectuelle</h2>
+        <p>
+          La marque LOTBO, le logo, l'interface et l'ensemble des contenus éditoriaux sont la propriété
+          exclusive de <strong>Bup Mark Ltd</strong>. Toute reproduction non autorisée est interdite.
+        </p>
+        <p>
+          En publiant du contenu sur LOTBO, les organisateurs accordent à LOTBO une licence non exclusive
+          d'utilisation de ce contenu aux fins du fonctionnement et de la promotion du service.
+        </p>
+      </div>
+
+      <div class="legal-section">
+        <h2>7. Limitation de responsabilité</h2>
+        <p>
+          LOTBO ne saurait être tenu responsable des dommages directs ou indirects résultant
+          de l'utilisation ou de l'impossibilité d'utiliser la plateforme.
+          LOTBO ne garantit pas l'exactitude ou l'exhaustivité des informations d'événements fournies
+          par des organisateurs tiers.
+        </p>
+      </div>
+
+      <div class="legal-section">
+        <h2>8. Données personnelles</h2>
+        <p>
+          Le traitement de vos données personnelles est décrit dans notre
+          <a href="/legal/confidentialite">Politique de confidentialité</a>.
+        </p>
+      </div>
+
+      <div class="legal-section">
+        <h2>9. Modifications des CGU</h2>
+        <p>
+          LOTBO se réserve le droit de modifier les présentes CGU à tout moment.
+          Les utilisateurs sont invités à consulter régulièrement cette page.
+          La continuation de l'utilisation du service après modification vaut acceptation des nouvelles conditions.
+        </p>
+      </div>
+
+      <div class="legal-section">
+        <h2>10. Droit applicable et juridiction</h2>
+        <p>
+          Les présentes CGU sont régies par le droit anglais (England &amp; Wales).
+          Tout litige sera soumis à la compétence exclusive des tribunaux de Manchester, Royaume-Uni.
+        </p>
+        <p>
+          Contact : <a href="mailto:hello@lotbo.app">hello@lotbo.app</a>
+        </p>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-logo">LOTBO</div>
+    <div class="footer-links">
+      <a href="/legal/confidentialite">Confidentialité</a>
+      <a href="/legal/mentions-legales">Mentions légales</a>
+      <a href="/legal/cookies">Cookies</a>
+      <a href="/a-propos">À propos</a>
+      <a href="/contact">Contact</a>
+    </div>
+    <div class="footer-copy">© 2026 LOTBO · Bup Mark Ltd · Company 15840780 · Manchester, UK</div>
+  </footer>
+
 </body>
 </html>
