@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Soutenir LOTBO — Deviens Fondateur</title>
+  <meta name="description" content="LOTBO est né en Haïti le 5 mai 2026. Ton nom sera dans l'histoire. Rejoins les fondateurs avant le 31 mai 2026."/>
+  <meta property="og:title" content="Soutenir LOTBO — Deviens Fondateur"/>
+  <meta property="og:description" content="LOTBO est né en Haïti le 5 mai 2026. Ton nom sera dans l'histoire de LOTBO."/>
+  <meta property="og:type" content="website"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
+  <meta name="theme-color" content="#F7F2E8"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg:      #F7F2E8;
+      --brand:   #C8431A;
+      --brand2:  #A63515;
+      --dark:    #1A0F0A;
+      --mid:     #5C3D2E;
+      --light:   #E8E0D0;
+      --white:   #FFFFFF;
+      --shadow:  rgba(26,15,10,0.08);
+      --shadow2: rgba(26,15,10,0.16);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--dark);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    /* ── NAV ──────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(247,242,232,0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--light);
+      padding: 0 20px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.4rem;
+      color: var(--brand);
+      letter-spacing: 0.04em;
+    }
+    .nav-link {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--mid);
+      border: 1.5px solid var(--light);
+      border-radius: 20px;
+      padding: 6px 14px;
+      transition: all 0.2s;
+    }
+    .nav-link:hover { background: var(--brand); color: var(--white); border-color: var(--brand); }
+
+    /* ── URGENCY BANNER ───────────────────── */
+    .urgency-bar {
+      background: var(--brand);
+      color: var(--white);
+      text-align: center;
+      padding: 10px 20px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+    }
+    .urgency-bar strong { font-weight: 700; }
+
+    /* ── HERO ─────────────────────────────── */
+    .hero {
+      padding: 48px 20px 40px;
+      text-align: center;
+    }
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(200,67,26,0.08);
+      color: var(--brand);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 20px;
+      border: 1px solid rgba(200,67,26,0.2);
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2rem;
+      line-height: 1.2;
+      color: var(--dark);
+      margin-bottom: 16px;
+      max-width: 340px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--brand);
+    }
+    .hero-sub {
+      font-size: 0.97rem;
+      color: var(--mid);
+      max-width: 320px;
+      margin: 0 auto 36px;
+      line-height: 1.75;
+    }
+
+    /* ── COUNTDOWN ────────────────────────── */
+    .countdown-wrap {
+      background: var(--dark);
+      border-radius: 16px;
+      padding: 24px 20px 20px;
+      max-width: 340px;
+      margin: 0 auto 12px;
+    }
+    .countdown-label {
+      font-size: 0.7rem;
+      color: rgba(247,242,232,0.45);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+      text-align: center;
+    }
+    .countdown-units {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+    }
+    .countdown-unit { text-align: center; }
+    .countdown-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.25rem;
+      color: var(--bg);
+      line-height: 1;
+      display: block;
+    }
+    .countdown-sep {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2rem;
+      color: var(--brand);
+      line-height: 1;
+      padding-top: 0;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding-bottom: 10px;
+    }
+    .countdown-sub {
+      font-size: 0.6rem;
+      color: rgba(247,242,232,0.4);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-top: 5px;
+      display: block;
+    }
+    .countdown-deadline {
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--mid);
+      margin-top: 8px;
+    }
+
+    /* ── SECTIONS ─────────────────────────── */
+    .section { padding: 44px 20px; }
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.5rem;
+      color: var(--dark);
+      text-align: center;
+      margin-bottom: 6px;
+    }
+    .section-sub {
+      font-size: 0.88rem;
+      color: var(--mid);
+      text-align: center;
+      margin-bottom: 32px;
+      max-width: 300px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ── TIER CARDS ───────────────────────── */
+    .tiers-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    .tier-card {
+      background: var(--white);
+      border-radius: 18px;
+      padding: 24px;
+      border: 2px solid transparent;
+      box-shadow: 0 2px 12px var(--shadow);
+      transition: all 0.25s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .tier-card:hover {
+      border-color: var(--brand);
+      box-shadow: 0 8px 28px var(--shadow2);
+      transform: translateY(-2px);
+    }
+    .tier-card.featured {
+      border-color: var(--brand);
+      background: linear-gradient(150deg, #FFFFFF 0%, #FEF6F2 100%);
+    }
+    .tier-badge-featured {
+      position: absolute;
+      top: 0;
+      right: 0;
+      background: var(--brand);
+      color: var(--white);
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 5px 12px 4px 10px;
+      border-bottom-left-radius: 10px;
+    }
+    .tier-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .tier-emoji {
+      font-size: 1.75rem;
+      line-height: 1;
+    }
+    .tier-info {}
+    .tier-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.2rem;
+      color: var(--dark);
+      line-height: 1.2;
+    }
+    .tier-price {
+      font-size: 0.82rem;
+      color: var(--brand);
+      font-weight: 600;
+      margin-top: 1px;
+    }
+    .tier-divider {
+      height: 1px;
+      background: var(--light);
+      margin-bottom: 14px;
+    }
+    .tier-perks {
+      list-style: none;
+      margin-bottom: 20px;
+    }
+    .tier-perks li {
+      font-size: 0.87rem;
+      color: var(--mid);
+      padding: 4px 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      line-height: 1.45;
+    }
+    .tier-perks li .check {
+      color: var(--brand);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+      font-size: 0.8rem;
+    }
+    .tier-perks li.inherited {
+      opacity: 0.6;
+      font-style: italic;
+    }
+    .btn-tier {
+      display: block;
+      width: 100%;
+      background: var(--brand);
+      color: var(--white);
+      border: none;
+      border-radius: 10px;
+      padding: 14px 20px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: center;
+      letter-spacing: 0.01em;
+    }
+    .btn-tier:hover { background: var(--brand2); transform: translateY(-1px); }
+    .btn-tier:active { transform: translateY(0); }
+    .btn-tier:disabled { opacity: 0.55; cursor: not-allowed; transform: none; }
+    .btn-loading { display: inline-flex; align-items: center; gap: 8px; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .spinner {
+      width: 14px;
+      height: 14px;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+    }
+
+    /* ── TRUST BAR ────────────────────────── */
+    .trust-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      padding: 14px 20px;
+      background: var(--white);
+      border-top: 1px solid var(--light);
+      border-bottom: 1px solid var(--light);
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.78rem;
+      color: var(--mid);
+      font-weight: 500;
+    }
+    .trust-item svg { flex-shrink: 0; }
+
+    /* ── FAQ ──────────────────────────────── */
+    .faq-list {
+      max-width: 500px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .faq-item {
+      background: var(--white);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px var(--shadow);
+    }
+    .faq-q {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 18px 20px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.93rem;
+      font-weight: 500;
+      color: var(--dark);
+      cursor: pointer;
+      text-align: left;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+    .faq-arrow {
+      color: var(--brand);
+      font-size: 1rem;
+      transition: transform 0.25s;
+      flex-shrink: 0;
+      line-height: 1;
+    }
+    .faq-q[aria-expanded="true"] .faq-arrow { transform: rotate(180deg); }
+    .faq-a {
+      font-size: 0.875rem;
+      color: var(--mid);
+      padding: 0 20px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+      line-height: 1.75;
+    }
+    .faq-a.open { max-height: 300px; padding: 0 20px 18px; }
+
+    /* ── FOOTER ───────────────────────────── */
+    footer {
+      background: var(--dark);
+      color: rgba(247,242,232,0.45);
+      text-align: center;
+      padding: 32px 20px 24px;
+      font-size: 0.8rem;
+    }
+    .footer-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.3rem;
+      color: var(--bg);
+      margin-bottom: 8px;
+    }
+    .footer-tagline {
+      color: rgba(247,242,232,0.35);
+      font-size: 0.75rem;
+      margin-bottom: 16px;
+    }
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .footer-links a {
+      color: rgba(247,242,232,0.5);
+      font-size: 0.78rem;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--brand); }
+    .footer-copy { font-size: 0.72rem; color: rgba(247,242,232,0.25); }
+
+    /* ── TOAST ────────────────────────────── */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: var(--dark);
+      color: var(--bg);
+      padding: 12px 24px;
+      border-radius: 12px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+      transition: transform 0.3s ease;
+      z-index: 999;
+      white-space: nowrap;
+      max-width: calc(100vw - 40px);
+      text-align: center;
+    }
+    .toast.show { transform: translateX(-50%) translateY(0); }
+    .toast.error { background: #991B1B; }
+
+    /* ── RESPONSIVE ───────────────────────── */
+    @media (min-width: 480px) {
+      .hero h1 { font-size: 2.4rem; max-width: 420px; }
+      .countdown-num { font-size: 2.75rem; }
+      .countdown-wrap { max-width: 380px; }
+    }
+    @media (min-width: 640px) {
+      .hero h1 { font-size: 2.75rem; max-width: 500px; }
+      .tiers-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+      .tier-card:last-child:nth-child(odd) {
+        grid-column: 1 / -1;
+        max-width: 360px;
+        margin: 0 auto;
+        width: 100%;
+      }
+    }
+    @media (min-width: 900px) {
+      .hero { padding: 72px 20px 56px; }
+      .hero h1 { font-size: 3.25rem; max-width: 640px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- URGENCY BANNER -->
+  <div class="urgency-bar">
+    <strong>⏳ Il reste peu de temps</strong> — Campagne de soutien ouverte jusqu'au 31 mai 2026
+  </div>
+
+  <!-- NAV -->
+  <nav>
+    <a href="/" class="nav-logo">LOTBO</a>
+    <a href="/supporters" class="nav-link">Voir les fondateurs</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-eyebrow">
+      <span>🇭🇹</span> Né en Haïti · 5 mai 2026
+    </div>
+    <h1>Ton nom sera dans<br/><em>l'histoire de LOTBO</em></h1>
+    <p class="hero-sub">
+      LOTBO est né. Maintenant il faut lui donner les ailes pour voler.
+      Rejoins les premiers fondateurs avant le 31 mai — ta contribution sera gravée pour toujours.
+    </p>
+
+    <!-- COUNTDOWN -->
+    <div class="countdown-wrap">
+      <div class="countdown-label">Temps restant avant fermeture</div>
+      <div class="countdown-units">
+        <div class="countdown-unit">
+          <span class="countdown-num" id="cd-days">--</span>
+          <span class="countdown-sub">Jours</span>
+        </div>
+        <div class="countdown-unit">
+          <span class="countdown-num" id="cd-hours">--</span>
+          <span class="countdown-sub">Heures</span>
+        </div>
+        <div class="countdown-unit">
+          <span class="countdown-num" id="cd-mins">--</span>
+          <span class="countdown-sub">Minutes</span>
+        </div>
+        <div class="countdown-unit">
+          <span class="countdown-num" id="cd-secs">--</span>
+          <span class="countdown-sub">Secondes</span>
+        </div>
+      </div>
+    </div>
+    <p class="countdown-deadline">Fermeture le 31 mai 2026 à minuit (HAT)</p>
+  </section>
+
+  <!-- TIERS -->
+  <section class="section" id="paliers">
+    <h2 class="section-title">Choisis ton niveau de soutien</h2>
+    <p class="section-sub">Chaque contribution compte. Paiement unique, avantages permanents.</p>
+
+    <div class="tiers-grid">
+
+      <!-- GRAINE -->
+      <div class="tier-card" id="card-graine">
+        <div class="tier-header">
+          <span class="tier-emoji">🌱</span>
+          <div class="tier-info">
+            <div class="tier-name">Graine</div>
+            <div class="tier-price">À partir de 5 $</div>
+          </div>
+        </div>
+        <div class="tier-divider"></div>
+        <ul class="tier-perks">
+          <li><span class="check">✓</span> Badge numérique sur ton profil LOTBO</li>
+          <li><span class="check">✓</span> Mention dans la liste des supporters</li>
+          <li><span class="check">✓</span> Email de remerciement personnalisé</li>
+        </ul>
+        <button class="btn-tier" id="btn-graine" onclick="startCheckout('graine')">
+          Soutenir — 5 $
+        </button>
+      </div>
+
+      <!-- BOUQUET -->
+      <div class="tier-card" id="card-bouquet">
+        <div class="tier-header">
+          <span class="tier-emoji">🥉</span>
+          <div class="tier-info">
+            <div class="tier-name">Bouquet</div>
+            <div class="tier-price">À partir de 10 $</div>
+          </div>
+        </div>
+        <div class="tier-divider"></div>
+        <ul class="tier-perks">
+          <li><span class="check">✓</span> Tout ce que Graine inclut</li>
+          <li><span class="check">✓</span> Accès anticipé aux nouvelles fonctionnalités</li>
+          <li><span class="check">✓</span> Newsletter exclusive « Dans les coulisses »</li>
+        </ul>
+        <button class="btn-tier" id="btn-bouquet" onclick="startCheckout('bouquet')">
+          Soutenir — 10 $
+        </button>
+      </div>
+
+      <!-- LOTBO FAM -->
+      <div class="tier-card" id="card-lotbo_fam">
+        <div class="tier-header">
+          <span class="tier-emoji">🥈</span>
+          <div class="tier-info">
+            <div class="tier-name">Lotbo Fam</div>
+            <div class="tier-price">À partir de 25 $</div>
+          </div>
+        </div>
+        <div class="tier-divider"></div>
+        <ul class="tier-perks">
+          <li><span class="check">✓</span> Tout ce que Bouquet inclut</li>
+          <li><span class="check">✓</span> Compte Organisateur premium — 1 an offert</li>
+          <li><span class="check">✓</span> Vote sur les prochaines fonctionnalités</li>
+          <li><span class="check">✓</span> Crédit boost événement (dès disponibilité)</li>
+        </ul>
+        <button class="btn-tier" id="btn-lotbo_fam" onclick="startCheckout('lotbo_fam')">
+          Soutenir — 25 $
+        </button>
+      </div>
+
+      <!-- BÂTISSEUR -->
+      <div class="tier-card" id="card-batisseur">
+        <div class="tier-header">
+          <span class="tier-emoji">🥇</span>
+          <div class="tier-info">
+            <div class="tier-name">Bâtisseur</div>
+            <div class="tier-price">À partir de 50 $</div>
+          </div>
+        </div>
+        <div class="tier-divider"></div>
+        <ul class="tier-perks">
+          <li><span class="check">✓</span> Tout ce que Lotbo Fam inclut</li>
+          <li><span class="check">✓</span> Compte Organisateur premium — À VIE</li>
+          <li><span class="check">✓</span> Invitation aux événements LOTBO exclusifs</li>
+          <li><span class="check">✓</span> Mention dans nos communications officielles</li>
+          <li><span class="check">✓</span> Appel 15 min avec le fondateur</li>
+        </ul>
+        <button class="btn-tier" id="btn-batisseur" onclick="startCheckout('batisseur')">
+          Soutenir — 50 $
+        </button>
+      </div>
+
+      <!-- PLATINE -->
+      <div class="tier-card featured" id="card-platine">
+        <div class="tier-badge-featured">💎 Fondateur Platine</div>
+        <div class="tier-header">
+          <span class="tier-emoji">💎</span>
+          <div class="tier-info">
+            <div class="tier-name">Platine</div>
+            <div class="tier-price">100 $ et plus</div>
+          </div>
+        </div>
+        <div class="tier-divider"></div>
+        <ul class="tier-perks">
+          <li><span class="check">✓</span> Tout ce que Bâtisseur inclut</li>
+          <li><span class="check">✓</span> Statut fondateur Platine — visible en permanence</li>
+          <li><span class="check">✓</span> Accès à la roadmap privée LOTBO</li>
+          <li><span class="check">✓</span> Input direct sur les décisions produit</li>
+          <li><span class="check">✓</span> Invité officiel aux événements LOTBO physiques</li>
+          <li><span class="check">✓</span> Co-crédité dans les communications de lancement</li>
+        </ul>
+        <button class="btn-tier" id="btn-platine" onclick="startCheckout('platine')">
+          Devenir Fondateur Platine — 100 $
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- TRUST BAR -->
+  <div class="trust-bar">
+    <div class="trust-item">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#C8431A" stroke-width="2.5">
+        <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+      </svg>
+      Paiement 100% sécurisé via Stripe
+    </div>
+    <div class="trust-item">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#C8431A" stroke-width="2.5">
+        <polyline points="20 6 9 17 4 12"/>
+      </svg>
+      Avantages permanents garantis
+    </div>
+    <div class="trust-item">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#C8431A" stroke-width="2.5">
+        <circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/>
+      </svg>
+      Paiement unique · Pas d'abonnement
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <section class="section" id="faq">
+    <h2 class="section-title">Questions fréquentes</h2>
+    <p class="section-sub">Tout ce que tu veux savoir avant de soutenir</p>
+
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
+          <span>Est-ce que mon statut de fondateur est permanent ?</span>
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-a">
+          Oui, absolument. Ton statut de fondateur et les avantages associés à ton palier sont permanents et ne
+          disparaîtront jamais. Ton nom restera visible dans la liste des supporters de LOTBO pour toujours,
+          rappelant que tu as cru en LOTBO dès le premier jour.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
+          <span>Comment mon nom apparaîtra dans la liste des supporters ?</span>
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-a">
+          Ton nom tel qu'entré lors du paiement Stripe apparaîtra dans <a href="/supporters" style="color: var(--brand);">lotbo.app/supporters</a>.
+          Tu pourras le personnaliser plus tard depuis ton profil LOTBO : afficher ton nom complet, tes initiales,
+          un pseudonyme ou rester anonyme — c'est ton choix.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
+          <span>Mon paiement est-il sécurisé ?</span>
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-a">
+          Oui. Tous les paiements sont traités directement par Stripe, leader mondial du paiement en ligne.
+          LOTBO ne stocke jamais tes informations bancaires. La transaction est chiffrée de bout en bout (TLS 1.3)
+          et Stripe est certifié PCI DSS niveau 1.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
+          <span>Quand vais-je recevoir mes avantages ?</span>
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-a">
+          Dès confirmation de ton paiement, tu recevras un email de bienvenue avec le détail de tes avantages.
+          Les badges numériques et comptes premium seront activés lors du lancement officiel de la plateforme LOTBO.
+          Pour les paliers Bâtisseur et Platine, un lien pour réserver ton appel avec le fondateur est inclus dans l'email.
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">LOTBO</div>
+    <div class="footer-tagline">Kisa k'ap pase lotbo?</div>
+    <div class="footer-links">
+      <a href="/supporters">Fondateurs</a>
+      <a href="/a-propos">À propos</a>
+      <a href="/contact">Contact</a>
+      <a href="/legal/cgu">CGU</a>
+      <a href="/legal/confidentialite">Confidentialité</a>
+    </div>
+    <div class="footer-copy">© 2026 LOTBO · Haïti 🇭🇹 · Tous droits réservés</div>
+  </footer>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // ── PRICE IDs ──────────────────────────────────────────────────────────
+    const TIERS = {
+      graine:    { priceId: 'price_1TbL4SQe7LMIgCnJR9nSs6WA', label: 'Graine',    amount: '5 $'   },
+      bouquet:   { priceId: 'price_1TbL96Qe7LMIgCnJV4gecu5z', label: 'Bouquet',   amount: '10 $'  },
+      lotbo_fam: { priceId: 'price_1TbLDjQe7LMIgCnJmurEET1W', label: 'Lotbo Fam', amount: '25 $'  },
+      batisseur: { priceId: 'price_1TbLHDQe7LMIgCnJczD51n85', label: 'Bâtisseur', amount: '50 $'  },
+      platine:   { priceId: 'price_1TbLK3Qe7LMIgCnJirzvmpTO', label: 'Platine',   amount: '100 $' }
+    };
+
+    // ── COUNTDOWN ──────────────────────────────────────────────────────────
+    function pad(n) { return String(n).padStart(2, '0'); }
+
+    function updateCountdown() {
+      const deadline = new Date('2026-05-31T23:59:59');
+      const now = new Date();
+      const diff = deadline - now;
+
+      if (diff <= 0) {
+        document.getElementById('cd-days').textContent  = '00';
+        document.getElementById('cd-hours').textContent = '00';
+        document.getElementById('cd-mins').textContent  = '00';
+        document.getElementById('cd-secs').textContent  = '00';
+        return;
+      }
+
+      const days  = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const mins  = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const secs  = Math.floor((diff % (1000 * 60)) / 1000);
+
+      document.getElementById('cd-days').textContent  = pad(days);
+      document.getElementById('cd-hours').textContent = pad(hours);
+      document.getElementById('cd-mins').textContent  = pad(mins);
+      document.getElementById('cd-secs').textContent  = pad(secs);
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    // ── CHECKOUT ───────────────────────────────────────────────────────────
+    async function startCheckout(tierId) {
+      const tier = TIERS[tierId];
+      if (!tier) return;
+
+      const btn = document.getElementById('btn-' + tierId);
+      btn.disabled = true;
+      btn.innerHTML = '<span class="btn-loading"><span class="spinner"></span> Chargement…</span>';
+
+      try {
+        const res = await fetch('/api/create-checkout-session', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ priceId: tier.priceId, palier: tierId })
+        });
+
+        if (!res.ok) {
+          const err = await res.json().catch(() => ({}));
+          throw new Error(err.error || 'Erreur serveur');
+        }
+
+        const { url } = await res.json();
+        if (!url) throw new Error('Réponse invalide');
+        window.location.href = url;
+
+      } catch (e) {
+        btn.disabled = false;
+        btn.textContent = 'Soutenir — ' + tier.amount;
+        showToast('Une erreur est survenue. Réessaie.', true);
+        console.error('[Checkout]', e.message);
+      }
+    }
+
+    // ── FAQ ────────────────────────────────────────────────────────────────
+    function toggleFaq(btn) {
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      document.querySelectorAll('.faq-q').forEach(b => {
+        b.setAttribute('aria-expanded', 'false');
+        b.nextElementSibling.classList.remove('open');
+      });
+      if (!expanded) {
+        btn.setAttribute('aria-expanded', 'true');
+        btn.nextElementSibling.classList.add('open');
+      }
+    }
+
+    // ── TOAST ──────────────────────────────────────────────────────────────
+    function showToast(msg, isError = false) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.className = 'toast' + (isError ? ' error' : '');
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 4000);
+    }
+  </script>
+
+</body>
+</html>

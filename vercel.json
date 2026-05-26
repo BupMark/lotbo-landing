@@ -9,6 +9,14 @@
       "api/enquete.js": {
         "memory": 128,
         "maxDuration": 10
+      },
+      "api/stripe-webhook.js": {
+        "memory": 128,
+        "maxDuration": 10
+      },
+      "api/create-checkout-session.js": {
+        "memory": 128,
+        "maxDuration": 10
       }
     },
     "routes": [
@@ -39,6 +47,14 @@
       {
         "src": "/contact",
         "dest": "/contact.html"
+      },
+      {
+        "src": "/supporter-fondateur",
+        "dest": "/supporter-fondateur.html"
+      },
+      {
+        "src": "/supporters",
+        "dest": "/supporters.html"
       },
       {
         "src": "/legal/cgu",
