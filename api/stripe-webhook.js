@@ -115,14 +115,21 @@ function buildEmailHtml({ nom, palier }) {
                 Ton soutien est enregistré. Tu fais maintenant partie des premiers à avoir cru en LOTBO — 
                 une plateforme mondiale d'événements née en Haïti le 5 mai 2026.
               </p>
-              <p style="color:#D4C5B0;font-size:16px;line-height:1.7;margin:0 0 32px;">
-                Ton nom sera visible pour toujours sur 
-                <a href="https://lotbo.app/supporters" style="color:#C8431A;">lotbo.app/supporters</a> — 
-                rappelant que tu as été là dès le premier jour.
-              </p>
+              <p style="color:#D4C5B0;font-size:16px;line-height:1.7;margin:0 0 20px;">
+  Ton nom sera visible pour toujours sur 
+  <a href="https://lotbo.app/supporters" style="color:#C8431A;">lotbo.app/supporters</a>.
+</p>
+<p style="color:#F7F2E8;font-size:16px;font-weight:bold;line-height:1.7;margin:0 0 8px;">
+  🏅 Ton badge Supporter Fondateur t'attend.
+</p>
+<p style="color:#D4C5B0;font-size:15px;line-height:1.7;margin:0 0 32px;">
+  Crée ton compte LOTBO avec cette adresse email 
+  (<strong style="color:#F7F2E8;">${toEmail}</strong>) 
+  pour recevoir ton badge automatiquement sur ton profil.
+</p>
 
-              <!-- CTA -->
-              <table width="100%" cellpadding="0" cellspacing="0">
+<!-- Bloc CTA -->
+<table width="100%" cellpadding="0" cellspacing="0">
                 <tr>
                   <td align="center">
                     <a href="https://app.lotbo.app" 
