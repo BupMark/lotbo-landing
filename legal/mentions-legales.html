@@ -11,34 +11,34 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
   <style>
-    :root { --bg: #F7F2E8; --brand: #C8431A; --dark: #1A0A00; --mid: #5C3D2E; --light: #E8E0D0; --white: #FFFFFF; --cream: #f5ede0; --shadow: rgba(26,10,0,0.07); }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--dark); line-height: 1.7; overflow-x: hidden; min-height: 100vh; display: flex; flex-direction: column; }
-    a { color: var(--brand); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    main { flex: 1; }
-    nav { position: sticky; top: 0; z-index: 100; background: rgba(247,242,232,0.96); backdrop-filter: blur(10px); border-bottom: 1px solid var(--light); padding: 0 20px; height: 60px; display: flex; align-items: center; justify-content: space-between; }
-    .nav-logo { font-family: 'DM Serif Display', serif; font-size: 1.4rem; color: var(--brand); letter-spacing: 0.04em; text-decoration: none; color: var(--brand); }
-    .nav-back { font-size: 0.82rem; font-weight: 500; color: var(--mid); border: 1.5px solid var(--light); border-radius: 20px; padding: 6px 14px; transition: all 0.2s; }
-    .nav-back:hover { background: var(--brand); color: var(--white); border-color: var(--brand); text-decoration: none; }
-    .page-hero { padding: 48px 20px 36px; border-bottom: 1px solid var(--light); }
-    .page-hero h1 { font-family: 'DM Serif Display', serif; font-size: 2rem; color: var(--dark); margin-bottom: 8px; }
-    .page-hero p { font-size: 0.87rem; color: var(--mid); }
-    .content-wrap { max-width: 720px; margin: 0 auto; padding: 40px 20px 64px; }
-    .legal-section { margin-bottom: 36px; }
-    .legal-section h2 { font-family: 'DM Serif Display', serif; font-size: 1.2rem; color: var(--dark); margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--light); }
-    .legal-section p { font-size: 0.93rem; color: var(--mid); margin-bottom: 8px; line-height: 1.75; }
-    .legal-section strong { color: var(--dark); font-weight: 600; }
-    .legal-row { display: flex; flex-direction: column; gap: 6px; }
-    .legal-row dt { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--brand); margin-top: 10px; }
-    .legal-row dd { font-size: 0.93rem; color: var(--dark); font-weight: 500; }
-    .legal-row dd span { display: block; font-size: 0.84rem; color: var(--mid); font-weight: 400; margin-top: 1px; }
-    footer { background: var(--dark); color: rgba(245,237,224,0.4); text-align: center; padding: 24px 20px; font-size: 0.78rem; }
-    .footer-logo { font-family: 'DM Serif Display', serif; font-size: 1.2rem; color: var(--cream); margin-bottom: 8px; }
-    .footer-links { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 10px; }
-    .footer-links a { color: rgba(245,237,224,0.45); font-size: 0.76rem; transition: color 0.2s; text-decoration: none; }
-    .footer-links a:hover { color: var(--brand); }
-    .footer-copy { font-size: 0.68rem; color: rgba(245,237,224,0.2); }
+    :root { --bg:#F7F2E8; --brand:#C8431A; --dark:#1A1410; --mid:#8C5A40; --light:#E8E0D0; --white:#FFFFFF; --cream:#F7F2E8; --shadow:rgba(26,20,16,0.08); }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--dark);line-height:1.7;overflow-x:hidden;min-height:100vh;display:flex;flex-direction:column;}
+    a{color:var(--brand);text-decoration:none;}
+    a:hover{text-decoration:underline;}
+    main{flex:1;}
+    nav{position:sticky;top:0;z-index:100;background:rgba(247,242,232,0.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--light);padding:0 20px;height:60px;display:flex;align-items:center;justify-content:space-between;}
+    .nav-logo{font-family:'DM Serif Display',serif;font-size:1.4rem;color:var(--brand);letter-spacing:0.04em;}
+    .nav-back{font-size:0.82rem;font-weight:500;color:var(--mid);border:1.5px solid var(--light);border-radius:20px;padding:6px 14px;transition:all 0.2s;}
+    .nav-back:hover{background:var(--brand);color:var(--white);border-color:var(--brand);text-decoration:none;}
+    .page-hero{padding:48px 20px 36px;border-bottom:1px solid var(--light);max-width:720px;margin:0 auto;}
+    .page-hero h1{font-family:'DM Serif Display',serif;font-size:2rem;color:var(--dark);margin-bottom:8px;}
+    .page-hero p{font-size:0.87rem;color:var(--mid);}
+    .content-wrap{max-width:720px;margin:0 auto;padding:40px 20px 80px;}
+    .legal-section{margin-bottom:36px;}
+    .legal-section h2{font-family:'DM Serif Display',serif;font-size:1.2rem;color:var(--dark);margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--light);}
+    .legal-section p{font-size:0.93rem;color:var(--mid);margin-bottom:8px;line-height:1.75;}
+    .legal-section strong{color:var(--dark);font-weight:600;}
+    .legal-row{display:flex;flex-direction:column;gap:6px;}
+    .legal-row dt{font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--brand);margin-top:10px;}
+    .legal-row dd{font-size:0.93rem;color:var(--dark);font-weight:500;}
+    .legal-row dd span{display:block;font-size:0.84rem;color:var(--mid);font-weight:400;margin-top:1px;}
+    footer{background:var(--dark);color:rgba(247,242,232,0.4);text-align:center;padding:24px 20px;font-size:0.78rem;}
+    .footer-logo{font-family:'DM Serif Display',serif;font-size:1.2rem;color:var(--cream);margin-bottom:8px;}
+    .footer-links{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:10px;}
+    .footer-links a{color:rgba(247,242,232,0.45);font-size:0.76rem;transition:color 0.2s;text-decoration:none;}
+    .footer-links a:hover{color:var(--brand);}
+    .footer-copy{font-size:0.68rem;color:rgba(247,242,232,0.2);}
   </style>
 </head>
 <body>
@@ -49,7 +49,7 @@
   </nav>
 
   <main>
-    <div class="page-hero" style="max-width: 720px; margin: 0 auto;">
+    <div class="page-hero" style="max-width:720px;margin:0 auto;">
       <h1>Mentions légales</h1>
       <p>Conformément aux dispositions légales applicables — mise à jour le 26 mai 2026.</p>
     </div>
@@ -60,17 +60,17 @@
         <h2>1. Éditeur du site</h2>
         <dl class="legal-row">
           <dt>Société</dt>
-          <dd>Bup Mark Ltd <span>Société de droit britannique</span></dd>
+          <dd>Bup Mark Ltd <span>Société de droit britannique (Limited Company)</span></dd>
           <dt>Numéro d'enregistrement</dt>
           <dd>15840780 <span>Companies House — Angleterre &amp; Pays de Galles</span></dd>
           <dt>Siège social</dt>
-          <dd>Manchester, Royaume-Uni <span>England, United Kingdom 🇬🇧</span></dd>
+          <dd>Office 12, Initial Business Centre, Wilson Business Park <span>Manchester, M40 8WN — England, United Kingdom 🇬🇧</span></dd>
           <dt>Directeur de publication</dt>
           <dd>Handgod Abraham <span>Fondateur &amp; CEO</span></dd>
           <dt>Contact</dt>
-          <dd><a href="mailto:hello@lotbo.app">hello@lotbo.app</a></dd>
+          <dd><a href="mailto:lotbo@bup-mark.com">lotbo@bup-mark.com</a></dd>
           <dt>Site web</dt>
-          <dd><a href="https://lotbo.app">lotbo.app</a></dd>
+          <dd><a href="https://lotbo.app">lotbo.app</a> · <a href="https://app.lotbo.app">app.lotbo.app</a></dd>
         </dl>
       </div>
 
@@ -111,8 +111,8 @@
       <div class="legal-section">
         <h2>5. Cookies</h2>
         <p>
-          Ce site utilise des cookies fonctionnels pour améliorer l'expérience utilisateur.
-          Aucun cookie publicitaire tiers n'est utilisé sans votre consentement.
+          Ce site utilise des cookies techniques essentiels au fonctionnement de l'authentification.
+          Aucun cookie publicitaire tiers n'est utilisé.
           Consultez notre <a href="/legal/cookies">politique cookies</a> pour en savoir plus.
         </p>
       </div>

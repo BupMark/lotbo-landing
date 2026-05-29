@@ -11,35 +11,46 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
   <style>
-    :root { --bg: #F7F2E8; --brand: #C8431A; --dark: #1A0A00; --mid: #5C3D2E; --light: #E8E0D0; --white: #FFFFFF; --cream: #f5ede0; --shadow: rgba(26,10,0,0.07); }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--dark); line-height: 1.7; overflow-x: hidden; min-height: 100vh; display: flex; flex-direction: column; }
-    a { color: var(--brand); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    main { flex: 1; }
-    nav { position: sticky; top: 0; z-index: 100; background: rgba(247,242,232,0.96); backdrop-filter: blur(10px); border-bottom: 1px solid var(--light); padding: 0 20px; height: 60px; display: flex; align-items: center; justify-content: space-between; }
-    .nav-logo { font-family: 'DM Serif Display', serif; font-size: 1.4rem; color: var(--brand); letter-spacing: 0.04em; text-decoration: none; }
-    .nav-back { font-size: 0.82rem; font-weight: 500; color: var(--mid); border: 1.5px solid var(--light); border-radius: 20px; padding: 6px 14px; transition: all 0.2s; }
-    .nav-back:hover { background: var(--brand); color: var(--white); border-color: var(--brand); text-decoration: none; }
-    .page-hero { padding: 48px 20px 36px; border-bottom: 1px solid var(--light); max-width: 720px; margin: 0 auto; }
-    .page-hero h1 { font-family: 'DM Serif Display', serif; font-size: 2rem; color: var(--dark); margin-bottom: 8px; }
-    .page-hero p { font-size: 0.87rem; color: var(--mid); }
-    .content-wrap { max-width: 720px; margin: 0 auto; padding: 40px 20px 64px; }
-    .legal-section { margin-bottom: 36px; }
-    .legal-section h2 { font-family: 'DM Serif Display', serif; font-size: 1.2rem; color: var(--dark); margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--light); }
-    .legal-section p { font-size: 0.93rem; color: var(--mid); margin-bottom: 8px; line-height: 1.75; }
-    .legal-section strong { color: var(--dark); font-weight: 600; }
-    .legal-section ul { list-style: none; margin: 10px 0; }
-    .legal-section ul li { font-size: 0.93rem; color: var(--mid); padding: 5px 0; display: flex; gap: 8px; align-items: flex-start; line-height: 1.55; }
-    .legal-section ul li::before { content: '✓'; color: var(--brand); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
-    .highlight-box { background: var(--white); border-radius: 12px; padding: 18px 20px; margin: 12px 0; box-shadow: 0 2px 8px var(--shadow); border-left: 3px solid var(--brand); }
-    .highlight-box p { margin: 0; font-size: 0.93rem; color: var(--mid); }
-    footer { background: var(--dark); color: rgba(245,237,224,0.4); text-align: center; padding: 24px 20px; font-size: 0.78rem; }
-    .footer-logo { font-family: 'DM Serif Display', serif; font-size: 1.2rem; color: var(--cream); margin-bottom: 8px; }
-    .footer-links { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 10px; }
-    .footer-links a { color: rgba(245,237,224,0.45); font-size: 0.76rem; transition: color 0.2s; text-decoration: none; }
-    .footer-links a:hover { color: var(--brand); }
-    .footer-copy { font-size: 0.68rem; color: rgba(245,237,224,0.2); }
+    :root { --bg:#F7F2E8; --brand:#C8431A; --dark:#1A1410; --mid:#8C5A40; --light:#E8E0D0; --white:#FFFFFF; --cream:#F7F2E8; --shadow:rgba(26,20,16,0.08); }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--dark);line-height:1.7;overflow-x:hidden;min-height:100vh;display:flex;flex-direction:column;}
+    a{color:var(--brand);text-decoration:none;}
+    a:hover{text-decoration:underline;}
+    main{flex:1;}
+    nav{position:sticky;top:0;z-index:100;background:rgba(247,242,232,0.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--light);padding:0 20px;height:60px;display:flex;align-items:center;justify-content:space-between;}
+    .nav-logo{font-family:'DM Serif Display',serif;font-size:1.4rem;color:var(--brand);letter-spacing:0.04em;}
+    .nav-back{font-size:0.82rem;font-weight:500;color:var(--mid);border:1.5px solid var(--light);border-radius:20px;padding:6px 14px;transition:all 0.2s;color:var(--mid);}
+    .nav-back:hover{background:var(--brand);color:var(--white);border-color:var(--brand);text-decoration:none;}
+    .page-hero{padding:48px 20px 36px;border-bottom:1px solid var(--light);max-width:720px;margin:0 auto;}
+    .page-hero h1{font-family:'DM Serif Display',serif;font-size:2rem;color:var(--dark);margin-bottom:8px;}
+    .page-hero p{font-size:0.87rem;color:var(--mid);}
+    .content-wrap{max-width:720px;margin:0 auto;padding:40px 20px 80px;}
+    .legal-section{margin-bottom:36px;}
+    .legal-section h2{font-family:'DM Serif Display',serif;font-size:1.2rem;color:var(--dark);margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--light);}
+    .legal-section p{font-size:0.93rem;color:var(--mid);margin-bottom:8px;line-height:1.75;}
+    .legal-section strong{color:var(--dark);font-weight:600;}
+    .legal-section ul{list-style:none;margin:10px 0;}
+    .legal-section ul li{font-size:0.93rem;color:var(--mid);padding:5px 0;display:flex;gap:8px;align-items:flex-start;line-height:1.55;}
+    .legal-section ul li::before{content:'✓';color:var(--brand);font-weight:700;flex-shrink:0;margin-top:1px;}
+    .highlight-box{background:var(--white);border-radius:12px;padding:18px 20px;margin:12px 0;box-shadow:0 2px 8px var(--shadow);border-left:3px solid var(--brand);}
+    .highlight-box p{margin:0;font-size:0.93rem;color:var(--mid);}
+    .data-card{background:var(--white);border-radius:10px;padding:14px 16px;margin:6px 0;box-shadow:0 1px 4px var(--shadow);}
+    .data-card-title{color:var(--brand);font-size:13px;font-weight:600;margin-bottom:5px;}
+    .data-card-desc{font-size:0.88rem;color:var(--mid);line-height:1.6;}
+    .partner-row{display:flex;justify-content:space-between;align-items:center;background:var(--white);border-radius:10px;padding:12px 16px;margin:6px 0;gap:12px;flex-wrap:wrap;box-shadow:0 1px 4px var(--shadow);}
+    .partner-name{font-size:14px;font-weight:600;color:var(--dark);}
+    .partner-role{font-size:12px;color:var(--mid);}
+    .partner-link{font-size:12px;color:var(--brand);white-space:nowrap;}
+    .contact-cta{background:rgba(200,67,26,0.08);border:1px solid rgba(200,67,26,0.2);border-radius:16px;padding:24px 20px;text-align:center;margin-top:8px;}
+    .contact-cta p{color:var(--dark);font-size:15px;font-weight:600;margin-bottom:8px;}
+    .contact-cta .sub{color:var(--mid);font-size:13px;margin-bottom:16px;}
+    .btn-brand{background:var(--brand);color:white;padding:12px 24px;border-radius:10px;font-size:14px;font-weight:bold;display:inline-block;}
+    footer{background:var(--dark);color:rgba(247,242,232,0.4);text-align:center;padding:24px 20px;font-size:0.78rem;}
+    .footer-logo{font-family:'DM Serif Display',serif;font-size:1.2rem;color:var(--cream);margin-bottom:8px;}
+    .footer-links{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:10px;}
+    .footer-links a{color:rgba(247,242,232,0.45);font-size:0.76rem;transition:color 0.2s;text-decoration:none;}
+    .footer-links a:hover{color:var(--brand);}
+    .footer-copy{font-size:0.68rem;color:rgba(247,242,232,0.2);}
   </style>
 </head>
 <body>
@@ -52,98 +63,159 @@
   <main>
     <div class="page-hero">
       <h1>Politique de confidentialité</h1>
-      <p>Comment LOTBO collecte, utilise et protège vos données personnelles — mise à jour le 26 mai 2026.</p>
+      <p>Comment LOTBO collecte, utilise et protège vos données personnelles — mise à jour le 11 mai 2026.</p>
     </div>
 
     <div class="content-wrap">
 
       <div class="legal-section">
-        <h2>1. Responsable du traitement</h2>
+        <h2>1. Qui sommes-nous ?</h2>
         <p>
-          <strong>Bup Mark Ltd</strong> (company number 15840780), Manchester, Royaume-Uni,
-          est responsable du traitement de vos données personnelles collectées via la plateforme LOTBO (lotbo.app).
+          Lotbo est une plateforme mondiale de découverte d'événements locaux, née en Haïti le 5 mai 2026.
+          Accessible via <strong>lotbo.app</strong> et <strong>app.lotbo.app</strong>.
         </p>
-        <p>Contact : <a href="mailto:lotbo@bup-mark.com">lotbo@bup-mark.com</a></p>
+        <div class="highlight-box">
+          <p><strong>Responsable du traitement</strong><br/>
+          Bup Mark Ltd · Numéro d'entreprise : 15840780<br/>
+          Office 12, Initial Business Centre, Wilson Business Park, Manchester, M40 8WN · Royaume-Uni</p>
+        </div>
+        <p>Pour toute question relative à vos données : <a href="mailto:lotbo@bup-mark.com">lotbo@bup-mark.com</a></p>
       </div>
 
       <div class="legal-section">
-        <h2>2. Données collectées</h2>
+        <h2>2. Données que nous collectons</h2>
         <p>LOTBO collecte uniquement les données nécessaires au fonctionnement du service :</p>
+        <div class="data-card">
+          <div class="data-card-title">Adresse email</div>
+          <div class="data-card-desc">Collectée lors de l'inscription à la newsletter ou aux alertes d'événements. Stockée via Brevo.</div>
+        </div>
+        <div class="data-card">
+          <div class="data-card-title">Données de soumission d'événement</div>
+          <div class="data-card-desc">Titre, lieu, ville, pays, date, description, organisateur et photo — fournis volontairement. Visibles publiquement après validation.</div>
+        </div>
+        <div class="data-card">
+          <div class="data-card-title">Commentaires</div>
+          <div class="data-card-desc">Pseudo et texte saisis lors d'un commentaire. Ces données sont publiques.</div>
+        </div>
+        <div class="data-card">
+          <div class="data-card-title">Abonnements push</div>
+          <div class="data-card-desc">Endpoint, clé publique et clé d'authentification du navigateur, collectés si vous activez les notifications push.</div>
+        </div>
+        <div class="data-card">
+          <div class="data-card-title">Compte organisateur</div>
+          <div class="data-card-desc">Email et mot de passe (chiffré) si vous créez un compte via Supabase Auth.</div>
+        </div>
+        <div class="data-card">
+          <div class="data-card-title">Données techniques</div>
+          <div class="data-card-desc">Logs de connexion standards conservés par nos hébergeurs Vercel et Supabase selon leurs propres politiques.</div>
+        </div>
+      </div>
+
+      <div class="legal-section">
+        <h2>3. Ce que nous ne collectons pas</h2>
         <ul>
-          <li><strong>Adresse email</strong> — lors de l'inscription à la newsletter ou à la liste d'attente</li>
-          <li><strong>Nom et prénom</strong> — lors d'un soutien financier (campagne fondateurs), fourni via Stripe</li>
-          <li><strong>Ville / pays</strong> — optionnel, pour afficher la localisation dans la liste des supporters</li>
-          <li><strong>Données de paiement</strong> — traitées exclusivement par Stripe ; LOTBO n'a jamais accès aux coordonnées bancaires</li>
-          <li><strong>Données de navigation</strong> — analytics anonymisés (Amplitude) pour améliorer l'expérience</li>
+          <li>Aucun cookie de tracking tiers (Google Analytics, Meta Pixel, etc.)</li>
+          <li>Aucune donnée de paiement — Lotbo est gratuit</li>
+          <li>Les favoris sont stockés dans votre navigateur (localStorage) et ne nous sont jamais transmis</li>
+          <li>Aucune donnée de localisation GPS sans votre consentement explicite</li>
         </ul>
       </div>
 
       <div class="legal-section">
-        <h2>3. Finalités du traitement</h2>
+        <h2>4. Comment nous utilisons vos données</h2>
         <ul>
-          <li>Envoi de la newsletter et des communications liées à LOTBO</li>
-          <li>Gestion des soutiens financiers et attribution des avantages fondateurs</li>
-          <li>Affichage public du nom/pseudo dans la liste des supporters (avec votre accord)</li>
-          <li>Amélioration du produit via des analytics anonymisés</li>
+          <li>Envoyer la newsletter hebdomadaire des événements (si inscrit)</li>
+          <li>Envoyer des alertes push pour les nouveaux événements approuvés (si activé)</li>
+          <li>Afficher publiquement les événements soumis après validation</li>
+          <li>Modérer les contenus signalés par la communauté</li>
+          <li>Améliorer la plateforme via les logs techniques anonymisés</li>
         </ul>
       </div>
 
       <div class="legal-section">
-        <h2>4. Partage des données</h2>
+        <h2>5. Partage de vos données</h2>
         <div class="highlight-box">
           <p><strong style="color:var(--brand)">LOTBO ne vend jamais vos données personnelles.</strong> Aucune donnée n'est cédée à des tiers à des fins commerciales.</p>
         </div>
-        <p>Vos données peuvent être partagées avec les sous-traitants techniques suivants :</p>
+        <p>Vos données peuvent être partagées avec nos prestataires techniques :</p>
+        <div class="partner-row">
+          <div><div class="partner-name">Supabase</div><div class="partner-role">Base de données et authentification</div></div>
+          <a href="https://supabase.com/privacy" target="_blank" rel="noopener" class="partner-link">Leur politique →</a>
+        </div>
+        <div class="partner-row">
+          <div><div class="partner-name">Vercel</div><div class="partner-role">Hébergement et déploiement</div></div>
+          <a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener" class="partner-link">Leur politique →</a>
+        </div>
+        <div class="partner-row">
+          <div><div class="partner-name">Brevo</div><div class="partner-role">Envoi d'emails et newsletter</div></div>
+          <a href="https://www.brevo.com/legal/privacypolicy/" target="_blank" rel="noopener" class="partner-link">Leur politique →</a>
+        </div>
+        <div class="partner-row">
+          <div><div class="partner-name">Mapbox</div><div class="partner-role">Cartographie interactive</div></div>
+          <a href="https://www.mapbox.com/legal/privacy" target="_blank" rel="noopener" class="partner-link">Leur politique →</a>
+        </div>
+      </div>
+
+      <div class="legal-section">
+        <h2>6. Conservation des données</h2>
         <ul>
-          <li><strong>Stripe</strong> — traitement sécurisé des paiements (PCI DSS niveau 1)</li>
-          <li><strong>Brevo (Sendinblue)</strong> — envoi des emails transactionnels et newsletters</li>
-          <li><strong>Supabase</strong> — stockage sécurisé des données (serveurs EU)</li>
-          <li><strong>Vercel</strong> — hébergement de la plateforme (États-Unis)</li>
-          <li><strong>Amplitude</strong> — analytics produit anonymisés</li>
+          <li>Emails newsletter : conservés jusqu'à désinscription</li>
+          <li>Abonnements push : supprimés automatiquement si votre navigateur révoque l'autorisation</li>
+          <li>Événements soumis : conservés indéfiniment sauf suppression sur demande</li>
+          <li>Commentaires : conservés indéfiniment sauf signalement justifié</li>
+          <li>Comptes organisateurs : conservés jusqu'à suppression sur demande</li>
         </ul>
       </div>
 
       <div class="legal-section">
-        <h2>5. Durée de conservation</h2>
-        <ul>
-          <li>Données newsletter : jusqu'à désinscription</li>
-          <li>Données supporters fondateurs : conservées indéfiniment (caractère historique)</li>
-          <li>Données de paiement : 5 ans conformément aux obligations légales (Stripe)</li>
-          <li>Données de navigation : 13 mois maximum</li>
-        </ul>
-      </div>
-
-      <div class="legal-section">
-        <h2>6. Vos droits</h2>
+        <h2>7. Vos droits (RGPD / UK GDPR)</h2>
         <p>Conformément au RGPD et au UK GDPR, vous disposez des droits suivants :</p>
         <ul>
           <li>Droit d'accès à vos données personnelles</li>
           <li>Droit de rectification des données inexactes</li>
-          <li>Droit de suppression («&nbsp;droit à l'oubli&nbsp;»)</li>
-          <li>Droit à la portabilité de vos données</li>
+          <li>Droit à l'effacement («&nbsp;droit à l'oubli&nbsp;»)</li>
           <li>Droit d'opposition au traitement</li>
+          <li>Droit à la portabilité de vos données</li>
+          <li>Droit de vous désinscrire à tout moment de la newsletter</li>
         </ul>
-        <p style="margin-top: 12px;">
-          Pour exercer ces droits : <a href="mailto:lotbo@bup-mark.com">lotbo@bup-mark.com</a>
-          — réponse sous 30 jours.
+        <p style="margin-top:12px;">
+          Pour exercer ces droits : <a href="mailto:lotbo@bup-mark.com">lotbo@bup-mark.com</a> — réponse sous 30 jours.
         </p>
       </div>
 
       <div class="legal-section">
-        <h2>7. Sécurité</h2>
+        <h2>8. Cookies</h2>
         <p>
-          LOTBO met en œuvre des mesures techniques et organisationnelles appropriées pour protéger
-          vos données contre tout accès non autorisé, perte ou destruction :
-          chiffrement TLS en transit, accès restreint aux données, authentification forte.
+          Lotbo n'utilise pas de cookies de tracking tiers. Seuls des cookies techniques essentiels
+          à l'authentification (session Supabase) peuvent être déposés si vous créez un compte organisateur.
+          Ces cookies sont strictement nécessaires et ne requièrent pas votre consentement selon la directive ePrivacy.
         </p>
       </div>
 
       <div class="legal-section">
-        <h2>8. Modifications</h2>
+        <h2>9. Sécurité</h2>
         <p>
-          Cette politique peut être mise à jour. La date de dernière modification figure en haut de page.
-          En cas de modification substantielle, vous serez informé par email si vous êtes inscrit.
+          Vos données sont hébergées sur des infrastructures sécurisées (Supabase + Vercel),
+          avec chiffrement en transit (HTTPS/TLS) et au repos. Les mots de passe sont chiffrés
+          et jamais stockés en clair. L'accès aux données est restreint via des politiques
+          RLS (Row Level Security) dans notre base de données.
         </p>
+      </div>
+
+      <div class="legal-section">
+        <h2>10. Droit applicable</h2>
+        <p>
+          La présente politique est régie par le droit anglais et gallois, conformément
+          au siège social de Bup Mark Ltd au Royaume-Uni. Elle est également conforme
+          au Règlement Général sur la Protection des Données (RGPD) de l'Union Européenne.
+          Nous pouvons mettre à jour cette politique à tout moment — la date de modification est indiquée en haut.
+        </p>
+      </div>
+
+      <div class="contact-cta">
+        <p>Une question sur vos données ?</p>
+        <p class="sub">Bup Mark Ltd · Office 12, Initial Business Centre, Manchester M40 8WN, UK</p>
+        <a href="mailto:lotbo@bup-mark.com" class="btn-brand">lotbo@bup-mark.com</a>
       </div>
 
     </div>

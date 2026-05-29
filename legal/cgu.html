@@ -11,33 +11,39 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
   <style>
-    :root { --bg: #F7F2E8; --brand: #C8431A; --dark: #1A0A00; --mid: #5C3D2E; --light: #E8E0D0; --white: #FFFFFF; --cream: #f5ede0; --shadow: rgba(26,10,0,0.07); }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--dark); line-height: 1.7; overflow-x: hidden; min-height: 100vh; display: flex; flex-direction: column; }
-    a { color: var(--brand); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    main { flex: 1; }
-    nav { position: sticky; top: 0; z-index: 100; background: rgba(247,242,232,0.96); backdrop-filter: blur(10px); border-bottom: 1px solid var(--light); padding: 0 20px; height: 60px; display: flex; align-items: center; justify-content: space-between; }
-    .nav-logo { font-family: 'DM Serif Display', serif; font-size: 1.4rem; color: var(--brand); letter-spacing: 0.04em; text-decoration: none; }
-    .nav-back { font-size: 0.82rem; font-weight: 500; color: var(--mid); border: 1.5px solid var(--light); border-radius: 20px; padding: 6px 14px; transition: all 0.2s; }
-    .nav-back:hover { background: var(--brand); color: var(--white); border-color: var(--brand); text-decoration: none; }
-    .page-hero { padding: 48px 20px 36px; border-bottom: 1px solid var(--light); max-width: 720px; margin: 0 auto; }
-    .page-hero h1 { font-family: 'DM Serif Display', serif; font-size: 2rem; color: var(--dark); margin-bottom: 8px; }
-    .page-hero p { font-size: 0.87rem; color: var(--mid); }
-    .content-wrap { max-width: 720px; margin: 0 auto; padding: 40px 20px 64px; }
-    .legal-section { margin-bottom: 36px; }
-    .legal-section h2 { font-family: 'DM Serif Display', serif; font-size: 1.2rem; color: var(--dark); margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--light); }
-    .legal-section p { font-size: 0.93rem; color: var(--mid); margin-bottom: 8px; line-height: 1.75; }
-    .legal-section strong { color: var(--dark); font-weight: 600; }
-    .legal-section ul { list-style: none; margin: 10px 0; }
-    .legal-section ul li { font-size: 0.93rem; color: var(--mid); padding: 5px 0; display: flex; gap: 8px; align-items: flex-start; line-height: 1.55; }
-    .legal-section ul li::before { content: '—'; color: var(--brand); font-weight: 700; flex-shrink: 0; }
-    footer { background: var(--dark); color: rgba(245,237,224,0.4); text-align: center; padding: 24px 20px; font-size: 0.78rem; }
-    .footer-logo { font-family: 'DM Serif Display', serif; font-size: 1.2rem; color: var(--cream); margin-bottom: 8px; }
-    .footer-links { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 10px; }
-    .footer-links a { color: rgba(245,237,224,0.45); font-size: 0.76rem; transition: color 0.2s; text-decoration: none; }
-    .footer-links a:hover { color: var(--brand); }
-    .footer-copy { font-size: 0.68rem; color: rgba(245,237,224,0.2); }
+    :root { --bg:#F7F2E8; --brand:#C8431A; --dark:#1A1410; --mid:#8C5A40; --light:#E8E0D0; --white:#FFFFFF; --cream:#F7F2E8; --shadow:rgba(26,20,16,0.08); }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--dark);line-height:1.7;overflow-x:hidden;min-height:100vh;display:flex;flex-direction:column;}
+    a{color:var(--brand);text-decoration:none;}
+    a:hover{text-decoration:underline;}
+    main{flex:1;}
+    nav{position:sticky;top:0;z-index:100;background:rgba(247,242,232,0.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--light);padding:0 20px;height:60px;display:flex;align-items:center;justify-content:space-between;}
+    .nav-logo{font-family:'DM Serif Display',serif;font-size:1.4rem;color:var(--brand);letter-spacing:0.04em;}
+    .nav-back{font-size:0.82rem;font-weight:500;color:var(--mid);border:1.5px solid var(--light);border-radius:20px;padding:6px 14px;transition:all 0.2s;}
+    .nav-back:hover{background:var(--brand);color:var(--white);border-color:var(--brand);text-decoration:none;}
+    .page-hero{padding:48px 20px 36px;border-bottom:1px solid var(--light);max-width:720px;margin:0 auto;}
+    .page-hero h1{font-family:'DM Serif Display',serif;font-size:2rem;color:var(--dark);margin-bottom:8px;}
+    .page-hero p{font-size:0.87rem;color:var(--mid);}
+    .content-wrap{max-width:720px;margin:0 auto;padding:40px 20px 80px;}
+    .legal-section{margin-bottom:36px;}
+    .legal-section h2{font-family:'DM Serif Display',serif;font-size:1.2rem;color:var(--dark);margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--light);}
+    .legal-section p{font-size:0.93rem;color:var(--mid);margin-bottom:8px;line-height:1.75;}
+    .legal-section strong{color:var(--dark);font-weight:600;}
+    .legal-section ul{list-style:none;margin:10px 0;}
+    .legal-section ul li{font-size:0.93rem;color:var(--mid);padding:5px 0;display:flex;gap:8px;align-items:flex-start;line-height:1.55;}
+    .legal-section ul li::before{content:'—';color:var(--brand);font-weight:700;flex-shrink:0;}
+    .address-box{background:var(--white);border-radius:10px;padding:14px 16px;margin:12px 0;box-shadow:0 1px 4px var(--shadow);}
+    .address-box p{font-size:14px;line-height:1.8;color:var(--dark);margin:0;}
+    .contact-cta{background:rgba(200,67,26,0.08);border:1px solid rgba(200,67,26,0.2);border-radius:16px;padding:24px 20px;text-align:center;margin-top:8px;}
+    .contact-cta p{color:var(--dark);font-size:15px;font-weight:600;margin-bottom:8px;}
+    .contact-cta .sub{color:var(--mid);font-size:13px;margin-bottom:16px;}
+    .btn-brand{background:var(--brand);color:white;padding:12px 24px;border-radius:10px;font-size:14px;font-weight:bold;display:inline-block;}
+    footer{background:var(--dark);color:rgba(247,242,232,0.4);text-align:center;padding:24px 20px;font-size:0.78rem;}
+    .footer-logo{font-family:'DM Serif Display',serif;font-size:1.2rem;color:var(--cream);margin-bottom:8px;}
+    .footer-links{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:10px;}
+    .footer-links a{color:rgba(247,242,232,0.45);font-size:0.76rem;transition:color 0.2s;text-decoration:none;}
+    .footer-links a:hover{color:var(--brand);}
+    .footer-copy{font-size:0.68rem;color:rgba(247,242,232,0.2);}
   </style>
 </head>
 <body>
@@ -49,94 +55,128 @@
 
   <main>
     <div class="page-hero">
-      <h1>Conditions générales d'utilisation</h1>
-      <p>CGU applicables à l'utilisation de la plateforme LOTBO (lotbo.app) — mise à jour le 26 mai 2026.</p>
+      <h1>Conditions Générales d'Utilisation</h1>
+      <p>CGU applicables à l'utilisation de la plateforme LOTBO — mise à jour le 11 mai 2026.</p>
     </div>
 
     <div class="content-wrap">
 
       <div class="legal-section">
-        <h2>1. Présentation</h2>
+        <h2>1. Présentation de Lotbo</h2>
         <p>
-          LOTBO est une plateforme de découverte d'événements locaux éditée par <strong>Bup Mark Ltd</strong>
-          (company number 15840780, Manchester, Royaume-Uni).
-          L'accès et l'utilisation de la plateforme impliquent l'acceptation sans réserve des présentes CGU.
+          Lotbo est une plateforme mondiale de découverte d'événements locaux, accessible via
+          <strong>lotbo.app</strong> et <strong>app.lotbo.app</strong>.
+        </p>
+        <p>
+          Lotbo est un produit de <strong>Bup Mark Ltd</strong>, société enregistrée en Angleterre
+          et au Pays de Galles sous le numéro <strong>15840780</strong>, dont le siège social est :
+        </p>
+        <div class="address-box">
+          <p>Office 12, Initial Business Centre<br/>Wilson Business Park<br/>Manchester, M40 8WN<br/>Royaume-Uni</p>
+        </div>
+      </div>
+
+      <div class="legal-section">
+        <h2>2. Acceptation des conditions</h2>
+        <p>
+          En accédant à Lotbo ou en utilisant ses services, vous acceptez sans réserve les présentes CGU.
+          Si vous n'acceptez pas ces conditions, vous devez cesser d'utiliser la plateforme.
+          Bup Mark Ltd se réserve le droit de modifier ces CGU à tout moment.
         </p>
       </div>
 
       <div class="legal-section">
-        <h2>2. Accès à la plateforme</h2>
-        <p>
-          LOTBO est accessible à toute personne disposant d'une connexion internet.
-          L'inscription est nécessaire pour accéder à certaines fonctionnalités (création d'événements, profil, etc.).
-          LOTBO se réserve le droit de modifier, suspendre ou interrompre tout ou partie du service à tout moment.
-        </p>
-      </div>
-
-      <div class="legal-section">
-        <h2>3. Utilisation de la plateforme</h2>
-        <p>En utilisant LOTBO, vous vous engagez à :</p>
+        <h2>3. Description du service</h2>
+        <p>Lotbo permet de :</p>
         <ul>
-          <li>Fournir des informations exactes et à jour lors de l'inscription</li>
-          <li>Ne pas publier de contenu illicite, trompeur, diffamatoire ou portant atteinte à des droits tiers</li>
-          <li>Ne pas utiliser la plateforme à des fins de spam, phishing ou activités frauduleuses</li>
-          <li>Respecter les droits de propriété intellectuelle de LOTBO et des autres utilisateurs</li>
-          <li>Ne pas tenter de contourner les mécanismes de sécurité de la plateforme</li>
+          <li>Découvrir des événements locaux via une carte interactive</li>
+          <li>Soumettre des événements pour publication après validation</li>
+          <li>S'inscrire à des alertes par ville et catégorie</li>
+          <li>Commenter et interagir avec les événements publiés</li>
+          <li>Recevoir des notifications push pour les nouveaux événements</li>
         </ul>
-      </div>
-
-      <div class="legal-section">
-        <h2>4. Contenu soumis par les organisateurs</h2>
         <p>
-          Les organisateurs d'événements sont <strong>seuls responsables</strong> du contenu qu'ils publient
-          sur LOTBO (description, images, informations de l'événement, etc.).
-          LOTBO agit en qualité d'hébergeur et ne peut être tenu responsable des contenus publiés par les tiers.
-        </p>
-        <p>
-          LOTBO se réserve le droit de supprimer tout contenu contraire aux présentes CGU
-          ou à la législation applicable, sans préavis ni indemnité.
+          Lotbo se réserve le droit de modifier, suspendre ou interrompre tout ou partie
+          du service à tout moment, sans préavis ni responsabilité.
         </p>
       </div>
 
       <div class="legal-section">
-        <h2>5. Campagne de soutien fondateurs</h2>
+        <h2>4. Soumission d'événements</h2>
+        <p>Tout utilisateur peut soumettre un événement. En soumettant, vous déclarez que :</p>
+        <ul>
+          <li>Les informations fournies sont exactes, complètes et à jour</li>
+          <li>Vous êtes autorisé à publier cet événement</li>
+          <li>Le contenu ne viole aucun droit de tiers (droits d'auteur, marques, vie privée)</li>
+          <li>L'événement est réel et n'est pas du spam ou du contenu frauduleux</li>
+          <li>Vous acceptez que Lotbo modère et puisse rejeter ou supprimer votre soumission</li>
+        </ul>
         <p>
-          Les contributions financières à la campagne de soutien fondateurs sont des <strong>dons uniques irrévocables</strong>
-          effectués en contrepartie d'avantages non garantis dont la livraison dépend du développement de la plateforme.
+          Bup Mark Ltd se réserve le droit de refuser ou supprimer tout événement sans justification,
+          notamment en cas de contenu inapproprié, inexact, illégal ou contraire aux valeurs de la plateforme.
         </p>
-        <p>
-          Les avantages listés (badges, accès premium, mentions) seront activés au lancement officiel de LOTBO.
-          Bup Mark Ltd s'engage à fournir ces avantages dans des délais raisonnables.
-        </p>
-        <p>
-          Les paiements sont définitifs et non remboursables sauf en cas de manquement grave de la part de LOTBO.
-        </p>
+      </div>
+
+      <div class="legal-section">
+        <h2>5. Contenu interdit</h2>
+        <p>Il est strictement interdit de publier ou soumettre du contenu :</p>
+        <ul>
+          <li>Illégal, frauduleux ou trompeur</li>
+          <li>Haineux, discriminatoire, raciste ou incitant à la violence</li>
+          <li>Pornographique ou sexuellement explicite</li>
+          <li>Portant atteinte à la vie privée ou aux droits de tiers</li>
+          <li>Constituant du spam, de la publicité non sollicitée ou du phishing</li>
+          <li>Contenant des logiciels malveillants ou du code nuisible</li>
+        </ul>
       </div>
 
       <div class="legal-section">
         <h2>6. Propriété intellectuelle</h2>
         <p>
-          La marque LOTBO, le logo, l'interface et l'ensemble des contenus éditoriaux sont la propriété
-          exclusive de <strong>Bup Mark Ltd</strong>. Toute reproduction non autorisée est interdite.
+          La marque <strong>Lotbo</strong>, le logo, le design et l'ensemble du contenu éditorial de la plateforme
+          sont la propriété exclusive de Bup Mark Ltd et sont protégés par les lois sur la propriété intellectuelle.
         </p>
         <p>
-          En publiant du contenu sur LOTBO, les organisateurs accordent à LOTBO une licence non exclusive
-          d'utilisation de ce contenu aux fins du fonctionnement et de la promotion du service.
+          En soumettant du contenu (texte, photos, descriptions), vous accordez à Bup Mark Ltd
+          une licence mondiale, non exclusive et gratuite pour afficher, reproduire et distribuer
+          ce contenu dans le cadre du service Lotbo. Vous conservez tous vos droits sur ce contenu.
         </p>
       </div>
 
       <div class="legal-section">
         <h2>7. Limitation de responsabilité</h2>
         <p>
-          LOTBO ne saurait être tenu responsable des dommages directs ou indirects résultant
-          de l'utilisation ou de l'impossibilité d'utiliser la plateforme.
-          LOTBO ne garantit pas l'exactitude ou l'exhaustivité des informations d'événements fournies
-          par des organisateurs tiers.
+          Lotbo est une plateforme d'agrégation et de découverte. Bup Mark Ltd n'organise pas les événements
+          listés et ne peut être tenu responsable de :
+        </p>
+        <ul>
+          <li>L'exactitude des informations soumises par les utilisateurs</li>
+          <li>L'annulation, la modification ou la non-tenue d'un événement</li>
+          <li>Tout dommage résultant de la participation à un événement listé</li>
+          <li>L'indisponibilité temporaire ou permanente du service</li>
+          <li>La perte de données en cas de panne technique</li>
+        </ul>
+        <p>
+          Dans les limites autorisées par la loi applicable, la responsabilité totale de Bup Mark Ltd
+          ne pourra excéder £0 (le service est gratuit).
         </p>
       </div>
 
       <div class="legal-section">
-        <h2>8. Données personnelles</h2>
+        <h2>8. Comptes utilisateurs</h2>
+        <p>
+          La création d'un compte organisateur est optionnelle. Si vous créez un compte, vous êtes
+          responsable de la confidentialité de vos identifiants et de toutes les actions
+          effectuées depuis votre compte.
+        </p>
+        <p>
+          Bup Mark Ltd se réserve le droit de suspendre ou supprimer tout compte en cas
+          de violation des présentes CGU, sans préavis.
+        </p>
+      </div>
+
+      <div class="legal-section">
+        <h2>9. Données personnelles</h2>
         <p>
           Le traitement de vos données personnelles est décrit dans notre
           <a href="/legal/confidentialite">Politique de confidentialité</a>.
@@ -144,23 +184,22 @@
       </div>
 
       <div class="legal-section">
-        <h2>9. Modifications des CGU</h2>
+        <h2>10. Droit applicable et juridiction</h2>
         <p>
-          LOTBO se réserve le droit de modifier les présentes CGU à tout moment.
-          Les utilisateurs sont invités à consulter régulièrement cette page.
-          La continuation de l'utilisation du service après modification vaut acceptation des nouvelles conditions.
+          Les présentes CGU sont régies par le droit anglais et gallois.
+          Tout litige relatif à l'utilisation de Lotbo sera soumis à la compétence exclusive
+          des tribunaux d'Angleterre et du Pays de Galles.
+        </p>
+        <p>
+          Si vous résidez dans l'Union Européenne, vous bénéficiez également des protections
+          prévues par le droit de votre pays de résidence.
         </p>
       </div>
 
-      <div class="legal-section">
-        <h2>10. Droit applicable et juridiction</h2>
-        <p>
-          Les présentes CGU sont régies par le droit anglais (England &amp; Wales).
-          Tout litige sera soumis à la compétence exclusive des tribunaux de Manchester, Royaume-Uni.
-        </p>
-        <p>
-          Contact : <a href="mailto:hello@lotbo.app">hello@lotbo.app</a>
-        </p>
+      <div class="contact-cta">
+        <p>Une question juridique ?</p>
+        <p class="sub">Bup Mark Ltd · Office 12, Initial Business Centre, Manchester M40 8WN, UK</p>
+        <a href="mailto:lotbo@bup-mark.com" class="btn-brand">lotbo@bup-mark.com</a>
       </div>
 
     </div>
