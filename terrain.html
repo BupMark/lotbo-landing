@@ -126,9 +126,9 @@
           <option value="">Choisir...</option>
           <option value="gaetchens">Gaetchens Pierre Louis</option>
           <option value="nancy">Nancy Gilot</option>
-          <option value="enqueteur3">Enquêteur 3</option>
-          <option value="enqueteur4">Enquêteur 4</option>
-          <option value="enqueteur5">Enquêteur 5</option>
+          <option value="aicha">Aïcha Jeffkina Gaëlla</option>
+          <option value="syndia">Syndia Alexis</option>
+          <option value="osny">Osny Pierre Louis</option>
         </select>
       </div>
       <div class="ctx-field">
@@ -163,14 +163,15 @@
       </div>
       <div class="ctx-field full">
         <label>ZONE JACMEL</label>
-        <select name="zone">
+        <select name="zone" id="zone-select" onchange="toggleAutreZone(this.value)">
           <option value="">Sélectionner...</option>
           <option>Centre-ville Jacmel</option>
           <option>Cayes-Jacmel</option>
           <option>Marigot</option>
           <option>La Vallée</option>
-          <option>Autre zone</option>
+          <option value="autre">Autre zone</option>
         </select>
+        <input type="text" id="zone-autre" name="zone_autre" class="field-input" placeholder="Préciser la zone..." style="display:none; margin-top:6px;">
       </div>
     </div>
   </div>
@@ -419,6 +420,20 @@
 let profilCurrent = null
 let interviewCount = 0
 
+// Remplissage automatique du genre selon l'enquêteur
+const ENQUETEUR_GENRE = {
+  'gaetchens': 'f',
+  'nancy':     'f',
+  'aicha':     'f',
+  'syndia':    'f',
+  'osny':      'h',
+}
+document.getElementById('enqueteur').addEventListener('change', function() {
+  const genre = ENQUETEUR_GENRE[this.value]
+  const genreSelect = document.querySelector('select[name="genre"]')
+  if (genre && genreSelect) genreSelect.value = genre
+})
+
 // Date et heure auto
 document.getElementById('date-field').value = new Date().toISOString().split('T')[0]
 const now = new Date()
@@ -443,6 +458,12 @@ function selectScale(btn, name, val) {
 
 function toggleEventDetails(show) {
   document.getElementById('event-details').style.display = show ? 'block' : 'none'
+}
+
+function toggleAutreZone(val) {
+  const input = document.getElementById('zone-autre')
+  input.style.display = val === 'autre' ? 'block' : 'none'
+  if (val !== 'autre') input.value = ''
 }
 
 async function submitTerrain() {
@@ -493,6 +514,9 @@ function newInterview() {
   const n = new Date()
   document.getElementById('heure-field').value = n.getHours().toString().padStart(2,'0') + ':' + n.getMinutes().toString().padStart(2,'0')
   document.getElementById('terrain-submit').disabled = false
+  document.getElementById('zone-select').value = ''
+  document.getElementById('zone-autre').style.display = 'none'
+  document.getElementById('zone-autre').value = ''
   document.getElementById('confirm-screen').style.display = 'none'
   document.getElementById('form-screen').style.display = 'block'
   window.scrollTo(0, 0)
