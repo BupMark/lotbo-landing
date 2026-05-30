@@ -76,10 +76,29 @@ async function insertSupporter({ nom, email, palier, montant, stripe_payment_id 
   }
 }
 
-// ── Template email HTML inline ────────────────────────────────────────────────
-function buildEmailHtml({ nom, palier }) {
-  const label = PALIER_LABEL[palier] || palier;
-  const emoji = PALIER_EMOJI[palier] || '🎉';
+// ── Supabase update email status ───────────────────────────────────────────────
+async function updateEmailStatus({ stripe_payment_id, email_sent, email_error }) {
+  const url = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/rest/v1/supporters?stripe_payment_id=eq.${stripe_payment_id}`;
+  await fetch(url, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type':  'application/json',
+      'apikey':        process.env.SUPABASE_SERVICE_ROLE_KEY,
+      'Authorization': `Bearer ${process.env.SUPABASE_SERVICE_ROLE_KEY}`,
+    },
+    body: JSON.stringify(
+      email_sent
+        ? { email_sent: true }
+        : { email_sent: false, email_error }
+    ),
+  });
+}
+
+// ── Template email HTML inline ─────────────────────────────────────────────────
+// IMPORTANT : reçoit aussi toEmail pour l'afficher dans le corps
+function buildEmailHtml({ nom, palier, toEmail }) {
+  const label  = PALIER_LABEL[palier] || palier;
+  const emoji  = PALIER_EMOJI[palier] || '🎉';
   const prenom = nom ? nom.split(' ')[0] : 'Supporter';
 
   return `<!DOCTYPE html>
@@ -112,31 +131,31 @@ function buildEmailHtml({ nom, palier }) {
                 Bonjour ${prenom},
               </p>
               <p style="color:#D4C5B0;font-size:16px;line-height:1.7;margin:0 0 20px;">
-                Ton soutien est enregistré. Tu fais maintenant partie des premiers à avoir cru en LOTBO — 
+                Ton soutien est enregistré. Tu fais maintenant partie des premiers à avoir cru en LOTBO —
                 une plateforme mondiale d'événements née en Haïti le 5 mai 2026.
               </p>
               <p style="color:#D4C5B0;font-size:16px;line-height:1.7;margin:0 0 20px;">
-  Ton nom sera visible pour toujours sur 
-  <a href="https://lotbo.app/supporters" style="color:#C8431A;">lotbo.app/supporters</a>.
-</p>
-<p style="color:#F7F2E8;font-size:16px;font-weight:bold;line-height:1.7;margin:0 0 8px;">
-  🏅 Ton badge Supporter Fondateur t'attend.
-</p>
-<p style="color:#D4C5B0;font-size:15px;line-height:1.7;margin:0 0 32px;">
-  Crée ton compte LOTBO avec cette adresse email 
-  (<strong style="color:#F7F2E8;">${toEmail}</strong>) 
-  pour recevoir ton badge automatiquement sur ton profil.
-</p>
+                Ton nom sera visible pour toujours sur
+                <a href="https://lotbo.app/supporters" style="color:#C8431A;">lotbo.app/supporters</a>.
+              </p>
+              <p style="color:#F7F2E8;font-size:16px;font-weight:bold;line-height:1.7;margin:0 0 8px;">
+                🏅 Ton badge Supporter Fondateur t'attend.
+              </p>
+              <p style="color:#D4C5B0;font-size:15px;line-height:1.7;margin:0 0 32px;">
+                Crée ton compte LOTBO avec cette adresse email
+                (<strong style="color:#F7F2E8;">${toEmail}</strong>)
+                pour recevoir ton badge automatiquement sur ton profil.
+              </p>
 
-<!-- Bloc CTA -->
-<table width="100%" cellpadding="0" cellspacing="0">
+              <!-- CTA -->
+              <table width="100%" cellpadding="0" cellspacing="0">
                 <tr>
                   <td align="center">
-                    <a href="https://app.lotbo.app" 
+                    <a href="https://app.lotbo.app/login"
                        style="display:inline-block;background:#C8431A;color:#F7F2E8;text-decoration:none;
                               padding:14px 32px;border-radius:8px;font-size:16px;font-weight:bold;
                               font-family:Georgia,serif;">
-                      Découvrir LOTBO →
+                      Créer mon compte LOTBO →
                     </a>
                   </td>
                 </tr>
@@ -176,7 +195,7 @@ async function sendSupporterEmail({ toEmail, toName, palier }) {
       sender:      { name: 'Handgod · LOTBO', email: 'hello@lotbo.app' },
       to:          [{ email: toEmail, name: toName || 'Supporter' }],
       subject:     `${PALIER_EMOJI[palier] || '🎉'} Tu es Supporter Fondateur ${label} — LOTBO`,
-      htmlContent: buildEmailHtml({ nom: toName, palier }),
+      htmlContent: buildEmailHtml({ nom: toName, palier, toEmail }),
     }),
   });
 
@@ -275,7 +294,7 @@ export default async function handler(req, res) {
     console.error('[Webhook] ❌ Supabase insert failed:', e.message);
   }
 
-  // Email Brevo
+  // Email Brevo + log résultat dans Supabase
   if (customerEmail) {
     try {
       await sendSupporterEmail({
@@ -284,11 +303,14 @@ export default async function handler(req, res) {
         palier,
       });
       console.log('[Webhook] ✅ Brevo email envoyé à', customerEmail);
+      await updateEmailStatus({ stripe_payment_id: paymentIntent, email_sent: true });
     } catch (e) {
       console.error('[Webhook] ❌ Brevo email failed:', e.message);
+      await updateEmailStatus({ stripe_payment_id: paymentIntent, email_sent: false, email_error: e.message });
     }
   } else {
     console.warn('[Webhook] ⚠️ Pas d\'email client — Brevo skipped');
+    await updateEmailStatus({ stripe_payment_id: paymentIntent, email_sent: false, email_error: 'Pas d\'email client' });
   }
 
   return res.status(200).json({ received: true });
