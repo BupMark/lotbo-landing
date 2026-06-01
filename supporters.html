@@ -448,22 +448,6 @@
       history.replaceState({}, '', '/supporters');
     }
 
-    // ── COUNTDOWN ──────────────────────────────────────────────────────────
-    function pad(n) { return String(n).padStart(2, '0'); }
-    function updateCountdown() {
-      const diff = new Date('2026-05-31T23:59:59') - new Date();
-      if (diff <= 0) {
-        document.getElementById('cd-days').textContent  = '00';
-        document.getElementById('cd-hours').textContent = '00';
-        document.getElementById('cd-mins').textContent  = '00';
-        return;
-      }
-      document.getElementById('cd-days').textContent  = pad(Math.floor(diff / 86400000));
-      document.getElementById('cd-hours').textContent = pad(Math.floor((diff % 86400000) / 3600000));
-      document.getElementById('cd-mins').textContent  = pad(Math.floor((diff % 3600000)  / 60000));
-    }
-    updateCountdown();
-    setInterval(updateCountdown, 30000);
 
     // ── DISPLAY NAME ───────────────────────────────────────────────────────
     function getDisplayName(s) {
