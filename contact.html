@@ -4,22 +4,66 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Contact — Lotbo</title>
-  <meta name="robots" content="noindex"/>
+  <meta name="description" content="Contacte l'équipe Lotbo : question générale, partenariat, bug ou presse. Réponse sous 48h ouvrées."/>
   <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png"/>
   <meta name="theme-color" content="#0B0603"/>
+  <meta property="og:title" content="Contact — Lotbo"/>
+  <meta property="og:description" content="Contacte l'équipe Lotbo. Réponse sous 48h ouvrées."/>
+  <meta property="og:type" content="website"/>
+  <meta name="robots" content="index, follow"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
   <style>
-    :root { --night: #0B0603; --night2: #110C08; --brique: #C8431A; --brique2: #FF5A1F; --or: #D4A820; --creme: #F7F2E8; --terre: #8C5A40; --brume: #E8E0D0; --border: rgba(247,242,232,0.08); --glass: rgba(247,242,232,0.04); --glass2: rgba(247,242,232,0.08); }
+    :root {
+      --night:   #0B0603;
+      --night2:  #110C08;
+      --brique:  #C8431A;
+      --brique2: #FF5A1F;
+      --or:      #D4A820;
+      --creme:   #F7F2E8;
+      --terre:   #8C5A40;
+      --brume:   #E8E0D0;
+      --border:  rgba(247,242,232,0.08);
+      --glass:   rgba(247,242,232,0.04);
+      --glass2:  rgba(247,242,232,0.08);
+    }
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body { font-family: 'DM Sans', sans-serif; background: var(--night); color: var(--creme); line-height: 1.6; overflow-x: hidden; min-height: 100vh; display: flex; flex-direction: column; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--night);
+      color: var(--creme);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    img { display: block; max-width: 100%; }
     a { color: inherit; text-decoration: none; }
-    @keyframes shimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
-    nav { position: sticky; top: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 16px 48px; background: rgba(11,6,3,0.8); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid var(--border); }
+
+    /* ── ANIMATIONS ─────────────────────────── */
+    @keyframes shimmer {
+      0%   { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity .5s ease, transform .5s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── NAV ────────────────────────────────── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 48px;
+      background: rgba(11,6,3,.92); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
     .nav-logo { font-family: 'Playfair Display', serif; font-weight: 700; font-style: italic; font-size: 24px; color: var(--creme); flex-shrink: 0; }
     .nav-logo span { color: var(--brique); }
     .nav-links { display: flex; gap: 28px; flex: 1; justify-content: center; }
@@ -28,9 +72,8 @@
     .nav-link-app { color: var(--brique) !important; border: 1px solid rgba(200,67,26,.3); border-radius: 6px; padding: 4px 12px; }
     .nav-link-app:hover { background: rgba(200,67,26,.08); color: var(--brique2) !important; border-color: var(--brique); }
     .nav-actions { display: flex; gap: 10px; align-items: center; flex-shrink: 0; }
-    .btn-primary { font-size: 13px; font-weight: 500; padding: 9px 22px; background: var(--brique); border: none; border-radius: 8px; color: var(--creme); cursor: pointer; transition: all .25s; white-space: nowrap; display: inline-block; box-shadow: 0 0 24px rgba(200,67,26,.35); position: relative; overflow: hidden; }
-    .btn-primary::after { content: ''; position: absolute; top: 0; left: -100%; width: 60%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,.15), transparent); animation: shimmer 3s infinite; }
-    .btn-primary:hover { box-shadow: 0 0 40px rgba(200,67,26,.6); transform: translateY(-1px); }
+    .btn-primary { padding: 8px 18px; background: var(--brique); border-radius: 8px; font-size: 13px; font-weight: 500; color: var(--creme); transition: all .2s; white-space: nowrap; }
+    .btn-primary:hover { background: var(--brique2); }
     .nav-hamburger { display: none; background: var(--glass); border: 1px solid var(--border); color: var(--creme); border-radius: 6px; padding: 7px 10px; font-size: 16px; cursor: pointer; }
     .nav-drawer { position: fixed; top: 0; left: 0; bottom: 0; width: 280px; z-index: 200; background: #0F0A07; border-right: 1px solid var(--border); transform: translateX(-100%); transition: transform .3s ease; display: flex; flex-direction: column; }
     .nav-drawer.open { transform: translateX(0); }
@@ -42,13 +85,203 @@
     .nav-drawer-divider { height: 1px; background: var(--border); margin: 8px 0; }
     .nav-overlay { display: none; position: fixed; inset: 0; z-index: 199; background: rgba(0,0,0,.7); }
     .nav-overlay.open { display: block; }
-    @media (max-width: 768px) { nav { padding: 12px 16px; } .nav-links { display: none; } .nav-hamburger { display: flex; } .btn-primary { padding: 7px 14px; font-size: 12px; } }
-    .wip-section { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 100px 24px; text-align: center; gap: 16px; }
-    .wip-badge { display: inline-flex; align-items: center; gap: 6px; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; padding: 6px 14px; border-radius: 20px; border: 1px solid rgba(200,67,26,.3); background: rgba(200,67,26,.06); color: rgba(200,67,26,.9); }
-    .wip-h1 { font-family: 'DM Serif Display', serif; font-style: italic; font-size: clamp(28px, 4vw, 44px); color: var(--creme); }
-    .wip-body { font-size: 15px; color: rgba(247,242,232,.45); max-width: 420px; line-height: 1.7; }
-    .wip-back { display: inline-flex; align-items: center; gap: 6px; padding: 10px 22px; font-size: 14px; font-weight: 500; background: var(--glass); border: 1px solid var(--border); border-radius: 8px; color: rgba(247,242,232,.7); transition: all .2s; margin-top: 8px; }
-    .wip-back:hover { background: var(--glass2); color: var(--creme); }
+    @media (max-width: 768px) {
+      nav { padding: 12px 16px; }
+      .nav-links { display: none; }
+      .btn-primary { display: none; }
+      .nav-hamburger { display: flex; }
+    }
+
+    /* ── HERO COMPACT ───────────────────────── */
+    .hero-contact {
+      position: relative; overflow: hidden;
+      padding: 60px 48px 52px;
+      text-align: center;
+    }
+    .hero-blobs { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+    .blob {
+      position: absolute; border-radius: 50%;
+      filter: blur(80px); opacity: .18;
+    }
+    .blob-1 { width: 500px; height: 500px; background: var(--brique); top: -160px; left: -100px; }
+    .blob-2 { width: 400px; height: 400px; background: var(--or); bottom: -140px; right: -60px; }
+    .hero-contact-inner { position: relative; z-index: 1; max-width: 640px; margin: 0 auto; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 5px 14px; border-radius: 20px;
+      background: rgba(200,67,26,.12); border: 1px solid rgba(200,67,26,.25);
+      font-size: 12px; font-weight: 500; color: var(--brique2);
+      letter-spacing: .06em; text-transform: uppercase;
+      margin-bottom: 20px;
+      animation: fadeUp .5s ease both;
+    }
+    .hero-contact-inner h1 {
+      font-family: 'DM Serif Display', serif; font-style: italic;
+      font-size: clamp(32px, 5vw, 52px); color: var(--creme);
+      line-height: 1.15; margin-bottom: 14px;
+      animation: fadeUp .5s .1s ease both;
+    }
+    .hero-contact-sub {
+      font-size: 16px; color: rgba(247,242,232,.5);
+      max-width: 480px; margin: 0 auto;
+      animation: fadeUp .5s .2s ease both;
+    }
+    @media (max-width: 768px) {
+      .hero-contact { padding: 48px 20px 40px; }
+    }
+
+    /* ── MAIN WRAPPER ───────────────────────── */
+    .contact-main {
+      max-width: 1100px; margin: 0 auto;
+      padding: 0 48px 80px;
+    }
+    @media (max-width: 768px) { .contact-main { padding: 0 20px 60px; } }
+
+    /* ── SECTION GRID 2 COLONNES ────────────── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 32px;
+      margin-bottom: 64px;
+    }
+    @media (min-width: 768px) {
+      .contact-grid {
+        grid-template-columns: 1.4fr 1fr;
+        gap: 48px;
+      }
+    }
+
+    /* ── FORMULAIRE ─────────────────────────── */
+    .form-card {
+      background: var(--glass); border: 1px solid var(--border);
+      border-radius: 16px; padding: 36px;
+    }
+    .form-title {
+      font-family: 'DM Serif Display', serif; font-style: italic;
+      font-size: 22px; color: var(--creme); margin-bottom: 6px;
+    }
+    .form-subtitle { font-size: 13px; color: rgba(247,242,232,.4); margin-bottom: 28px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 520px) { .form-row { grid-template-columns: 1fr; } }
+    .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+    .form-group label { font-size: 12px; font-weight: 500; color: rgba(247,242,232,.5); letter-spacing: .06em; text-transform: uppercase; }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: rgba(247,242,232,.04);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      color: var(--creme);
+      outline: none;
+      transition: border-color .2s;
+      width: 100%;
+    }
+    .form-group select option { background: #1A1410; color: var(--creme); }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: rgba(200,67,26,.5);
+      background: rgba(200,67,26,.04);
+    }
+    .form-group textarea { resize: vertical; min-height: 120px; }
+    .form-submit {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 28px;
+      background: var(--brique); border: none; border-radius: 8px;
+      font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500;
+      color: var(--creme); cursor: pointer;
+      box-shadow: 0 0 24px rgba(200,67,26,.35);
+      transition: all .25s; position: relative; overflow: hidden;
+      margin-top: 4px;
+    }
+    .form-submit::after { content: ''; position: absolute; top: 0; left: -100%; width: 60%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,.15), transparent); animation: shimmer 3s infinite; }
+    .form-submit:hover { background: var(--brique2); box-shadow: 0 0 40px rgba(200,67,26,.6); transform: translateY(-1px); }
+    .form-note { font-size: 12px; color: rgba(247,242,232,.3); margin-top: 14px; }
+    .form-note a { color: var(--terre); border-bottom: 1px solid rgba(140,90,64,.3); transition: color .15s; }
+    .form-note a:hover { color: var(--brique); }
+
+    /* ── COLONNE DROITE — INFOS ─────────────── */
+    .contact-info { display: flex; flex-direction: column; gap: 16px; }
+    .info-card {
+      background: var(--glass); border: 1px solid var(--border);
+      border-radius: 12px; padding: 20px 22px;
+      display: flex; align-items: flex-start; gap: 14px;
+      transition: border-color .2s, background .2s;
+    }
+    .info-card:hover { border-color: rgba(200,67,26,.25); background: rgba(200,67,26,.04); }
+    .info-icon { font-size: 22px; flex-shrink: 0; margin-top: 1px; }
+    .info-body { min-width: 0; }
+    .info-label { font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--terre); margin-bottom: 4px; }
+    .info-value { font-size: 14px; color: var(--creme); font-weight: 500; word-break: break-all; }
+    .info-hint { font-size: 12px; color: rgba(247,242,232,.35); margin-top: 2px; }
+
+    .delay-card {
+      background: rgba(212,168,32,.06); border: 1px solid rgba(212,168,32,.15);
+      border-radius: 12px; padding: 16px 22px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .delay-icon { font-size: 20px; }
+    .delay-text { font-size: 13px; color: rgba(247,242,232,.55); }
+    .delay-text strong { color: var(--or); font-weight: 600; }
+
+    .social-row { display: flex; gap: 10px; flex-wrap: wrap; }
+    .social-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 8px 16px;
+      background: var(--glass); border: 1px solid var(--border);
+      border-radius: 8px; font-size: 13px; color: rgba(247,242,232,.6);
+      transition: all .2s; flex: 1; min-width: 80px; justify-content: center;
+    }
+    .social-btn:hover { border-color: rgba(200,67,26,.3); color: var(--creme); background: rgba(200,67,26,.06); }
+
+    .section-divider {
+      height: 1px; background: var(--border); margin: 0 0 56px;
+    }
+
+    /* ── FAQ RAPIDE ─────────────────────────── */
+    .faq-rapide-section { margin-bottom: 80px; }
+    .section-eyebrow {
+      font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--terre); margin-bottom: 10px;
+    }
+    .section-h2 {
+      font-family: 'DM Serif Display', serif; font-style: italic;
+      font-size: clamp(22px, 3vw, 30px); color: var(--creme); margin-bottom: 32px;
+    }
+    .faq-rapide {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    @media (min-width: 768px) {
+      .faq-rapide { grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    }
+    .faq-rapide-card {
+      background: var(--glass); border: 1px solid var(--border);
+      border-radius: 12px; padding: 24px;
+      transition: border-color .2s, background .2s;
+    }
+    .faq-rapide-card:hover { border-color: rgba(200,67,26,.2); background: rgba(200,67,26,.03); }
+    .faq-rapide-q {
+      font-size: 14px; font-weight: 500; color: var(--creme);
+      margin-bottom: 10px; line-height: 1.45;
+    }
+    .faq-rapide-a {
+      font-size: 13px; color: rgba(247,242,232,.45); line-height: 1.6;
+    }
+    .faq-rapide-a a { color: var(--terre); border-bottom: 1px solid rgba(140,90,64,.3); transition: color .15s; }
+    .faq-rapide-a a:hover { color: var(--brique); }
+    .faq-rapide-tag {
+      display: inline-block; padding: 2px 8px; border-radius: 4px;
+      font-size: 11px; font-weight: 600; letter-spacing: .06em;
+      background: rgba(200,67,26,.12); color: var(--brique2);
+      margin-bottom: 10px;
+    }
+
+    /* ── FOOTER ─────────────────────────────── */
     footer { background: #1A1410; border-top: 1px solid rgba(247,242,232,.06); padding: 64px 48px 32px; }
     .footer-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(5,1fr); gap: 32px; margin-bottom: 48px; }
     .footer-col-title { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 700; font-size: 14px; color: var(--creme); margin-bottom: 16px; }
@@ -65,6 +298,7 @@
   </style>
 </head>
 <body>
+
 <nav>
   <a href="/" class="nav-logo">lot<span>bo</span></a>
   <div class="nav-links">
@@ -79,6 +313,7 @@
     <button class="nav-hamburger" onclick="toggleMobileMenu()" aria-label="Menu">☰</button>
   </div>
 </nav>
+
 <div class="nav-drawer" id="navDrawer">
   <div class="nav-drawer-header">
     <a href="/" class="nav-logo">lot<span>bo</span></a>
@@ -95,30 +330,230 @@
   </div>
 </div>
 <div class="nav-overlay" id="navOverlay" onclick="toggleMobileMenu()"></div>
-<section class="wip-section">
-  <div class="wip-badge">✦ En cours</div>
-  <h1 class="wip-h1">Contact</h1>
-  <p class="wip-body">Cette page est en cours de rédaction. Revenez bientôt !</p>
-  <a href="/" class="wip-back">← Retour à l'accueil</a>
+
+<!-- ── HERO ──────────────────────────────────── -->
+<section class="hero-contact">
+  <div class="hero-blobs">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+  </div>
+  <div class="hero-contact-inner">
+    <div class="hero-badge">✉️ Contact</div>
+    <h1>On est là pour toi</h1>
+    <p class="hero-contact-sub">Une question, un bug, un partenariat ? Écris-nous — on répond sous 48h ouvrées.</p>
+  </div>
 </section>
+
+<!-- ── CONTENU PRINCIPAL ──────────────────────── -->
+<main class="contact-main">
+
+  <!-- GRID 2 COLONNES -->
+  <div class="contact-grid reveal">
+
+    <!-- COLONNE GAUCHE — FORMULAIRE -->
+    <div class="form-card">
+      <div class="form-title">Envoie-nous un message</div>
+      <div class="form-subtitle">Tous les champs sont requis.</div>
+      <form id="contactForm" onsubmit="submitForm(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="prenom">Prénom</label>
+            <input type="text" id="prenom" name="prenom" placeholder="Ton prénom" required autocomplete="given-name"/>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="toi@exemple.com" required autocomplete="email"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="sujet">Sujet</label>
+          <select id="sujet" name="sujet" required>
+            <option value="" disabled selected>Choisis un sujet…</option>
+            <option value="Question générale">Question générale</option>
+            <option value="Partenariat">Partenariat</option>
+            <option value="Bug">Bug</option>
+            <option value="Presse">Presse</option>
+            <option value="Autre">Autre</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="5" placeholder="Décris ta demande…" required></textarea>
+        </div>
+        <button type="submit" class="form-submit">Envoyer le message →</button>
+      </form>
+      <p class="form-note">
+        Ou écris-nous directement à <a href="mailto:lotbo@bup-mark.com">lotbo@bup-mark.com</a>
+      </p>
+    </div>
+
+    <!-- COLONNE DROITE — INFOS CONTACT -->
+    <div class="contact-info">
+
+      <a href="mailto:lotbo@bup-mark.com" class="info-card">
+        <span class="info-icon">📧</span>
+        <div class="info-body">
+          <div class="info-label">Email général</div>
+          <div class="info-value">lotbo@bup-mark.com</div>
+          <div class="info-hint">Pour toute question ou demande</div>
+        </div>
+      </a>
+
+      <a href="mailto:lotbo@bup-mark.com?subject=[Partenariat]" class="info-card">
+        <span class="info-icon">🤝</span>
+        <div class="info-body">
+          <div class="info-label">Partenariats</div>
+          <div class="info-value">lotbo@bup-mark.com</div>
+          <div class="info-hint">Objet : [Partenariat]</div>
+        </div>
+      </a>
+
+      <a href="mailto:lotbo@bup-mark.com?subject=[Bug]" class="info-card">
+        <span class="info-icon">🐛</span>
+        <div class="info-body">
+          <div class="info-label">Signaler un bug</div>
+          <div class="info-value">lotbo@bup-mark.com</div>
+          <div class="info-hint">Objet : [Bug]</div>
+        </div>
+      </a>
+
+      <div class="delay-card">
+        <span class="delay-icon">⏱️</span>
+        <div class="delay-text">Délai de réponse habituel : <strong>48h ouvrées</strong></div>
+      </div>
+
+      <div>
+        <div class="info-label" style="margin-bottom: 10px;">Réseaux sociaux</div>
+        <div class="social-row">
+          <a href="https://x.com/lotbo_app" class="social-btn" target="_blank" rel="noopener">𝕏 Twitter</a>
+          <a href="https://facebook.com/lotboapp" class="social-btn" target="_blank" rel="noopener">Facebook</a>
+          <a href="https://instagram.com/lotbo_app" class="social-btn" target="_blank" rel="noopener">Instagram</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- FAQ RAPIDE — 3 COLONNES -->
+  <section class="faq-rapide-section reveal">
+    <div class="section-eyebrow">Questions fréquentes</div>
+    <h2 class="section-h2">Réponses rapides</h2>
+    <div class="faq-rapide">
+
+      <div class="faq-rapide-card">
+        <div class="faq-rapide-tag">⚠️ Signalement</div>
+        <div class="faq-rapide-q">Comment signaler un événement incorrect ?</div>
+        <div class="faq-rapide-a">
+          Ouvre la page de l'événement dans l'app et utilise le bouton
+          <strong style="color: var(--creme);">⚠️ Signaler</strong>. Notre équipe examine chaque signalement sous 24h.
+        </div>
+      </div>
+
+      <div class="faq-rapide-card">
+        <div class="faq-rapide-tag">+ Soumettre</div>
+        <div class="faq-rapide-q">Comment soumettre un événement ?</div>
+        <div class="faq-rapide-a">
+          Depuis l'app, appuie sur
+          <strong style="color: var(--creme);">+ Ajouter un événement</strong> et suis les étapes.
+          Ton événement est examiné et publié sous 48h.
+          <a href="https://app.lotbo.app" target="_blank" rel="noopener">Ouvrir l'app →</a>
+        </div>
+      </div>
+
+      <div class="faq-rapide-card">
+        <div class="faq-rapide-tag">⏳ Publication</div>
+        <div class="faq-rapide-q">Mon événement n'est pas publié après 48h ?</div>
+        <div class="faq-rapide-a">
+          Vérifie tes spams, puis contacte-nous avec le titre et la date de l'événement à
+          <a href="mailto:lotbo@bup-mark.com?subject=[Publication]">lotbo@bup-mark.com</a>.
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<!-- ── FOOTER ─────────────────────────────────── -->
 <footer>
   <div class="footer-grid">
-    <div><div class="footer-col-title">LOTBO</div><div class="footer-col-links"><a href="/a-propos.html" class="footer-col-link">À propos</a><a href="/a-propos.html" class="footer-col-link">Notre histoire</a><a href="#" class="footer-col-link">Né en Haïti 🇭🇹</a><a href="#" class="footer-col-link">Presse</a><a href="#" class="footer-col-link">Carrières</a></div></div>
-    <div><div class="footer-col-title">Communauté</div><div class="footer-col-links"><a href="#" class="footer-col-link">Nos utilisateurs</a><a href="#" class="footer-col-link">Charte membres</a><a href="#" class="footer-col-link">Charte contributeurs</a><a href="#" class="footer-col-link">Charte organisateurs</a><a href="#" class="footer-col-link">Devenir ambassadeur</a></div></div>
-    <div><div class="footer-col-title">Légal</div><div class="footer-col-links"><a href="#" class="footer-col-link">CGU</a><a href="#" class="footer-col-link">Confidentialité</a><a href="#" class="footer-col-link">Modération</a><a href="#" class="footer-col-link">Cookies</a><a href="#" class="footer-col-link">Mentions légales</a></div></div>
-    <div><div class="footer-col-title">Collaboration</div><div class="footer-col-links"><a href="/partenariats.html" class="footer-col-link">Partenariats</a><a href="#" class="footer-col-link">Institutions</a><a href="#" class="footer-col-link">Médias &amp; Presse</a><a href="#" class="footer-col-link">Formulaire contact</a></div></div>
-    <div><div class="footer-col-title">Ressources</div><div class="footer-col-links"><a href="#" class="footer-col-link">Blog</a><a href="https://app.lotbo.app/aide" class="footer-col-link">Centre d'aide</a><a href="#" class="footer-col-link">Guide organisateurs</a><a href="#" class="footer-col-link">Roadmap</a></div></div>
+    <div>
+      <div class="footer-col-title">LOTBO</div>
+      <div class="footer-col-links">
+        <a href="/a-propos.html" class="footer-col-link">À propos</a>
+        <a href="/a-propos.html" class="footer-col-link">Notre histoire</a>
+        <a href="#" class="footer-col-link">Né en Haïti 🇭🇹</a>
+        <a href="#" class="footer-col-link">Presse</a>
+        <a href="#" class="footer-col-link">Carrières</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Communauté</div>
+      <div class="footer-col-links">
+        <a href="#" class="footer-col-link">Nos utilisateurs</a>
+        <a href="#" class="footer-col-link">Charte membres</a>
+        <a href="#" class="footer-col-link">Charte contributeurs</a>
+        <a href="#" class="footer-col-link">Charte organisateurs</a>
+        <a href="#" class="footer-col-link">Devenir ambassadeur</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Légal</div>
+      <div class="footer-col-links">
+        <a href="#" class="footer-col-link">CGU</a>
+        <a href="#" class="footer-col-link">Confidentialité</a>
+        <a href="#" class="footer-col-link">Modération</a>
+        <a href="#" class="footer-col-link">Cookies</a>
+        <a href="#" class="footer-col-link">Mentions légales</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Collaboration</div>
+      <div class="footer-col-links">
+        <a href="/partenariats.html" class="footer-col-link">Partenariats</a>
+        <a href="#" class="footer-col-link">Institutions</a>
+        <a href="#" class="footer-col-link">Médias &amp; Presse</a>
+        <a href="/contact.html" class="footer-col-link">Formulaire contact</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Ressources</div>
+      <div class="footer-col-links">
+        <a href="#" class="footer-col-link">Blog</a>
+        <a href="https://app.lotbo.app/aide" class="footer-col-link">Centre d'aide</a>
+        <a href="#" class="footer-col-link">Guide organisateurs</a>
+        <a href="#" class="footer-col-link">Roadmap</a>
+      </div>
+    </div>
   </div>
   <div class="footer-bottom">
     <a href="/" class="footer-logo">lot<span>bo</span></a>
     <div class="footer-note">© 2026 · Né en Haïti, pour le monde entier 🇭🇹</div>
   </div>
 </footer>
+
 <script>
   function toggleMobileMenu() {
     document.getElementById('navDrawer').classList.toggle('open');
     document.getElementById('navOverlay').classList.toggle('open');
   }
+
+  function submitForm(e) {
+    e.preventDefault();
+    const prenom  = document.getElementById('prenom').value.trim();
+    const email   = document.getElementById('email').value.trim();
+    const sujet   = document.getElementById('sujet').value;
+    const message = document.getElementById('message').value.trim();
+    const body    = encodeURIComponent(`Prénom : ${prenom}\nEmail : ${email}\n\n${message}`);
+    window.location.href = `mailto:lotbo@bup-mark.com?subject=[${sujet}] Message de ${prenom}&body=${body}`;
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
 </body>
 </html>
