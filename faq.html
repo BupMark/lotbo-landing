@@ -3,38 +3,73 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>FAQ — Lotbo</title>
-  <meta name="robots" content="noindex"/>
+  <title>FAQ — Centre d'aide Lotbo</title>
+  <meta name="description" content="Toutes les réponses à tes questions sur Lotbo : trouver des événements, soumettre, organisations, points, app mobile et plus."/>
   <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png"/>
   <meta name="theme-color" content="#0B0603"/>
+  <meta property="og:title" content="FAQ — Centre d'aide Lotbo"/>
+  <meta property="og:description" content="35 réponses aux questions les plus fréquentes sur Lotbo."/>
+  <meta property="og:type" content="website"/>
+  <meta name="robots" content="index, follow"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
   <style>
     :root {
-      --night: #0B0603; --night2: #110C08;
-      --brique: #C8431A; --brique2: #FF5A1F;
-      --or: #D4A820; --creme: #F7F2E8;
-      --terre: #8C5A40; --brume: #E8E0D0;
-      --border: rgba(247,242,232,0.08);
-      --glass: rgba(247,242,232,0.04);
-      --glass2: rgba(247,242,232,0.08);
+      --night:   #0B0603;
+      --night2:  #110C08;
+      --brique:  #C8431A;
+      --brique2: #FF5A1F;
+      --or:      #D4A820;
+      --creme:   #F7F2E8;
+      --terre:   #8C5A40;
+      --brume:   #E8E0D0;
+      --border:  rgba(247,242,232,0.08);
+      --glass:   rgba(247,242,232,0.04);
+      --glass2:  rgba(247,242,232,0.08);
     }
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
       font-family: 'DM Sans', sans-serif;
-      background: var(--night); color: var(--creme);
-      line-height: 1.6; overflow-x: hidden;
-      min-height: 100vh; display: flex; flex-direction: column;
+      background: var(--night);
+      color: var(--creme);
+      line-height: 1.6;
+      overflow-x: hidden;
     }
+    img { display: block; max-width: 100%; }
     a { color: inherit; text-decoration: none; }
+
+    /* ── ANIMATIONS ─────────────────────────── */
     @keyframes shimmer {
-      0% { transform: translateX(-100%); }
+      0%   { transform: translateX(-100%); }
       100% { transform: translateX(100%); }
     }
+    @keyframes blobFloat1 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33%       { transform: translate(40px, -30px) scale(1.05); }
+      66%       { transform: translate(-20px, 20px) scale(0.95); }
+    }
+    @keyframes blobFloat2 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33%       { transform: translate(-40px, 20px) scale(1.08); }
+      66%       { transform: translate(30px, -40px) scale(0.92); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: .1s; }
+    .reveal-delay-2 { transition-delay: .2s; }
+
+    /* ── NAV ────────────────────────────────── */
     nav {
       position: sticky; top: 0; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
@@ -65,13 +100,120 @@
     .nav-drawer-divider { height: 1px; background: var(--border); margin: 8px 0; }
     .nav-overlay { display: none; position: fixed; inset: 0; z-index: 199; background: rgba(0,0,0,.7); }
     .nav-overlay.open { display: block; }
-    @media (max-width: 768px) { nav { padding: 12px 16px; } .nav-links { display: none; } .nav-hamburger { display: flex; } .btn-primary { padding: 7px 14px; font-size: 12px; } }
-    .wip-section { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 100px 24px; text-align: center; gap: 16px; }
-    .wip-badge { display: inline-flex; align-items: center; gap: 6px; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; padding: 6px 14px; border-radius: 20px; border: 1px solid rgba(200,67,26,.3); background: rgba(200,67,26,.06); color: rgba(200,67,26,.9); }
-    .wip-h1 { font-family: 'DM Serif Display', serif; font-style: italic; font-size: clamp(28px, 4vw, 44px); color: var(--creme); }
-    .wip-body { font-size: 15px; color: rgba(247,242,232,.45); max-width: 420px; line-height: 1.7; }
-    .wip-back { display: inline-flex; align-items: center; gap: 6px; padding: 10px 22px; font-size: 14px; font-weight: 500; background: var(--glass); border: 1px solid var(--border); border-radius: 8px; color: rgba(247,242,232,.7); transition: all .2s; margin-top: 8px; }
-    .wip-back:hover { background: var(--glass2); color: var(--creme); }
+    @media (max-width: 768px) {
+      nav { padding: 12px 16px; }
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      .btn-primary { padding: 7px 14px; font-size: 12px; }
+    }
+
+    /* ── HERO ───────────────────────────────── */
+    .hero-faq {
+      position: relative; overflow: hidden;
+      background: var(--night2);
+      padding: 90px 48px 72px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero-blobs { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+    .blob { position: absolute; border-radius: 50%; filter: blur(80px); opacity: .18; }
+    .blob-1 { width: 500px; height: 500px; background: var(--brique); top: -150px; left: -100px; animation: blobFloat1 18s ease-in-out infinite; }
+    .blob-2 { width: 400px; height: 400px; background: var(--or); bottom: -120px; right: -80px; animation: blobFloat2 22s ease-in-out infinite; }
+    .hero-faq-inner { position: relative; z-index: 1; max-width: 680px; margin: 0 auto; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+      padding: 7px 18px; border-radius: 20px;
+      border: 1px solid rgba(200,67,26,.35); background: rgba(200,67,26,.08); color: var(--brique2);
+      margin-bottom: 24px;
+    }
+    .hero-faq h1 {
+      font-family: 'DM Serif Display', serif; font-style: italic;
+      font-size: clamp(32px, 5vw, 56px); color: var(--creme);
+      line-height: 1.1; margin-bottom: 16px;
+    }
+    .hero-faq-sub { font-size: 16px; color: rgba(247,242,232,.5); max-width: 480px; margin: 0 auto 40px; line-height: 1.7; }
+    @media (max-width: 768px) { .hero-faq { padding: 64px 20px 48px; } }
+
+    /* ── NAV RAPIDE ─────────────────────────── */
+    .faq-nav { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+    .faq-nav-btn {
+      font-size: 13px; font-weight: 500; padding: 9px 20px;
+      border: 1px solid var(--border); border-radius: 24px;
+      background: var(--glass); color: rgba(247,242,232,.6);
+      cursor: pointer; transition: all .2s; text-decoration: none; display: inline-block;
+    }
+    .faq-nav-btn:hover { background: var(--glass2); color: var(--creme); border-color: rgba(247,242,232,.2); }
+
+    /* ── SECTIONS FAQ ───────────────────────── */
+    .faq-main { max-width: 800px; margin: 0 auto; padding: 80px 24px 48px; }
+    .faq-section { margin-bottom: 72px; }
+    .faq-section-label {
+      font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--brique); margin-bottom: 8px;
+    }
+    .faq-section-h2 {
+      font-family: 'DM Serif Display', serif; font-style: italic;
+      font-size: clamp(22px, 3vw, 30px); color: var(--creme);
+      margin-bottom: 32px; padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* ── ACCORDÉON ──────────────────────────── */
+    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq-question {
+      width: 100%; background: none; border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      padding: 18px 0; text-align: left;
+      font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 500;
+      color: rgba(247,242,232,.85); transition: color .2s;
+    }
+    .faq-question:hover { color: var(--creme); }
+    .faq-item.open .faq-question { color: var(--creme); }
+    .faq-icon {
+      flex-shrink: 0; width: 22px; height: 22px;
+      border: 1px solid var(--border); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; color: rgba(247,242,232,.4);
+      transition: transform .25s, color .2s, border-color .2s;
+    }
+    .faq-item.open .faq-icon { transform: rotate(45deg); color: var(--brique); border-color: rgba(200,67,26,.4); }
+    .faq-answer {
+      display: grid; grid-template-rows: 0fr;
+      transition: grid-template-rows .3s ease;
+    }
+    .faq-item.open .faq-answer { grid-template-rows: 1fr; }
+    .faq-answer-inner {
+      overflow: hidden;
+      font-size: 14px; line-height: 1.8; color: rgba(247,242,232,.5);
+      padding-bottom: 0; transition: padding-bottom .3s ease;
+    }
+    .faq-item.open .faq-answer-inner { padding-bottom: 20px; }
+
+    /* ── BLOC CONTACT ───────────────────────── */
+    .faq-contact {
+      background: var(--night2);
+      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+      padding: 64px 24px; text-align: center;
+    }
+    .faq-contact-inner { max-width: 520px; margin: 0 auto; }
+    .faq-contact-label { font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--terre); margin-bottom: 12px; }
+    .faq-contact h2 {
+      font-family: 'DM Serif Display', serif; font-style: italic;
+      font-size: clamp(22px, 3vw, 30px); color: var(--creme); margin-bottom: 12px;
+    }
+    .faq-contact p { font-size: 14px; color: rgba(247,242,232,.45); margin-bottom: 28px; line-height: 1.7; }
+    .faq-contact-link {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 28px; background: var(--brique); border-radius: 8px;
+      font-size: 14px; font-weight: 500; color: var(--creme);
+      box-shadow: 0 0 24px rgba(200,67,26,.35);
+      transition: all .25s; position: relative; overflow: hidden;
+    }
+    .faq-contact-link::after { content: ''; position: absolute; top: 0; left: -100%; width: 60%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,.15), transparent); animation: shimmer 3s infinite; }
+    .faq-contact-link:hover { box-shadow: 0 0 40px rgba(200,67,26,.6); transform: translateY(-1px); }
+
+    /* ── FOOTER ─────────────────────────────── */
     footer { background: #1A1410; border-top: 1px solid rgba(247,242,232,.06); padding: 64px 48px 32px; }
     .footer-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(5,1fr); gap: 32px; margin-bottom: 48px; }
     .footer-col-title { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 700; font-size: 14px; color: var(--creme); margin-bottom: 16px; }
@@ -88,13 +230,14 @@
   </style>
 </head>
 <body>
+
 <nav>
   <a href="/" class="nav-logo">lot<span>bo</span></a>
   <div class="nav-links">
     <a href="/" class="nav-link">Accueil</a>
-    <a href="#" class="nav-link">À propos</a>
-    <a href="#" class="nav-link">FAQ</a>
-    <a href="#" class="nav-link">Contact</a>
+    <a href="/a-propos.html" class="nav-link">À propos</a>
+    <a href="/faq.html" class="nav-link">FAQ</a>
+    <a href="/contact.html" class="nav-link">Contact</a>
     <a href="https://app.lotbo.app" class="nav-link nav-link-app">Ouvrir l'app →</a>
   </div>
   <div class="nav-actions">
@@ -102,6 +245,7 @@
     <button class="nav-hamburger" onclick="toggleMobileMenu()" aria-label="Menu">☰</button>
   </div>
 </nav>
+
 <div class="nav-drawer" id="navDrawer">
   <div class="nav-drawer-header">
     <a href="/" class="nav-logo">lot<span>bo</span></a>
@@ -112,25 +256,352 @@
     <a href="https://app.lotbo.app" class="nav-drawer-link">🗺️ Ouvrir l'app</a>
     <a href="https://app.lotbo.app/login" class="nav-drawer-link">👤 Créer un compte</a>
     <div class="nav-drawer-divider"></div>
-    <a href="#" class="nav-drawer-link">ℹ️ À propos</a>
-    <a href="#" class="nav-drawer-link">❓ FAQ</a>
-    <a href="#" class="nav-drawer-link">✉️ Contact</a>
+    <a href="/a-propos.html" class="nav-drawer-link">ℹ️ À propos</a>
+    <a href="/faq.html" class="nav-drawer-link">❓ FAQ</a>
+    <a href="/contact.html" class="nav-drawer-link">✉️ Contact</a>
   </div>
 </div>
 <div class="nav-overlay" id="navOverlay" onclick="toggleMobileMenu()"></div>
-<section class="wip-section">
-  <div class="wip-badge">✦ En cours</div>
-  <h1 class="wip-h1">Foire aux questions</h1>
-  <p class="wip-body">Cette page est en cours de rédaction. Revenez bientôt !</p>
-  <a href="/" class="wip-back">← Retour à l'accueil</a>
+
+<!-- ── HERO ──────────────────────────────────── -->
+<section class="hero-faq">
+  <div class="hero-blobs">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+  </div>
+  <div class="hero-faq-inner">
+    <div class="hero-badge">❓ Centre d'aide</div>
+    <h1>Toutes les réponses à tes questions</h1>
+    <p class="hero-faq-sub">35 questions sur les visiteurs, les organisateurs et le fonctionnement général de Lotbo.</p>
+    <nav class="faq-nav" aria-label="Navigation rapide">
+      <a href="#visiteurs" class="faq-nav-btn">🗺️ Visiteurs</a>
+      <a href="#organisateurs" class="faq-nav-btn">📅 Organisateurs</a>
+      <a href="#general" class="faq-nav-btn">⚙️ Général</a>
+    </nav>
+  </div>
 </section>
+
+<!-- ── CONTENU FAQ ────────────────────────────── -->
+<main class="faq-main">
+
+  <!-- VISITEURS -->
+  <section class="faq-section reveal" id="visiteurs">
+    <p class="faq-section-label">Pour les visiteurs</p>
+    <h2 class="faq-section-h2">Trouver et explorer des événements</h2>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        Comment trouver un événement près de moi ?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">Ouvre <strong>app.lotbo.app</strong> — la carte se centre automatiquement sur ta position. Les événements apparaissent comme des pins rouges. Tu peux aussi basculer en vue Liste avec le bouton 📋 pour parcourir les événements sous forme de cartes.</div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        Comment voir les événements en mode liste ?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">Clique sur le bouton <strong>📋 Liste</strong> en haut de la carte. La vue liste affiche les événements en cartes avec un hero qui regroupe les chiffres clés (nombre d'événements, villes, etc.).</div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        Comment chercher dans une autre ville ?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">Utilise la barre de recherche en haut de l'interface. Tape le nom d'une ville et la carte se déplace automatiquement vers cette destination, affichant les événements locaux.</div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        Comment filtrer les événements ?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">Clique sur le bouton <strong>⚙️ Filtres</strong>. Tu peux filtrer par catégorie, type d'accès (gratuit/payant), période et bien d'autres critères. Des raccourcis rapides sont aussi disponibles directement sous la barre de recherche.</div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        Comment utiliser le filtre "Paris · Juillet 2026" ?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">Ce sont les filtres rapides pré-configurés. Clique dessus pour activer immédiatement une combinaison lieu + période. Le filtre "Juillet 2026" couvre notamment la période Wikimania (18–27 juillet), un grand événement mondial.</div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        Comment laisser un commentaire sur un événement ?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">Ouvre la page détail d'un événement et fais défiler jusqu'à la section <strong>Commentaires</strong>. Le fil de discussion supporte deux niveaux : commentaires principaux et réponses directes.</div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        Comment réagir à un commentaire ?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">Sous chaque commentaire, des boutons emoji sont disponibles : 👍 ❤️ 😂 😮. Le compteur se met à jour en temps réel pour tous les visiteurs de la page.</div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        Comment partager un événement ?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">Sur la page détail d'un événement, tu trouveras des boutons de partage direct vers <strong>WhatsApp</strong>, <strong>Facebook</strong> et <strong>X (Twitter)</strong>, ainsi qu'un bouton pour copier le lien.</div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        Comment activer les notifications ?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">Ouvre le menu <strong>☰</strong> puis clique sur <em>Activer les notifications</em>. Le navigateur te demandera la permission — accepte pour recevoir les alertes d'événements.</div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        Un événement affiché est incorrect, que faire ?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">Sur la page détail, clique sur le bouton <strong>⚠️ Signaler</strong>. Choisis la raison du signalement (date incorrecte, lieu erroné, doublon, etc.). Notre équipe traite les signalements sous 24h.</div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        Comment voir les événements "À la une" ?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">La section <strong>À la une</strong> est visible dès l'accueil de l'app. Elle s'affiche en carrousel sur mobile et en grille sur desktop, avec les événements mis en avant par notre équipe éditoriale.</div></div>
+    </div>
+  </section>
+
+  <!-- ORGANISATEURS -->
+  <section class="faq-section reveal" id="organisateurs">
+    <p class="faq-section-label">Pour les organisateurs</p>
+    <h2 class="faq-section-h2">Soumettre et gérer ses événements</h2>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        Comment soumettre un événement ?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">Clique sur le bouton <strong>+ Ajouter</strong> dans l'app. Remplis le formulaire complet : titre, description, date, lieu (avec autocomplétion d'adresse), catégorie et accès. Soumets — ton événement sera examiné sous quelques heures.</div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        Qu'est-ce que "Scan &amp; Publie" ?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner"><strong>Scan &amp; Publie</strong> utilise l'IA Claude Vision pour lire une photo de ton affiche événement. En environ 10 secondes, il extrait automatiquement le titre, la date, le lieu, la description et la catégorie, puis pré-remplit le formulaire pour toi.</div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        Scan &amp; Publie détecte-t-il les événements récurrents ?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">Oui. Si l'affiche mentionne une récurrence ("tous les vendredis", "chaque mois"), Scan &amp; Publie la détecte et pré-remplit automatiquement la fréquence et les jours concernés dans le formulaire.</div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        Scan &amp; Publie peut-il gérer plusieurs événements à la fois ?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">Oui. Si tu scannes un calendrier ou un programme multi-événements, l'IA détecte N événements distincts. Tu peux sélectionner ceux à soumettre avant de valider.</div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        Comment soumettre un événement récurrent ?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">Dans le formulaire d'ajout, coche la case <strong>"Cet événement se répète"</strong>. Définis ensuite la fréquence (quotidien, hebdomadaire, mensuel) et les jours. Lotbo génère automatiquement jusqu'à 5 occurrences.</div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        Comment soumettre un événement qui dure toute la journée ?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">Coche la case <strong>"Toute la journée"</strong> dans le formulaire. Les champs d'heure de début et de fin disparaissent automatiquement.</div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        Mon événement dure plusieurs jours, comment le soumettre ?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">Remplis une <strong>Date de début</strong> et une <strong>Date de fin</strong> différentes. L'événement affichera automatiquement un badge <em>Multi-jours</em> sur la carte et dans les listes.</div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        Combien de temps pour que mon événement soit publié ?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">Entre quelques heures et 24h selon le volume de soumissions. Chaque événement passe par une vérification manuelle pour garantir la qualité des données.</div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        Mon événement a été refusé, pourquoi ?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">Les raisons les plus fréquentes : informations incomplètes, doublon d'un événement déjà publié, ou adresse introuvable sur la carte. Corrige les informations et resoumets — aucune pénalité.</div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        Puis-je modifier un événement après soumission ?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">Oui. Sur la page de l'événement, clique sur <strong>"Proposer une correction"</strong>. Indique le champ à corriger avec l'ancienne et la nouvelle valeur. La correction est examinée par notre équipe.</div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        Comment créer une organisation ?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">Va dans ton profil → <strong>Créer une organisation</strong>. Remplis le nom, le slogan, la ville principale et ajoute ton logo. Une vitrine publique est créée automatiquement.</div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        Comment modifier la vitrine de mon organisation ?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">Sur la vitrine publique de ton organisation, clique sur le bouton <strong>✏️ Modifier</strong> (visible uniquement pour le propriétaire). Tu peux mettre à jour toutes les informations.</div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        Comment inviter des membres dans mon organisation ?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">Dans la page <strong>Membres</strong> de ton organisation, clique sur <em>Inviter</em>. Saisis l'adresse email et le rôle. Le lien d'invitation est valable 14 jours. Si la personne a déjà un compte Lotbo, elle est ajoutée directement.</div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        Comment lier un événement à mon organisation ?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">Dans le formulaire <strong>/ajouter</strong>, un menu déroulant <em>Organisation</em> apparaît si tu es membre d'au moins une organisation. Sélectionne la tienne pour rattacher l'événement.</div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        Comment transférer des événements existants vers mon organisation ?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">Dans la page <strong>Membres</strong>, utilise la section <em>Transférer des événements</em>. Sélectionne les événements à rattacher et confirme. Ils apparaîtront sur la vitrine de l'organisation.</div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        Comment rejoindre une organisation via invitation ?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">Clique sur le lien reçu par email. Si tu n'as pas encore de compte, l'inscription accepte automatiquement l'invitation. Si tu as déjà un compte, connecte-toi et l'ajout est immédiat.</div></div>
+    </div>
+  </section>
+
+  <!-- GÉNÉRAL -->
+  <section class="faq-section reveal" id="general">
+    <p class="faq-section-label">Fonctionnement général</p>
+    <h2 class="faq-section-h2">Lotbo, la plateforme et la communauté</h2>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        Lotbo est-il gratuit ?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">Oui, entièrement gratuit. Aucun abonnement, aucune commission sur les billets, aucun frais caché. Lotbo est financé par des partenariats institutionnels et des supporters.</div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        Dans quels pays Lotbo est-il disponible ?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">Lotbo est disponible dans le monde entier. Né en Haïti le 5 mai 2026, il couvre aujourd'hui plus de <strong>16 pays</strong> et <strong>56+ villes</strong>. N'importe qui peut soumettre un événement depuis n'importe où.</div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        Quelles langues sont disponibles ?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">Lotbo est disponible en <strong>5 langues</strong> : Français, English, Español, Português et Kreyòl haïtien. Le sélecteur de langue se trouve en bas de l'interface.</div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        Comment gagner des points sur Lotbo ?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">Des points sont attribués pour chaque événement approuvé, chaque commentaire posté et chaque réaction laissée. Ces points font progresser ton niveau : de <em>Découvreur</em> jusqu'à <em>Ambassadeur</em>.</div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        Qu'est-ce que le classement Lotbo ?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">Le classement trie les membres les plus actifs par points. Un podium <strong>Top 3</strong> est mis en avant. Tu le retrouves dans l'onglet <strong>🏆 Ansanm</strong> de l'application.</div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        Comment utiliser Lotbo comme une app mobile ?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">Lotbo est une <strong>PWA</strong> (Progressive Web App) — pas besoin de store. Sur Android, ouvre Chrome, clique sur <em>⋮ → Ajouter à l'écran d'accueil</em>. Sur iPhone, ouvre Safari, clique <em>Partager → Sur l'écran d'accueil</em>.</div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        Qu'est-ce qu'Ansanm ?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner"><em>Ansanm</em> signifie "Ensemble" en kreyòl haïtien. C'est l'espace communautaire de Lotbo : classement des membres, système de points, badges et niveaux. Un rappel que Lotbo est construit collectivement.</div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        Comment contacter l'équipe Lotbo ?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">Écris-nous à <a href="mailto:lotbo@bup-mark.com" style="color:var(--brique);text-decoration:underline;">lotbo@bup-mark.com</a>. Nous répondons sous 48h ouvrées.</div></div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ── BLOC CONTACT ───────────────────────────── -->
+<section class="faq-contact reveal">
+  <div class="faq-contact-inner">
+    <p class="faq-contact-label">Besoin d'aide ?</p>
+    <h2>Tu n'as pas trouvé ta réponse ?</h2>
+    <p>Notre équipe répond à toutes les questions sous 48h ouvrées. N'hésite pas à nous écrire directement.</p>
+    <a href="mailto:lotbo@bup-mark.com" class="faq-contact-link">✉️ lotbo@bup-mark.com</a>
+  </div>
+</section>
+
+<!-- ── FOOTER ─────────────────────────────────── -->
 <footer>
   <div class="footer-grid">
     <div>
       <div class="footer-col-title">LOTBO</div>
       <div class="footer-col-links">
-        <a href="#" class="footer-col-link">À propos</a>
-        <a href="#" class="footer-col-link">Notre histoire</a>
+        <a href="/a-propos.html" class="footer-col-link">À propos</a>
+        <a href="/a-propos.html" class="footer-col-link">Notre histoire</a>
         <a href="#" class="footer-col-link">Né en Haïti 🇭🇹</a>
         <a href="#" class="footer-col-link">Presse</a>
         <a href="#" class="footer-col-link">Carrières</a>
@@ -159,17 +630,17 @@
     <div>
       <div class="footer-col-title">Collaboration</div>
       <div class="footer-col-links">
-        <a href="#" class="footer-col-link">Partenariats</a>
+        <a href="/partenariats.html" class="footer-col-link">Partenariats</a>
         <a href="#" class="footer-col-link">Institutions</a>
         <a href="#" class="footer-col-link">Médias &amp; Presse</a>
-        <a href="#" class="footer-col-link">Formulaire contact</a>
+        <a href="/contact.html" class="footer-col-link">Formulaire contact</a>
       </div>
     </div>
     <div>
       <div class="footer-col-title">Ressources</div>
       <div class="footer-col-links">
         <a href="#" class="footer-col-link">Blog</a>
-        <a href="#" class="footer-col-link">Centre d'aide</a>
+        <a href="https://app.lotbo.app/aide" class="footer-col-link">Centre d'aide</a>
         <a href="#" class="footer-col-link">Guide organisateurs</a>
         <a href="#" class="footer-col-link">Roadmap</a>
       </div>
@@ -180,11 +651,22 @@
     <div class="footer-note">© 2026 · Né en Haïti, pour le monde entier 🇭🇹</div>
   </div>
 </footer>
+
 <script>
   function toggleMobileMenu() {
     document.getElementById('navDrawer').classList.toggle('open');
     document.getElementById('navOverlay').classList.toggle('open');
   }
+
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    item.classList.toggle('open');
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
 </body>
 </html>
