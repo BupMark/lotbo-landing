@@ -51,31 +51,23 @@
     }
     @keyframes blobFloat1 {
       0%, 100% { transform: translate(0, 0) scale(1); }
-      33%       { transform: translate(40px, -30px) scale(1.05); }
-      66%       { transform: translate(-20px, 20px) scale(0.95); }
+      33%  { transform: translate(40px, -30px) scale(1.05); }
+      66%  { transform: translate(-20px, 20px) scale(0.95); }
     }
     @keyframes blobFloat2 {
       0%, 100% { transform: translate(0, 0) scale(1); }
-      33%       { transform: translate(-40px, 20px) scale(1.08); }
-      66%       { transform: translate(30px, -40px) scale(0.92); }
+      33%  { transform: translate(-40px, 20px) scale(1.08); }
+      66%  { transform: translate(30px, -40px) scale(0.92); }
     }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1);
-    }
+    .reveal { opacity: 0; transform: translateY(40px); transition: opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1); }
     .reveal.visible { opacity: 1; transform: translateY(0); }
-    .reveal-delay-1 { transition-delay: .1s; }
-    .reveal-delay-2 { transition-delay: .2s; }
 
     /* ── NAV ────────────────────────────────── */
     nav {
       position: sticky; top: 0; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
       padding: 16px 48px;
-      background: rgba(11,6,3,0.8);
-      backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+      background: rgba(11,6,3,0.8); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
       border-bottom: 1px solid var(--border);
     }
     .nav-logo { font-family: 'Playfair Display', serif; font-weight: 700; font-style: italic; font-size: 24px; color: var(--creme); flex-shrink: 0; }
@@ -107,10 +99,10 @@
       .btn-primary { padding: 7px 14px; font-size: 12px; }
     }
 
-    /* ── HERO ───────────────────────────────── */
+    /* ── HERO — sombre #0B0603 ─────────────── */
     .hero-faq {
       position: relative; overflow: hidden;
-      background: var(--night2);
+      background: var(--night);
       padding: 90px 48px 72px;
       text-align: center;
       border-bottom: 1px solid var(--border);
@@ -135,7 +127,7 @@
     .hero-faq-sub { font-size: 16px; color: rgba(247,242,232,.5); max-width: 480px; margin: 0 auto 40px; line-height: 1.7; }
     @media (max-width: 768px) { .hero-faq { padding: 64px 20px 48px; } }
 
-    /* ── NAV RAPIDE ─────────────────────────── */
+    /* NAV RAPIDE — reste sombre dans hero */
     .faq-nav { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
     .faq-nav-btn {
       font-size: 13px; font-weight: 500; padding: 9px 20px;
@@ -145,73 +137,140 @@
     }
     .faq-nav-btn:hover { background: var(--glass2); color: var(--creme); border-color: rgba(247,242,232,.2); }
 
-    /* ── SECTIONS FAQ ───────────────────────── */
-    .faq-main { max-width: 800px; margin: 0 auto; padding: 80px 24px 48px; }
-    .faq-section { margin-bottom: 72px; }
-    .faq-section-label {
-      font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
-      color: var(--brique); margin-bottom: 8px;
+    /* ── WRAPPERS SECTIONS ALTERNÉES ────────── */
+    .faq-section-wrapper {
+      padding: 72px 48px;
     }
-    .faq-section-h2 {
-      font-family: 'DM Serif Display', serif; font-style: italic;
-      font-size: clamp(22px, 3vw, 30px); color: var(--creme);
-      margin-bottom: 32px; padding-bottom: 16px;
-      border-bottom: 1px solid var(--border);
+    .faq-section-inner { max-width: 1100px; margin: 0 auto; }
+    @media (max-width: 768px) { .faq-section-wrapper { padding: 48px 20px; } }
+
+    /* CLAIR */
+    [data-theme="light"] {
+      background: #F7F2E8;
+      color: #1A1410;
+    }
+    /* SOMBRE */
+    [data-theme="dark"] {
+      background: #1A1410;
+      color: #F7F2E8;
     }
 
-    /* ── ACCORDÉON ──────────────────────────── */
-    .faq-item { border-bottom: 1px solid var(--border); }
-    .faq-question {
-      width: 100%; background: none; border: none; cursor: pointer;
-      display: flex; align-items: center; justify-content: space-between; gap: 16px;
-      padding: 18px 0; text-align: left;
-      font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 500;
-      color: rgba(247,242,232,.85); transition: color .2s;
+    /* ── TITRES DE SECTION ──────────────────── */
+    .faq-section-label {
+      display: inline-block;
+      font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
+      padding: 4px 12px; border-radius: 20px;
+      margin-bottom: 12px;
     }
-    .faq-question:hover { color: var(--creme); }
-    .faq-item.open .faq-question { color: var(--creme); }
+    [data-theme="light"] .faq-section-label {
+      background: rgba(200,67,26,.1); color: #C8431A;
+      border: 1px solid rgba(200,67,26,.2);
+    }
+    [data-theme="dark"] .faq-section-label {
+      background: rgba(200,67,26,.15); color: #E8620A;
+      border: 1px solid rgba(232,98,10,.25);
+    }
+    .faq-section-h2 {
+      font-style: italic;
+      font-size: clamp(22px, 3vw, 32px);
+      margin-bottom: 32px; padding-bottom: 16px;
+    }
+    [data-theme="light"] .faq-section-h2 {
+      font-family: Georgia, serif;
+      color: #1A1410;
+      border-bottom: 1px solid #E8E0D0;
+    }
+    [data-theme="dark"] .faq-section-h2 {
+      font-family: 'DM Serif Display', serif;
+      color: #F7F2E8;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+    /* ── ACCORDÉON — base ───────────────────── */
+    .faq-item {
+      border-radius: 8px;
+      margin-bottom: 8px;
+      transition: border-color .2s;
+    }
+    .faq-question {
+      width: 100%; border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      padding: 16px 18px; text-align: left;
+      font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 500;
+      transition: color .2s, background .2s;
+      border-radius: 8px;
+    }
     .faq-icon {
       flex-shrink: 0; width: 22px; height: 22px;
-      border: 1px solid var(--border); border-radius: 50%;
+      border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
-      font-size: 14px; color: rgba(247,242,232,.4);
+      font-size: 14px;
       transition: transform .25s, color .2s, border-color .2s;
+      border: 1px solid transparent;
     }
-    .faq-item.open .faq-icon { transform: rotate(45deg); color: var(--brique); border-color: rgba(200,67,26,.4); }
-    .faq-answer {
-      display: grid; grid-template-rows: 0fr;
-      transition: grid-template-rows .3s ease;
-    }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-answer { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .3s ease; }
     .faq-item.open .faq-answer { grid-template-rows: 1fr; }
     .faq-answer-inner {
       overflow: hidden;
-      font-size: 14px; line-height: 1.8; color: rgba(247,242,232,.5);
-      padding-bottom: 0; transition: padding-bottom .3s ease;
+      font-size: 14px; line-height: 1.8;
+      padding: 0 18px; transition: padding-bottom .3s ease;
     }
-    .faq-item.open .faq-answer-inner { padding-bottom: 20px; }
+    .faq-item.open .faq-answer-inner { padding-bottom: 18px; }
 
-    /* ── BLOC CONTACT ───────────────────────── */
-    .faq-contact {
-      background: var(--night2);
-      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
-      padding: 64px 24px; text-align: center;
+    /* ACCORDÉON — thème CLAIR */
+    [data-theme="light"] .faq-item {
+      background: white;
+      border: 1px solid #E8E0D0;
     }
-    .faq-contact-inner { max-width: 520px; margin: 0 auto; }
-    .faq-contact-label { font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--terre); margin-bottom: 12px; }
-    .faq-contact h2 {
+    [data-theme="light"] .faq-item:hover { border-color: rgba(200,67,26,.25); }
+    [data-theme="light"] .faq-question { color: #1A1410; background: transparent; }
+    [data-theme="light"] .faq-question:hover { color: #C8431A; }
+    [data-theme="light"] .faq-item.open .faq-question { color: #C8431A; }
+    [data-theme="light"] .faq-icon { border-color: #D4C4B8; color: #8C5A40; }
+    [data-theme="light"] .faq-item.open .faq-icon { color: #C8431A; border-color: rgba(200,67,26,.4); }
+    [data-theme="light"] .faq-answer-inner { color: #8C5A40; }
+    [data-theme="light"] .faq-answer-inner a { color: #C8431A; text-decoration: underline; }
+    [data-theme="light"] .faq-answer-inner strong { color: #1A1410; }
+
+    /* ACCORDÉON — thème SOMBRE */
+    [data-theme="dark"] .faq-item {
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.1);
+    }
+    [data-theme="dark"] .faq-item:hover { border-color: rgba(200,67,26,.3); }
+    [data-theme="dark"] .faq-question { color: #F7F2E8; background: transparent; }
+    [data-theme="dark"] .faq-item.open .faq-question { color: #F7F2E8; }
+    [data-theme="dark"] .faq-icon { border-color: rgba(255,255,255,.2); color: rgba(247,242,232,.45); }
+    [data-theme="dark"] .faq-item.open .faq-icon { color: var(--brique); border-color: rgba(200,67,26,.4); }
+    [data-theme="dark"] .faq-answer-inner { color: rgba(247,242,232,.65); }
+    [data-theme="dark"] .faq-answer-inner a { color: #C8431A; text-decoration: underline; }
+    [data-theme="dark"] .faq-answer-inner strong { color: #F7F2E8; }
+
+    /* ── BLOC CONTACT — gradient brique ────── */
+    .faq-contact-section {
+      background: linear-gradient(135deg, #C8431A 0%, #E8620A 100%);
+      padding: 72px 24px;
+      text-align: center;
+    }
+    .faq-contact-inner { max-width: 560px; margin: 0 auto; }
+    .faq-contact-eyebrow {
+      font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
+      color: rgba(255,255,255,.75); margin-bottom: 12px;
+    }
+    .faq-contact-section h2 {
       font-family: 'DM Serif Display', serif; font-style: italic;
-      font-size: clamp(22px, 3vw, 30px); color: var(--creme); margin-bottom: 12px;
+      font-size: clamp(24px, 3vw, 34px); color: white; margin-bottom: 12px;
     }
-    .faq-contact p { font-size: 14px; color: rgba(247,242,232,.45); margin-bottom: 28px; line-height: 1.7; }
+    .faq-contact-section p { font-size: 15px; color: rgba(255,255,255,.75); margin-bottom: 28px; line-height: 1.7; }
     .faq-contact-link {
       display: inline-flex; align-items: center; gap: 8px;
-      padding: 12px 28px; background: var(--brique); border-radius: 8px;
-      font-size: 14px; font-weight: 500; color: var(--creme);
-      box-shadow: 0 0 24px rgba(200,67,26,.35);
-      transition: all .25s; position: relative; overflow: hidden;
+      padding: 13px 30px; background: white; border-radius: 999px;
+      font-size: 14px; font-weight: 600; color: #C8431A;
+      box-shadow: 0 4px 24px rgba(0,0,0,.15);
+      transition: all .25s;
     }
-    .faq-contact-link::after { content: ''; position: absolute; top: 0; left: -100%; width: 60%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,.15), transparent); animation: shimmer 3s infinite; }
-    .faq-contact-link:hover { box-shadow: 0 0 40px rgba(200,67,26,.6); transform: translateY(-1px); }
+    .faq-contact-link:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,.2); }
 
     /* ── FOOTER ─────────────────────────────── */
     footer { background: #1A1410; border-top: 1px solid rgba(247,242,232,.06); padding: 64px 48px 32px; }
@@ -263,8 +322,9 @@
 </div>
 <div class="nav-overlay" id="navOverlay" onclick="toggleMobileMenu()"></div>
 
-<!-- ── HERO ──────────────────────────────────── -->
+<!-- ── 1. HERO — sombre #0B0603 + Unsplash ── -->
 <section class="hero-faq">
+  <div style="position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=1400&q=80');background-size:cover;background-position:center;opacity:0.2;z-index:0;"></div>
   <div class="hero-blobs">
     <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
@@ -281,11 +341,9 @@
   </div>
 </section>
 
-<!-- ── CONTENU FAQ ────────────────────────────── -->
-<main class="faq-main">
-
-  <!-- VISITEURS -->
-  <section class="faq-section reveal" id="visiteurs">
+<!-- ── 2. VISITEURS — CLAIR #F7F2E8 ─────────── -->
+<section id="visiteurs" data-theme="light" class="faq-section-wrapper">
+  <div class="faq-section-inner reveal">
     <p class="faq-section-label">Pour les visiteurs</p>
     <h2 class="faq-section-h2">Trouver et explorer des événements</h2>
 
@@ -376,10 +434,12 @@
       </button>
       <div class="faq-answer"><div class="faq-answer-inner">La section <strong>À la une</strong> est visible dès l'accueil de l'app. Elle s'affiche en carrousel sur mobile et en grille sur desktop, avec les événements mis en avant par notre équipe éditoriale.</div></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ORGANISATEURS -->
-  <section class="faq-section reveal" id="organisateurs">
+<!-- ── 3. ORGANISATEURS — SOMBRE #1A1410 ─────── -->
+<section id="organisateurs" data-theme="dark" class="faq-section-wrapper">
+  <div class="faq-section-inner reveal">
     <p class="faq-section-label">Pour les organisateurs</p>
     <h2 class="faq-section-h2">Soumettre et gérer ses événements</h2>
 
@@ -510,10 +570,12 @@
       </button>
       <div class="faq-answer"><div class="faq-answer-inner">Clique sur le lien reçu par email. Si tu n'as pas encore de compte, l'inscription accepte automatiquement l'invitation. Si tu as déjà un compte, connecte-toi et l'ajout est immédiat.</div></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- GÉNÉRAL -->
-  <section class="faq-section reveal" id="general">
+<!-- ── 4. GÉNÉRAL — CLAIR #F7F2E8 ────────────── -->
+<section id="general" data-theme="light" class="faq-section-wrapper">
+  <div class="faq-section-inner reveal">
     <p class="faq-section-label">Fonctionnement général</p>
     <h2 class="faq-section-h2">Lotbo, la plateforme et la communauté</h2>
 
@@ -578,23 +640,33 @@
         Comment contacter l'équipe Lotbo ?
         <span class="faq-icon">+</span>
       </button>
-      <div class="faq-answer"><div class="faq-answer-inner">Écris-nous à <a href="mailto:lotbo@bup-mark.com" style="color:var(--brique);text-decoration:underline;">lotbo@bup-mark.com</a>. Nous répondons sous 48h ouvrées.</div></div>
+      <div class="faq-answer"><div class="faq-answer-inner">Écris-nous à <a href="mailto:lotbo@bup-mark.com">lotbo@bup-mark.com</a>. Nous répondons sous 48h ouvrées.</div></div>
     </div>
-  </section>
+  </div>
+</section>
 
-</main>
-
-<!-- ── BLOC CONTACT ───────────────────────────── -->
-<section class="faq-contact reveal">
+<!-- ── 5. BLOC CONTACT — gradient brique ──────── -->
+<section class="faq-contact-section reveal">
   <div class="faq-contact-inner">
-    <p class="faq-contact-label">Besoin d'aide ?</p>
+    <p class="faq-contact-eyebrow">Besoin d'aide ?</p>
     <h2>Tu n'as pas trouvé ta réponse ?</h2>
     <p>Notre équipe répond à toutes les questions sous 48h ouvrées. N'hésite pas à nous écrire directement.</p>
     <a href="mailto:lotbo@bup-mark.com" class="faq-contact-link">✉️ lotbo@bup-mark.com</a>
   </div>
 </section>
 
-<!-- ── FOOTER ─────────────────────────────────── -->
+<!-- ── 6. CTA FINAL — gradient brique ────────── -->
+<section style="background: linear-gradient(135deg, #C8431A 0%, #E8620A 100%); padding: 80px 24px; text-align: center;">
+  <p style="color:rgba(255,255,255,0.8);font-size:13px;text-transform:uppercase;letter-spacing:2px;margin-bottom:12px;">LOTBO</p>
+  <h2 style="color:white;font-size:clamp(28px,4vw,42px);font-family:Georgia,serif;font-style:italic;margin-bottom:16px;">
+    Tous les événements,<br>un seul endroit.
+  </h2>
+  <a href="https://app.lotbo.app" style="display:inline-block;background:white;color:#C8431A;padding:14px 32px;border-radius:999px;font-weight:bold;text-decoration:none;font-size:15px;margin-top:8px;">
+    Ouvrir l'app →
+  </a>
+</section>
+
+<!-- ── 7. FOOTER — #1A1410 ────────────────────── -->
 <footer>
   <div class="footer-grid">
     <div>
@@ -659,8 +731,7 @@
   }
 
   function toggleFaq(btn) {
-    const item = btn.closest('.faq-item');
-    item.classList.toggle('open');
+    btn.closest('.faq-item').classList.toggle('open');
   }
 
   const observer = new IntersectionObserver((entries) => {
