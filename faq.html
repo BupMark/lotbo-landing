@@ -286,6 +286,11 @@
     @media (max-width: 900px) { .footer-grid { grid-template-columns: repeat(2,1fr); } }
     @media (max-width: 600px) { footer { padding: 48px 20px 24px; } .footer-grid { grid-template-columns: repeat(2,1fr); gap: 24px; } }
     @media (max-width: 375px) { .footer-grid { grid-template-columns: 1fr; } }
+
+    @media (max-width: 768px) {
+      .faq-cta-grid { grid-template-columns: 1fr !important; }
+      .faq-cta-img { display: none; }
+    }
   </style>
 </head>
 <body>
@@ -645,25 +650,44 @@
   </div>
 </section>
 
-<!-- ── 5. BLOC CONTACT — gradient brique ──────── -->
-<section class="faq-contact-section reveal">
-  <div class="faq-contact-inner">
-    <p class="faq-contact-eyebrow">Besoin d'aide ?</p>
-    <h2>Tu n'as pas trouvé ta réponse ?</h2>
-    <p>Notre équipe répond à toutes les questions sous 48h ouvrées. N'hésite pas à nous écrire directement.</p>
-    <a href="mailto:lotbo@bup-mark.com" class="faq-contact-link">✉️ lotbo@bup-mark.com</a>
-  </div>
-</section>
+<!-- ── 5 & 6. CONTACT + CTA — 2 colonnes gradient brique ── -->
+<section style="background: linear-gradient(135deg, #C8431A 0%, #E8620A 100%); padding: 80px 24px;">
+  <div class="faq-cta-grid" style="max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;">
 
-<!-- ── 6. CTA FINAL — gradient brique ────────── -->
-<section style="background: linear-gradient(135deg, #C8431A 0%, #E8620A 100%); padding: 80px 24px; text-align: center;">
-  <p style="color:rgba(255,255,255,0.8);font-size:13px;text-transform:uppercase;letter-spacing:2px;margin-bottom:12px;">LOTBO</p>
-  <h2 style="color:white;font-size:clamp(28px,4vw,42px);font-family:Georgia,serif;font-style:italic;margin-bottom:16px;">
-    Tous les événements,<br>un seul endroit.
-  </h2>
-  <a href="https://app.lotbo.app" style="display:inline-block;background:white;color:#C8431A;padding:14px 32px;border-radius:999px;font-weight:bold;text-decoration:none;font-size:15px;margin-top:8px;">
-    Ouvrir l'app →
-  </a>
+    <!-- Colonne gauche — image Unsplash -->
+    <div class="faq-cta-img" style="border-radius: 16px; overflow: hidden; height: 340px; position: relative;">
+      <img
+        src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=800&q=80"
+        alt="Communauté LOTBO"
+        style="width:100%;height:100%;object-fit:cover;display:block;"
+        crossorigin="anonymous"
+      />
+      <div style="position:absolute;inset:0;background:rgba(200,67,26,0.3);"></div>
+    </div>
+
+    <!-- Colonne droite — texte + CTA -->
+    <div style="text-align: left;">
+      <p style="color:rgba(255,255,255,0.75);font-size:12px;text-transform:uppercase;letter-spacing:2px;margin-bottom:16px;">BESOIN D'AIDE ?</p>
+      <h2 style="color:white;font-size:clamp(28px,3vw,40px);font-family:Georgia,serif;font-style:italic;margin-bottom:16px;line-height:1.2;">
+        Tu n'as pas trouvé<br>ta réponse ?
+      </h2>
+      <p style="color:rgba(255,255,255,0.8);font-size:15px;margin-bottom:32px;line-height:1.7;">
+        Notre équipe répond sous 48h ouvrées.<br>
+        N'hésite pas à nous écrire directement.
+      </p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        <a href="mailto:lotbo@bup-mark.com" style="display:inline-flex;align-items:center;gap:8px;padding:13px 28px;background:white;border-radius:999px;font-size:14px;font-weight:700;color:#C8431A;text-decoration:none;">
+          ✉️ lotbo@bup-mark.com
+        </a>
+        <a href="https://app.lotbo.app" style="display:inline-flex;align-items:center;gap:8px;padding:13px 28px;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.4);border-radius:999px;font-size:14px;font-weight:700;color:white;text-decoration:none;">
+          Ouvrir l'app →
+        </a>
+      </div>
+      <p style="color:rgba(255,255,255,0.5);font-size:13px;margin-top:24px;font-style:italic;">
+        "Tous les événements, un seul endroit." — Né en Haïti 🇭🇹
+      </p>
+    </div>
+  </div>
 </section>
 
 <!-- ── 7. FOOTER — #1A1410 ────────────────────── -->
