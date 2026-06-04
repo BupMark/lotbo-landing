@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rejoins LOTBO — On recrute</title>
+  <meta name="description" content="LOTBO ne peut pas encore te payer un salaire fixe. Ce qu'on offre, c'est une mission réelle, une expérience concrète, et une place dans quelque chose qui grandit."/>
+  <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png"/>
+  <meta name="theme-color" content="#0B0603"/>
+  <meta property="og:title" content="Rejoins LOTBO — On recrute"/>
+  <meta property="og:description" content="Une mission réelle, une expérience concrète, une place dans quelque chose qui grandit."/>
+  <meta property="og:type" content="website"/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --night: #0B0603; --night2: #110C08; --brique: #C8431A; --brique2: #FF5A1F;
+      --or: #D4A820; --creme: #F7F2E8; --terre: #8C5A40; --brume: #E8E0D0;
+      --border: rgba(247,242,232,0.08); --glass: rgba(247,242,232,0.04); --glass2: rgba(247,242,232,0.08);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--night); color: var(--creme); line-height: 1.6; overflow-x: hidden; }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+
+    @keyframes shimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+    @keyframes blobFloat1 { 0%,100% { transform: translate(0,0) scale(1); } 33% { transform: translate(40px,-30px) scale(1.05); } 66% { transform: translate(-20px,20px) scale(0.95); } }
+    @keyframes blobFloat2 { 0%,100% { transform: translate(0,0) scale(1); } 33% { transform: translate(-40px,20px) scale(1.08); } 66% { transform: translate(30px,-40px) scale(0.92); } }
+    .reveal { opacity: 0; transform: translateY(40px); transition: opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: .1s; }
+    .reveal-delay-2 { transition-delay: .2s; }
+    .reveal-delay-3 { transition-delay: .3s; }
+    .reveal-delay-4 { transition-delay: .4s; }
+
+    /* NAV */
+    nav { position: sticky; top: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 16px 48px; background: rgba(11,6,3,0.8); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid var(--border); }
+    .nav-logo { font-family: 'Playfair Display', serif; font-weight: 700; font-style: italic; font-size: 24px; color: var(--creme); flex-shrink: 0; }
+    .nav-logo span { color: var(--brique); }
+    .nav-links { display: flex; gap: 28px; flex: 1; justify-content: center; }
+    .nav-link { font-size: 13px; color: rgba(247,242,232,.45); transition: color .2s; }
+    .nav-link:hover { color: var(--creme); }
+    .nav-link-app { color: var(--brique) !important; border: 1px solid rgba(200,67,26,.3); border-radius: 6px; padding: 4px 12px; }
+    .nav-link-app:hover { background: rgba(200,67,26,.08); color: var(--brique2) !important; border-color: var(--brique); }
+    .nav-actions { display: flex; gap: 10px; align-items: center; flex-shrink: 0; }
+    .btn-primary { font-size: 13px; font-weight: 500; padding: 9px 22px; background: var(--brique); border: none; border-radius: 8px; color: var(--creme); cursor: pointer; transition: all .25s; white-space: nowrap; display: inline-block; box-shadow: 0 0 24px rgba(200,67,26,.35); position: relative; overflow: hidden; }
+    .btn-primary::after { content: ''; position: absolute; top: 0; left: -100%; width: 60%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,.15), transparent); animation: shimmer 3s infinite; }
+    .btn-primary:hover { box-shadow: 0 0 40px rgba(200,67,26,.6); transform: translateY(-1px); }
+    .nav-hamburger { display: none; background: var(--glass); border: 1px solid var(--border); color: var(--creme); border-radius: 6px; padding: 7px 10px; font-size: 16px; cursor: pointer; }
+    .nav-drawer { position: fixed; top: 0; left: 0; bottom: 0; width: 280px; z-index: 200; background: #0F0A07; border-right: 1px solid var(--border); transform: translateX(-100%); transition: transform .3s ease; display: flex; flex-direction: column; }
+    .nav-drawer.open { transform: translateX(0); }
+    .nav-drawer-header { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; border-bottom: 1px solid var(--border); }
+    .nav-drawer-close { background: none; border: none; color: rgba(247,242,232,.4); font-size: 20px; cursor: pointer; }
+    .nav-drawer-links { display: flex; flex-direction: column; padding: 16px 0; }
+    .nav-drawer-link { font-size: 15px; color: rgba(247,242,232,.7); text-decoration: none; padding: 13px 20px; transition: background .15s; display: block; }
+    .nav-drawer-link:hover { background: var(--glass); color: var(--creme); }
+    .nav-drawer-divider { height: 1px; background: var(--border); margin: 8px 0; }
+    .nav-overlay { display: none; position: fixed; inset: 0; z-index: 199; background: rgba(0,0,0,.7); }
+    .nav-overlay.open { display: block; }
+    @media (max-width: 768px) { nav { padding: 12px 16px; } .nav-links { display: none; } .nav-hamburger { display: flex; } .btn-primary { padding: 7px 14px; font-size: 12px; } }
+
+    /* HERO */
+    .hero { position: relative; overflow: hidden; background: var(--night); padding: 110px 48px 100px; text-align: center; border-bottom: 1px solid var(--border); }
+    .hero-img { position: absolute; inset: 0; z-index: 0; }
+    .hero-img img { width: 100%; height: 100%; object-fit: cover; opacity: .2; }
+    .hero-overlay { position: absolute; inset: 0; z-index: 1; background: linear-gradient(to bottom, rgba(11,6,3,.4) 0%, rgba(11,6,3,.7) 100%); }
+    .hero-inner { position: relative; z-index: 2; max-width: 720px; margin: 0 auto; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; padding: 7px 18px; border-radius: 20px; border: 1px solid rgba(200,67,26,.35); background: rgba(200,67,26,.08); color: var(--brique2); margin-bottom: 28px; }
+    .hero h1 { font-family: 'DM Serif Display', serif; font-style: italic; font-size: clamp(38px,6vw,68px); color: var(--creme); line-height: 1.05; margin-bottom: 24px; }
+    .hero-sub { font-size: 17px; color: rgba(247,242,232,.65); max-width: 560px; margin: 0 auto; line-height: 1.8; }
+    @media (max-width: 768px) { .hero { padding: 80px 20px 72px; } .hero-sub { font-size: 15px; } }
+
+    /* SECTIONS */
+    .section { padding: 80px 48px; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    @media (max-width: 768px) { .section { padding: 56px 20px; } }
+    [data-theme="light"] { background: #F7F2E8; color: #1A1410; }
+    [data-theme="dark"]  { background: #1A1410; color: #F7F2E8; }
+
+    .section-label { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; margin-bottom: 12px; }
+    [data-theme="light"] .section-label { background: rgba(200,67,26,.1); color: #C8431A; border: 1px solid rgba(200,67,26,.2); }
+    [data-theme="dark"]  .section-label { background: rgba(200,67,26,.15); color: #E8620A; border: 1px solid rgba(232,98,10,.25); }
+    .section-h2 { font-style: italic; font-size: clamp(24px,3vw,36px); margin-bottom: 36px; }
+    [data-theme="light"] .section-h2 { font-family: Georgia, serif; color: #1A1410; border-bottom: 1px solid #E8E0D0; padding-bottom: 16px; }
+    [data-theme="dark"]  .section-h2 { font-family: 'DM Serif Display', serif; color: #F7F2E8; border-bottom: 1px solid rgba(255,255,255,.08); padding-bottom: 16px; }
+
+    /* PROFILS GRID */
+    .profils-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 24px; }
+    .profil-card { background: white; border: 1px solid #E8E0D0; border-radius: 20px; padding: 32px 28px; transition: all .3s cubic-bezier(.16,1,.3,1); position: relative; overflow: hidden; }
+    .profil-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--brique), var(--or)); opacity: 0; transition: opacity .3s; }
+    .profil-card:hover { transform: translateY(-5px); box-shadow: 0 24px 56px rgba(26,20,16,.1); }
+    .profil-card:hover::before { opacity: 1; }
+    .profil-emoji { font-size: 32px; margin-bottom: 16px; line-height: 1; }
+    .profil-title { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 22px; color: var(--night); margin-bottom: 10px; }
+    .profil-desc { font-size: 14px; color: var(--terre); line-height: 1.7; margin-bottom: 20px; }
+    .profil-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .profil-tag { font-size: 11px; font-weight: 600; padding: 4px 12px; border-radius: 20px; background: rgba(200,67,26,.07); color: var(--brique); border: 1px solid rgba(200,67,26,.15); }
+    @media (max-width: 700px) { .profils-grid { grid-template-columns: 1fr; } }
+
+    /* OFFRE — 2 colonnes */
+    .offre-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+    .offre-list { display: flex; flex-direction: column; gap: 14px; }
+    .offre-item { display: flex; align-items: flex-start; gap: 14px; }
+    .offre-check { flex-shrink: 0; width: 22px; height: 22px; border-radius: 6px; background: rgba(200,67,26,.15); border: 1px solid rgba(232,98,10,.25); display: flex; align-items: center; justify-content: center; font-size: 12px; color: var(--brique2); margin-top: 2px; }
+    .offre-text { font-size: 15px; color: rgba(247,242,232,.8); line-height: 1.5; }
+    .citation-box { background: rgba(247,242,232,.04); border: 1px solid rgba(247,242,232,.08); border-radius: 20px; padding: 36px 32px; border-left: 3px solid var(--brique); }
+    .citation-text { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 18px; color: var(--creme); line-height: 1.7; margin-bottom: 20px; }
+    .citation-badge { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; padding: 6px 14px; border-radius: 20px; background: rgba(200,67,26,.12); color: var(--brique2); border: 1px solid rgba(232,98,10,.2); }
+    @media (max-width: 768px) { .offre-grid { grid-template-columns: 1fr; gap: 36px; } }
+
+    /* FORMULAIRE */
+    .form-wrap { max-width: 640px; margin: 0 auto; }
+    .form-field { margin-bottom: 20px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+    .form-label { display: block; font-size: 13px; font-weight: 500; color: #1A1410; margin-bottom: 7px; }
+    .form-input, .form-select, .form-textarea {
+      width: 100%; padding: 12px 16px; font-family: 'DM Sans', sans-serif; font-size: 14px;
+      background: white; border: 1px solid #D8D0C4; border-radius: 10px; color: #1A1410;
+      transition: border-color .2s, box-shadow .2s; outline: none;
+    }
+    .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--brique); box-shadow: 0 0 0 3px rgba(200,67,26,.1); }
+    .form-textarea { resize: vertical; min-height: 120px; line-height: 1.6; }
+    .form-select { cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%238C5A40' d='M6 8L0 0h12z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; }
+    .form-submit { width: 100%; padding: 15px 32px; font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 600; background: var(--brique); color: white; border: none; border-radius: 12px; cursor: pointer; transition: all .25s; box-shadow: 0 0 24px rgba(200,67,26,.35); position: relative; overflow: hidden; }
+    .form-submit::after { content: ''; position: absolute; top: 0; left: -100%; width: 60%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,.15), transparent); animation: shimmer 3s infinite; }
+    .form-submit:hover { box-shadow: 0 0 40px rgba(200,67,26,.6); transform: translateY(-1px); }
+    .form-note { text-align: center; font-size: 13px; color: var(--terre); margin-top: 16px; }
+    @media (max-width: 560px) { .form-row { grid-template-columns: 1fr; } }
+
+    /* CTA BRIQUE */
+    .cta-section { background: linear-gradient(135deg, #C8431A 0%, #E8620A 100%); padding: 80px 24px; text-align: center; }
+    .cta-inner { max-width: 600px; margin: 0 auto; }
+    .cta-h2 { font-family: 'DM Serif Display', serif; font-style: italic; font-size: clamp(26px,3.5vw,42px); color: white; margin-bottom: 16px; line-height: 1.15; }
+    .cta-p { font-size: 15px; color: rgba(255,255,255,.85); margin-bottom: 32px; line-height: 1.8; max-width: 480px; margin-left: auto; margin-right: auto; }
+    .cta-link { display: inline-flex; align-items: center; gap: 8px; padding: 14px 34px; background: white; border-radius: 999px; font-size: 15px; font-weight: 700; color: #C8431A; box-shadow: 0 4px 24px rgba(0,0,0,.15); transition: all .25s; }
+    .cta-link:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,.2); color: #C8431A; }
+
+    /* FOOTER */
+    footer { background: #1A1410; border-top: 1px solid rgba(247,242,232,.06); padding: 64px 48px 32px; }
+    .footer-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(5,1fr); gap: 32px; margin-bottom: 48px; }
+    .footer-col-title { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 700; font-size: 14px; color: var(--creme); margin-bottom: 16px; }
+    .footer-col-links { display: flex; flex-direction: column; gap: 10px; }
+    .footer-col-link { font-size: 13px; color: #8C5A40; transition: color .15s; }
+    .footer-col-link:hover { color: var(--brique); }
+    .footer-bottom { max-width: 1100px; margin: 0 auto; padding-top: 24px; border-top: 1px solid rgba(247,242,232,.06); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .footer-logo { font-family: 'Playfair Display', serif; font-weight: 700; font-style: italic; font-size: 20px; color: var(--creme); }
+    .footer-logo span { color: var(--brique); }
+    .footer-note { font-size: 12px; color: rgba(140,90,64,.6); }
+    @media (max-width: 900px) { .footer-grid { grid-template-columns: repeat(2,1fr); } }
+    @media (max-width: 600px) { footer { padding: 48px 20px 24px; } .footer-grid { grid-template-columns: repeat(2,1fr); gap: 24px; } }
+    @media (max-width: 375px) { .footer-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">lot<span>bo</span></a>
+  <div class="nav-links">
+    <a href="/" class="nav-link">Accueil</a>
+    <a href="/a-propos.html" class="nav-link">À propos</a>
+    <a href="/faq.html" class="nav-link">FAQ</a>
+    <a href="/contact.html" class="nav-link">Contact</a>
+    <a href="https://app.lotbo.app" class="nav-link nav-link-app">Ouvrir l'app →</a>
+  </div>
+  <div class="nav-actions">
+    <a href="https://app.lotbo.app/login" class="btn-primary">Créer un compte →</a>
+    <button class="nav-hamburger" onclick="toggleMobileMenu()" aria-label="Menu">☰</button>
+  </div>
+</nav>
+<div class="nav-drawer" id="navDrawer">
+  <div class="nav-drawer-header">
+    <a href="/" class="nav-logo">lot<span>bo</span></a>
+    <button onclick="toggleMobileMenu()" class="nav-drawer-close">✕</button>
+  </div>
+  <div class="nav-drawer-links">
+    <a href="/" class="nav-drawer-link">🏠 Accueil</a>
+    <a href="https://app.lotbo.app" class="nav-drawer-link">🗺️ Ouvrir l'app</a>
+    <a href="https://app.lotbo.app/login" class="nav-drawer-link">👤 Créer un compte</a>
+    <div class="nav-drawer-divider"></div>
+    <a href="/a-propos.html" class="nav-drawer-link">ℹ️ À propos</a>
+    <a href="/faq.html" class="nav-drawer-link">❓ FAQ</a>
+    <a href="/contact.html" class="nav-drawer-link">✉️ Contact</a>
+  </div>
+</div>
+<div class="nav-overlay" id="navOverlay" onclick="toggleMobileMenu()"></div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-img">
+    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=1400&q=80" alt="" crossorigin="anonymous" loading="eager"/>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-inner">
+    <div class="hero-badge">🇭🇹 On recrute</div>
+    <h1>Rejoins LOTBO</h1>
+    <p class="hero-sub">LOTBO ne peut pas encore te payer un salaire fixe. Ce qu'on offre aujourd'hui, c'est une mission réelle, une expérience concrète, et une place dans quelque chose qui grandit.</p>
+  </div>
+</section>
+
+<!-- SECTION 1 — CLAIR : 4 profils -->
+<section data-theme="light" class="section">
+  <div class="section-inner">
+    <p class="section-label reveal">Profils ouverts</p>
+    <h2 class="section-h2 reveal">Qui cherchons-nous ?</h2>
+    <div class="profils-grid">
+      <div class="profil-card reveal reveal-delay-1">
+        <div class="profil-emoji">🌍</div>
+        <h3 class="profil-title">Ambassadeur terrain</h3>
+        <p class="profil-desc">Tu es sur le terrain. Tu connais ta ville, ses événements, sa culture. Tu es le pont entre LOTBO et ta communauté locale.</p>
+        <div class="profil-tags">
+          <span class="profil-tag">Repérer les événements locaux</span>
+          <span class="profil-tag">Distribuer la plateforme</span>
+          <span class="profil-tag">Rapporter le terrain</span>
+        </div>
+      </div>
+      <div class="profil-card reveal reveal-delay-2">
+        <div class="profil-emoji">💻</div>
+        <h3 class="profil-title">Développeur contributeur</h3>
+        <p class="profil-desc">Tu codes. Tu veux contribuer à un projet open et en croissance. Tu apportes tes compétences sur des features réelles.</p>
+        <div class="profil-tags">
+          <span class="profil-tag">Next.js</span>
+          <span class="profil-tag">TypeScript</span>
+          <span class="profil-tag">Supabase</span>
+          <span class="profil-tag">Mapbox</span>
+        </div>
+      </div>
+      <div class="profil-card reveal reveal-delay-3">
+        <div class="profil-emoji">📱</div>
+        <h3 class="profil-title">Community manager / Créateur de contenu</h3>
+        <p class="profil-desc">Tu crées du contenu, tu animes des communautés, tu sais parler aux gens. Tu donnes une voix à LOTBO.</p>
+        <div class="profil-tags">
+          <span class="profil-tag">Réseaux sociaux</span>
+          <span class="profil-tag">Newsletter</span>
+          <span class="profil-tag">Contenu éditorial</span>
+        </div>
+      </div>
+      <div class="profil-card reveal reveal-delay-4">
+        <div class="profil-emoji">📰</div>
+        <h3 class="profil-title">Journaliste / Correspondant local</h3>
+        <p class="profil-desc">Tu écris. Tu couvres des événements. Tu es notre correspondant dans ta ville ou ton pays.</p>
+        <div class="profil-tags">
+          <span class="profil-tag">Articles</span>
+          <span class="profil-tag">Reportages</span>
+          <span class="profil-tag">Couverture terrain</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2 — SOMBRE : Ce qu'on offre -->
+<section data-theme="dark" class="section">
+  <div class="section-inner">
+    <p class="section-label reveal">Ce qu'on offre</p>
+    <h2 class="section-h2 reveal">Pas un salaire — une aventure réelle</h2>
+    <div class="offre-grid">
+      <div class="offre-list reveal">
+        <div class="offre-item">
+          <div class="offre-check">✓</div>
+          <p class="offre-text">Expérience réelle et référençable sur ton CV</p>
+        </div>
+        <div class="offre-item">
+          <div class="offre-check">✓</div>
+          <p class="offre-text">Réseau LOTBO et partenaires internationaux</p>
+        </div>
+        <div class="offre-item">
+          <div class="offre-check">✓</div>
+          <p class="offre-text">Missions freelance rémunérées dès que financement disponible</p>
+        </div>
+        <div class="offre-item">
+          <div class="offre-check">✓</div>
+          <p class="offre-text">Priorité sur les premiers postes payés quand LOTBO scale</p>
+        </div>
+        <div class="offre-item">
+          <div class="offre-check">✓</div>
+          <p class="offre-text">Statut co-fondateur de communauté</p>
+        </div>
+        <div class="offre-item">
+          <div class="offre-check">✓</div>
+          <p class="offre-text">Lettre de recommandation sur demande</p>
+        </div>
+      </div>
+      <div class="citation-box reveal">
+        <p class="citation-text">"Notre premier ambassadeur terrain est déjà actif en Haïti. Il cartographie les événements locaux, rencontre les organisateurs et représente LOTBO sur le terrain."</p>
+        <span class="citation-badge">🇭🇹 Modèle ambassadeur · Haïti 2026</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3 — CLAIR : Formulaire -->
+<section data-theme="light" class="section">
+  <div class="section-inner">
+    <p class="section-label reveal" style="display:block;text-align:center;">Candidature</p>
+    <h2 class="section-h2 reveal" style="text-align:center;border:none;padding:0;margin-bottom:40px;">Manifeste ton intérêt</h2>
+    <div class="form-wrap reveal">
+      <form id="candidatureForm">
+        <div class="form-field">
+          <label class="form-label" for="nom">Nom complet *</label>
+          <input class="form-input" type="text" id="nom" name="nom" placeholder="Ton prénom et nom" required/>
+        </div>
+        <div class="form-row">
+          <div>
+            <label class="form-label" for="ville">Ville *</label>
+            <input class="form-input" type="text" id="ville" name="ville" placeholder="Ex. Port-au-Prince" required/>
+          </div>
+          <div>
+            <label class="form-label" for="pays">Pays *</label>
+            <input class="form-input" type="text" id="pays" name="pays" placeholder="Ex. Haïti" required/>
+          </div>
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="profil">Profil *</label>
+          <select class="form-select" id="profil" name="profil" required>
+            <option value="" disabled selected>Choisis ton profil</option>
+            <option value="Ambassadeur terrain">🌍 Ambassadeur terrain</option>
+            <option value="Développeur">💻 Développeur</option>
+            <option value="Community manager">📱 Community manager</option>
+            <option value="Journaliste">📰 Journaliste</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="pourquoi">Pourquoi LOTBO te parle ? *</label>
+          <textarea class="form-textarea" id="pourquoi" name="pourquoi" rows="5" placeholder="Dis-nous en quelques lignes ce qui t'attire dans ce projet et ce que tu apportes..." required></textarea>
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="portfolio">LinkedIn ou portfolio <span style="font-weight:400;color:#8C5A40;">(optionnel)</span></label>
+          <input class="form-input" type="url" id="portfolio" name="portfolio" placeholder="https://"/>
+        </div>
+        <button type="submit" class="form-submit">Envoyer ma candidature →</button>
+      </form>
+      <p class="form-note">On répond à chaque message. Promis.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4 CTA BRIQUE -->
+<section class="cta-section">
+  <div class="cta-inner">
+    <h2 class="cta-h2">Une place dans quelque chose qui grandit.</h2>
+    <p class="cta-p">LOTBO est né le 5 mai 2026 à Petit-Goâve, Haïti. En quelques semaines, la plateforme couvre 19 pays et 65 villes. Ce n'est que le début.</p>
+    <a href="https://app.lotbo.app" class="cta-link">Ouvrir l'app →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-col-title">LOTBO</div>
+      <div class="footer-col-links">
+        <a href="/a-propos.html" class="footer-col-link">À propos</a>
+        <a href="/a-propos.html" class="footer-col-link">Notre histoire</a>
+        <a href="#" class="footer-col-link">Né en Haïti 🇭🇹</a>
+        <a href="#" class="footer-col-link">Presse</a>
+        <a href="/rejoins-lotbo.html" class="footer-col-link">Carrières</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Communauté</div>
+      <div class="footer-col-links">
+        <a href="/nos-utilisateurs.html" class="footer-col-link">Nos utilisateurs</a>
+        <a href="/charte-membres.html" class="footer-col-link">Charte membres</a>
+        <a href="/charte-contributeurs.html" class="footer-col-link">Charte contributeurs</a>
+        <a href="/charte-organisateurs.html" class="footer-col-link">Charte organisateurs</a>
+        <a href="#" class="footer-col-link">Devenir ambassadeur</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Légal</div>
+      <div class="footer-col-links">
+        <a href="#" class="footer-col-link">CGU</a>
+        <a href="#" class="footer-col-link">Confidentialité</a>
+        <a href="#" class="footer-col-link">Modération</a>
+        <a href="#" class="footer-col-link">Cookies</a>
+        <a href="#" class="footer-col-link">Mentions légales</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Collaboration</div>
+      <div class="footer-col-links">
+        <a href="/partenariats.html" class="footer-col-link">Partenariats</a>
+        <a href="#" class="footer-col-link">Institutions</a>
+        <a href="#" class="footer-col-link">Médias &amp; Presse</a>
+        <a href="/contact.html" class="footer-col-link">Formulaire contact</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Ressources</div>
+      <div class="footer-col-links">
+        <a href="#" class="footer-col-link">Blog</a>
+        <a href="https://app.lotbo.app/aide" class="footer-col-link">Centre d'aide</a>
+        <a href="/guide-organisateurs.html" class="footer-col-link">Guide organisateurs</a>
+        <a href="#" class="footer-col-link">Roadmap</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <a href="/" class="footer-logo">lot<span>bo</span></a>
+    <div class="footer-note">© 2026 · Né en Haïti, pour le monde entier 🇭🇹</div>
+  </div>
+</footer>
+
+<script>
+  function toggleMobileMenu() {
+    document.getElementById('navDrawer').classList.toggle('open');
+    document.getElementById('navOverlay').classList.toggle('open');
+  }
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  document.getElementById('candidatureForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const nom      = document.getElementById('nom').value.trim();
+    const ville    = document.getElementById('ville').value.trim();
+    const pays     = document.getElementById('pays').value.trim();
+    const profil   = document.getElementById('profil').value;
+    const pourquoi = document.getElementById('pourquoi').value.trim();
+    const portfolio= document.getElementById('portfolio').value.trim();
+
+    const subject  = encodeURIComponent('Candidature LOTBO — ' + profil);
+    let body = `Nom : ${nom}\nVille : ${ville}\nPays : ${pays}\nProfil : ${profil}\n\nPourquoi LOTBO me parle :\n${pourquoi}`;
+    if (portfolio) body += `\n\nLinkedIn / portfolio : ${portfolio}`;
+
+    window.location.href = `mailto:lotbo@bup-mark.com?subject=${subject}&body=${encodeURIComponent(body)}`;
+  });
+</script>
+
+<div id="lotbo-preloader" aria-hidden="true">
+  <div class="pl-inner">
+    <div class="pl-mark"><span class="pl-l">L</span><span class="pl-dot"></span><span class="pl-pulse"></span></div>
+    <div class="pl-wordmark"><span class="pl-lot">lot</span><span class="pl-bo">bo</span></div>
+  </div>
+</div>
+<style>
+#lotbo-preloader { position: fixed; inset: 0; z-index: 9999; background: #1A1410; display: flex; align-items: center; justify-content: center; transition: opacity 0.5s ease; }
+#lotbo-preloader.pl-hide { opacity: 0; pointer-events: none; }
+.pl-inner { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.pl-mark { position: relative; width: 90px; height: 72px; }
+.pl-l { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 700; font-size: 72px; color: #fff; line-height: 1; display: block; user-select: none; }
+.pl-dot { position: absolute; top: 22px; left: 60px; width: 10px; height: 10px; background: #E8620A; border-radius: 50%; }
+.pl-pulse { position: absolute; top: 22px; left: 60px; width: 10px; height: 10px; border-radius: 50%; border: 2px solid #E8620A; animation: pl-ring 1.4s ease-out infinite; }
+@keyframes pl-ring { 0% { transform: scale(1); opacity: .9; } 100% { transform: scale(3.2); opacity: 0; } }
+.pl-wordmark { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 700; font-size: 26px; letter-spacing: .01em; user-select: none; }
+.pl-lot { color: #fff; } .pl-bo { color: #C8431A; }
+</style>
+<script>
+(function(){ const el=document.getElementById('lotbo-preloader'); function hide(){ el.classList.add('pl-hide'); setTimeout(()=>{ el.style.display='none'; },520); } const t=setTimeout(hide,1500); window.addEventListener('load',()=>{ clearTimeout(t); hide(); }); })();
+</script>
+</body>
+</html>
