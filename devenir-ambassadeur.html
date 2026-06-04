@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Charte des contributeurs — LOTBO</title>
-  <meta name="description" content="Tu enrichis LOTBO — voici comment le faire bien. Règles de soumission, commentaires et récompenses."/>
+  <title>Devenir ambassadeur LOTBO</title>
+  <meta name="description" content="Représente LOTBO dans ta ville. Fais le lien entre la plateforme et ta communauté locale."/>
   <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
   <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png"/>
   <meta name="theme-color" content="#0B0603"/>
-  <meta property="og:title" content="Charte des contributeurs — LOTBO"/>
-  <meta property="og:description" content="Tu enrichis LOTBO — voici comment le faire bien."/>
+  <meta property="og:title" content="Deviens ambassadeur LOTBO"/>
+  <meta property="og:description" content="Représente LOTBO dans ta ville. Fais le lien entre la plateforme et ta communauté locale."/>
   <meta property="og:type" content="website"/>
   <meta name="robots" content="index, follow"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -38,6 +38,7 @@
     .reveal-delay-2 { transition-delay: .2s; }
     .reveal-delay-3 { transition-delay: .3s; }
     .reveal-delay-4 { transition-delay: .4s; }
+    .reveal-delay-5 { transition-delay: .5s; }
 
     /* NAV */
     nav { position: sticky; top: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 16px 48px; background: rgba(11,6,3,0.8); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid var(--border); }
@@ -66,16 +67,15 @@
     @media (max-width: 768px) { nav { padding: 12px 16px; } .nav-links { display: none; } .nav-hamburger { display: flex; } .btn-primary { padding: 7px 14px; font-size: 12px; } }
 
     /* HERO */
-    .hero { position: relative; overflow: hidden; background: var(--night); padding: 90px 48px 80px; text-align: center; border-bottom: 1px solid var(--border); }
-    .hero-blobs { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
-    .blob { position: absolute; border-radius: 50%; filter: blur(80px); opacity: .18; }
-    .blob-1 { width: 500px; height: 500px; background: var(--brique); top: -150px; left: -100px; animation: blobFloat1 18s ease-in-out infinite; }
-    .blob-2 { width: 400px; height: 400px; background: var(--or); bottom: -120px; right: -80px; animation: blobFloat2 22s ease-in-out infinite; }
-    .hero-inner { position: relative; z-index: 1; max-width: 680px; margin: 0 auto; }
-    .hero-badge { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; padding: 7px 18px; border-radius: 20px; border: 1px solid rgba(200,67,26,.35); background: rgba(200,67,26,.08); color: var(--brique2); margin-bottom: 24px; }
-    .hero h1 { font-family: 'DM Serif Display', serif; font-style: italic; font-size: clamp(32px,5vw,56px); color: var(--creme); line-height: 1.1; margin-bottom: 16px; }
-    .hero-sub { font-size: 16px; color: rgba(247,242,232,.5); max-width: 480px; margin: 0 auto; line-height: 1.7; }
-    @media (max-width: 768px) { .hero { padding: 64px 20px 56px; } }
+    .hero { position: relative; overflow: hidden; background: var(--night); padding: 110px 48px 100px; text-align: center; border-bottom: 1px solid var(--border); }
+    .hero-img { position: absolute; inset: 0; z-index: 0; }
+    .hero-img img { width: 100%; height: 100%; object-fit: cover; opacity: .2; }
+    .hero-overlay { position: absolute; inset: 0; z-index: 1; background: linear-gradient(to bottom, rgba(11,6,3,.4) 0%, rgba(11,6,3,.7) 100%); }
+    .hero-inner { position: relative; z-index: 2; max-width: 680px; margin: 0 auto; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; padding: 7px 18px; border-radius: 20px; border: 1px solid rgba(200,67,26,.35); background: rgba(200,67,26,.08); color: var(--brique2); margin-bottom: 28px; }
+    .hero h1 { font-family: 'DM Serif Display', serif; font-style: italic; font-size: clamp(36px,6vw,64px); color: var(--creme); line-height: 1.05; margin-bottom: 20px; }
+    .hero-sub { font-size: 17px; color: rgba(247,242,232,.65); max-width: 520px; margin: 0 auto; line-height: 1.8; }
+    @media (max-width: 768px) { .hero { padding: 80px 20px 72px; } }
 
     /* SECTIONS */
     .section { padding: 80px 48px; }
@@ -87,45 +87,56 @@
     .section-label { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; margin-bottom: 12px; }
     [data-theme="light"] .section-label { background: rgba(200,67,26,.1); color: #C8431A; border: 1px solid rgba(200,67,26,.2); }
     [data-theme="dark"]  .section-label { background: rgba(200,67,26,.15); color: #E8620A; border: 1px solid rgba(232,98,10,.25); }
-    .section-h2 { font-style: italic; font-size: clamp(24px,3vw,36px); margin-bottom: 24px; }
-    [data-theme="light"] .section-h2 { font-family: Georgia, serif; color: #1A1410; border-bottom: 1px solid #E8E0D0; padding-bottom: 16px; margin-bottom: 36px; }
-    [data-theme="dark"]  .section-h2 { font-family: 'DM Serif Display', serif; color: #F7F2E8; border-bottom: 1px solid rgba(255,255,255,.08); padding-bottom: 16px; margin-bottom: 36px; }
+    .section-h2 { font-style: italic; font-size: clamp(24px,3vw,36px); margin-bottom: 36px; }
+    [data-theme="light"] .section-h2 { font-family: Georgia, serif; color: #1A1410; border-bottom: 1px solid #E8E0D0; padding-bottom: 16px; }
+    [data-theme="dark"]  .section-h2 { font-family: 'DM Serif Display', serif; color: #F7F2E8; border-bottom: 1px solid rgba(255,255,255,.08); padding-bottom: 16px; }
 
-    /* INTRO CLAIR */
-    .intro-box { background: white; border: 1px solid #E8E0D0; border-radius: 16px; padding: 32px 28px; font-size: 16px; color: var(--terre); line-height: 1.8; border-left: 4px solid var(--brique); }
+    /* SECTION 1 — 2 colonnes */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+    .mission-list { display: flex; flex-direction: column; gap: 14px; margin-top: 24px; }
+    .mission-item { display: flex; align-items: flex-start; gap: 12px; font-size: 15px; color: var(--terre); line-height: 1.5; }
+    .mission-icon { flex-shrink: 0; font-size: 18px; margin-top: 1px; }
+    .col-img { border-radius: 20px; overflow: hidden; aspect-ratio: 4/3; }
+    .col-img img { width: 100%; height: 100%; object-fit: cover; }
+    .intro-text { font-size: 16px; color: var(--terre); line-height: 1.8; margin-bottom: 8px; }
+    @media (max-width: 768px) { .two-col { grid-template-columns: 1fr; gap: 36px; } }
 
-    /* RÈGLES */
-    .rules-list { display: flex; flex-direction: column; gap: 12px; }
-    .rule-item { display: flex; align-items: flex-start; gap: 16px; background: rgba(247,242,232,.04); border: 1px solid rgba(247,242,232,.08); border-radius: 12px; padding: 16px 20px; transition: border-color .2s; }
-    .rule-item:hover { border-color: rgba(200,67,26,.2); }
-    .rule-num { flex-shrink: 0; width: 28px; height: 28px; border-radius: 8px; background: rgba(200,67,26,.12); border: 1px solid rgba(232,98,10,.2); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: var(--brique2); }
-    .rule-text { font-size: 15px; color: rgba(247,242,232,.75); line-height: 1.6; padding-top: 3px; }
+    /* SECTION 2 — cards avantages */
+    .avantages-grid { display: grid; grid-template-columns: repeat(5,1fr); gap: 16px; }
+    .avantage-card { background: rgba(247,242,232,.04); border: 1px solid rgba(247,242,232,.08); border-radius: 16px; padding: 24px 18px; text-align: center; transition: all .25s; }
+    .avantage-card:hover { background: rgba(200,67,26,.06); border-color: rgba(200,67,26,.2); transform: translateY(-4px); }
+    .avantage-emoji { font-size: 28px; margin-bottom: 12px; }
+    .avantage-title { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 16px; color: var(--creme); margin-bottom: 8px; }
+    .avantage-body { font-size: 12px; color: rgba(247,242,232,.5); line-height: 1.6; }
+    @media (max-width: 900px) { .avantages-grid { grid-template-columns: repeat(2,1fr); } }
+    @media (max-width: 480px) { .avantages-grid { grid-template-columns: 1fr; } }
 
-    /* RÈGLES CLAIR */
-    .rules-list-light { display: flex; flex-direction: column; gap: 12px; }
-    .rule-item-light { display: flex; align-items: flex-start; gap: 16px; background: white; border: 1px solid #E8E0D0; border-radius: 12px; padding: 16px 20px; transition: border-color .2s; }
-    .rule-item-light:hover { border-color: rgba(200,67,26,.2); }
-    .rule-num-light { flex-shrink: 0; width: 28px; height: 28px; border-radius: 8px; background: rgba(200,67,26,.08); border: 1px solid rgba(200,67,26,.15); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: var(--brique); }
-    .rule-text-light { font-size: 15px; color: var(--terre); line-height: 1.6; padding-top: 3px; }
+    /* SECTION 3 — modèle Haïti */
+    .modele-box { background: white; border: 1px solid #E8E0D0; border-radius: 20px; padding: 40px 36px; border-left: 4px solid var(--brique); }
+    .modele-intro { font-size: 16px; color: var(--terre); line-height: 1.8; margin-bottom: 20px; }
+    .modele-mission { background: rgba(200,67,26,.05); border: 1px solid rgba(200,67,26,.12); border-radius: 12px; padding: 16px 20px; font-size: 14px; color: var(--terre); line-height: 1.7; margin-bottom: 20px; }
+    .modele-result { font-size: 14px; color: #6B4A30; line-height: 1.6; margin-bottom: 24px; }
+    .modele-badge { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; padding: 7px 16px; border-radius: 20px; background: rgba(200,67,26,.08); color: var(--brique); border: 1px solid rgba(200,67,26,.2); margin-bottom: 20px; }
+    .modele-repro { font-size: 15px; color: var(--terre); font-style: italic; }
 
-    /* POINTS */
-    .points-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; margin-bottom: 36px; }
-    .point-card { background: rgba(247,242,232,.04); border: 1px solid rgba(247,242,232,.08); border-radius: 14px; padding: 22px 20px; display: flex; align-items: center; gap: 16px; transition: all .25s; }
-    .point-card:hover { background: rgba(200,67,26,.06); border-color: rgba(200,67,26,.2); }
-    .point-val { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 26px; color: var(--brique2); line-height: 1; flex-shrink: 0; min-width: 72px; }
-    .point-action { font-size: 14px; color: rgba(247,242,232,.65); line-height: 1.5; }
-    @media (max-width: 600px) { .points-grid { grid-template-columns: 1fr; } }
-
-    .classement-cta { display: inline-flex; align-items: center; gap: 8px; padding: 13px 28px; font-size: 14px; font-weight: 600; background: var(--brique); color: white; border-radius: 10px; text-decoration: none; transition: all .25s; box-shadow: 0 0 20px rgba(200,67,26,.3); }
-    .classement-cta:hover { box-shadow: 0 0 36px rgba(200,67,26,.5); transform: translateY(-1px); color: white; }
+    /* SECTION 4 — étapes */
+    .etapes-list { display: flex; flex-direction: column; gap: 20px; max-width: 680px; margin: 0 auto; }
+    .etape-item { display: flex; align-items: flex-start; gap: 20px; background: rgba(247,242,232,.04); border: 1px solid rgba(247,242,232,.08); border-radius: 16px; padding: 24px 24px; transition: border-color .2s; }
+    .etape-item:hover { border-color: rgba(200,67,26,.2); }
+    .etape-num { flex-shrink: 0; width: 36px; height: 36px; border-radius: 10px; background: rgba(200,67,26,.12); border: 1px solid rgba(232,98,10,.2); display: flex; align-items: center; justify-content: center; font-size: 16px; }
+    .etape-content { flex: 1; }
+    .etape-title { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 18px; color: var(--creme); margin-bottom: 6px; }
+    .etape-body { font-size: 14px; color: rgba(247,242,232,.6); line-height: 1.6; }
+    .etape-cta { display: flex; justify-content: center; margin-top: 40px; }
+    .etape-btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 32px; font-size: 15px; font-weight: 600; background: var(--brique); color: white; border-radius: 12px; transition: all .25s; box-shadow: 0 0 24px rgba(200,67,26,.35); }
+    .etape-btn:hover { box-shadow: 0 0 40px rgba(200,67,26,.6); transform: translateY(-1px); color: white; }
 
     /* CTA BRIQUE */
-    .cta-section { background: linear-gradient(135deg, #C8431A 0%, #E8620A 100%); padding: 72px 24px; text-align: center; }
+    .cta-section { background: linear-gradient(135deg, #C8431A 0%, #E8620A 100%); padding: 80px 24px; text-align: center; }
     .cta-inner { max-width: 560px; margin: 0 auto; }
-    .cta-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.75); margin-bottom: 12px; }
-    .cta-h2 { font-family: 'DM Serif Display', serif; font-style: italic; font-size: clamp(24px,3vw,34px); color: white; margin-bottom: 12px; }
-    .cta-p { font-size: 15px; color: rgba(255,255,255,.8); margin-bottom: 28px; line-height: 1.7; }
-    .cta-link { display: inline-flex; align-items: center; gap: 8px; padding: 13px 30px; background: white; border-radius: 999px; font-size: 14px; font-weight: 700; color: #C8431A; box-shadow: 0 4px 24px rgba(0,0,0,.15); transition: all .25s; }
+    .cta-h2 { font-family: 'DM Serif Display', serif; font-style: italic; font-size: clamp(26px,3.5vw,40px); color: white; margin-bottom: 12px; }
+    .cta-p { font-size: 15px; color: rgba(255,255,255,.85); margin-bottom: 32px; line-height: 1.7; }
+    .cta-link { display: inline-flex; align-items: center; gap: 8px; padding: 14px 34px; background: white; border-radius: 999px; font-size: 15px; font-weight: 700; color: #C8431A; box-shadow: 0 4px 24px rgba(0,0,0,.15); transition: all .25s; }
     .cta-link:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,.2); color: #C8431A; }
 
     /* FOOTER */
@@ -179,89 +190,131 @@
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-blobs"><div class="blob blob-1"></div><div class="blob blob-2"></div></div>
+  <div class="hero-img">
+    <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=1400&q=80" alt="" crossorigin="anonymous" loading="eager"/>
+  </div>
+  <div class="hero-overlay"></div>
   <div class="hero-inner">
-    <div class="hero-badge">✍️ Contributeurs</div>
-    <h1>Charte des contributeurs</h1>
-    <p class="hero-sub">Tu enrichis LOTBO — voici comment le faire bien.</p>
+    <div class="hero-badge">🌍 Programme Ambassadeur</div>
+    <h1>Deviens ambassadeur LOTBO</h1>
+    <p class="hero-sub">Représente LOTBO dans ta ville. Fais le lien entre la plateforme et ta communauté locale.</p>
   </div>
 </section>
 
-<!-- SECTION 1 — CLAIR : Qui est contributeur -->
+<!-- SECTION 1 — CLAIR : C'est quoi un ambassadeur ? -->
+<section data-theme="light" class="section">
+  <div class="section-inner">
+    <div class="two-col">
+      <div class="reveal">
+        <p class="section-label">Rôle</p>
+        <h2 class="section-h2">Tu es le visage de LOTBO sur le terrain</h2>
+        <p class="intro-text">L'ambassadeur LOTBO est la personne qui connaît sa ville mieux que quiconque. Il repère les événements, rencontre les organisateurs, distribue la plateforme et remonte les informations du terrain.</p>
+        <div class="mission-list">
+          <div class="mission-item"><span class="mission-icon">📍</span><span>Cartographier les événements locaux non répertoriés</span></div>
+          <div class="mission-item"><span class="mission-icon">🤝</span><span>Rencontrer les organisateurs et les onboarder sur LOTBO</span></div>
+          <div class="mission-item"><span class="mission-icon">📣</span><span>Promouvoir LOTBO dans sa communauté (réseaux, bouche-à-oreille)</span></div>
+          <div class="mission-item"><span class="mission-icon">📊</span><span>Remonter des rapports terrain à l'équipe LOTBO</span></div>
+        </div>
+      </div>
+      <div class="col-img reveal">
+        <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&q=80" alt="Communauté locale" crossorigin="anonymous" loading="lazy"/>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2 — SOMBRE : Ce qu'on offre -->
+<section data-theme="dark" class="section">
+  <div class="section-inner">
+    <p class="section-label reveal">Ce qu'on offre</p>
+    <h2 class="section-h2 reveal">Tes avantages en tant qu'ambassadeur</h2>
+    <div class="avantages-grid">
+      <div class="avantage-card reveal reveal-delay-1">
+        <div class="avantage-emoji">🏅</div>
+        <h3 class="avantage-title">Titre officiel</h3>
+        <p class="avantage-body">"Ambassadeur LOTBO [Ta ville]" reconnu publiquement sur la plateforme</p>
+      </div>
+      <div class="avantage-card reveal reveal-delay-2">
+        <div class="avantage-emoji">📄</div>
+        <h3 class="avantage-title">Lettre de recommandation</h3>
+        <p class="avantage-body">Sur demande, signée par le fondateur Handgod Abraham</p>
+      </div>
+      <div class="avantage-card reveal reveal-delay-3">
+        <div class="avantage-emoji">💼</div>
+        <h3 class="avantage-title">Expérience terrain</h3>
+        <p class="avantage-body">Références réelles pour ton CV et portfolio professionnel</p>
+      </div>
+      <div class="avantage-card reveal reveal-delay-4">
+        <div class="avantage-emoji">💰</div>
+        <h3 class="avantage-title">Rémunération future</h3>
+        <p class="avantage-body">Priorité sur les premières missions payées quand LOTBO scale</p>
+      </div>
+      <div class="avantage-card reveal reveal-delay-5">
+        <div class="avantage-emoji">🌐</div>
+        <h3 class="avantage-title">Réseau international</h3>
+        <p class="avantage-body">Accès au réseau LOTBO et à ses partenaires à travers le monde</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3 — CLAIR : Le modèle Haïti 2026 -->
 <section data-theme="light" class="section">
   <div class="section-inner reveal">
-    <p class="section-label">Définition</p>
-    <h2 class="section-h2">Qui est contributeur ?</h2>
-    <div class="intro-box">
-      Tout membre qui soumet un événement, laisse un commentaire ou propose une correction devient contributeur. Tu es la <strong>colonne vertébrale de LOTBO</strong>. Sans toi, la carte reste vide et la communauté silencieuse. Chaque contribution, même petite, compte.
+    <p class="section-label">Modèle</p>
+    <h2 class="section-h2">Le modèle — Haïti 2026</h2>
+    <div class="modele-box">
+      <p class="modele-intro">Notre premier ambassadeur est actif à Jacmel, Haïti depuis juin 2026.</p>
+      <div class="modele-mission">
+        <strong>Mission :</strong> enquête terrain · partenariat Radio Métronome · cartographie des événements locaux
+      </div>
+      <p class="modele-result"><strong>Résultat :</strong> données terrain enrichies, communauté locale engagée, organisateurs onboardés.</p>
+      <div class="modele-badge">🇭🇹 Premier ambassadeur · Jacmel, Haïti · Juin 2026</div>
+      <p class="modele-repro">Ce modèle est reproductible dans n'importe quelle ville du monde.</p>
     </div>
   </div>
 </section>
 
-<!-- SECTION 2 — SOMBRE : Règles soumission -->
+<!-- SECTION 4 — SOMBRE : Comment postuler ? -->
 <section data-theme="dark" class="section">
-  <div class="section-inner reveal">
-    <p class="section-label">Événements</p>
-    <h2 class="section-h2">Règles de soumission</h2>
-    <div class="rules-list">
-      <div class="rule-item"><div class="rule-num">1</div><p class="rule-text">Soumets uniquement des événements réels et vérifiables.</p></div>
-      <div class="rule-item"><div class="rule-num">2</div><p class="rule-text">L'adresse doit être précise et localisable sur la carte.</p></div>
-      <div class="rule-item"><div class="rule-num">3</div><p class="rule-text">Pas de doublons — vérifie si l'événement existe déjà avant de soumettre.</p></div>
-      <div class="rule-item"><div class="rule-num">4</div><p class="rule-text">La description doit être honnête et complète.</p></div>
-      <div class="rule-item"><div class="rule-num">5</div><p class="rule-text">Les images doivent être libres de droits ou t'appartenir.</p></div>
-      <div class="rule-item"><div class="rule-num">6</div><p class="rule-text">Pas de contenu publicitaire déguisé en événement.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- SECTION 3 — CLAIR : Règles commentaires -->
-<section data-theme="light" class="section">
-  <div class="section-inner reveal">
-    <p class="section-label">Commentaires</p>
-    <h2 class="section-h2">Règles de commentaires</h2>
-    <div class="rules-list-light">
-      <div class="rule-item-light"><div class="rule-num-light">1</div><p class="rule-text-light">Reste constructif et bienveillant dans tes échanges.</p></div>
-      <div class="rule-item-light"><div class="rule-num-light">2</div><p class="rule-text-light">Pas de spam, pas de liens non sollicités.</p></div>
-      <div class="rule-item-light"><div class="rule-num-light">3</div><p class="rule-text-light">Respecte l'organisateur même si tu n'es pas d'accord.</p></div>
-      <div class="rule-item-light"><div class="rule-num-light">4</div><p class="rule-text-light">Signale les informations incorrectes via "Proposer une correction" plutôt que de commenter négativement.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- SECTION 4 — SOMBRE : Points -->
-<section data-theme="dark" class="section">
-  <div class="section-inner reveal">
-    <p class="section-label">🏆 Récompenses</p>
-    <h2 class="section-h2">Tes points par action</h2>
-    <div class="points-grid">
-      <div class="point-card reveal reveal-delay-1">
-        <div class="point-val">+50</div>
-        <div class="point-action">Événement approuvé par l'équipe LOTBO</div>
+  <div class="section-inner">
+    <p class="section-label reveal" style="display:block;text-align:center;">Processus</p>
+    <h2 class="section-h2 reveal" style="text-align:center;border:none;padding:0;margin-bottom:40px;">Comment postuler ?</h2>
+    <div class="etapes-list">
+      <div class="etape-item reveal reveal-delay-1">
+        <div class="etape-num">📝</div>
+        <div class="etape-content">
+          <h3 class="etape-title">Remplis le formulaire</h3>
+          <p class="etape-body">Dis-nous qui tu es et pourquoi ta ville a besoin de LOTBO</p>
+        </div>
       </div>
-      <div class="point-card reveal reveal-delay-2">
-        <div class="point-val">+10</div>
-        <div class="point-action">Commentaire posté sur un événement</div>
+      <div class="etape-item reveal reveal-delay-2">
+        <div class="etape-num">📞</div>
+        <div class="etape-content">
+          <h3 class="etape-title">On te contacte</h3>
+          <p class="etape-body">L'équipe LOTBO t'appelle ou t'écrit dans les 48h</p>
+        </div>
       </div>
-      <div class="point-card reveal reveal-delay-3">
-        <div class="point-val">+5</div>
-        <div class="point-action">Réaction reçue sur ton commentaire</div>
-      </div>
-      <div class="point-card reveal reveal-delay-4">
-        <div class="point-val">+20</div>
-        <div class="point-action">Correction proposée et validée</div>
+      <div class="etape-item reveal reveal-delay-3">
+        <div class="etape-num">🚀</div>
+        <div class="etape-content">
+          <h3 class="etape-title">Tu démarres</h3>
+          <p class="etape-body">Mission définie, outils fournis, tu es officiellement Ambassadeur LOTBO</p>
+        </div>
       </div>
     </div>
-    <a href="https://app.lotbo.app/classement" class="classement-cta">Voir le classement →</a>
+    <div class="etape-cta">
+      <a href="/rejoins-lotbo.html" class="etape-btn">Postuler maintenant →</a>
+    </div>
   </div>
 </section>
 
 <!-- CTA BRIQUE -->
 <section class="cta-section">
   <div class="cta-inner">
-    <p class="cta-eyebrow">Prêt ?</p>
-    <h2 class="cta-h2">Commence à contribuer</h2>
-    <p class="cta-p">Chaque événement soumis rend LOTBO plus riche pour tout le monde. Lance-toi maintenant.</p>
-    <a href="https://app.lotbo.app/ajouter" class="cta-link">Soumettre un événement →</a>
+    <h2 class="cta-h2">Ta ville mérite d'être sur la carte.</h2>
+    <p class="cta-p">Rejoins le programme ambassadeur et fais de ta ville une référence sur LOTBO.</p>
+    <a href="/rejoins-lotbo.html" class="cta-link">Postuler →</a>
   </div>
 </section>
 

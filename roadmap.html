@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Charte des contributeurs — LOTBO</title>
-  <meta name="description" content="Tu enrichis LOTBO — voici comment le faire bien. Règles de soumission, commentaires et récompenses."/>
+  <title>Roadmap — Ce qu'on construit · LOTBO</title>
+  <meta name="description" content="La roadmap publique de LOTBO — ce qui est livré, ce qui arrive, ce qu'on rêve."/>
   <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
   <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png"/>
   <meta name="theme-color" content="#0B0603"/>
-  <meta property="og:title" content="Charte des contributeurs — LOTBO"/>
-  <meta property="og:description" content="Tu enrichis LOTBO — voici comment le faire bien."/>
+  <meta property="og:title" content="Roadmap LOTBO — Ce qu'on construit"/>
+  <meta property="og:description" content="La roadmap publique de LOTBO — ce qui est livré, ce qui arrive, ce qu'on rêve."/>
   <meta property="og:type" content="website"/>
   <meta name="robots" content="index, follow"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -73,8 +73,8 @@
     .blob-2 { width: 400px; height: 400px; background: var(--or); bottom: -120px; right: -80px; animation: blobFloat2 22s ease-in-out infinite; }
     .hero-inner { position: relative; z-index: 1; max-width: 680px; margin: 0 auto; }
     .hero-badge { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; padding: 7px 18px; border-radius: 20px; border: 1px solid rgba(200,67,26,.35); background: rgba(200,67,26,.08); color: var(--brique2); margin-bottom: 24px; }
-    .hero h1 { font-family: 'DM Serif Display', serif; font-style: italic; font-size: clamp(32px,5vw,56px); color: var(--creme); line-height: 1.1; margin-bottom: 16px; }
-    .hero-sub { font-size: 16px; color: rgba(247,242,232,.5); max-width: 480px; margin: 0 auto; line-height: 1.7; }
+    .hero h1 { font-family: 'DM Serif Display', serif; font-style: italic; font-size: clamp(36px,6vw,64px); color: var(--creme); line-height: 1.05; margin-bottom: 16px; }
+    .hero-sub { font-size: 16px; color: rgba(247,242,232,.5); max-width: 520px; margin: 0 auto; line-height: 1.7; }
     @media (max-width: 768px) { .hero { padding: 64px 20px 56px; } }
 
     /* SECTIONS */
@@ -87,45 +87,56 @@
     .section-label { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; margin-bottom: 12px; }
     [data-theme="light"] .section-label { background: rgba(200,67,26,.1); color: #C8431A; border: 1px solid rgba(200,67,26,.2); }
     [data-theme="dark"]  .section-label { background: rgba(200,67,26,.15); color: #E8620A; border: 1px solid rgba(232,98,10,.25); }
-    .section-h2 { font-style: italic; font-size: clamp(24px,3vw,36px); margin-bottom: 24px; }
-    [data-theme="light"] .section-h2 { font-family: Georgia, serif; color: #1A1410; border-bottom: 1px solid #E8E0D0; padding-bottom: 16px; margin-bottom: 36px; }
-    [data-theme="dark"]  .section-h2 { font-family: 'DM Serif Display', serif; color: #F7F2E8; border-bottom: 1px solid rgba(255,255,255,.08); padding-bottom: 16px; margin-bottom: 36px; }
+    .section-h2 { font-style: italic; font-size: clamp(24px,3vw,36px); margin-bottom: 36px; }
+    [data-theme="light"] .section-h2 { font-family: Georgia, serif; color: #1A1410; border-bottom: 1px solid #E8E0D0; padding-bottom: 16px; }
+    [data-theme="dark"]  .section-h2 { font-family: 'DM Serif Display', serif; color: #F7F2E8; border-bottom: 1px solid rgba(255,255,255,.08); padding-bottom: 16px; }
 
-    /* INTRO CLAIR */
-    .intro-box { background: white; border: 1px solid #E8E0D0; border-radius: 16px; padding: 32px 28px; font-size: 16px; color: var(--terre); line-height: 1.8; border-left: 4px solid var(--brique); }
+    /* TIMELINE livré */
+    .timeline { display: flex; flex-direction: column; gap: 0; max-width: 780px; }
+    .tl-item { display: flex; gap: 24px; padding-bottom: 32px; position: relative; }
+    .tl-item:last-child { padding-bottom: 0; }
+    .tl-left { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
+    .tl-dot { width: 14px; height: 14px; border-radius: 50%; background: var(--brique); border: 2px solid white; box-shadow: 0 0 0 3px rgba(200,67,26,.2); flex-shrink: 0; margin-top: 4px; }
+    .tl-line { flex: 1; width: 2px; background: #E8E0D0; margin-top: 6px; }
+    .tl-item:last-child .tl-line { display: none; }
+    .tl-date { font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--brique); margin-bottom: 4px; }
+    .tl-title { font-family: Georgia, serif; font-style: italic; font-size: 17px; color: #1A1410; margin-bottom: 6px; }
+    .tl-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tl-tag { font-size: 11px; padding: 3px 10px; border-radius: 20px; background: rgba(200,67,26,.07); color: var(--brique); border: 1px solid rgba(200,67,26,.15); }
 
-    /* RÈGLES */
-    .rules-list { display: flex; flex-direction: column; gap: 12px; }
-    .rule-item { display: flex; align-items: flex-start; gap: 16px; background: rgba(247,242,232,.04); border: 1px solid rgba(247,242,232,.08); border-radius: 12px; padding: 16px 20px; transition: border-color .2s; }
-    .rule-item:hover { border-color: rgba(200,67,26,.2); }
-    .rule-num { flex-shrink: 0; width: 28px; height: 28px; border-radius: 8px; background: rgba(200,67,26,.12); border: 1px solid rgba(232,98,10,.2); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: var(--brique2); }
-    .rule-text { font-size: 15px; color: rgba(247,242,232,.75); line-height: 1.6; padding-top: 3px; }
+    /* EN COURS — cards */
+    .encours-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+    .encours-card { background: rgba(247,242,232,.04); border: 1px solid rgba(247,242,232,.08); border-radius: 18px; padding: 28px 24px; position: relative; overflow: hidden; transition: border-color .25s; }
+    .encours-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--brique), var(--or)); }
+    .encours-card:hover { border-color: rgba(200,67,26,.2); }
+    .encours-emoji { font-size: 28px; margin-bottom: 12px; }
+    .encours-title { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 19px; color: var(--creme); margin-bottom: 8px; }
+    .encours-body { font-size: 13px; color: rgba(247,242,232,.55); line-height: 1.6; }
+    .encours-eta { display: inline-block; margin-top: 12px; font-size: 11px; font-weight: 600; color: var(--or); letter-spacing: .05em; }
+    @media (max-width: 680px) { .encours-grid { grid-template-columns: 1fr; } }
 
-    /* RÈGLES CLAIR */
-    .rules-list-light { display: flex; flex-direction: column; gap: 12px; }
-    .rule-item-light { display: flex; align-items: flex-start; gap: 16px; background: white; border: 1px solid #E8E0D0; border-radius: 12px; padding: 16px 20px; transition: border-color .2s; }
-    .rule-item-light:hover { border-color: rgba(200,67,26,.2); }
-    .rule-num-light { flex-shrink: 0; width: 28px; height: 28px; border-radius: 8px; background: rgba(200,67,26,.08); border: 1px solid rgba(200,67,26,.15); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: var(--brique); }
-    .rule-text-light { font-size: 15px; color: var(--terre); line-height: 1.6; padding-top: 3px; }
+    /* À VENIR — grid 2×2 */
+    .avenir-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; }
+    .avenir-card { background: white; border: 1px solid #E8E0D0; border-radius: 18px; padding: 28px 24px; display: flex; gap: 16px; align-items: flex-start; transition: all .25s; }
+    .avenir-card:hover { box-shadow: 0 12px 36px rgba(26,20,16,.08); transform: translateY(-3px); }
+    .avenir-emoji { font-size: 26px; flex-shrink: 0; margin-top: 2px; }
+    .avenir-title { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 18px; color: var(--night); margin-bottom: 6px; }
+    .avenir-body { font-size: 13px; color: var(--terre); line-height: 1.6; }
+    @media (max-width: 600px) { .avenir-grid { grid-template-columns: 1fr; } }
 
-    /* POINTS */
-    .points-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; margin-bottom: 36px; }
-    .point-card { background: rgba(247,242,232,.04); border: 1px solid rgba(247,242,232,.08); border-radius: 14px; padding: 22px 20px; display: flex; align-items: center; gap: 16px; transition: all .25s; }
-    .point-card:hover { background: rgba(200,67,26,.06); border-color: rgba(200,67,26,.2); }
-    .point-val { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 26px; color: var(--brique2); line-height: 1; flex-shrink: 0; min-width: 72px; }
-    .point-action { font-size: 14px; color: rgba(247,242,232,.65); line-height: 1.5; }
-    @media (max-width: 600px) { .points-grid { grid-template-columns: 1fr; } }
-
-    .classement-cta { display: inline-flex; align-items: center; gap: 8px; padding: 13px 28px; font-size: 14px; font-weight: 600; background: var(--brique); color: white; border-radius: 10px; text-decoration: none; transition: all .25s; box-shadow: 0 0 20px rgba(200,67,26,.3); }
-    .classement-cta:hover { box-shadow: 0 0 36px rgba(200,67,26,.5); transform: translateY(-1px); color: white; }
+    /* ON RÊVE */
+    .reve-list { display: flex; flex-direction: column; gap: 16px; max-width: 700px; }
+    .reve-item { display: flex; align-items: flex-start; gap: 20px; background: rgba(247,242,232,.04); border: 1px solid rgba(247,242,232,.08); border-radius: 16px; padding: 20px 24px; }
+    .reve-emoji { font-size: 24px; flex-shrink: 0; }
+    .reve-text { font-size: 15px; color: rgba(247,242,232,.75); line-height: 1.6; }
 
     /* CTA BRIQUE */
-    .cta-section { background: linear-gradient(135deg, #C8431A 0%, #E8620A 100%); padding: 72px 24px; text-align: center; }
+    .cta-section { background: linear-gradient(135deg, #C8431A 0%, #E8620A 100%); padding: 80px 24px; text-align: center; }
     .cta-inner { max-width: 560px; margin: 0 auto; }
-    .cta-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.75); margin-bottom: 12px; }
-    .cta-h2 { font-family: 'DM Serif Display', serif; font-style: italic; font-size: clamp(24px,3vw,34px); color: white; margin-bottom: 12px; }
-    .cta-p { font-size: 15px; color: rgba(255,255,255,.8); margin-bottom: 28px; line-height: 1.7; }
-    .cta-link { display: inline-flex; align-items: center; gap: 8px; padding: 13px 30px; background: white; border-radius: 999px; font-size: 14px; font-weight: 700; color: #C8431A; box-shadow: 0 4px 24px rgba(0,0,0,.15); transition: all .25s; }
+    .cta-h2 { font-family: 'DM Serif Display', serif; font-style: italic; font-size: clamp(26px,3.5vw,40px); color: white; margin-bottom: 12px; }
+    .cta-p { font-size: 15px; color: rgba(255,255,255,.85); margin-bottom: 10px; line-height: 1.7; }
+    .cta-email { font-size: 15px; color: rgba(255,255,255,.9); font-weight: 500; margin-bottom: 28px; display: block; }
+    .cta-link { display: inline-flex; align-items: center; gap: 8px; padding: 14px 34px; background: white; border-radius: 999px; font-size: 15px; font-weight: 700; color: #C8431A; box-shadow: 0 4px 24px rgba(0,0,0,.15); transition: all .25s; }
     .cta-link:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,.2); color: #C8431A; }
 
     /* FOOTER */
@@ -181,87 +192,179 @@
 <section class="hero">
   <div class="hero-blobs"><div class="blob blob-1"></div><div class="blob blob-2"></div></div>
   <div class="hero-inner">
-    <div class="hero-badge">✍️ Contributeurs</div>
-    <h1>Charte des contributeurs</h1>
-    <p class="hero-sub">Tu enrichis LOTBO — voici comment le faire bien.</p>
+    <div class="hero-badge">🗺️ Roadmap</div>
+    <h1>Ce qu'on construit</h1>
+    <p class="hero-sub">La roadmap publique de LOTBO — ce qui est livré, ce qui arrive, ce qu'on rêve.</p>
   </div>
 </section>
 
-<!-- SECTION 1 — CLAIR : Qui est contributeur -->
+<!-- SECTION 1 — CLAIR : Déjà livré -->
 <section data-theme="light" class="section">
   <div class="section-inner reveal">
-    <p class="section-label">Définition</p>
-    <h2 class="section-h2">Qui est contributeur ?</h2>
-    <div class="intro-box">
-      Tout membre qui soumet un événement, laisse un commentaire ou propose une correction devient contributeur. Tu es la <strong>colonne vertébrale de LOTBO</strong>. Sans toi, la carte reste vide et la communauté silencieuse. Chaque contribution, même petite, compte.
+    <p class="section-label">✅ Déjà livré</p>
+    <h2 class="section-h2">Ce qui est en production</h2>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div>
+          <p class="tl-date">Mai 2026</p>
+          <h3 class="tl-title">Lancement de la plateforme</h3>
+          <div class="tl-tags">
+            <span class="tl-tag">Carte interactive</span>
+            <span class="tl-tag">Scraping automatique</span>
+            <span class="tl-tag">5 langues</span>
+          </div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div>
+          <p class="tl-date">Mai 2026</p>
+          <h3 class="tl-title">Espace organisateurs & modération</h3>
+          <div class="tl-tags">
+            <span class="tl-tag">Auth organisateurs</span>
+            <span class="tl-tag">Panel admin</span>
+            <span class="tl-tag">Signalement</span>
+            <span class="tl-tag">Newsletter</span>
+          </div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div>
+          <p class="tl-date">Juin 2026</p>
+          <h3 class="tl-title">IA & Organisations & Gamification</h3>
+          <div class="tl-tags">
+            <span class="tl-tag">Scan &amp; Publie IA</span>
+            <span class="tl-tag">Organisations</span>
+            <span class="tl-tag">Gamification</span>
+            <span class="tl-tag">Clustering carte</span>
+          </div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div>
+          <p class="tl-date">Juin 2026</p>
+          <h3 class="tl-title">PWA & Cartes sociales</h3>
+          <div class="tl-tags">
+            <span class="tl-tag">PWA 92/100</span>
+            <span class="tl-tag">7 templates cartes sociales</span>
+            <span class="tl-tag">Guide organisateurs</span>
+          </div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div>
+          <p class="tl-date">Juin 2026</p>
+          <h3 class="tl-title">Communauté & DevExpo</h3>
+          <div class="tl-tags">
+            <span class="tl-tag">Pages communauté</span>
+            <span class="tl-tag">Chartes membres</span>
+            <span class="tl-tag">DevExpo 2026</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- SECTION 2 — SOMBRE : Règles soumission -->
+<!-- SECTION 2 — SOMBRE : En cours -->
 <section data-theme="dark" class="section">
-  <div class="section-inner reveal">
-    <p class="section-label">Événements</p>
-    <h2 class="section-h2">Règles de soumission</h2>
-    <div class="rules-list">
-      <div class="rule-item"><div class="rule-num">1</div><p class="rule-text">Soumets uniquement des événements réels et vérifiables.</p></div>
-      <div class="rule-item"><div class="rule-num">2</div><p class="rule-text">L'adresse doit être précise et localisable sur la carte.</p></div>
-      <div class="rule-item"><div class="rule-num">3</div><p class="rule-text">Pas de doublons — vérifie si l'événement existe déjà avant de soumettre.</p></div>
-      <div class="rule-item"><div class="rule-num">4</div><p class="rule-text">La description doit être honnête et complète.</p></div>
-      <div class="rule-item"><div class="rule-num">5</div><p class="rule-text">Les images doivent être libres de droits ou t'appartenir.</p></div>
-      <div class="rule-item"><div class="rule-num">6</div><p class="rule-text">Pas de contenu publicitaire déguisé en événement.</p></div>
+  <div class="section-inner">
+    <p class="section-label reveal">🔄 En cours</p>
+    <h2 class="section-h2 reveal">Ce qu'on livre cette semaine</h2>
+    <div class="encours-grid">
+      <div class="encours-card reveal reveal-delay-1">
+        <div class="encours-emoji">🏆</div>
+        <h3 class="encours-title">Badges Wikimedia</h3>
+        <p class="encours-body">Badge spécial pour les contributeurs qui enrichissent LOTBO via Wikimedia Commons.</p>
+        <span class="encours-eta">↗ En développement</span>
+      </div>
+      <div class="encours-card reveal reveal-delay-2">
+        <div class="encours-emoji">📱</div>
+        <h3 class="encours-title">Play Store</h3>
+        <p class="encours-body">Publication sur Google Play Store via TWA — l'application native Android est en cours de validation.</p>
+        <span class="encours-eta">↗ Semaine du 9 juin</span>
+      </div>
+      <div class="encours-card reveal reveal-delay-3">
+        <div class="encours-emoji">🌍</div>
+        <h3 class="encours-title">Tri géolocalisé</h3>
+        <p class="encours-body">Affichage des événements proches de l'utilisateur en priorité, avec rayon personnalisable.</p>
+        <span class="encours-eta">↗ En développement</span>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- SECTION 3 — CLAIR : Règles commentaires -->
+<!-- SECTION 3 — CLAIR : À venir -->
 <section data-theme="light" class="section">
-  <div class="section-inner reveal">
-    <p class="section-label">Commentaires</p>
-    <h2 class="section-h2">Règles de commentaires</h2>
-    <div class="rules-list-light">
-      <div class="rule-item-light"><div class="rule-num-light">1</div><p class="rule-text-light">Reste constructif et bienveillant dans tes échanges.</p></div>
-      <div class="rule-item-light"><div class="rule-num-light">2</div><p class="rule-text-light">Pas de spam, pas de liens non sollicités.</p></div>
-      <div class="rule-item-light"><div class="rule-num-light">3</div><p class="rule-text-light">Respecte l'organisateur même si tu n'es pas d'accord.</p></div>
-      <div class="rule-item-light"><div class="rule-num-light">4</div><p class="rule-text-light">Signale les informations incorrectes via "Proposer une correction" plutôt que de commenter négativement.</p></div>
+  <div class="section-inner">
+    <p class="section-label reveal">📅 À venir</p>
+    <h2 class="section-h2 reveal">Les prochaines grandes features</h2>
+    <div class="avenir-grid">
+      <div class="avenir-card reveal reveal-delay-1">
+        <div class="avenir-emoji">🎟️</div>
+        <div>
+          <h3 class="avenir-title">Billetterie intégrée</h3>
+          <p class="avenir-body">Vente de billets directement depuis LOTBO — sans quitter la plateforme.</p>
+        </div>
+      </div>
+      <div class="avenir-card reveal reveal-delay-2">
+        <div class="avenir-emoji">🤖</div>
+        <div>
+          <h3 class="avenir-title">Modération IA</h3>
+          <p class="avenir-body">Détection automatique des doublons et contenus incorrects avant publication.</p>
+        </div>
+      </div>
+      <div class="avenir-card reveal reveal-delay-3">
+        <div class="avenir-emoji">📊</div>
+        <div>
+          <h3 class="avenir-title">Dashboard organisateur</h3>
+          <p class="avenir-body">Statistiques de vues et d'engagement par événement, en temps réel.</p>
+        </div>
+      </div>
+      <div class="avenir-card reveal reveal-delay-4">
+        <div class="avenir-emoji">🌐</div>
+        <div>
+          <h3 class="avenir-title">API publique</h3>
+          <p class="avenir-body">Accès aux données LOTBO pour les développeurs et intégrations tierces.</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- SECTION 4 — SOMBRE : Points -->
+<!-- SECTION 4 — SOMBRE : On rêve de... -->
 <section data-theme="dark" class="section">
-  <div class="section-inner reveal">
-    <p class="section-label">🏆 Récompenses</p>
-    <h2 class="section-h2">Tes points par action</h2>
-    <div class="points-grid">
-      <div class="point-card reveal reveal-delay-1">
-        <div class="point-val">+50</div>
-        <div class="point-action">Événement approuvé par l'équipe LOTBO</div>
+  <div class="section-inner">
+    <p class="section-label reveal">✨ On rêve de…</p>
+    <h2 class="section-h2 reveal">La vision à long terme</h2>
+    <div class="reve-list">
+      <div class="reve-item reveal reveal-delay-1">
+        <div class="reve-emoji">🏙️</div>
+        <p class="reve-text">Partenariats avec les offices de tourisme et les mairies — LOTBO comme infrastructure événementielle officielle des villes.</p>
       </div>
-      <div class="point-card reveal reveal-delay-2">
-        <div class="point-val">+10</div>
-        <div class="point-action">Commentaire posté sur un événement</div>
+      <div class="reve-item reveal reveal-delay-2">
+        <div class="reve-emoji">📺</div>
+        <p class="reve-text">Intégration médias — Diffusion des événements LOTBO sur radios et TV locales en temps réel.</p>
       </div>
-      <div class="point-card reveal reveal-delay-3">
-        <div class="point-val">+5</div>
-        <div class="point-action">Réaction reçue sur ton commentaire</div>
-      </div>
-      <div class="point-card reveal reveal-delay-4">
-        <div class="point-val">+20</div>
-        <div class="point-action">Correction proposée et validée</div>
+      <div class="reve-item reveal reveal-delay-3">
+        <div class="reve-emoji">🌍</div>
+        <p class="reve-text">LOTBO dans 100 pays — Couvrir chaque continent, chaque culture, chaque communauté locale du monde.</p>
       </div>
     </div>
-    <a href="https://app.lotbo.app/classement" class="classement-cta">Voir le classement →</a>
   </div>
 </section>
 
 <!-- CTA BRIQUE -->
 <section class="cta-section">
   <div class="cta-inner">
-    <p class="cta-eyebrow">Prêt ?</p>
-    <h2 class="cta-h2">Commence à contribuer</h2>
-    <p class="cta-p">Chaque événement soumis rend LOTBO plus riche pour tout le monde. Lance-toi maintenant.</p>
-    <a href="https://app.lotbo.app/ajouter" class="cta-link">Soumettre un événement →</a>
+    <h2 class="cta-h2">Tu as une idée ?</h2>
+    <p class="cta-p">La roadmap LOTBO est façonnée par la communauté. Propose une feature, signale un besoin.</p>
+    <a href="mailto:lotbo@bup-mark.com?subject=Suggestion feature LOTBO" class="cta-email">lotbo@bup-mark.com</a>
+    <a href="mailto:lotbo@bup-mark.com?subject=Suggestion feature LOTBO" class="cta-link">Suggérer une feature →</a>
   </div>
 </section>
 

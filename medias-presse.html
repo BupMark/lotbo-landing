@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Charte des contributeurs — LOTBO</title>
-  <meta name="description" content="Tu enrichis LOTBO — voici comment le faire bien. Règles de soumission, commentaires et récompenses."/>
+  <title>Médias & Presse — LOTBO</title>
+  <meta name="description" content="Ressources pour les journalistes, blogueurs et créateurs de contenu qui couvrent LOTBO."/>
   <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
   <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png"/>
   <meta name="theme-color" content="#0B0603"/>
-  <meta property="og:title" content="Charte des contributeurs — LOTBO"/>
-  <meta property="og:description" content="Tu enrichis LOTBO — voici comment le faire bien."/>
+  <meta property="og:title" content="Médias &amp; Presse — LOTBO"/>
+  <meta property="og:description" content="Ressources pour les journalistes, blogueurs et créateurs de contenu."/>
   <meta property="og:type" content="website"/>
   <meta name="robots" content="index, follow"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -37,7 +37,6 @@
     .reveal-delay-1 { transition-delay: .1s; }
     .reveal-delay-2 { transition-delay: .2s; }
     .reveal-delay-3 { transition-delay: .3s; }
-    .reveal-delay-4 { transition-delay: .4s; }
 
     /* NAV */
     nav { position: sticky; top: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 16px 48px; background: rgba(11,6,3,0.8); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid var(--border); }
@@ -73,8 +72,8 @@
     .blob-2 { width: 400px; height: 400px; background: var(--or); bottom: -120px; right: -80px; animation: blobFloat2 22s ease-in-out infinite; }
     .hero-inner { position: relative; z-index: 1; max-width: 680px; margin: 0 auto; }
     .hero-badge { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; padding: 7px 18px; border-radius: 20px; border: 1px solid rgba(200,67,26,.35); background: rgba(200,67,26,.08); color: var(--brique2); margin-bottom: 24px; }
-    .hero h1 { font-family: 'DM Serif Display', serif; font-style: italic; font-size: clamp(32px,5vw,56px); color: var(--creme); line-height: 1.1; margin-bottom: 16px; }
-    .hero-sub { font-size: 16px; color: rgba(247,242,232,.5); max-width: 480px; margin: 0 auto; line-height: 1.7; }
+    .hero h1 { font-family: 'DM Serif Display', serif; font-style: italic; font-size: clamp(36px,6vw,64px); color: var(--creme); line-height: 1.05; margin-bottom: 16px; }
+    .hero-sub { font-size: 16px; color: rgba(247,242,232,.5); max-width: 520px; margin: 0 auto; line-height: 1.7; }
     @media (max-width: 768px) { .hero { padding: 64px 20px 56px; } }
 
     /* SECTIONS */
@@ -87,45 +86,55 @@
     .section-label { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; margin-bottom: 12px; }
     [data-theme="light"] .section-label { background: rgba(200,67,26,.1); color: #C8431A; border: 1px solid rgba(200,67,26,.2); }
     [data-theme="dark"]  .section-label { background: rgba(200,67,26,.15); color: #E8620A; border: 1px solid rgba(232,98,10,.25); }
-    .section-h2 { font-style: italic; font-size: clamp(24px,3vw,36px); margin-bottom: 24px; }
-    [data-theme="light"] .section-h2 { font-family: Georgia, serif; color: #1A1410; border-bottom: 1px solid #E8E0D0; padding-bottom: 16px; margin-bottom: 36px; }
-    [data-theme="dark"]  .section-h2 { font-family: 'DM Serif Display', serif; color: #F7F2E8; border-bottom: 1px solid rgba(255,255,255,.08); padding-bottom: 16px; margin-bottom: 36px; }
+    .section-h2 { font-style: italic; font-size: clamp(24px,3vw,36px); margin-bottom: 36px; }
+    [data-theme="light"] .section-h2 { font-family: Georgia, serif; color: #1A1410; border-bottom: 1px solid #E8E0D0; padding-bottom: 16px; }
+    [data-theme="dark"]  .section-h2 { font-family: 'DM Serif Display', serif; color: #F7F2E8; border-bottom: 1px solid rgba(255,255,255,.08); padding-bottom: 16px; }
 
-    /* INTRO CLAIR */
-    .intro-box { background: white; border: 1px solid #E8E0D0; border-radius: 16px; padding: 32px 28px; font-size: 16px; color: var(--terre); line-height: 1.8; border-left: 4px solid var(--brique); }
+    /* STATS */
+    .stats-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; }
+    .stat-card { background: white; border: 1px solid #E8E0D0; border-radius: 18px; padding: 28px 20px; text-align: center; transition: all .25s; }
+    .stat-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(26,20,16,.08); }
+    .stat-val { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 32px; color: var(--brique); line-height: 1.1; margin-bottom: 8px; }
+    .stat-label { font-size: 13px; color: var(--terre); line-height: 1.5; }
+    @media (max-width: 700px) { .stats-grid { grid-template-columns: repeat(2,1fr); } }
+    @media (max-width: 400px) { .stats-grid { grid-template-columns: 1fr; } }
 
-    /* RÈGLES */
-    .rules-list { display: flex; flex-direction: column; gap: 12px; }
-    .rule-item { display: flex; align-items: flex-start; gap: 16px; background: rgba(247,242,232,.04); border: 1px solid rgba(247,242,232,.08); border-radius: 12px; padding: 16px 20px; transition: border-color .2s; }
-    .rule-item:hover { border-color: rgba(200,67,26,.2); }
-    .rule-num { flex-shrink: 0; width: 28px; height: 28px; border-radius: 8px; background: rgba(200,67,26,.12); border: 1px solid rgba(232,98,10,.2); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: var(--brique2); }
-    .rule-text { font-size: 15px; color: rgba(247,242,232,.75); line-height: 1.6; padding-top: 3px; }
+    /* CITATION */
+    .citation-wrap { max-width: 800px; margin: 0 auto; }
+    .citation-box { background: rgba(247,242,232,.04); border: 1px solid rgba(247,242,232,.08); border-radius: 24px; padding: 48px 44px; border-left: 4px solid var(--brique); }
+    .citation-quote { font-family: 'DM Serif Display', serif; font-style: italic; font-size: clamp(18px,2.5vw,24px); color: var(--creme); line-height: 1.7; margin-bottom: 24px; }
+    .citation-credit { font-size: 13px; color: rgba(247,242,232,.45); }
+    @media (max-width: 600px) { .citation-box { padding: 28px 24px; } }
 
-    /* RÈGLES CLAIR */
-    .rules-list-light { display: flex; flex-direction: column; gap: 12px; }
-    .rule-item-light { display: flex; align-items: flex-start; gap: 16px; background: white; border: 1px solid #E8E0D0; border-radius: 12px; padding: 16px 20px; transition: border-color .2s; }
-    .rule-item-light:hover { border-color: rgba(200,67,26,.2); }
-    .rule-num-light { flex-shrink: 0; width: 28px; height: 28px; border-radius: 8px; background: rgba(200,67,26,.08); border: 1px solid rgba(200,67,26,.15); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: var(--brique); }
-    .rule-text-light { font-size: 15px; color: var(--terre); line-height: 1.6; padding-top: 3px; }
+    /* KIT PRESSE */
+    .kit-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+    .kit-card { background: white; border: 1px solid #E8E0D0; border-radius: 18px; padding: 28px 24px; display: flex; flex-direction: column; gap: 12px; transition: all .25s; }
+    .kit-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(26,20,16,.08); }
+    .kit-emoji { font-size: 28px; }
+    .kit-title { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 19px; color: var(--night); }
+    .kit-body { font-size: 13px; color: var(--terre); line-height: 1.6; flex: 1; }
+    .kit-dl { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: var(--brique); margin-top: 4px; }
+    .kit-dl:hover { color: var(--brique2); }
+    @media (max-width: 640px) { .kit-grid { grid-template-columns: 1fr; } }
 
-    /* POINTS */
-    .points-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; margin-bottom: 36px; }
-    .point-card { background: rgba(247,242,232,.04); border: 1px solid rgba(247,242,232,.08); border-radius: 14px; padding: 22px 20px; display: flex; align-items: center; gap: 16px; transition: all .25s; }
-    .point-card:hover { background: rgba(200,67,26,.06); border-color: rgba(200,67,26,.2); }
-    .point-val { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 26px; color: var(--brique2); line-height: 1; flex-shrink: 0; min-width: 72px; }
-    .point-action { font-size: 14px; color: rgba(247,242,232,.65); line-height: 1.5; }
-    @media (max-width: 600px) { .points-grid { grid-template-columns: 1fr; } }
-
-    .classement-cta { display: inline-flex; align-items: center; gap: 8px; padding: 13px 28px; font-size: 14px; font-weight: 600; background: var(--brique); color: white; border-radius: 10px; text-decoration: none; transition: all .25s; box-shadow: 0 0 20px rgba(200,67,26,.3); }
-    .classement-cta:hover { box-shadow: 0 0 36px rgba(200,67,26,.5); transform: translateY(-1px); color: white; }
+    /* CONTACT PRESSE */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+    .contact-block { background: rgba(247,242,232,.04); border: 1px solid rgba(247,242,232,.08); border-radius: 18px; padding: 32px 28px; }
+    .contact-block-title { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 20px; color: var(--creme); margin-bottom: 20px; }
+    .contact-row { display: flex; flex-direction: column; gap: 14px; }
+    .contact-item { display: flex; flex-direction: column; gap: 3px; }
+    .contact-key { font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: rgba(247,242,232,.35); }
+    .contact-val { font-size: 15px; color: rgba(247,242,232,.8); }
+    .contact-val a { color: var(--brique2); }
+    .contact-val a:hover { color: var(--creme); }
+    @media (max-width: 640px) { .contact-grid { grid-template-columns: 1fr; } }
 
     /* CTA BRIQUE */
-    .cta-section { background: linear-gradient(135deg, #C8431A 0%, #E8620A 100%); padding: 72px 24px; text-align: center; }
+    .cta-section { background: linear-gradient(135deg, #C8431A 0%, #E8620A 100%); padding: 80px 24px; text-align: center; }
     .cta-inner { max-width: 560px; margin: 0 auto; }
-    .cta-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.75); margin-bottom: 12px; }
-    .cta-h2 { font-family: 'DM Serif Display', serif; font-style: italic; font-size: clamp(24px,3vw,34px); color: white; margin-bottom: 12px; }
-    .cta-p { font-size: 15px; color: rgba(255,255,255,.8); margin-bottom: 28px; line-height: 1.7; }
-    .cta-link { display: inline-flex; align-items: center; gap: 8px; padding: 13px 30px; background: white; border-radius: 999px; font-size: 14px; font-weight: 700; color: #C8431A; box-shadow: 0 4px 24px rgba(0,0,0,.15); transition: all .25s; }
+    .cta-h2 { font-family: 'DM Serif Display', serif; font-style: italic; font-size: clamp(26px,3.5vw,40px); color: white; margin-bottom: 12px; }
+    .cta-p { font-size: 15px; color: rgba(255,255,255,.85); margin-bottom: 32px; line-height: 1.7; }
+    .cta-link { display: inline-flex; align-items: center; gap: 8px; padding: 14px 34px; background: white; border-radius: 999px; font-size: 15px; font-weight: 700; color: #C8431A; box-shadow: 0 4px 24px rgba(0,0,0,.15); transition: all .25s; }
     .cta-link:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,.2); color: #C8431A; }
 
     /* FOOTER */
@@ -181,87 +190,134 @@
 <section class="hero">
   <div class="hero-blobs"><div class="blob blob-1"></div><div class="blob blob-2"></div></div>
   <div class="hero-inner">
-    <div class="hero-badge">✍️ Contributeurs</div>
-    <h1>Charte des contributeurs</h1>
-    <p class="hero-sub">Tu enrichis LOTBO — voici comment le faire bien.</p>
+    <div class="hero-badge">📰 Médias &amp; Presse</div>
+    <h1>LOTBO dans les médias</h1>
+    <p class="hero-sub">Ressources pour les journalistes, blogueurs et créateurs de contenu.</p>
   </div>
 </section>
 
-<!-- SECTION 1 — CLAIR : Qui est contributeur -->
+<!-- SECTION 1 — CLAIR : L'histoire en chiffres -->
 <section data-theme="light" class="section">
   <div class="section-inner reveal">
-    <p class="section-label">Définition</p>
-    <h2 class="section-h2">Qui est contributeur ?</h2>
-    <div class="intro-box">
-      Tout membre qui soumet un événement, laisse un commentaire ou propose une correction devient contributeur. Tu es la <strong>colonne vertébrale de LOTBO</strong>. Sans toi, la carte reste vide et la communauté silencieuse. Chaque contribution, même petite, compte.
+    <p class="section-label">Chiffres clés</p>
+    <h2 class="section-h2">L'histoire en chiffres</h2>
+    <div class="stats-grid">
+      <div class="stat-card reveal reveal-delay-1">
+        <div class="stat-val">5 mai 2026</div>
+        <div class="stat-label">Date de naissance officielle</div>
+      </div>
+      <div class="stat-card reveal reveal-delay-2">
+        <div class="stat-val">30 jours</div>
+        <div class="stat-label">Pour couvrir 19 pays</div>
+      </div>
+      <div class="stat-card reveal reveal-delay-3">
+        <div class="stat-val">3 400+</div>
+        <div class="stat-label">Événements référencés</div>
+      </div>
+      <div class="stat-card reveal reveal-delay-4">
+        <div class="stat-val">1</div>
+        <div class="stat-label">Plateforme mondiale née en Haïti</div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- SECTION 2 — SOMBRE : Règles soumission -->
+<!-- SECTION 2 — SOMBRE : Le pitch -->
 <section data-theme="dark" class="section">
   <div class="section-inner reveal">
-    <p class="section-label">Événements</p>
-    <h2 class="section-h2">Règles de soumission</h2>
-    <div class="rules-list">
-      <div class="rule-item"><div class="rule-num">1</div><p class="rule-text">Soumets uniquement des événements réels et vérifiables.</p></div>
-      <div class="rule-item"><div class="rule-num">2</div><p class="rule-text">L'adresse doit être précise et localisable sur la carte.</p></div>
-      <div class="rule-item"><div class="rule-num">3</div><p class="rule-text">Pas de doublons — vérifie si l'événement existe déjà avant de soumettre.</p></div>
-      <div class="rule-item"><div class="rule-num">4</div><p class="rule-text">La description doit être honnête et complète.</p></div>
-      <div class="rule-item"><div class="rule-num">5</div><p class="rule-text">Les images doivent être libres de droits ou t'appartenir.</p></div>
-      <div class="rule-item"><div class="rule-num">6</div><p class="rule-text">Pas de contenu publicitaire déguisé en événement.</p></div>
+    <p class="section-label">Le pitch</p>
+    <h2 class="section-h2">En 3 phrases</h2>
+    <div class="citation-wrap">
+      <div class="citation-box">
+        <p class="citation-quote">"LOTBO est la première plateforme mondiale de découverte d'événements locaux née en Haïti. En 30 jours, elle couvre 19 pays et 65 villes. Son nom vient du kreyòl haïtien : lòt bò — là-bas, de l'autre côté."</p>
+        <p class="citation-credit">Libre de reproduction avec mention © LOTBO / Bup Mark Ltd</p>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- SECTION 3 — CLAIR : Règles commentaires -->
+<!-- SECTION 3 — CLAIR : Kit presse -->
 <section data-theme="light" class="section">
-  <div class="section-inner reveal">
-    <p class="section-label">Commentaires</p>
-    <h2 class="section-h2">Règles de commentaires</h2>
-    <div class="rules-list-light">
-      <div class="rule-item-light"><div class="rule-num-light">1</div><p class="rule-text-light">Reste constructif et bienveillant dans tes échanges.</p></div>
-      <div class="rule-item-light"><div class="rule-num-light">2</div><p class="rule-text-light">Pas de spam, pas de liens non sollicités.</p></div>
-      <div class="rule-item-light"><div class="rule-num-light">3</div><p class="rule-text-light">Respecte l'organisateur même si tu n'es pas d'accord.</p></div>
-      <div class="rule-item-light"><div class="rule-num-light">4</div><p class="rule-text-light">Signale les informations incorrectes via "Proposer une correction" plutôt que de commenter négativement.</p></div>
+  <div class="section-inner">
+    <p class="section-label reveal">Kit presse</p>
+    <h2 class="section-h2 reveal">Ressources téléchargeables</h2>
+    <div class="kit-grid">
+      <div class="kit-card reveal reveal-delay-1">
+        <div class="kit-emoji">📄</div>
+        <h3 class="kit-title">Dossier de presse PDF</h3>
+        <p class="kit-body">Histoire, chiffres, vision, fondateur — tout ce qu'il faut pour écrire sur LOTBO.</p>
+        <a href="#" class="kit-dl">↓ Télécharger</a>
+      </div>
+      <div class="kit-card reveal reveal-delay-2">
+        <div class="kit-emoji">🖼️</div>
+        <h3 class="kit-title">Logos &amp; visuels</h3>
+        <p class="kit-body">Pack complet PNG/SVG haute résolution — logo, icônes, couleurs officielles.</p>
+        <a href="#" class="kit-dl">↓ Télécharger</a>
+      </div>
+      <div class="kit-card reveal reveal-delay-3">
+        <div class="kit-emoji">📸</div>
+        <h3 class="kit-title">Photos fondateur</h3>
+        <p class="kit-body">Photos officielles de Handgod Abraham, fondateur de LOTBO — libres de droits presse.</p>
+        <a href="#" class="kit-dl">↓ Télécharger</a>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- SECTION 4 — SOMBRE : Points -->
+<!-- SECTION 4 — SOMBRE : Contact presse -->
 <section data-theme="dark" class="section">
   <div class="section-inner reveal">
-    <p class="section-label">🏆 Récompenses</p>
-    <h2 class="section-h2">Tes points par action</h2>
-    <div class="points-grid">
-      <div class="point-card reveal reveal-delay-1">
-        <div class="point-val">+50</div>
-        <div class="point-action">Événement approuvé par l'équipe LOTBO</div>
+    <p class="section-label">Contact</p>
+    <h2 class="section-h2">Contact presse</h2>
+    <div class="contact-grid">
+      <div class="contact-block">
+        <h3 class="contact-block-title">Nous joindre</h3>
+        <div class="contact-row">
+          <div class="contact-item">
+            <span class="contact-key">Email presse</span>
+            <span class="contact-val"><a href="mailto:lotbo@bup-mark.com?subject=[Presse]">lotbo@bup-mark.com</a> · objet [Presse]</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-key">Délai de réponse</span>
+            <span class="contact-val">24h ouvrées</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-key">Langue</span>
+            <span class="contact-val">FR · EN · KW</span>
+          </div>
+        </div>
       </div>
-      <div class="point-card reveal reveal-delay-2">
-        <div class="point-val">+10</div>
-        <div class="point-action">Commentaire posté sur un événement</div>
-      </div>
-      <div class="point-card reveal reveal-delay-3">
-        <div class="point-val">+5</div>
-        <div class="point-action">Réaction reçue sur ton commentaire</div>
-      </div>
-      <div class="point-card reveal reveal-delay-4">
-        <div class="point-val">+20</div>
-        <div class="point-action">Correction proposée et validée</div>
+      <div class="contact-block">
+        <h3 class="contact-block-title">Informations légales</h3>
+        <div class="contact-row">
+          <div class="contact-item">
+            <span class="contact-key">Société</span>
+            <span class="contact-val">Bup Mark Ltd</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-key">Numéro</span>
+            <span class="contact-val">15840780</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-key">Siège social</span>
+            <span class="contact-val">Manchester, Royaume-Uni</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-key">Fondateur</span>
+            <span class="contact-val">Handgod Abraham</span>
+          </div>
+        </div>
       </div>
     </div>
-    <a href="https://app.lotbo.app/classement" class="classement-cta">Voir le classement →</a>
   </div>
 </section>
 
 <!-- CTA BRIQUE -->
 <section class="cta-section">
   <div class="cta-inner">
-    <p class="cta-eyebrow">Prêt ?</p>
-    <h2 class="cta-h2">Commence à contribuer</h2>
-    <p class="cta-p">Chaque événement soumis rend LOTBO plus riche pour tout le monde. Lance-toi maintenant.</p>
-    <a href="https://app.lotbo.app/ajouter" class="cta-link">Soumettre un événement →</a>
+    <h2 class="cta-h2">Une histoire à raconter ?</h2>
+    <p class="cta-p">On est disponibles pour interviews, citations et tout angle que vous souhaitez couvrir.</p>
+    <a href="/contact.html" class="cta-link">Nous contacter →</a>
   </div>
 </section>
 
