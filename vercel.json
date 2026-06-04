@@ -1,86 +1,24 @@
 {
-    "buildCommand": null,
-    "outputDirectory": ".",
-    "functions": {
-      "api/subscribe.js": {
-        "memory": 128,
-        "maxDuration": 10
-      },
-      "api/enquete.js": {
-        "memory": 128,
-        "maxDuration": 10
-      },
-      "api/stripe-webhook.js": {
-        "memory": 128,
-        "maxDuration": 10
-      },
-      "api/create-checkout-session.js": {
-        "memory": 128,
-        "maxDuration": 10
-      }
-    },
-    "routes": [
-      {
-        "src": "/api/(.*)",
-        "dest": "/api/$1"
-      },
-      {
-        "src": "/enquete-2026",
-        "dest": "/enquete-2026.html"
-      },
-      {
-        "src": "/terrain",
-        "dest": "/terrain.html"
-      },
-      {
-        "src": "/partenariats",
-        "dest": "/partenariats.html"
-      },
-      {
-        "src": "/a-propos",
-        "dest": "/a-propos.html"
-      },
-      {
-        "src": "/faq",
-        "dest": "/faq.html"
-      },
-      {
-        "src": "/contact",
-        "dest": "/contact.html"
-      },
-      {
-        "src": "/supporter-fondateur",
-        "dest": "/supporter-fondateur.html"
-      },
-      {
-        "src": "/supporters",
-        "dest": "/supporters.html"
-      },
-      {
-        "src": "/legal/cgu",
-        "dest": "/legal/cgu.html"
-      },
-      {
-        "src": "/legal/confidentialite",
-        "dest": "/legal/confidentialite.html"
-      },
-      {
-        "src": "/legal/moderation",
-        "dest": "/legal/moderation.html"
-      },
-      {
-        "src": "/legal/cookies",
-        "dest": "/legal/cookies.html"
-      },
-      {
-        "src": "/legal/mentions-legales",
-        "dest": "/legal/mentions-legales.html"
-      },
-      {
-        "src": "/(.*)",
-        "dest": "/$1"
-      },
-      { "handle": "error" },
-      { "status": 404, "src": "/(.*)", "dest": "/404.html" }
-    ]
-  }
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/", "destination": "/index.html" },
+    { "source": "/a-propos", "destination": "/a-propos.html" },
+    { "source": "/faq", "destination": "/faq.html" },
+    { "source": "/contact", "destination": "/contact.html" },
+    { "source": "/partenariats", "destination": "/partenariats.html" },
+    { "source": "/supporters", "destination": "/supporters.html" },
+    { "source": "/supporter-fondateur", "destination": "/supporter-fondateur.html" },
+    { "source": "/guide-organisateurs", "destination": "/guide-organisateurs.html" },
+    { "source": "/nos-utilisateurs", "destination": "/nos-utilisateurs.html" },
+    { "source": "/charte-membres", "destination": "/charte-membres.html" },
+    { "source": "/charte-contributeurs", "destination": "/charte-contributeurs.html" },
+    { "source": "/charte-organisateurs", "destination": "/charte-organisateurs.html" },
+    { "source": "/rejoins-lotbo", "destination": "/rejoins-lotbo.html" },
+    { "source": "/devenir-ambassadeur", "destination": "/devenir-ambassadeur.html" },
+    { "source": "/roadmap", "destination": "/roadmap.html" },
+    { "source": "/medias-presse", "destination": "/medias-presse.html" },
+    { "source": "/enquete-2026", "destination": "/enquete-2026.html" },
+    { "source": "/terrain", "destination": "/terrain.html" },
+    { "source": "/404", "destination": "/404.html" }
+  ]
+}
