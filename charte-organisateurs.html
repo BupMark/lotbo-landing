@@ -4,14 +4,14 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Charte des organisateurs — LOTBO</title>
-  <meta name="description" content="Tu publies des événements sur LOTBO — voici les standards de qualité, tes droits et tes responsabilités."/>
+  <meta name="description" content="Publie avec intégrité. LOTBO est une plateforme de confiance — voici les règles pour les organisateurs d'événements."/>
   <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
   <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png"/>
   <meta name="theme-color" content="#0B0603"/>
   <meta property="og:title" content="Charte des organisateurs — LOTBO"/>
-  <meta property="og:description" content="Tu publies des événements sur LOTBO — voici les standards de qualité, tes droits et tes responsabilités."/>
+  <meta property="og:description" content="Publie avec intégrité. LOTBO est une plateforme de confiance."/>
   <meta property="og:type" content="website"/>
   <meta name="robots" content="index, follow"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -37,7 +37,6 @@
     .reveal-delay-1 { transition-delay: .1s; }
     .reveal-delay-2 { transition-delay: .2s; }
     .reveal-delay-3 { transition-delay: .3s; }
-    .reveal-delay-4 { transition-delay: .4s; }
 
     /* NAV */
     nav { position: sticky; top: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 16px 48px; background: rgba(11,6,3,0.8); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid var(--border); }
@@ -91,8 +90,16 @@
     [data-theme="light"] .section-h2 { font-family: Georgia, serif; color: #1A1410; border-bottom: 1px solid #E8E0D0; padding-bottom: 16px; margin-bottom: 36px; }
     [data-theme="dark"]  .section-h2 { font-family: 'DM Serif Display', serif; color: #F7F2E8; border-bottom: 1px solid rgba(255,255,255,.08); padding-bottom: 16px; margin-bottom: 36px; }
 
-    /* INTRO BOX */
-    .intro-box { background: white; border: 1px solid #E8E0D0; border-radius: 16px; padding: 32px 28px; font-size: 16px; color: var(--terre); line-height: 1.8; border-left: 4px solid var(--brique); }
+    /* CARDS ENGAGEMENT QUALITÉ */
+    .cards-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+    .eng-card { background: white; border: 1px solid #E8E0D0; border-radius: 18px; padding: 32px 24px; transition: all .3s cubic-bezier(.16,1,.3,1); position: relative; overflow: hidden; }
+    .eng-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--brique), var(--or)); opacity: 0; transition: opacity .3s; }
+    .eng-card:hover { transform: translateY(-5px); box-shadow: 0 20px 50px rgba(26,20,16,.1); }
+    .eng-card:hover::before { opacity: 1; }
+    .eng-emoji { font-size: 28px; margin-bottom: 14px; line-height: 1; }
+    .eng-title { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 20px; color: var(--night); margin-bottom: 8px; }
+    .eng-body { font-size: 13px; color: var(--terre); line-height: 1.7; }
+    @media (max-width: 680px) { .cards-grid { grid-template-columns: 1fr; } }
 
     /* RÈGLES DARK */
     .rules-list { display: flex; flex-direction: column; gap: 12px; }
@@ -101,35 +108,11 @@
     .rule-num { flex-shrink: 0; width: 28px; height: 28px; border-radius: 8px; background: rgba(200,67,26,.12); border: 1px solid rgba(232,98,10,.2); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: var(--brique2); }
     .rule-text { font-size: 15px; color: rgba(247,242,232,.75); line-height: 1.6; padding-top: 3px; }
 
-    /* RÈGLES LIGHT */
-    .rules-list-light { display: flex; flex-direction: column; gap: 12px; }
-    .rule-item-light { display: flex; align-items: flex-start; gap: 16px; background: white; border: 1px solid #E8E0D0; border-radius: 12px; padding: 16px 20px; transition: border-color .2s; }
-    .rule-item-light:hover { border-color: rgba(200,67,26,.2); }
-    .rule-num-light { flex-shrink: 0; width: 28px; height: 28px; border-radius: 8px; background: rgba(200,67,26,.08); border: 1px solid rgba(200,67,26,.15); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: var(--brique); }
-    .rule-text-light { font-size: 15px; color: var(--terre); line-height: 1.6; padding-top: 3px; }
-
-    /* CARDS DROITS */
-    .cards-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
-    .droit-card { background: rgba(247,242,232,.04); border: 1px solid rgba(247,242,232,.08); border-radius: 18px; padding: 28px 22px; transition: all .3s cubic-bezier(.16,1,.3,1); position: relative; overflow: hidden; }
-    .droit-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--brique), var(--or)); opacity: 0; transition: opacity .3s; }
-    .droit-card:hover { transform: translateY(-5px); border-color: rgba(200,67,26,.2); }
-    .droit-card:hover::before { opacity: 1; }
-    .droit-emoji { font-size: 28px; margin-bottom: 14px; line-height: 1; }
-    .droit-title { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 19px; color: var(--creme); margin-bottom: 8px; }
-    .droit-body { font-size: 13px; color: rgba(247,242,232,.55); line-height: 1.7; }
-    @media (max-width: 680px) { .cards-grid { grid-template-columns: 1fr; } }
-
-    /* SANCTIONS */
-    .sanctions-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
-    .sanction-card { background: white; border: 1px solid #E8E0D0; border-radius: 18px; padding: 28px 22px; text-align: center; }
-    .sanction-emoji { font-size: 32px; margin-bottom: 12px; }
-    .sanction-title { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 19px; color: var(--night); margin-bottom: 8px; }
-    .sanction-body { font-size: 13px; color: var(--terre); line-height: 1.6; }
-    @media (max-width: 680px) { .sanctions-grid { grid-template-columns: 1fr; } }
-
-    /* GUIDE LINK */
-    .guide-link { display: inline-flex; align-items: center; gap: 8px; margin-top: 32px; padding: 13px 28px; font-size: 14px; font-weight: 600; background: rgba(200,67,26,.12); color: var(--brique2); border: 1px solid rgba(200,67,26,.25); border-radius: 10px; transition: all .25s; }
-    .guide-link:hover { background: rgba(200,67,26,.2); border-color: var(--brique); }
+    /* ORGANISATIONS BOX */
+    .org-box { background: white; border: 1px solid #E8E0D0; border-radius: 16px; padding: 36px 32px; }
+    .org-text { font-size: 16px; color: var(--terre); line-height: 1.8; margin-bottom: 28px; }
+    .org-btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 28px; font-size: 14px; font-weight: 600; background: var(--brique); color: white; border-radius: 10px; text-decoration: none; transition: all .25s; box-shadow: 0 0 20px rgba(200,67,26,.3); }
+    .org-btn:hover { box-shadow: 0 0 36px rgba(200,67,26,.5); transform: translateY(-1px); color: white; }
 
     /* CTA BRIQUE */
     .cta-section { background: linear-gradient(135deg, #C8431A 0%, #E8620A 100%); padding: 72px 24px; text-align: center; }
@@ -193,106 +176,61 @@
 <section class="hero">
   <div class="hero-blobs"><div class="blob blob-1"></div><div class="blob blob-2"></div></div>
   <div class="hero-inner">
-    <div class="hero-badge">🗓️ Organisateurs</div>
+    <div class="hero-badge">📅 Organisateurs</div>
     <h1>Charte des organisateurs</h1>
-    <p class="hero-sub">Tu publies des événements sur LOTBO — voici les standards qui garantissent une expérience de qualité pour tous.</p>
+    <p class="hero-sub">Publie avec intégrité. LOTBO est une plateforme de confiance.</p>
   </div>
 </section>
 
-<!-- SECTION 1 — CLAIR : Qui est organisateur -->
+<!-- SECTION 1 — CLAIR : Engagement qualité -->
 <section data-theme="light" class="section">
   <div class="section-inner reveal">
-    <p class="section-label">Définition</p>
-    <h2 class="section-h2">Qui est organisateur ?</h2>
-    <div class="intro-box">
-      Un organisateur est toute personne ou structure qui publie un événement sur LOTBO — concert, match, festival, exposition, marché, soirée. Tu peux être un <strong>particulier, une association, une mairie, une entreprise culturelle ou sportive</strong>. En publiant, tu acceptes cette charte et t'engages à offrir une information fiable à la communauté.
-    </div>
-    <a href="/guide-organisateurs.html" class="guide-link">Lire le guide complet organisateurs →</a>
-  </div>
-</section>
-
-<!-- SECTION 2 — SOMBRE : Standards de qualité -->
-<section data-theme="dark" class="section">
-  <div class="section-inner reveal">
-    <p class="section-label">Qualité</p>
-    <h2 class="section-h2">Standards de qualité des événements</h2>
-    <div class="rules-list">
-      <div class="rule-item"><div class="rule-num">1</div><p class="rule-text">L'événement doit être réel, daté et localisé avec précision.</p></div>
-      <div class="rule-item"><div class="rule-num">2</div><p class="rule-text">Le titre doit être clair et descriptif — pas de majuscules excessives ni de clickbait.</p></div>
-      <div class="rule-item"><div class="rule-num">3</div><p class="rule-text">La description doit contenir les informations essentielles : horaires, tarifs, accès.</p></div>
-      <div class="rule-item"><div class="rule-num">4</div><p class="rule-text">Les visuels doivent être libres de droits ou t'appartenir. Pas de logos de marques tiers sans accord.</p></div>
-      <div class="rule-item"><div class="rule-num">5</div><p class="rule-text">Mettre à jour ou supprimer l'événement en cas d'annulation ou de changement de date.</p></div>
-      <div class="rule-item"><div class="rule-num">6</div><p class="rule-text">Pas de doublons — un seul listing par occurrence d'événement.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- SECTION 3 — CLAIR : Tes responsabilités -->
-<section data-theme="light" class="section">
-  <div class="section-inner reveal">
-    <p class="section-label">Responsabilités</p>
-    <h2 class="section-h2">Ce que tu t'engages à respecter</h2>
-    <div class="rules-list-light">
-      <div class="rule-item-light"><div class="rule-num-light">1</div><p class="rule-text-light">Ne publie pas d'événements à caractère discriminatoire, haineux ou illégal.</p></div>
-      <div class="rule-item-light"><div class="rule-num-light">2</div><p class="rule-text-light">Ne pas utiliser LOTBO pour de la promotion commerciale déguisée en événement culturel.</p></div>
-      <div class="rule-item-light"><div class="rule-num-light">3</div><p class="rule-text-light">Respecter les commentaires de la communauté — tu peux répondre, pas supprimer ni harceler.</p></div>
-      <div class="rule-item-light"><div class="rule-num-light">4</div><p class="rule-text-light">Ne pas créer plusieurs comptes pour gonfler artificiellement la visibilité de tes événements.</p></div>
-      <div class="rule-item-light"><div class="rule-num-light">5</div><p class="rule-text-light">Informer LOTBO de tout litige ou problème lié à un événement publié via le formulaire de contact.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- SECTION 4 — SOMBRE : Tes droits -->
-<section data-theme="dark" class="section">
-  <div class="section-inner reveal">
-    <p class="section-label">Tes droits</p>
-    <h2 class="section-h2">Ce que LOTBO te garantit</h2>
+    <p class="section-label">Engagement qualité</p>
+    <h2 class="section-h2">Ce que LOTBO attend de chaque événement</h2>
     <div class="cards-grid">
-      <div class="droit-card reveal reveal-delay-1">
-        <div class="droit-emoji">✏️</div>
-        <h3 class="droit-title">Contrôle total</h3>
-        <p class="droit-body">Tu peux modifier, mettre en pause ou supprimer ton événement à tout moment depuis ton tableau de bord.</p>
+      <div class="eng-card reveal reveal-delay-1">
+        <div class="eng-emoji">✅</div>
+        <h3 class="eng-title">Exactitude</h3>
+        <p class="eng-body">Les informations doivent être vraies : date, lieu, prix, description. Une erreur signalée doit être corrigée rapidement.</p>
       </div>
-      <div class="droit-card reveal reveal-delay-2">
-        <div class="droit-emoji">📊</div>
-        <h3 class="droit-title">Statistiques</h3>
-        <p class="droit-body">Accès aux vues, interactions et signalements sur chacun de tes événements publiés.</p>
+      <div class="eng-card reveal reveal-delay-2">
+        <div class="eng-emoji">🔄</div>
+        <h3 class="eng-title">Mise à jour</h3>
+        <p class="eng-body">Si un événement est annulé ou modifié, informe-nous immédiatement. La communauté compte sur toi.</p>
       </div>
-      <div class="droit-card reveal reveal-delay-3">
-        <div class="droit-emoji">🏷️</div>
-        <h3 class="droit-title">Badge Organisateur</h3>
-        <p class="droit-body">Les comptes vérifiés affichent un badge qui renforce la confiance de la communauté envers tes événements.</p>
-      </div>
-      <div class="droit-card reveal reveal-delay-4">
-        <div class="droit-emoji">🤝</div>
-        <h3 class="droit-title">Support dédié</h3>
-        <p class="droit-body">En cas de signalement abusif ou de litige, l'équipe LOTBO examine le dossier et te tient informé.</p>
+      <div class="eng-card reveal reveal-delay-3">
+        <div class="eng-emoji">🌍</div>
+        <h3 class="eng-title">Ouverture</h3>
+        <p class="eng-body">Pas de discrimination dans l'accès aux événements publics. LOTBO est une plateforme ouverte à tous.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- SECTION 5 — CLAIR : Sanctions -->
+<!-- SECTION 2 — SOMBRE : Ce qui est interdit -->
+<section data-theme="dark" class="section">
+  <div class="section-inner reveal">
+    <p class="section-label">Interdictions</p>
+    <h2 class="section-h2">Ce qui est interdit</h2>
+    <div class="rules-list">
+      <div class="rule-item"><div class="rule-num">1</div><p class="rule-text">Pas de faux événements ou d'événements inexistants.</p></div>
+      <div class="rule-item"><div class="rule-num">2</div><p class="rule-text">Pas d'événements illégaux ou contraires aux lois locales.</p></div>
+      <div class="rule-item"><div class="rule-num">3</div><p class="rule-text">Pas de contenu haineux, discriminatoire ou violent.</p></div>
+      <div class="rule-item"><div class="rule-num">4</div><p class="rule-text">Pas de spam — un événement réel par soumission.</p></div>
+      <div class="rule-item"><div class="rule-num">5</div><p class="rule-text">Pas d'utilisation du logo LOTBO sans autorisation écrite.</p></div>
+      <div class="rule-item"><div class="rule-num">6</div><p class="rule-text">Pas de collecte de données personnelles des participants via LOTBO.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3 — CLAIR : Organisations -->
 <section data-theme="light" class="section">
   <div class="section-inner reveal">
-    <p class="section-label">Modération</p>
-    <h2 class="section-h2">Conséquences d'un manquement</h2>
-    <div class="sanctions-grid">
-      <div class="sanction-card reveal reveal-delay-1">
-        <div class="sanction-emoji">⚠️</div>
-        <h3 class="sanction-title">Avertissement</h3>
-        <p class="sanction-body">Premier manquement mineur — correction demandée sous 48h avant toute restriction.</p>
-      </div>
-      <div class="sanction-card reveal reveal-delay-2">
-        <div class="sanction-emoji">🗑️</div>
-        <h3 class="sanction-title">Retrait de l'événement</h3>
-        <p class="sanction-body">Événement retiré de la carte en cas de contenu trompeur, dupliqué ou hors charte.</p>
-      </div>
-      <div class="sanction-card reveal reveal-delay-3">
-        <div class="sanction-emoji">🚫</div>
-        <h3 class="sanction-title">Suspension du compte</h3>
-        <p class="sanction-body">Violations répétées ou graves — interdiction de publier, temporaire ou définitive.</p>
-      </div>
+    <p class="section-label">Organisations</p>
+    <h2 class="section-h2">Tu représentes une structure ?</h2>
+    <div class="org-box">
+      <p class="org-text">Si tu représentes une <strong>association, entreprise ou institution</strong>, crée ton espace Organisation sur LOTBO. Tu bénéficies d'une vitrine publique, d'une gestion d'équipe et d'une visibilité accrue sur tous tes événements. Les organisations vérifiées affichent un badge de confiance apprécié de la communauté.</p>
+      <a href="/guide-organisateurs.html" class="org-btn">Guide des organisateurs →</a>
     </div>
   </div>
 </section>
@@ -303,7 +241,7 @@
     <p class="cta-eyebrow">Prêt à publier ?</p>
     <h2 class="cta-h2">Mets ton événement sur la carte</h2>
     <p class="cta-p">Des milliers de personnes cherchent des événements près de chez elles. Sois visible dès aujourd'hui.</p>
-    <a href="https://app.lotbo.app/ajouter" class="cta-link">Publier un événement →</a>
+    <a href="https://app.lotbo.app/ajouter" class="cta-link">Soumettre un événement →</a>
   </div>
 </section>
 
