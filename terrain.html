@@ -201,12 +201,12 @@
       <div class="q-text">A1 — Comment il/elle trouve les événements à Jacmel ? <span class="required">*</span></div>
       <div class="q-kreyol">"Ki jan ou konn sa k ap pase kòm evènman Jacmel ?"</div>
       <div class="opts">
-        <label class="opt"><input type="radio" name="a1" value="bouche"><span class="opt-box"></span><span class="opt-label">Bouche à oreille / amis</span></label>
-        <label class="opt"><input type="radio" name="a1" value="facebook"><span class="opt-box"></span><span class="opt-label">Facebook / réseaux sociaux</span></label>
-        <label class="opt"><input type="radio" name="a1" value="affiches"><span class="opt-box"></span><span class="opt-label">Affiches dans la rue</span></label>
-        <label class="opt"><input type="radio" name="a1" value="radio"><span class="opt-box"></span><span class="opt-label">Radio locale</span></label>
-        <label class="opt"><input type="radio" name="a1" value="unknown"><span class="opt-box"></span><span class="opt-label">Ne sait généralement pas</span></label>
-        <label class="opt"><input type="radio" name="a1" value="other"><span class="opt-box"></span><span class="opt-label">Autre</span></label>
+        <label class="opt"><input type="checkbox" name="a1" value="bouche"><span class="opt-box"></span><span class="opt-label">Bouche à oreille / amis</span></label>
+        <label class="opt"><input type="checkbox" name="a1" value="facebook"><span class="opt-box"></span><span class="opt-label">Facebook / réseaux sociaux</span></label>
+        <label class="opt"><input type="checkbox" name="a1" value="affiches"><span class="opt-box"></span><span class="opt-label">Affiches dans la rue</span></label>
+        <label class="opt"><input type="checkbox" name="a1" value="radio"><span class="opt-box"></span><span class="opt-label">Radio locale</span></label>
+        <label class="opt"><input type="checkbox" name="a1" value="unknown"><span class="opt-box"></span><span class="opt-label">Ne sait généralement pas</span></label>
+        <label class="opt"><input type="checkbox" name="a1" value="other"><span class="opt-box"></span><span class="opt-label">Autre</span></label>
       </div>
     </div>
 
@@ -493,8 +493,11 @@ async function submitTerrain() {
     })
   } catch { /* continuer */ }
 
-  interviewCount++
-  document.getElementById('counter').textContent = interviewCount
+  const today = new Date().toISOString().split('T')[0]
+  const storageKey = 'lotbo_terrain_count_' + today
+  const count = parseInt(localStorage.getItem(storageKey) || '0') + 1
+  localStorage.setItem(storageKey, count)
+  document.getElementById('counter').textContent = count
   document.getElementById('form-screen').style.display = 'none'
   document.getElementById('confirm-screen').style.display = 'block'
   window.scrollTo(0, 0)
