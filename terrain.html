@@ -472,17 +472,46 @@ async function submitTerrain() {
   const btn = document.getElementById('terrain-submit')
   btn.disabled = true
 
-  const email = document.getElementById('terrain-email').value
-  const whatsapp = document.getElementById('terrain-whatsapp').value
-  const enqueteur = document.getElementById('enqueteur').value
+  const getRadio = (name) => { const el = document.querySelector(`input[name="${name}"]:checked`); return el ? el.value : null }
+  const getCheckboxes = (name) => Array.from(document.querySelectorAll(`input[name="${name}"]:checked`)).map(el => el.value)
+  const getScale = (name) => { const el = document.getElementById(name + '-val'); return el ? el.value : null }
+  const getText = (selector) => { const el = document.querySelector(selector); return el ? el.value.trim() || null : null }
+
+  const zoneVal = document.getElementById('zone-select').value
+  const zone = zoneVal === 'autre' ? (getText('#zone-autre') || 'autre') : (zoneVal || null)
 
   const payload = {
     type: 'terrain',
-    email: email || null,
-    whatsapp: whatsapp || null,
-    enqueteur,
+    email: document.getElementById('terrain-email').value || null,
+    whatsapp: document.getElementById('terrain-whatsapp').value || null,
+    enqueteur: document.getElementById('enqueteur').value || null,
     profil: profilCurrent,
-    reponses: { profil: profilCurrent }
+    reponses: {
+      enqueteur:    document.getElementById('enqueteur').value || null,
+      date:         document.getElementById('date-field').value || null,
+      heure:        document.getElementById('heure-field').value || null,
+      zone,
+      age:          document.querySelector('select[name="age"]')?.value || null,
+      genre:        document.querySelector('select[name="genre"]')?.value || null,
+      lieu:         document.querySelector('input[name="lieu"]')?.value?.trim() || null,
+      profil:       profilCurrent,
+      a1:           getCheckboxes('a1'),
+      a2:           getRadio('a2'),
+      a3:           getScale('a3'),
+      a4:           getCheckboxes('a4'),
+      a5:           getRadio('a5'),
+      a6:           getRadio('a6'),
+      a7:           getCheckboxes('a7'),
+      b1:           getCheckboxes('b1'),
+      b2:           getCheckboxes('b2'),
+      b3:           getRadio('b3'),
+      b4:           getScale('b4'),
+      b5:           getRadio('b5'),
+      b6:           getRadio('b6'),
+      citation:     getText('textarea[placeholder*="citation"], textarea[placeholder*="dit exactement"]'),
+      enthousiasme: getRadio('enthousiasme'),
+      notes:        getText('textarea[placeholder*="Observations"]'),
+    }
   }
 
   try {
