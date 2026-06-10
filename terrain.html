@@ -101,6 +101,7 @@
   .confirm-stat-num { font-family: 'Playfair Display', serif; font-size: 32px; color: var(--orange); }
   .confirm-stat-label { font-size: 12px; color: var(--muted); font-family: 'DM Mono', monospace; letter-spacing: 1px; }
   .next-interview-btn { width: 100%; padding: 14px; background: #3b8cf0; color: #fff; border: none; border-radius: var(--radius); font-size: 15px; font-weight: 500; cursor: pointer; font-family: 'DM Sans', sans-serif; }
+  .pending-banner { display: none; background: #C8431A; color: #fff; font-size: 12px; font-family: 'DM Mono', monospace; letter-spacing: 1px; padding: 8px 20px; text-align: center; }
 </style>
 </head>
 <body>
@@ -110,6 +111,7 @@
   <span class="top-badge">TERRAIN</span>
   <div class="top-tag">JACMEL · FICHE ENQUÊTEUR</div>
 </div>
+<div class="pending-banner" id="pending-banner"></div>
 
 <div class="wrap" id="form-screen">
   <div class="page-title">Fiche de saisie terrain</div>
@@ -398,6 +400,7 @@
     <div style="margin-top:20px;">
       <button class="submit-btn" id="terrain-submit" onclick="submitTerrain()">Enregistrer cette fiche →</button>
       <button class="next-btn" onclick="submitTerrain()">PASSER À L'INTERVIEW SUIVANTE ↓</button>
+      <div id="submit-error" style="display:none; color:#fff; font-size:12px; margin-top:10px; text-align:center; padding:8px 12px; background:rgba(200,67,26,0.35); border-radius:6px; border:1px solid rgba(200,67,26,0.6);"></div>
     </div>
   </div>
 </div>
@@ -407,7 +410,7 @@
   <div class="wrap">
     <div class="confirm-icon">✅</div>
     <div class="confirm-title">Fiche enregistrée</div>
-    <div class="confirm-sub">Les données sont sauvegardées. Brevo a été mis à jour si un contact a été collecté.</div>
+    <div class="confirm-sub" id="confirm-sub">Les données sont sauvegardées. Brevo a été mis à jour si un contact a été collecté.</div>
     <div class="confirm-stat">
       <div class="confirm-stat-num" id="counter">1</div>
       <div class="confirm-stat-label">INTERVIEW(S) ENREGISTRÉE(S) AUJOURD'HUI</div>
@@ -419,6 +422,8 @@
 <script>
 let profilCurrent = null
 let interviewCount = 0
+const QUEUE_KEY = 'lotbo_enquetes_pending'
+let isFlushing = false
 
 // Remplissage automatique du genre selon l'enquêteur
 const ENQUETEUR_GENRE = {
@@ -470,7 +475,9 @@ async function submitTerrain() {
   if (!profilCurrent) { alert('Choisir le type de répondant avant de continuer.'); return }
 
   const btn = document.getElementById('terrain-submit')
+  const errDiv = document.getElementById('submit-error')
   btn.disabled = true
+  errDiv.style.display = 'none'
 
   const getRadio = (name) => { const el = document.querySelector(`input[name="${name}"]:checked`); return el ? el.value : null }
   const getCheckboxes = (name) => Array.from(document.querySelectorAll(`input[name="${name}"]:checked`)).map(el => el.value)
@@ -514,19 +521,48 @@ async function submitTerrain() {
     }
   }
 
+  let ok = false
+  let offline = false
   try {
-    await fetch('/api/enquete', {
+    const response = await fetch('/api/enquete', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
     })
-  } catch { /* continuer */ }
+    if (response.ok) {
+      ok = true
+    } else if (response.status >= 500) {
+      offline = true
+    } else {
+      errDiv.textContent = 'Erreur d\'envoi. Vérifiez les données et réessayez.'
+      errDiv.style.display = 'block'
+      btn.disabled = false
+      return
+    }
+  } catch {
+    offline = true
+  }
+
+  if (offline) {
+    const q = getQueue()
+    q.push({ ...payload, local_id: Date.now() + '_' + Math.random().toString(36).slice(2), saved_at: new Date().toISOString() })
+    saveQueue(q)
+    updatePendingBanner()
+  }
 
   const today = new Date().toISOString().split('T')[0]
   const storageKey = 'lotbo_terrain_count_' + today
   const count = parseInt(localStorage.getItem(storageKey) || '0') + 1
   localStorage.setItem(storageKey, count)
   document.getElementById('counter').textContent = count
+
+  const confirmSubEl = document.getElementById('confirm-sub')
+  if (confirmSubEl) {
+    confirmSubEl.textContent = offline
+      ? 'Fiche enregistrée hors ligne. Envoi automatique dès le retour de la connexion.'
+      : 'Les données sont sauvegardées. Brevo a été mis à jour si un contact a été collecté.'
+  }
+
   document.getElementById('form-screen').style.display = 'none'
   document.getElementById('confirm-screen').style.display = 'block'
   window.scrollTo(0, 0)
@@ -553,6 +589,57 @@ function newInterview() {
   document.getElementById('form-screen').style.display = 'block'
   window.scrollTo(0, 0)
 }
+
+// ── File d'attente hors ligne ─────────────────────────────────────────────
+function getQueue() {
+  try { return JSON.parse(localStorage.getItem(QUEUE_KEY) || '[]') } catch { return [] }
+}
+function saveQueue(q) { localStorage.setItem(QUEUE_KEY, JSON.stringify(q)) }
+
+function updatePendingBanner() {
+  const q = getQueue()
+  const banner = document.getElementById('pending-banner')
+  if (!banner) return
+  if (q.length > 0) {
+    banner.textContent = q.length + ' fiche(s) en attente d\'envoi'
+    banner.style.display = 'block'
+  } else {
+    banner.style.display = 'none'
+  }
+}
+
+async function flushQueue() {
+  if (isFlushing) return
+  isFlushing = true
+  try {
+    let q = getQueue()
+    for (const item of [...q]) {
+      const { local_id, saved_at, ...payload } = item
+      try {
+        const response = await fetch('/api/enquete', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        })
+        if (response.ok) {
+          q = q.filter(x => x.local_id !== item.local_id)
+          saveQueue(q)
+          updatePendingBanner()
+        } else {
+          break
+        }
+      } catch {
+        break
+      }
+    }
+  } finally {
+    isFlushing = false
+  }
+}
+
+updatePendingBanner()
+flushQueue()
+window.addEventListener('online', flushQueue)
 </script>
 </body>
 </html>

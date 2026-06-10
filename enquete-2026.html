@@ -106,10 +106,12 @@
   .cta-btn { display: block; padding: 14px 20px; border-radius: var(--radius); font-size: 15px; font-weight: 500; text-decoration: none; text-align: center; }
   .cta-primary { background: var(--orange); color: #fff; }
   .cta-secondary { background: var(--white); color: var(--black); border: 2px solid var(--gray-light); font-size: 14px; }
+  .pending-banner { display: none; background: #C8431A; color: #fff; font-size: 13px; font-family: 'DM Sans', sans-serif; padding: 9px 20px; text-align: center; line-height: 1.4; }
 </style>
 </head>
 <body>
 
+<div class="pending-banner" id="pending-banner"></div>
 <div class="top-bar">
   <a href="https://lotbo.app" class="logo">lot<span>bo</span></a>
   <div class="lang-switch">
@@ -263,6 +265,7 @@
   <button class="submit-btn" id="submit-btn" onclick="submitForm()">
     <span id="submit-text">Envoyer mes réponses →</span>
   </button>
+  <div id="submit-error" style="display:none; color:var(--orange); font-size:13px; margin-top:10px; text-align:center; padding:10px 12px; background:rgba(200,67,26,0.08); border-radius:8px; line-height:1.5;"></div>
 
 </div>
 
@@ -320,6 +323,9 @@ const T = {
     confirmSub: 'Votre réponse est enregistrée. Vous nous aidez à construire une meilleure plateforme pour votre communauté.',
     ctaPrimary: 'Créer mon compte gratuitement →',
     ctaSecondary: 'Voir les événements',
+    submitError: "Une erreur est survenue. Vos réponses n'ont pas été envoyées. Veuillez réessayer.",
+    pendingBanner: "{n} fiche(s) en attente d'envoi",
+    offlineSaved: 'Fiche enregistrée hors ligne. Envoi automatique dès le retour de la connexion.',
   },
   en: {
     heroTitle: 'Help us improve LOTBO 🌍',
@@ -359,6 +365,9 @@ const T = {
     confirmSub: 'Your answer has been recorded. You\'re helping us build a better platform for your community.',
     ctaPrimary: 'Create my free account →',
     ctaSecondary: 'See events',
+    submitError: 'Something went wrong. Your answers were not sent. Please try again.',
+    pendingBanner: '{n} response(s) waiting to be sent',
+    offlineSaved: "Saved offline. It will be sent automatically once you're back online.",
   },
   es: {
     heroTitle: 'Ayúdanos a mejorar LOTBO 🌍',
@@ -398,6 +407,9 @@ const T = {
     confirmSub: 'Tu respuesta ha sido registrada. Nos ayudas a construir una mejor plataforma para tu comunidad.',
     ctaPrimary: 'Crear mi cuenta gratis →',
     ctaSecondary: 'Ver eventos',
+    submitError: 'Ocurrió un error. Tus respuestas no fueron enviadas. Inténtalo de nuevo.',
+    pendingBanner: '{n} respuesta(s) pendiente(s) de envío',
+    offlineSaved: 'Guardado sin conexión. Se enviará automáticamente cuando vuelva la conexión.',
   },
   pt: {
     heroTitle: 'Ajude-nos a melhorar o LOTBO 🌍',
@@ -437,6 +449,9 @@ const T = {
     confirmSub: 'Sua resposta foi registrada. Você nos ajuda a construir uma plataforma melhor para sua comunidade.',
     ctaPrimary: 'Criar minha conta grátis →',
     ctaSecondary: 'Ver eventos',
+    submitError: 'Ocorreu um erro. Suas respostas não foram enviadas. Tente novamente.',
+    pendingBanner: '{n} resposta(s) aguardando envio',
+    offlineSaved: 'Salvo offline. Será enviado automaticamente quando a conexão voltar.',
   },
   ht: {
     heroTitle: 'Ede nou fè LOTBO pi bon 🌍',
@@ -476,11 +491,16 @@ const T = {
     confirmSub: 'Repons ou a anrejistre. Ou ede nou fè yon pi bon platfòm pou kominote ou.',
     ctaPrimary: 'Kreye kont mwen gratis →',
     ctaSecondary: 'Wè evènman yo',
+    submitError: 'Yon erè rive. Repons ou yo pa t voye. Tanpri eseye ankò.',
+    pendingBanner: '{n} fich k ap tann pou voye',
+    offlineSaved: 'Fich la anrejistre san koneksyon. L ap voye otomatikman lè koneksyon an tounen.',
   },
 }
 
 // ── État ───────────────────────────────────────────────────────────────────────
 let currentLang = 'fr'
+const QUEUE_KEY = 'lotbo_enquetes_pending'
+let isFlushing = false
 
 function detectLang() {
   const l = navigator.language?.slice(0, 2)?.toLowerCase()
@@ -542,6 +562,7 @@ function setLang(lang) {
   document.getElementById('confirm-sub').textContent = t.confirmSub
   document.getElementById('cta-primary').textContent = t.ctaPrimary
   document.getElementById('cta-secondary').textContent = t.ctaSecondary
+  updatePendingBanner()
 }
 
 function selectScale(btn, name, val) {
@@ -567,7 +588,9 @@ async function submitForm() {
   if (!q1 || !q3 || !q7) { alert(t.alert); return }
 
   const btn = document.getElementById('submit-btn')
+  const errDiv = document.getElementById('submit-error')
   btn.disabled = true
+  errDiv.style.display = 'none'
   document.getElementById('submit-text').textContent = t.submitting
 
   const reponses = {
@@ -578,7 +601,6 @@ async function submitForm() {
     q5: document.querySelector('input[name="q5"]:checked')?.value,
     q6: document.querySelector('input[name="q6"]:checked')?.value,
     q7: [...document.querySelectorAll('input[name="q7"]:checked')].map(i => i.value),
-    commentaire: document.getElementById('commentaire').value,
   }
 
   const payload = {
@@ -587,17 +609,45 @@ async function submitForm() {
     whatsapp: document.getElementById('whatsapp').value || null,
     ville: document.getElementById('ville').value || null,
     pays: document.getElementById('pays').value || null,
+    newsletter: document.getElementById('newsletter').checked,
+    commentaire: document.getElementById('commentaire').value || null,
     langue: currentLang,
     reponses,
   }
 
+  let ok = false
+  let offline = false
   try {
-    await fetch('/api/enquete', {
+    const response = await fetch('/api/enquete', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
     })
-  } catch { /* continuer même si erreur réseau */ }
+    if (response.ok) {
+      ok = true
+    } else if (response.status >= 500) {
+      offline = true
+    }
+    // 4xx : ni ok ni offline → message d'erreur, pas de file
+  } catch {
+    offline = true
+  }
+
+  if (!ok && !offline) {
+    errDiv.textContent = t.submitError
+    errDiv.style.display = 'block'
+    btn.disabled = false
+    document.getElementById('submit-text').textContent = t.submit
+    return
+  }
+
+  if (offline) {
+    const q = getQueue()
+    q.push({ ...payload, local_id: Date.now() + '_' + Math.random().toString(36).slice(2), saved_at: new Date().toISOString() })
+    saveQueue(q)
+    updatePendingBanner()
+    document.getElementById('confirm-sub').textContent = t.offlineSaved
+  }
 
   document.getElementById('progress').style.width = '100%'
   document.getElementById('form-screen').style.display = 'none'
@@ -605,11 +655,61 @@ async function submitForm() {
   window.scrollTo(0, 0)
 }
 
+// ── File d'attente hors ligne ─────────────────────────────────────────────
+function getQueue() {
+  try { return JSON.parse(localStorage.getItem(QUEUE_KEY) || '[]') } catch { return [] }
+}
+function saveQueue(q) { localStorage.setItem(QUEUE_KEY, JSON.stringify(q)) }
+
+function updatePendingBanner() {
+  const q = getQueue()
+  const banner = document.getElementById('pending-banner')
+  if (!banner) return
+  if (q.length > 0) {
+    const t = T[currentLang]
+    banner.textContent = (t.pendingBanner || '{n} fiche(s) en attente').replace('{n}', q.length)
+    banner.style.display = 'block'
+  } else {
+    banner.style.display = 'none'
+  }
+}
+
+async function flushQueue() {
+  if (isFlushing) return
+  isFlushing = true
+  try {
+    let q = getQueue()
+    for (const item of [...q]) {
+      const { local_id, saved_at, ...payload } = item
+      try {
+        const response = await fetch('/api/enquete', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        })
+        if (response.ok) {
+          q = q.filter(x => x.local_id !== item.local_id)
+          saveQueue(q)
+          updatePendingBanner()
+        } else {
+          break
+        }
+      } catch {
+        break
+      }
+    }
+  } finally {
+    isFlushing = false
+  }
+}
+
 // Init
 document.addEventListener('DOMContentLoaded', () => {
   const detected = detectLang()
-  setLang(detected)
+  setLang(detected)   // setLang appelle updatePendingBanner en fin
+  flushQueue()
 })
+window.addEventListener('online', flushQueue)
 </script>
 </body>
 </html>
