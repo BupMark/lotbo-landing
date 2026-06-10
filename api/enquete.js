@@ -82,7 +82,7 @@ module.exports = async function handler(req, res) {
       heure:            heureStr,
       a1:               r.q1 ? [r.q1] : [],
       a2:               r.q2 || null,
-      a3:               r.q3 ? parseInt(r.q3) : null,
+      a3:               (v => Number.isNaN(v) ? null : v)(parseInt(r.q3, 10)),
       a4:               r.q4 || [],
       a5:               r.q5 || null,
       a6:               r.q6 || null,
@@ -96,7 +96,7 @@ module.exports = async function handler(req, res) {
     }])
 
     if (dbError) {
-      console.error('Supabase public insert error:', dbError)
+      console.error('ENQUETE_PUBLIC_INSERT_ERROR', JSON.stringify(dbError))
       return res.status(500).json({ success: false, error: 'db_insert_failed' })
     }
   }
