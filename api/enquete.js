@@ -63,16 +63,10 @@ module.exports = async function handler(req, res) {
   // ── Sauvegarde Supabase si type public ───────────────────────────────────
   if (type === 'public') {
     const now = new Date()
-    const fmt = new Intl.DateTimeFormat('fr-CA', {
-      timeZone: 'America/Port-au-Prince',
-      year: 'numeric', month: '2-digit', day: '2-digit',
-    })
-    const timeFmt = new Intl.DateTimeFormat('fr-CA', {
-      timeZone: 'America/Port-au-Prince',
-      hour: '2-digit', minute: '2-digit', hour12: false,
-    })
-    const dateStr  = fmt.format(now)
-    const heureStr = timeFmt.format(now).replace(':', ':').slice(0, 5)
+    // locale 'sv' (suédois) produit toujours "YYYY-MM-DD HH:MM:SS" — indépendant de la locale système
+    const haitiStr = now.toLocaleString('sv', { timeZone: 'America/Port-au-Prince' })
+    const dateStr  = haitiStr.slice(0, 10)   // "YYYY-MM-DD"
+    const heureStr = haitiStr.slice(11, 16)  // "HH:MM"
 
     const r = body.reponses || {}
     const { error: dbError } = await supabase.from('enquetes_terrain').insert([{
