@@ -501,6 +501,7 @@ const T = {
 let currentLang = 'fr'
 const QUEUE_KEY = 'lotbo_enquetes_pending'
 let isFlushing = false
+const refCode = new URLSearchParams(window.location.search).get('ref')
 
 function detectLang() {
   const l = navigator.language?.slice(0, 2)?.toLowerCase()
@@ -652,6 +653,10 @@ async function submitForm() {
   document.getElementById('progress').style.width = '100%'
   document.getElementById('form-screen').style.display = 'none'
   document.getElementById('confirm-screen').style.display = 'block'
+  if (refCode) {
+    document.getElementById('cta-primary').href = 'https://app.lotbo.app/login?ref=' + refCode
+    document.getElementById('cta-secondary').href = 'https://app.lotbo.app?ref=' + refCode
+  }
   window.scrollTo(0, 0)
 }
 
