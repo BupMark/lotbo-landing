@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FAQ — Lotbo Help Center</title>
+  <meta name="description" content="All answers to your questions about Lotbo: finding events, submitting, organizations, points, mobile app and more."/>
+  <meta property="og:title" content="FAQ — Lotbo Help Center"/>
+  <meta property="og:type" content="website"/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
+  <meta name="theme-color" content="#0B0603"/>
+  <link rel="alternate" hreflang="fr" href="https://lotbo.app/faq.html"/>
+  <link rel="alternate" hreflang="en" href="https://lotbo.app/en/faq.html"/>
+  <link rel="alternate" hreflang="es" href="https://lotbo.app/es/faq.html"/>
+  <link rel="alternate" hreflang="pt" href="https://lotbo.app/pt/faq.html"/>
+  <link rel="alternate" hreflang="ht" href="https://lotbo.app/ht/faq.html"/>
+  <link rel="alternate" hreflang="x-default" href="https://lotbo.app/faq.html"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root{--night:#0B0603;--night2:#110C08;--brique:#C8431A;--brique2:#FF5A1F;--or:#D4A820;--creme:#F7F2E8;--terre:#8C5A40;--brume:#E8E0D0;--border:rgba(247,242,232,0.08);--glass:rgba(247,242,232,0.04);--glass2:rgba(247,242,232,0.08);}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'DM Sans',sans-serif;background:var(--night);color:var(--creme);line-height:1.6;overflow-x:hidden;}
+    img{display:block;max-width:100%;}
+    a{color:inherit;text-decoration:none;}
+    @keyframes shimmer{0%{transform:translateX(-100%);}100%{transform:translateX(100%);}}
+    @keyframes blobFloat1{0%,100%{transform:translate(0,0) scale(1);}33%{transform:translate(40px,-30px) scale(1.05);}66%{transform:translate(-20px,20px) scale(0.95);}}
+    @keyframes blobFloat2{0%,100%{transform:translate(0,0) scale(1);}33%{transform:translate(-40px,20px) scale(1.08);}66%{transform:translate(30px,-40px) scale(0.92);}}
+    .reveal{opacity:0;transform:translateY(40px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1);}
+    .reveal.visible{opacity:1;transform:translateY(0);}
+    nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:16px 48px;background:rgba(11,6,3,0.8);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid var(--border);}
+    .nav-logo{font-family:'Playfair Display',serif;font-weight:700;font-style:italic;font-size:24px;color:var(--creme);flex-shrink:0;}
+    .nav-logo span{color:var(--brique);}
+    .nav-links{display:flex;gap:28px;flex:1;justify-content:center;}
+    .nav-link{font-size:13px;color:rgba(247,242,232,.45);transition:color .2s;}
+    .nav-link:hover{color:var(--creme);}
+    .nav-link-app{color:var(--brique)!important;border:1px solid rgba(200,67,26,.3);border-radius:6px;padding:4px 12px;}
+    .nav-link-app:hover{background:rgba(200,67,26,.08);color:var(--brique2)!important;border-color:var(--brique);}
+    .nav-actions{display:flex;gap:10px;align-items:center;flex-shrink:0;}
+    .btn-primary{font-size:13px;font-weight:500;padding:9px 22px;background:var(--brique);border:none;border-radius:8px;color:var(--creme);cursor:pointer;transition:all .25s;white-space:nowrap;display:inline-block;box-shadow:0 0 24px rgba(200,67,26,.35);position:relative;overflow:hidden;}
+    .btn-primary::after{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);animation:shimmer 3s infinite;}
+    .btn-primary:hover{box-shadow:0 0 40px rgba(200,67,26,.6);transform:translateY(-1px);}
+    .nav-hamburger{display:none;background:var(--glass);border:1px solid var(--border);color:var(--creme);border-radius:6px;padding:7px 10px;font-size:16px;cursor:pointer;}
+    .nav-drawer{position:fixed;top:0;left:0;bottom:0;width:280px;z-index:200;background:#0F0A07;border-right:1px solid var(--border);transform:translateX(-100%);transition:transform .3s ease;display:flex;flex-direction:column;}
+    .nav-drawer.open{transform:translateX(0);}
+    .nav-drawer-header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid var(--border);}
+    .nav-drawer-close{background:none;border:none;color:rgba(247,242,232,.4);font-size:20px;cursor:pointer;}
+    .nav-drawer-links{display:flex;flex-direction:column;padding:16px 0;}
+    .nav-drawer-link{font-size:15px;color:rgba(247,242,232,.7);text-decoration:none;padding:13px 20px;transition:background .15s;display:block;}
+    .nav-drawer-link:hover{background:var(--glass);color:var(--creme);}
+    .nav-drawer-divider{height:1px;background:var(--border);margin:8px 0;}
+    .nav-overlay{display:none;position:fixed;inset:0;z-index:199;background:rgba(0,0,0,.7);}
+    .nav-overlay.open{display:block;}
+    
+    .lang-switcher{display:flex;align-items:center;gap:6px;background:rgba(247,242,232,0.04);border:1px solid rgba(247,242,232,0.08);border-radius:20px;padding:4px 10px;}
+    .lang-item{font-size:11px;color:rgba(247,242,232,.5);transition:color .2s;white-space:nowrap;padding:2px 4px;border-radius:4px;}
+    .lang-item:hover{color:#F7F2E8;}
+    .nav-drawer-lang{padding:12px 20px;display:flex;flex-wrap:wrap;gap:8px;border-top:1px solid rgba(247,242,232,0.08);margin-top:8px;}
+    @media(max-width:768px){.lang-switcher{display:none;}}
+    @media(max-width:768px){nav{padding:12px 16px;}.nav-links{display:none;}.nav-hamburger{display:flex;}.btn-primary{padding:7px 14px;font-size:12px;}}
+    .hero-faq{position:relative;overflow:hidden;background:var(--night);padding:90px 48px 72px;text-align:center;border-bottom:1px solid var(--border);}
+    .hero-blobs{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none;}
+    .blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.18;}
+    .blob-1{width:500px;height:500px;background:var(--brique);top:-150px;left:-100px;animation:blobFloat1 18s ease-in-out infinite;}
+    .blob-2{width:400px;height:400px;background:var(--or);bottom:-120px;right:-80px;animation:blobFloat2 22s ease-in-out infinite;}
+    .hero-faq-inner{position:relative;z-index:1;max-width:680px;margin:0 auto;}
+    .hero-badge{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:7px 18px;border-radius:20px;border:1px solid rgba(200,67,26,.35);background:rgba(200,67,26,.08);color:var(--brique2);margin-bottom:24px;}
+    .hero-faq h1{font-family:'DM Serif Display',serif;font-style:italic;font-size:clamp(32px,5vw,56px);color:var(--creme);line-height:1.1;margin-bottom:16px;}
+    .hero-faq-sub{font-size:16px;color:rgba(247,242,232,.5);max-width:480px;margin:0 auto 40px;line-height:1.7;}
+    @media(max-width:768px){.hero-faq{padding:64px 20px 48px;}}
+    .faq-nav{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;}
+    .faq-nav-btn{font-size:13px;font-weight:500;padding:9px 20px;border:1px solid var(--border);border-radius:24px;background:var(--glass);color:rgba(247,242,232,.6);cursor:pointer;transition:all .2s;text-decoration:none;display:inline-block;}
+    .faq-nav-btn:hover{background:var(--glass2);color:var(--creme);border-color:rgba(247,242,232,.2);}
+    .faq-section-wrapper{padding:72px 48px;}
+    .faq-section-inner{max-width:1100px;margin:0 auto;}
+    @media(max-width:768px){.faq-section-wrapper{padding:48px 20px;}}
+    [data-theme="light"]{background:#F7F2E8;color:#1A1410;}
+    [data-theme="dark"]{background:#1A1410;color:#F7F2E8;}
+    .faq-section-label{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border-radius:20px;margin-bottom:12px;}
+    [data-theme="light"] .faq-section-label{background:rgba(200,67,26,.1);color:#C8431A;border:1px solid rgba(200,67,26,.2);}
+    [data-theme="dark"] .faq-section-label{background:rgba(200,67,26,.15);color:#E8620A;border:1px solid rgba(232,98,10,.25);}
+    .faq-section-h2{font-style:italic;font-size:clamp(22px,3vw,32px);margin-bottom:32px;padding-bottom:16px;}
+    [data-theme="light"] .faq-section-h2{font-family:Georgia,serif;color:#1A1410;border-bottom:1px solid #E8E0D0;}
+    [data-theme="dark"] .faq-section-h2{font-family:'DM Serif Display',serif;color:#F7F2E8;border-bottom:1px solid rgba(255,255,255,.08);}
+    .faq-item{border-radius:8px;margin-bottom:8px;transition:border-color .2s;}
+    .faq-question{width:100%;border:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 18px;text-align:left;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:500;transition:color .2s,background .2s;border-radius:8px;}
+    [data-theme="light"] .faq-question{background:white;color:#1A1410;border:1px solid #E8E0D0;}
+    [data-theme="dark"] .faq-question{background:rgba(247,242,232,.04);color:rgba(247,242,232,.85);border:1px solid rgba(247,242,232,.08);}
+    [data-theme="light"] .faq-question:hover{border-color:rgba(200,67,26,.3);color:#C8431A;}
+    [data-theme="dark"] .faq-question:hover{background:rgba(247,242,232,.07);color:#F7F2E8;border-color:rgba(200,67,26,.2);}
+    [data-theme="light"] .faq-question.open{border-color:#C8431A;color:#C8431A;background:rgba(200,67,26,.03);}
+    [data-theme="dark"] .faq-question.open{border-color:rgba(200,67,26,.3);color:#E8620A;background:rgba(200,67,26,.06);}
+    .faq-icon{font-size:20px;flex-shrink:0;transition:transform .3s;line-height:1;}
+    .faq-question.open .faq-icon{transform:rotate(45deg);}
+    .faq-answer{max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.16,1,.3,1);}
+    .faq-answer.open{max-height:600px;}
+    .faq-answer-inner{padding:14px 18px 18px;font-size:14px;line-height:1.75;}
+    [data-theme="light"] .faq-answer-inner{color:#8C5A40;}
+    [data-theme="dark"] .faq-answer-inner{color:rgba(247,242,232,.6);}
+    footer{background:#1A1410;border-top:1px solid rgba(247,242,232,.06);padding:48px 48px 32px;}
+    .footer-bottom{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+    .footer-logo{font-family:'Playfair Display',serif;font-weight:700;font-style:italic;font-size:20px;color:#F7F2E8;}
+    .footer-logo span{color:#C8431A;}
+    .footer-note{font-size:12px;color:rgba(140,90,64,.6);}
+    @media(max-width:600px){footer{padding:32px 20px;}}
+  </style>
+</head>
+<body>
+<nav>
+    <a href="/" class="nav-logo">lot<span>bo</span></a>
+    <div class="nav-links">
+      <a href="/" class="nav-link">Home</a>
+      <a href="/a-propos.html" class="nav-link">About</a>
+      <a href="/faq.html" class="nav-link">FAQ</a>
+      <a href="/contact.html" class="nav-link">Contact</a>
+      <a href="https://app.lotbo.app" class="nav-link nav-link-app">Open app →</a>
+    </div>
+    <div class="nav-actions">
+      <div class="lang-switcher">
+        <a href="/faq.html" class="lang-item">🇫🇷 FR</a>
+      <a href="/en/faq.html" class="lang-item" style="color:#C8431A;font-weight:600;">🇬🇧 EN</a>
+      <a href="/es/faq.html" class="lang-item">🇪🇸 ES</a>
+      <a href="/pt/faq.html" class="lang-item">🇧🇷 PT</a>
+      <a href="/ht/faq.html" class="lang-item">🇭🇹 HT</a>
+      </div>
+      <a href="https://app.lotbo.app/login" class="nav-btn-primary">Create account →</a>
+      <button class="nav-hamburger" onclick="toggleMobileMenu()" aria-label="Menu">☰</button>
+    </div>
+  </nav>
+  <div class="nav-drawer" id="navDrawer">
+    <div class="nav-drawer-header">
+      <a href="/" class="nav-logo">lot<span>bo</span></a>
+      <button onclick="toggleMobileMenu()" class="nav-drawer-close">✕</button>
+    </div>
+    <div class="nav-drawer-links">
+      <a href="/" class="nav-drawer-link">🏠 Home</a>
+      <a href="https://app.lotbo.app" class="nav-drawer-link">🗺️ Open app</a>
+      <a href="https://app.lotbo.app/login" class="nav-drawer-link">👤 Create account</a>
+      <div class="nav-drawer-divider"></div>
+      <a href="/a-propos.html" class="nav-drawer-link">ℹ️ About</a>
+      <a href="/faq.html" class="nav-drawer-link">❓ FAQ</a>
+      <a href="/contact.html" class="nav-drawer-link">✉️ Contact</a>
+    </div>
+    <div class="nav-drawer-lang">
+      <a href="/faq.html" class="lang-item">🇫🇷 FR</a>
+      <a href="/en/faq.html" class="lang-item" style="color:#C8431A;font-weight:600;">🇬🇧 EN</a>
+      <a href="/es/faq.html" class="lang-item">🇪🇸 ES</a>
+      <a href="/pt/faq.html" class="lang-item">🇧🇷 PT</a>
+      <a href="/ht/faq.html" class="lang-item">🇭🇹 HT</a>
+    </div>
+  </div>
+  <div class="nav-overlay" id="navOverlay" onclick="toggleMobileMenu()"></div>
+
+<section class="hero-faq">
+  <div class="hero-blobs"><div class="blob blob-1"></div><div class="blob blob-2"></div></div>
+  <div class="hero-faq-inner">
+    <div class="hero-badge">❓ Help Center</div>
+    <h1>Frequently Asked Questions</h1>
+    <p class="hero-faq-sub">Everything you need to know about Lotbo in one place.</p>
+    <div class="faq-nav">
+      <a href="#decouverte" class="faq-nav-btn">🗺️ Map & discovery</a>
+      <a href="#evenements" class="faq-nav-btn">📅 Events</a>
+      <a href="#organisateurs" class="faq-nav-btn">🏢 Organizers</a>
+      <a href="#general" class="faq-nav-btn">⚙️ General</a>
+    </div>
+  </div>
+</section>
+
+<section id="decouverte" data-theme="light" class="faq-section-wrapper">
+  <div class="faq-section-inner reveal">
+    <p class="faq-section-label">Map & Discovery</p>
+    <h2 class="faq-section-h2">Find events near you</h2>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        How does the map work?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">The interactive map shows events near you or in any city of your choice. Each colored dot represents an event category. Click a dot to see the event details.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        How do I filter by city?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">Use the search bar at the top of the map and type a city name. The map automatically zooms to that area and shows available events.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        How do I filter by category?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">Use the filter panel to select one or more event types: concerts, expositions, markets, sports, conferences and more.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        How do I filter by date?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">The date filter lets you select: Today, This weekend, This week, or a custom date range. Events outside the range are hidden from the map.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        What are the quick filters?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">Quick filters are pre-configured shortcuts. Click one to instantly activate a location + period combination. The "July 2026" filter covers the Wikimania period (July 18–27), a major global event.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        How do I leave a comment on an event?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">Open the event detail page and scroll to the Comments section. The discussion thread supports two levels: main comments and direct replies.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        How do I react to a comment?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">Below each comment, emoji buttons are available: 👍 ❤️ 😂 😮. The counter updates in real time for all page visitors.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        How do I share an event?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">On the event detail page, you'll find share buttons for WhatsApp, Facebook and X (Twitter), as well as a copy link button.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        How do I enable notifications?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">Open the ☰ menu and click Enable notifications. Your browser will ask for permission — accept to receive event alerts.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        An event is incorrect, what should I do?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">On the detail page, click the ⚠️ Report button. Choose the reason (incorrect date, wrong location, duplicate, etc.). Our team handles reports within 24 hours.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        How do I see "Featured" events?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">The Featured section is visible from the app home screen. It displays as a carousel on mobile and a grid on desktop, with events highlighted by our editorial team.</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="organisateurs" data-theme="dark" class="faq-section-wrapper">
+  <div class="faq-section-inner reveal">
+    <p class="faq-section-label">For organizers</p>
+    <h2 class="faq-section-h2">Submit and manage your events</h2>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        How do I submit an event?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">Click the + Add button in the app. Fill in the complete form: title, description, date, location (with address autocomplete), category and access type. Submit — your event will be reviewed within a few hours.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        What is "Scan & Publish"?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">Scan & Publish uses Claude Vision AI to read a photo of your event poster. In about 10 seconds, it automatically extracts the title, date, location, description and category, then pre-fills the form for you.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        Does Scan & Publish detect recurring events?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">Yes. If the poster mentions a recurrence ("every Friday", "monthly"), Scan & Publish detects it and automatically pre-fills the frequency and relevant days in the form.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        Can Scan & Publish handle multiple events at once?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">Yes. If you scan a calendar or multi-event program, the AI detects N distinct events. You can select which ones to submit before confirming.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        How do I submit a recurring event?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">In the add form, check the "This event repeats" box. Then set the frequency (daily, weekly, monthly) and days. Lotbo automatically generates up to 5 occurrences.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        How do I submit an all-day event?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">Check the "All day" box in the form. The start and end time fields disappear automatically.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        My event spans multiple days, how do I submit it?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">Fill in different Start date and End date fields. The event will automatically display a Multi-day badge on the map and in lists.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        How long until my event is published?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">Between a few hours and 24 hours depending on submission volume. Each event goes through manual review to ensure data quality.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        My event was rejected, why?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">Most common reasons: incomplete information, duplicate of an already published event, or address not found on the map. Fix the information and resubmit — no penalty.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        Can I modify an event after submission?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">Yes. On the event page, click "Suggest a correction". Indicate the field to correct with the old and new value. The correction is reviewed by our team.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        How do I create an organization?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">Go to your profile → Create an organization. Fill in the name, tagline, main city and add your logo. A public showcase is automatically created.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        How do I invite members to my organization?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">On your organization's Members page, click Invite. Enter the email address and role. The invitation link is valid for 14 days.</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="general" data-theme="light" class="faq-section-wrapper">
+  <div class="faq-section-inner reveal">
+    <p class="faq-section-label">General</p>
+    <h2 class="faq-section-h2">Lotbo, the platform and the community</h2>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        Is Lotbo free?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">Yes, completely. Lotbo is free for users, contributors and organizers. No commission, no subscription, no hidden fees. LOTBO is a pure discovery layer — it never sells tickets.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        Does Lotbo sell tickets?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">No. Lotbo is strictly an event discovery platform. We do not sell tickets, process payments or take commissions. Ticket purchase is done directly with the organizer or on their official platform.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        How do I contact the team?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">Write to hello@lotbo.app. We respond within 48 business hours.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        How do I delete my account?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">Go to Profile → Settings → Delete my account. Enter the keyword SUPPRIMER (in any language) to confirm. Your data will be permanently deleted within 30 days.</div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-bottom">
+    <a href="/" class="footer-logo">lot<span>bo</span></a>
+    <div class="footer-note">© 2026 · Born in Haiti, for the whole world 🇭🇹</div>
+  </div>
+</footer>
+
+<script>
+  function toggleMobileMenu(){document.getElementById('navDrawer').classList.toggle('open');document.getElementById('navOverlay').classList.toggle('open');}
+  function toggleFaq(btn){
+    const answer=btn.nextElementSibling;
+    const isOpen=btn.classList.contains('open');
+    document.querySelectorAll('.faq-question.open').forEach(b=>{b.classList.remove('open');b.nextElementSibling.classList.remove('open');});
+    if(!isOpen){btn.classList.add('open');answer.classList.add('open');}
+  }
+  const observer=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.08});
+  document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+</script>
+</body>
+</html>

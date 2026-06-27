@@ -10,6 +10,12 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
   <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png"/>
   <meta name="theme-color" content="#0B0603"/>
+  <link rel="alternate" hreflang="fr" href="https://lotbo.app/faq.html"/>
+  <link rel="alternate" hreflang="en" href="https://lotbo.app/en/faq.html"/>
+  <link rel="alternate" hreflang="es" href="https://lotbo.app/es/faq.html"/>
+  <link rel="alternate" hreflang="pt" href="https://lotbo.app/pt/faq.html"/>
+  <link rel="alternate" hreflang="ht" href="https://lotbo.app/ht/faq.html"/>
+  <link rel="alternate" hreflang="x-default" href="https://lotbo.app/faq.html"/>
   <meta property="og:title" content="FAQ — Centre d'aide Lotbo"/>
   <meta property="og:description" content="35 réponses aux questions les plus fréquentes sur Lotbo."/>
   <meta property="og:type" content="website"/>
@@ -291,6 +297,12 @@
       .faq-cta-grid { grid-template-columns: 1fr !important; }
       .faq-cta-img { display: none; }
     }
+  .lang-switcher{display:flex;align-items:center;gap:6px;background:rgba(247,242,232,0.04);border:1px solid rgba(247,242,232,0.08);border-radius:20px;padding:4px 10px;}
+  .lang-item{font-size:11px;color:rgba(247,242,232,.5);transition:color .2s;white-space:nowrap;padding:2px 4px;border-radius:4px;}
+  .lang-item:hover{color:#F7F2E8;}
+  .lang-item.active{color:#C8431A;font-weight:600;}
+  .nav-drawer-lang{padding:12px 20px;display:flex;flex-wrap:wrap;gap:8px;border-top:1px solid rgba(247,242,232,0.08);margin-top:8px;}
+  @media(max-width:768px){.lang-switcher{display:none;}}
   </style>
   <meta property="og:type" content="website"/>
   <meta property="og:site_name" content="LOTBO"/>
@@ -314,6 +326,13 @@
     <a href="https://app.lotbo.app" class="nav-link nav-link-app">Ouvrir l'app →</a>
   </div>
   <div class="nav-actions">
+    <div class="lang-switcher">
+      <a href="/faq.html" class="lang-item active">🇫🇷 FR</a>
+      <a href="/en/faq.html" class="lang-item">🇬🇧 EN</a>
+      <a href="/es/faq.html" class="lang-item">🇪🇸 ES</a>
+      <a href="/pt/faq.html" class="lang-item">🇧🇷 PT</a>
+      <a href="/ht/faq.html" class="lang-item">🇭🇹 HT</a>
+    </div>
     <a href="https://app.lotbo.app/login" class="btn-primary">Créer un compte →</a>
     <button class="nav-hamburger" onclick="toggleMobileMenu()" aria-label="Menu">☰</button>
   </div>
@@ -332,6 +351,13 @@
     <a href="/a-propos.html" class="nav-drawer-link">ℹ️ À propos</a>
     <a href="/faq.html" class="nav-drawer-link">❓ FAQ</a>
     <a href="/contact.html" class="nav-drawer-link">✉️ Contact</a>
+    <div class="nav-drawer-lang">
+      <a href="/faq.html" class="lang-item active">🇫🇷 FR</a>
+      <a href="/en/faq.html" class="lang-item">🇬🇧 EN</a>
+      <a href="/es/faq.html" class="lang-item">🇪🇸 ES</a>
+      <a href="/pt/faq.html" class="lang-item">🇧🇷 PT</a>
+      <a href="/ht/faq.html" class="lang-item">🇭🇹 HT</a>
+    </div>
   </div>
 </div>
 <div class="nav-overlay" id="navOverlay" onclick="toggleMobileMenu()"></div>

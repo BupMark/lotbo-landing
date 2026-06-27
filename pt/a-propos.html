@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sobre — LOTBO</title>
+  <meta name="description" content="LOTBO nasceu em 5 de maio de 2026 em Petit-Goâve, Haiti. Todos os eventos, num só lugar."/>
+  <meta property="og:title" content="Sobre — LOTBO"/>
+  <meta property="og:type" content="website"/>
+  <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
+  <meta name="theme-color" content="#F7F2E8"/>
+  <link rel="alternate" hreflang="fr" href="https://lotbo.app/a-propos.html"/>
+  <link rel="alternate" hreflang="en" href="https://lotbo.app/en/a-propos.html"/>
+  <link rel="alternate" hreflang="es" href="https://lotbo.app/es/a-propos.html"/>
+  <link rel="alternate" hreflang="pt" href="https://lotbo.app/pt/a-propos.html"/>
+  <link rel="alternate" hreflang="ht" href="https://lotbo.app/ht/a-propos.html"/>
+  <link rel="alternate" hreflang="x-default" href="https://lotbo.app/a-propos.html"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root{--bg:#F7F2E8;--brand:#C8431A;--brand2:#A63515;--dark:#1A1410;--mid:#8C5A40;--light:#E8E0D0;--white:#FFFFFF;--cream:#F7F2E8;--shadow:rgba(26,20,16,0.08);}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--dark);line-height:1.7;overflow-x:hidden;min-height:100vh;display:flex;flex-direction:column;}
+    a{color:inherit;text-decoration:none;}
+    main{flex:1;}
+    nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:14px 48px;background:rgba(11,6,3,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(247,242,232,0.08);}
+    .nav-logo{font-family:'Playfair Display',serif;font-weight:700;font-style:italic;font-size:24px;color:#F7F2E8;flex-shrink:0;}
+    .nav-logo span{color:#C8431A;}
+    .nav-links{display:flex;gap:28px;flex:1;justify-content:center;}
+    .nav-link{font-size:13px;color:rgba(247,242,232,.45);transition:color .2s;}
+    .nav-link:hover{color:#F7F2E8;}
+    .nav-link-app{color:#C8431A!important;border:1px solid rgba(200,67,26,.3);border-radius:6px;padding:4px 12px;}
+    .nav-link-app:hover{background:rgba(200,67,26,.08);color:#FF5A1F!important;border-color:#C8431A;}
+    .nav-actions{display:flex;gap:10px;align-items:center;flex-shrink:0;}
+    .nav-btn-primary{padding:8px 18px;background:#C8431A;border-radius:8px;font-size:13px;font-weight:500;color:#F7F2E8;transition:all .2s;white-space:nowrap;}
+    .nav-btn-primary:hover{background:#FF5A1F;}
+    .nav-hamburger{display:none;background:rgba(247,242,232,.04);border:1px solid rgba(247,242,232,0.08);color:#F7F2E8;border-radius:6px;padding:7px 10px;font-size:16px;cursor:pointer;}
+    .nav-drawer{position:fixed;top:0;left:0;bottom:0;width:280px;z-index:200;background:#0F0A07;border-right:1px solid rgba(247,242,232,0.08);transform:translateX(-100%);transition:transform .3s ease;display:flex;flex-direction:column;}
+    .nav-drawer.open{transform:translateX(0);}
+    .nav-drawer-header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid rgba(247,242,232,0.08);}
+    .nav-drawer-close{background:none;border:none;color:rgba(247,242,232,.4);font-size:20px;cursor:pointer;}
+    .nav-drawer-links{display:flex;flex-direction:column;padding:16px 0;}
+    .nav-drawer-link{font-size:15px;color:rgba(247,242,232,.7);text-decoration:none;padding:13px 20px;transition:background .15s;display:block;}
+    .nav-drawer-link:hover{background:rgba(247,242,232,.04);color:#F7F2E8;}
+    .nav-drawer-divider{height:1px;background:rgba(247,242,232,0.08);margin:8px 0;}
+    .nav-overlay{display:none;position:fixed;inset:0;z-index:199;background:rgba(0,0,0,.7);}
+    .nav-overlay.open{display:block;}
+    
+    .lang-switcher{display:flex;align-items:center;gap:6px;background:rgba(247,242,232,0.04);border:1px solid rgba(247,242,232,0.08);border-radius:20px;padding:4px 10px;}
+    .lang-item{font-size:11px;color:rgba(247,242,232,.5);transition:color .2s;white-space:nowrap;padding:2px 4px;border-radius:4px;}
+    .lang-item:hover{color:#F7F2E8;}
+    .nav-drawer-lang{padding:12px 20px;display:flex;flex-wrap:wrap;gap:8px;border-top:1px solid rgba(247,242,232,0.08);margin-top:8px;}
+    @media(max-width:768px){.lang-switcher{display:none;}}
+    @media(max-width:768px){nav{padding:12px 16px;}.nav-links{display:none;}.nav-btn-primary{display:none;}.nav-hamburger{display:flex;}}
+    .page-hero{background:var(--dark);color:var(--cream);padding:clamp(48px,8vw,96px) clamp(20px,5vw,80px);}
+    .hero-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:48px;align-items:center;}
+    .hero-eyebrow{color:var(--brand);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:16px;}
+    .hero-h1{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(32px,5vw,52px);font-weight:700;color:var(--cream);line-height:1.15;margin-bottom:20px;}
+    .hero-h1 span{color:var(--brand);}
+    .hero-p{color:rgba(247,242,232,0.7);font-size:15px;line-height:1.8;margin-bottom:14px;max-width:520px;}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px;}
+    .btn-brand{background:var(--brand);color:white;padding:12px 24px;border-radius:10px;font-size:14px;font-weight:bold;}
+    .btn-ghost{background:rgba(255,255,255,0.08);color:var(--cream);border:1px solid rgba(247,242,232,0.2);padding:12px 24px;border-radius:10px;font-size:14px;font-weight:bold;}
+    .stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+    .stat-card{background:rgba(255,255,255,0.06);border:1px solid rgba(247,242,232,0.1);border-radius:16px;padding:28px 20px;text-align:center;}
+    .stat-val{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(32px,4vw,44px);font-weight:700;color:var(--brand);margin-bottom:6px;line-height:1;}
+    .stat-label{color:rgba(247,242,232,0.6);font-size:12px;line-height:1.4;}
+    .content-wrap{max-width:1100px;margin:0 auto;padding:clamp(48px,6vw,80px) clamp(20px,5vw,80px);}
+    .section{margin-bottom:64px;}
+    .section-eyebrow{color:var(--brand);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:16px;}
+    .section-h2{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(22px,3vw,34px);color:var(--dark);line-height:1.3;margin-bottom:20px;}
+    .section-p{color:var(--mid);font-size:15px;line-height:1.85;margin-bottom:14px;}
+    .divider{height:1px;background:var(--light);margin:48px 0;}
+    .two-col{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:48px;align-items:center;}
+    .etym-block{background:var(--white);border-radius:12px;padding:18px 20px;box-shadow:0 2px 8px var(--shadow);border-left:3px solid var(--brand);margin:20px 0;}
+    .etym-word{font-family:'Playfair Display',serif;font-style:italic;font-size:1.15rem;color:var(--brand);margin-bottom:6px;}
+    .etym-def{font-size:0.88rem;color:var(--mid);line-height:1.6;}
+    .values-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;margin-top:32px;}
+    .value-card{border-radius:16px;padding:28px 24px;display:flex;flex-direction:column;gap:12px;}
+    .value-icon{font-size:32px;}
+    .value-titre{font-weight:700;font-size:16px;color:var(--dark);}
+    .value-texte{color:var(--mid);font-size:13px;line-height:1.7;}
+    .founder-wrap{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:40px;align-items:center;margin-top:16px;}
+    .founder-photo-wrap{border-radius:20px;overflow:hidden;border:1px solid var(--light);height:clamp(300px,40vw,440px);box-shadow:0 8px 40px var(--shadow);}
+    .founder-photo-wrap img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;}
+    .founder-name{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(24px,3vw,34px);color:var(--dark);margin-bottom:4px;line-height:1.2;}
+    .founder-role{color:var(--brand);font-size:13px;font-weight:700;margin-bottom:24px;}
+    .founder-bio{color:var(--mid);font-size:15px;line-height:1.85;margin-bottom:14px;}
+    .founder-links{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px;}
+    .founder-link{display:inline-flex;align-items:center;gap:8px;background:var(--bg);border:1px solid var(--light);color:var(--dark);padding:8px 16px;border-radius:8px;font-size:13px;font-weight:600;}
+    .founder-link-linkedin{color:#0A66C2;}
+    .info-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px;}
+    @media(max-width:480px){.info-grid{grid-template-columns:1fr;}}
+    .info-card{background:var(--white);border-radius:12px;padding:16px 18px;box-shadow:0 2px 8px var(--shadow);}
+    .info-label{font-size:0.66rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--brand);margin-bottom:4px;}
+    .info-value{font-size:0.95rem;font-weight:600;color:var(--dark);}
+    .info-detail{font-size:0.8rem;color:var(--mid);margin-top:2px;}
+    .contact-card{background:var(--white);border-radius:14px;padding:24px;box-shadow:0 2px 10px var(--shadow);display:flex;flex-direction:column;gap:16px;margin-top:20px;}
+    .contact-row{display:flex;align-items:center;gap:12px;}
+    .contact-icon{width:38px;height:38px;border-radius:10px;background:rgba(200,67,26,0.08);border:1px solid rgba(200,67,26,0.18);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
+    .contact-label{font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--brand);margin-bottom:2px;}
+    .contact-value{font-size:0.93rem;font-weight:600;color:var(--dark);}
+    .contact-value a{color:var(--brand);}
+    .contact-detail{font-size:0.78rem;color:var(--mid);}
+    .cta-section{background:linear-gradient(135deg,#C8431A 0%,#E8620A 100%);color:var(--cream);padding:clamp(48px,6vw,80px) clamp(20px,5vw,80px);text-align:center;}
+    .cta-inner{max-width:640px;margin:0 auto;}
+    .cta-eyebrow{color:rgba(247,242,232,0.8);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:16px;}
+    .cta-h2{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(28px,4vw,44px);color:var(--cream);line-height:1.2;margin-bottom:16px;}
+    .cta-p{color:rgba(247,242,232,0.75);font-size:15px;line-height:1.7;margin-bottom:36px;}
+    .cta-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+    .cta-btn-dark{padding:12px 28px;background:#1A1410;color:#F7F2E8;border-radius:10px;font-size:14px;font-weight:bold;}
+    .cta-btn-ghost{padding:12px 28px;background:rgba(247,242,232,0.1);color:#F7F2E8;border:1px solid rgba(247,242,232,0.3);border-radius:10px;font-size:14px;font-weight:bold;}
+    footer{background:#1A1410;border-top:1px solid rgba(247,242,232,.06);padding:64px 48px 32px;}
+    .footer-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-bottom:48px;}
+    .footer-col-title{font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:14px;color:#F7F2E8;margin-bottom:16px;}
+    .footer-col-links{display:flex;flex-direction:column;gap:10px;}
+    .footer-col-link{font-size:13px;color:#8C5A40;transition:color .15s;}
+    .footer-col-link:hover{color:#C8431A;}
+    .footer-bottom{max-width:1100px;margin:0 auto;padding-top:24px;border-top:1px solid rgba(247,242,232,.06);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+    .footer-logo{font-family:'Playfair Display',serif;font-weight:700;font-style:italic;font-size:20px;color:#F7F2E8;}
+    .footer-logo span{color:#C8431A;}
+    .footer-note{font-size:12px;color:rgba(140,90,64,.6);}
+    @media(max-width:640px){.hero-actions,.cta-actions{flex-direction:column;align-items:stretch;}.btn-brand,.btn-ghost{text-align:center;}}
+    @media(max-width:600px){footer{padding:48px 20px 24px;}.footer-grid{grid-template-columns:1fr;gap:24px;}}
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="/" class="nav-logo">lot<span>bo</span></a>
+    <div class="nav-links">
+      <a href="/" class="nav-link">Início</a>
+      <a href="/a-propos.html" class="nav-link">Sobre</a>
+      <a href="/faq.html" class="nav-link">FAQ</a>
+      <a href="/contact.html" class="nav-link">Contato</a>
+      <a href="https://app.lotbo.app" class="nav-link nav-link-app">Abrir o app →</a>
+    </div>
+    <div class="nav-actions">
+      <div class="lang-switcher">
+        <a href="/a-propos.html" class="lang-item">🇫🇷 FR</a>
+      <a href="/en/a-propos.html" class="lang-item">🇬🇧 EN</a>
+      <a href="/es/a-propos.html" class="lang-item">🇪🇸 ES</a>
+      <a href="/pt/a-propos.html" class="lang-item" style="color:#C8431A;font-weight:600;">🇧🇷 PT</a>
+      <a href="/ht/a-propos.html" class="lang-item">🇭🇹 HT</a>
+      </div>
+      <a href="https://app.lotbo.app/login" class="nav-btn-primary">Criar conta →</a>
+      <button class="nav-hamburger" onclick="toggleMobileMenu()" aria-label="Menu">☰</button>
+    </div>
+  </nav>
+  <div class="nav-drawer" id="navDrawer">
+    <div class="nav-drawer-header">
+      <a href="/" class="nav-logo">lot<span>bo</span></a>
+      <button onclick="toggleMobileMenu()" class="nav-drawer-close">✕</button>
+    </div>
+    <div class="nav-drawer-links">
+      <a href="/" class="nav-drawer-link">🏠 Início</a>
+      <a href="https://app.lotbo.app" class="nav-drawer-link">🗺️ Abrir o app</a>
+      <a href="https://app.lotbo.app/login" class="nav-drawer-link">👤 Criar conta</a>
+      <div class="nav-drawer-divider"></div>
+      <a href="/a-propos.html" class="nav-drawer-link">ℹ️ Sobre</a>
+      <a href="/faq.html" class="nav-drawer-link">❓ FAQ</a>
+      <a href="/contact.html" class="nav-drawer-link">✉️ Contato</a>
+    </div>
+    <div class="nav-drawer-lang">
+      <a href="/a-propos.html" class="lang-item">🇫🇷 FR</a>
+      <a href="/en/a-propos.html" class="lang-item">🇬🇧 EN</a>
+      <a href="/es/a-propos.html" class="lang-item">🇪🇸 ES</a>
+      <a href="/pt/a-propos.html" class="lang-item" style="color:#C8431A;font-weight:600;">🇧🇷 PT</a>
+      <a href="/ht/a-propos.html" class="lang-item">🇭🇹 HT</a>
+    </div>
+  </div>
+  <div class="nav-overlay" id="navOverlay" onclick="toggleMobileMenu()"></div>
+  <main>
+    <div class="page-hero">
+      <div class="hero-inner">
+        <div>
+          <p class="hero-eyebrow">🇭🇹 Petit-Goâve · 5 de maio de 2026</p>
+          <h1 class="hero-h1">Nascido no Haiti,<br><span>para o mundo inteiro.</span></h1>
+          <p class="hero-p">Os eventos existem. A vida local existe. Mas permanece invisível. LOTBO nasceu dessa frustração — uma plataforma única onde tudo o que acontece perto de você é visível, acessível, em um só lugar.</p>
+          <div class="hero-actions">
+            <a href="https://app.lotbo.app" class="btn-brand">Ver eventos →</a>
+            <a href="https://app.lotbo.app/ajouter" class="btn-ghost">Enviar um evento</a>
+          </div>
+        </div>
+        <div class="stats-grid">
+          <div class="stat-card"><div class="stat-val" id="stat-total">…</div><div class="stat-label">Eventos enviados</div></div>
+          <div class="stat-card"><div class="stat-val" id="stat-villes">…</div><div class="stat-label">Cidades cobertas</div></div>
+          <div class="stat-card"><div class="stat-val" id="stat-pays">…</div><div class="stat-label">Países</div></div>
+          <div class="stat-card"><div class="stat-val">5</div><div class="stat-label">Idiomas suportados</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="content-wrap">
+      <div class="section">
+        <p class="section-eyebrow">O projeto</p>
+        <div class="two-col" style="gap:64px;align-items:center;">
+          <div>
+            <h2 class="section-h2">Todos os eventos,<br>num só lugar.</h2>
+            <p class="section-p">LOTBO conecta organizadores de eventos com sua comunidade local, sejam turistas, viajantes ou moradores. Nosso mapa interativo permite que todos descubram o que está acontecendo ao seu redor, em tempo real, em qualquer lugar do mundo.</p>
+            <p class="section-p">A plataforma é aberta. Qualquer pessoa pode enviar um evento em 2 minutos. Acreditamos que a cultura local merece ser visível, e que as comunidades sabem melhor do que ninguém o que acontece ao seu redor.</p>
+            <div class="etym-block">
+              <div class="etym-word">lòt bò</div>
+              <div class="etym-def">Do <strong>crioulo haitiano</strong> — "lá, do outro lado". LOTBO é tudo o que acontece <em>do outro lado da sua porta</em>.</div>
+            </div>
+          </div>
+          <div style="border-radius:20px;overflow:hidden;height:420px;position:relative;box-shadow:0 8px 40px rgba(26,20,16,0.15);">
+            <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=800&q=80" alt="Cultural events" style="width:100%;height:100%;object-fit:cover;display:block;" crossorigin="anonymous"/>
+            <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(26,20,16,0.5) 0%,transparent 60%);"></div>
+            <div style="position:absolute;bottom:20px;left:20px;right:20px;">
+              <p style="color:white;font-family:'Playfair Display',serif;font-style:italic;font-size:18px;line-height:1.4;">"Kisa k'ap pase lotbo?" — What's happening over there?</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <div class="section">
+        <p class="section-eyebrow">Nossos valores</p>
+        <h2 class="section-h2">No que acreditamos.</h2>
+        <div class="values-grid">
+          <div class="value-card" style="background:rgba(200,67,26,0.06);border:1px solid rgba(200,67,26,0.13)"><div class="value-icon">🌍</div><div class="value-titre">O local em primeiro</div><div class="value-texte">Cada evento tem uma história enraizada num lugar. Destacamos o que acontece perto de você, não o que é popular em geral.</div></div>
+          <div class="value-card" style="background:rgba(45,158,107,0.06);border:1px solid rgba(45,158,107,0.13)"><div class="value-icon">🔓</div><div class="value-titre">Aberto a todos</div><div class="value-texte">Organizar ou descobrir um evento não deveria exigir uma conta, taxas ou permissão. LOTBO é gratuito e aberto.</div></div>
+          <div class="value-card" style="background:rgba(212,168,32,0.06);border:1px solid rgba(212,168,32,0.13)"><div class="value-icon">🤝</div><div class="value-titre">Confiança comunitária</div><div class="value-texte">Os eventos são enviados pela comunidade e verificados por nossa equipe. Qualquer um pode sinalizar informações incorretas.</div></div>
+          <div class="value-card" style="background:rgba(200,67,26,0.06);border:1px solid rgba(200,67,26,0.13)"><div class="value-icon">🇭🇹</div><div class="value-titre">Orgulho haitiano</div><div class="value-texte">Nascido em Petit-Goâve em 5 de maio de 2026. O Haiti nos ensinou que a cultura e a vida comunitária são as verdadeiras riquezas de um povo.</div></div>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <div class="section">
+        <p class="section-eyebrow">Nossa história</p>
+        <h2 class="section-h2">Como o LOTBO nasceu.</h2>
+        <div style="position:relative;padding-left:32px;margin-top:32px;">
+          <div style="position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,#C8431A,#E8E0D0);"></div>
+          <div style="position:relative;margin-bottom:36px;">
+            <div style="position:absolute;left:-39px;top:4px;width:14px;height:14px;border-radius:50%;background:#C8431A;border:3px solid #F7F2E8;box-shadow:0 0 0 3px rgba(200,67,26,0.2);"></div>
+            <p style="font-size:11px;font-weight:700;color:#C8431A;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px;">5 de maio de 2026</p>
+            <p style="font-weight:700;color:#1A1410;margin-bottom:6px;">Nascimento em Petit-Goâve, Haiti 🇭🇹</p>
+            <p style="color:#8C5A40;font-size:14px;line-height:1.7;">Handgod Abraham lança LOTBO de Petit-Goâve. A primeira versão do mapa mostra eventos haitianos. O nome vem do crioulo "lòt bò" — lá, do outro lado.</p>
+          </div>
+          <div style="position:relative;margin-bottom:36px;">
+            <div style="position:absolute;left:-39px;top:4px;width:14px;height:14px;border-radius:50%;background:#C8431A;border:3px solid #F7F2E8;box-shadow:0 0 0 3px rgba(200,67,26,0.2);"></div>
+            <p style="font-size:11px;font-weight:700;color:#C8431A;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px;">Maio — Junho 2026</p>
+            <p style="font-weight:700;color:#1A1410;margin-bottom:6px;">Expansão global · 16 países · 56+ cidades</p>
+            <p style="color:#8C5A40;font-size:14px;line-height:1.7;">Em poucas semanas, LOTBO se expande pelo Caribe, Europa, América do Norte, África e Ásia. Scrapers automáticos enriquecem a base de dados diariamente.</p>
+          </div>
+          <div style="position:relative;margin-bottom:36px;">
+            <div style="position:absolute;left:-39px;top:4px;width:14px;height:14px;border-radius:50%;background:#C8431A;border:3px solid #F7F2E8;box-shadow:0 0 0 3px rgba(200,67,26,0.2);"></div>
+            <p style="font-size:11px;font-weight:700;color:#C8431A;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px;">Junho 2026</p>
+            <p style="font-weight:700;color:#1A1410;margin-bottom:6px;">DevExpo 2026 · 3.000+ eventos · Organizações</p>
+            <p style="color:#8C5A40;font-size:14px;line-height:1.7;">LOTBO apresenta sua plataforma no DevExpo 2026. A base ultrapassa 3.000 eventos com Scan & Publicar (IA), espaços de Organização e um sistema completo de gamificação.</p>
+          </div>
+          <div style="position:relative;">
+            <div style="position:absolute;left:-39px;top:4px;width:14px;height:14px;border-radius:50%;background:#E8E0D0;border:3px solid #F7F2E8;box-shadow:0 0 0 3px rgba(200,67,26,0.1);"></div>
+            <p style="font-size:11px;font-weight:700;color:#8C5A40;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px;">Julho 2026 — Em andamento</p>
+            <p style="font-weight:700;color:#1A1410;margin-bottom:6px;">Wikimania Paris · Play Store · Em breve...</p>
+            <p style="color:#8C5A40;font-size:14px;line-height:1.7;">Parceria com a Wikimedia em andamento, submissão na Google Play Store, e desenvolvimento contínuo de novas funcionalidades comunitárias.</p>
+          </div>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <div class="section">
+        <p class="section-eyebrow">Fundador</p>
+        <div class="founder-wrap">
+          <div class="founder-photo-wrap">
+            <img src="/images/handgod-founder.png" alt="Handgod Abraham"/>
+          </div>
+          <div>
+            <h3 class="founder-name">Handgod Abraham</h3>
+            <p class="founder-role">Fundador · Petit-Goâve, Haiti 🇭🇹</p>
+            <p class="founder-bio">Poeta, empreendedor e cidadão do mundo. Handgod fundou o LOTBO com a convicção de que eventos culturais locais merecem uma vitrine mundial.</p>
+            <p class="founder-bio">Diretor de Estratégia Digital na Bup Mark, agência internacional de marketing digital. Preside eventos culturais como a Maratona do Livro todos os anos no Haiti.</p>
+            <div class="founder-links">
+              <a href="/" class="founder-link">🗺️ Lotbo</a>
+              <a href="https://bup-mark.com" class="founder-link" target="_blank" rel="noopener">🏢 Bup Mark</a>
+              <a href="https://www.linkedin.com/in/handgod-abraham-003140153/" class="founder-link founder-link-linkedin" target="_blank" rel="noopener noreferrer">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#0A66C2"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                Ver perfil no LinkedIn →
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <div class="section">
+        <p class="section-eyebrow">Entidade legal</p>
+        <h2 class="section-h2">Bup Mark Ltd</h2>
+        <div class="info-grid">
+          <div class="info-card"><div class="info-label">Company</div><div class="info-value">Bup Mark Ltd</div><div class="info-detail">England &amp; Wales · n°15840780</div></div>
+          <div class="info-card"><div class="info-label">Registered office</div><div class="info-value">Manchester, UK</div><div class="info-detail">Office 12, Initial Business Centre, Wilson Business Park, M40 8WN</div></div>
+          <div class="info-card"><div class="info-label">Founder</div><div class="info-value">Handgod Abraham</div><div class="info-detail">Petit-Goâve, Haiti 🇭🇹</div></div>
+          <div class="info-card"><div class="info-label">Product</div><div class="info-value">LOTBO</div><div class="info-detail">lotbo.app · app.lotbo.app</div></div>
+        </div>
+        <div class="contact-card">
+          <div class="contact-row"><div class="contact-icon">✉️</div><div><div class="contact-label">General</div><div class="contact-value"><a href="mailto:hello@lotbo.app">hello@lotbo.app</a></div></div></div>
+          <div class="contact-row"><div class="contact-icon">🔒</div><div><div class="contact-label">Privacy / GDPR</div><div class="contact-value"><a href="mailto:privacy@lotbo.app">privacy@lotbo.app</a></div></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="cta-section">
+      <div class="cta-inner">
+        <p class="cta-eyebrow">Junte-se a nós</p>
+        <h2 class="cta-h2">Pronto para descobrir o que está acontecendo?</h2>
+        <p class="cta-p">Crie sua conta gratuita e comece a explorar eventos perto de você agora mesmo.</p>
+        <div class="cta-actions">
+          <a href="https://app.lotbo.app" class="cta-btn-dark">Abrir o app →</a>
+          <a href="https://app.lotbo.app/ajouter" class="cta-btn-ghost">Enviar um evento</a>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-col-title">LOTBO</div>
+      <div class="footer-col-links">
+        <a href="/a-propos.html" class="footer-col-link">Sobre</a>
+        <a href="/medias-presse.html" class="footer-col-link">Press</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Legal</div>
+      <div class="footer-col-links">
+        <a href="https://app.lotbo.app/cgu" class="footer-col-link">CGU</a>
+        <a href="https://app.lotbo.app/politique-confidentialite" class="footer-col-link">Privacy</a>
+        <a href="/mentions-legales.html" class="footer-col-link">Legal notices</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Contact</div>
+      <div class="footer-col-links">
+        <a href="/contact.html" class="footer-col-link">hello@lotbo.app</a>
+        <a href="https://app.lotbo.app" class="footer-col-link">Abrir o app →</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <a href="/" class="footer-logo">lot<span>bo</span></a>
+    <div class="footer-note">© 2026 · Nascido no Haiti, para o mundo inteiro 🇭🇹</div>
+  </div>
+</footer>
+  <script>
+    function toggleMobileMenu(){document.getElementById('navDrawer').classList.toggle('open');document.getElementById('navOverlay').classList.toggle('open');}
+    async function chargerStats(){
+      try{
+        const res=await fetch('https://app.lotbo.app/api/stats');
+        const data=await res.json();
+        function animer(el,cible){let n=0;const step=cible/60;const t=setInterval(()=>{n+=step;if(n>=cible){n=cible;clearInterval(t);}el.textContent=Math.floor(n).toLocaleString()+'+';},16);}
+        animer(document.getElementById('stat-total'),data.total);
+        animer(document.getElementById('stat-villes'),data.villes);
+        animer(document.getElementById('stat-pays'),data.pays);
+      }catch{
+        document.getElementById('stat-total').textContent='8000+';
+        document.getElementById('stat-villes').textContent='290+';
+        document.getElementById('stat-pays').textContent='29+';
+      }
+    }
+    chargerStats();
+  </script>
+</body>
+</html>
