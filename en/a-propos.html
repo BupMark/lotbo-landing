@@ -385,6 +385,24 @@
       }
     }
     chargerStats();
-  </script>
+  
+  // Navigation multilingue — préfixe langue depuis URL
+  (function() {
+    const path = window.location.pathname;
+    const match = path.match(/^\/(en|es|pt|ht)(\/|$)/);
+    const prefix = match ? '/' + match[1] : '';
+    if (!prefix) return;
+    document.querySelectorAll('nav a[href], .nav-drawer a[href]').forEach(function(a) {
+      const href = a.getAttribute('href');
+      if (!href) return;
+      if (href.startsWith('http') || href.startsWith('#')) return;
+      if (href.startsWith(prefix)) return;
+      const pages = ['/', '/a-propos', '/faq', '/contact'];
+      if (pages.includes(href)) {
+        a.setAttribute('href', prefix + (href === '/' ? '/' : href));
+      }
+    });
+  })();
+</script>
 </body>
 </html>
