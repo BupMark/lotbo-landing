@@ -85,11 +85,17 @@
     .nav-drawer-divider { height: 1px; background: var(--border); margin: 8px 0; }
     .nav-overlay { display: none; position: fixed; inset: 0; z-index: 199; background: rgba(0,0,0,.7); }
     .nav-overlay.open { display: block; }
+    .lang-switcher{display:flex;align-items:center;gap:6px;background:rgba(247,242,232,0.04);border:1px solid rgba(247,242,232,0.08);border-radius:20px;padding:4px 10px;}
+    .lang-item{font-size:11px;color:rgba(247,242,232,.5);transition:color .2s;white-space:nowrap;padding:2px 4px;border-radius:4px;}
+    .lang-item:hover{color:#F7F2E8;}
+    .lang-item.active{color:#C8431A;font-weight:600;}
+    .nav-drawer-lang{padding:12px 20px;display:flex;flex-wrap:wrap;gap:8px;border-top:1px solid rgba(247,242,232,0.08);margin-top:8px;}
     @media (max-width: 768px) {
       nav { padding: 12px 16px; }
       .nav-links { display: none; }
       .btn-primary { display: none; }
       .nav-hamburger { display: flex; }
+      .lang-switcher { display: none; }
     }
 
     /* ── HERO COMPACT ── sombre #0B0603 ────── */
@@ -331,6 +337,13 @@
     <a href="https://app.lotbo.app" class="nav-link nav-link-app">Ouvrir l'app →</a>
   </div>
   <div class="nav-actions">
+    <div class="lang-switcher">
+      <a href="/contact" class="lang-item active">🇫🇷 FR</a>
+      <a href="/en/contact" class="lang-item">🇬🇧 EN</a>
+      <a href="/es/contact" class="lang-item">🇪🇸 ES</a>
+      <a href="/pt/contact" class="lang-item">🇧🇷 PT</a>
+      <a href="/ht/contact" class="lang-item">🇭🇹 HT</a>
+    </div>
     <a href="https://app.lotbo.app/login" class="btn-primary">Créer un compte →</a>
     <button class="nav-hamburger" onclick="toggleMobileMenu()" aria-label="Menu">☰</button>
   </div>
@@ -349,6 +362,13 @@
     <a href="/a-propos" class="nav-drawer-link">ℹ️ À propos</a>
     <a href="/faq" class="nav-drawer-link">❓ FAQ</a>
     <a href="/contact" class="nav-drawer-link">✉️ Contact</a>
+    <div class="nav-drawer-lang">
+      <a href="/contact" class="lang-item active">🇫🇷 FR</a>
+      <a href="/en/contact" class="lang-item">🇬🇧 EN</a>
+      <a href="/es/contact" class="lang-item">🇪🇸 ES</a>
+      <a href="/pt/contact" class="lang-item">🇧🇷 PT</a>
+      <a href="/ht/contact" class="lang-item">🇭🇹 HT</a>
+    </div>
   </div>
 </div>
 <div class="nav-overlay" id="navOverlay" onclick="toggleMobileMenu()"></div>
