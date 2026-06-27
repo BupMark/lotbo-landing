@@ -115,7 +115,7 @@
     .cta-btn-dark{padding:12px 28px;background:#1A1410;color:#F7F2E8;border-radius:10px;font-size:14px;font-weight:bold;}
     .cta-btn-ghost{padding:12px 28px;background:rgba(247,242,232,0.1);color:#F7F2E8;border:1px solid rgba(247,242,232,0.3);border-radius:10px;font-size:14px;font-weight:bold;}
     footer{background:#1A1410;border-top:1px solid rgba(247,242,232,.06);padding:64px 48px 32px;}
-    .footer-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-bottom:48px;}
+    .footer-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr);gap:32px;margin-bottom:48px;}
     .footer-col-title{font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:14px;color:#F7F2E8;margin-bottom:16px;}
     .footer-col-links{display:flex;flex-direction:column;gap:10px;}
     .footer-col-link{font-size:13px;color:#8C5A40;transition:color .15s;}
@@ -126,6 +126,8 @@
     .footer-note{font-size:12px;color:rgba(140,90,64,.6);}
     @media(max-width:640px){.hero-actions,.cta-actions{flex-direction:column;align-items:stretch;}.btn-brand,.btn-ghost{text-align:center;}}
     @media(max-width:600px){footer{padding:48px 20px 24px;}.footer-grid{grid-template-columns:1fr;gap:24px;}}
+    @media(max-width:900px){.footer-grid{grid-template-columns:repeat(2,1fr);}}
+    @media(max-width:375px){.footer-grid{grid-template-columns:1fr;}}
   </style>
 </head>
 <body>
@@ -314,23 +316,50 @@
     <div>
       <div class="footer-col-title">LOTBO</div>
       <div class="footer-col-links">
-        <a href="/a-propos" class="footer-col-link">About</a>
+        <a href="/en/a-propos" class="footer-col-link">About</a>
+        <a href="/en/a-propos" class="footer-col-link">Our story</a>
+        <a href="/en/a-propos" class="footer-col-link">Born in Haiti 🇭🇹</a>
         <a href="/medias-presse" class="footer-col-link">Press</a>
+        <a href="/rejoins-lotbo" class="footer-col-link">Careers</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Community</div>
+      <div class="footer-col-links">
+        <a href="/nos-utilisateurs" class="footer-col-link">Our users</a>
+        <a href="/charte-membres" class="footer-col-link">Member charter</a>
+        <a href="/charte-contributeurs" class="footer-col-link">Contributor charter</a>
+        <a href="/charte-organisateurs" class="footer-col-link">Organizer charter</a>
+        <a href="/devenir-ambassadeur" class="footer-col-link">Become ambassador</a>
+        <a href="/supporters" class="footer-col-link">Founding Supporters</a>
       </div>
     </div>
     <div>
       <div class="footer-col-title">Legal</div>
       <div class="footer-col-links">
-        <a href="https://app.lotbo.app/cgu" class="footer-col-link">CGU</a>
+        <a href="https://app.lotbo.app/cgu" class="footer-col-link">Terms of use</a>
         <a href="https://app.lotbo.app/politique-confidentialite" class="footer-col-link">Privacy</a>
+        <a href="/moderation" class="footer-col-link">Moderation</a>
+        <a href="/cookies" class="footer-col-link">Cookies</a>
         <a href="/mentions-legales" class="footer-col-link">Legal notices</a>
       </div>
     </div>
     <div>
-      <div class="footer-col-title">Contact</div>
+      <div class="footer-col-title">Collaboration</div>
       <div class="footer-col-links">
-        <a href="/contact" class="footer-col-link">hello@lotbo.app</a>
-        <a href="https://app.lotbo.app" class="footer-col-link">Open app →</a>
+        <a href="/partenariats" class="footer-col-link">Partnerships</a>
+        <a href="/partenariats" class="footer-col-link">Institutions</a>
+        <a href="/medias-presse" class="footer-col-link">Media &amp; Press</a>
+        <a href="/contact" class="footer-col-link">Contact form</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Resources</div>
+      <div class="footer-col-links">
+        <a href="/blog" class="footer-col-link">Blog</a>
+        <a href="https://app.lotbo.app/aide" class="footer-col-link">Help center</a>
+        <a href="/guide-organisateurs" class="footer-col-link">Organizer guide</a>
+        <a href="/roadmap" class="footer-col-link">Roadmap</a>
       </div>
     </div>
   </div>
