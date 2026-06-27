@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lotbo — What's happening around you?</title>
+  <meta name="description" content="Lotbo — Discover all events near you. Concerts, expos, markets, conferences."/>
+  <meta property="og:title" content="Lotbo — All events, one place"/>
+  <meta property="og:description" content="Tourist, traveler or local — find out what's happening around you right now."/>
+  <meta property="og:type" content="website"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png"/>
+  <meta name="theme-color" content="#0B0603"/>
+  <link rel="alternate" hreflang="fr" href="https://lotbo.app/"/>
+  <link rel="alternate" hreflang="en" href="https://lotbo.app/en/"/>
+  <link rel="alternate" hreflang="es" href="https://lotbo.app/es/"/>
+  <link rel="alternate" hreflang="pt" href="https://lotbo.app/pt/"/>
+  <link rel="alternate" hreflang="ht" href="https://lotbo.app/ht/"/>
+  <link rel="alternate" hreflang="x-default" href="https://lotbo.app/"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    /* ── STYLE IDENTIQUE À index.html FR — copie complète ── */
+    :root {
+      --night:#0B0603;--night2:#110C08;--brique:#C8431A;--brique2:#FF5A1F;
+      --or:#D4A820;--creme:#F7F2E8;--terre:#8C5A40;--brume:#E8E0D0;
+      --border:rgba(247,242,232,0.08);--glass:rgba(247,242,232,0.04);--glass2:rgba(247,242,232,0.08);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'DM Sans',sans-serif;background:var(--night);color:var(--creme);line-height:1.6;overflow-x:hidden;}
+    img{display:block;max-width:100%;}
+    a{color:inherit;text-decoration:none;}
+    @keyframes blobFloat1{0%,100%{transform:translate(0,0) scale(1);}33%{transform:translate(40px,-30px) scale(1.05);}66%{transform:translate(-20px,20px) scale(0.95);}}
+    @keyframes blobFloat2{0%,100%{transform:translate(0,0) scale(1);}33%{transform:translate(-40px,20px) scale(1.08);}66%{transform:translate(30px,-40px) scale(0.92);}}
+    @keyframes blobFloat3{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(20px,30px) scale(1.06);}}
+    @keyframes phoneFloat{0%,100%{transform:translateY(0px) rotate(-2deg);}50%{transform:translateY(-18px) rotate(-2deg);}}
+    @keyframes cardFloat{0%,100%{transform:translateY(0px);}50%{transform:translateY(-10px);}}
+    @keyframes pulseRing{0%{transform:scale(1);opacity:.5;}100%{transform:scale(2.5);opacity:0;}}
+    @keyframes gradMove{0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}}
+    @keyframes shimmer{0%{transform:translateX(-100%);}100%{transform:translateX(100%);}}
+    .reveal{opacity:0;transform:translateY(40px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1);}
+    .reveal.visible{opacity:1;transform:translateY(0);}
+    .reveal-delay-1{transition-delay:.1s;}.reveal-delay-2{transition-delay:.2s;}.reveal-delay-3{transition-delay:.3s;}.reveal-delay-4{transition-delay:.4s;}
+    nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:16px 48px;background:rgba(11,6,3,0.8);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid var(--border);}
+    .nav-logo{font-family:'Playfair Display',serif;font-weight:700;font-style:italic;font-size:24px;color:var(--creme);flex-shrink:0;}
+    .nav-logo span{color:var(--brique);}
+    .nav-links{display:flex;gap:28px;flex:1;justify-content:center;}
+    .nav-link{font-size:13px;color:rgba(247,242,232,.45);transition:color .2s;}
+    .nav-link:hover{color:var(--creme);}
+    .nav-link-app{color:var(--brique)!important;border:1px solid rgba(200,67,26,.3);border-radius:6px;padding:4px 12px;}
+    .nav-link-app:hover{background:rgba(200,67,26,.08);color:var(--brique2)!important;border-color:var(--brique);}
+    .nav-actions{display:flex;gap:10px;align-items:center;flex-shrink:0;}
+    .btn-primary{font-size:13px;font-weight:500;padding:9px 22px;background:var(--brique);border:none;border-radius:8px;color:var(--creme);cursor:pointer;transition:all .25s;white-space:nowrap;display:inline-block;box-shadow:0 0 24px rgba(200,67,26,.35);position:relative;overflow:hidden;}
+    .btn-primary::after{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);animation:shimmer 3s infinite;}
+    .btn-primary:hover{box-shadow:0 0 40px rgba(200,67,26,.6);transform:translateY(-1px);}
+    .nav-hamburger{display:none;background:var(--glass);border:1px solid var(--border);color:var(--creme);border-radius:6px;padding:7px 10px;font-size:16px;cursor:pointer;}
+    .lang-switcher{display:flex;align-items:center;gap:6px;background:var(--glass);border:1px solid var(--border);border-radius:20px;padding:4px 10px;}
+    .lang-item{font-size:11px;color:rgba(247,242,232,.5);transition:color .2s;white-space:nowrap;padding:2px 4px;border-radius:4px;}
+    .lang-item:hover{color:var(--creme);}
+    .nav-drawer{position:fixed;top:0;left:0;bottom:0;width:280px;z-index:200;background:#0F0A07;border-right:1px solid var(--border);transform:translateX(-100%);transition:transform .3s ease;display:flex;flex-direction:column;}
+    .nav-drawer.open{transform:translateX(0);}
+    .nav-drawer-header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid var(--border);}
+    .nav-drawer-close{background:none;border:none;color:rgba(247,242,232,.4);font-size:20px;cursor:pointer;}
+    .nav-drawer-links{display:flex;flex-direction:column;padding:16px 0;}
+    .nav-drawer-link{font-size:15px;color:rgba(247,242,232,.7);text-decoration:none;padding:13px 20px;transition:background .15s;}
+    .nav-drawer-link:hover{background:var(--glass);color:var(--creme);}
+    .nav-drawer-divider{height:1px;background:var(--border);margin:8px 0;}
+    .nav-drawer-lang{padding:12px 20px;display:flex;flex-wrap:wrap;gap:8px;border-top:1px solid var(--border);margin-top:8px;}
+    .nav-overlay{display:none;position:fixed;inset:0;z-index:199;background:rgba(0,0,0,.7);}
+    .nav-overlay.open{display:block;}
+    @media(max-width:768px){nav{padding:12px 16px;}.nav-links,.nav-desktop{display:none;}.nav-hamburger{display:flex;}.btn-primary{padding:7px 14px;font-size:12px;}.lang-switcher{display:none;}}
+    .hero{position:relative;min-height:100vh;display:grid;grid-template-columns:1fr 1fr;overflow:hidden;background:var(--night);}
+    .hero-blobs{position:absolute;inset:0;z-index:0;overflow:hidden;}
+    .blob{position:absolute;border-radius:50%;filter:blur(100px);opacity:.25;}
+    .blob-1{width:600px;height:600px;background:radial-gradient(circle,#FF5A1F,#C8431A);top:-200px;left:-150px;animation:blobFloat1 12s ease-in-out infinite;}
+    .blob-2{width:500px;height:500px;background:radial-gradient(circle,#D4A820,#C8431A);bottom:-150px;right:-100px;animation:blobFloat2 15s ease-in-out infinite;}
+    .blob-3{width:300px;height:300px;background:radial-gradient(circle,#8C5A40,transparent);top:50%;left:50%;animation:blobFloat3 10s ease-in-out infinite;}
+    .hero-left{position:relative;z-index:1;display:flex;flex-direction:column;justify-content:center;padding:80px 56px 80px 64px;}
+    .hero-right{position:relative;z-index:1;}
+    .hero-right img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;}
+    .hero-right::after{content:'';position:absolute;inset:0;background:linear-gradient(to right,var(--night) 0%,rgba(11,6,3,.3) 50%,transparent 100%),linear-gradient(to top,var(--night) 0%,transparent 30%);}
+    .hero-stat-card{position:absolute;top:48px;right:32px;z-index:10;background:rgba(17,12,8,.85);backdrop-filter:blur(20px);border:1px solid rgba(200,67,26,.25);border-radius:16px;padding:14px 20px;display:flex;align-items:center;gap:12px;animation:cardFloat 6s ease-in-out infinite;box-shadow:0 20px 60px rgba(0,0,0,.5),0 0 0 1px rgba(200,67,26,.1);}
+    .hero-stat-icon{width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,var(--brique),var(--brique2));display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+    .hero-stat-text p{font-size:14px;font-weight:500;color:var(--creme);}
+    .hero-stat-text span{font-size:11px;color:var(--terre);}
+    .hero-badge{display:inline-flex;align-items:center;gap:6px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:6px 14px;border-radius:20px;margin-bottom:28px;border:1px solid rgba(200,67,26,.3);background:rgba(200,67,26,.06);color:rgba(200,67,26,.9);width:fit-content;}
+    .hero-h1{font-family:'Playfair Display',serif;font-weight:700;font-style:italic;font-size:clamp(42px,5.5vw,72px);line-height:1.02;margin-bottom:14px;}
+    .hero-h1 .accent{background:linear-gradient(135deg,var(--brique2) 0%,var(--or) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    .hero-sub{font-family:'DM Serif Display',serif;font-style:italic;font-size:clamp(18px,2.5vw,26px);color:var(--or);margin-bottom:20px;}
+    .hero-body{font-size:15px;color:rgba(247,242,232,.55);line-height:1.8;max-width:420px;margin-bottom:44px;}
+    .hero-ctas{display:flex;flex-direction:row;gap:12px;margin-bottom:12px;flex-wrap:wrap;}
+    .hero-btn-main{display:inline-flex;align-items:center;gap:8px;padding:15px 32px;font-size:15px;font-weight:500;background:linear-gradient(135deg,var(--brique),var(--brique2));background-size:200% 200%;color:var(--creme);border:none;border-radius:12px;cursor:pointer;transition:all .3s;width:fit-content;box-shadow:0 0 40px rgba(200,67,26,.4);text-decoration:none;animation:gradMove 4s ease infinite;}
+    .hero-btn-main:hover{transform:translateY(-2px);box-shadow:0 0 60px rgba(200,67,26,.6);}
+    .hero-btn-secondary{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;font-size:14px;font-weight:500;background:transparent;border:1px solid rgba(247,242,232,.15);border-radius:12px;color:rgba(247,242,232,.6);cursor:pointer;transition:all .2s;width:fit-content;backdrop-filter:blur(8px);}
+    .hero-btn-secondary:hover{border-color:rgba(247,242,232,.35);color:var(--creme);background:rgba(247,242,232,.04);}
+    .hero-note{font-size:12px;color:rgba(140,90,64,.8);}
+    @media(max-width:860px){.hero{grid-template-columns:1fr;}.hero-right{min-height:340px;order:-1;}.hero-right::after{background:linear-gradient(to top,var(--night) 0%,transparent 40%);}.hero-left{padding:48px 24px 56px;align-items:center;text-align:center;}.hero-body{max-width:100%;}.hero-btn-main,.hero-btn-secondary{width:100%;justify-content:center;}.hero-ctas{width:100%;flex-direction:column;}.hero-stat-card{display:none;}.blob-1{width:300px;height:300px;}.blob-2{width:250px;height:250px;}}
+    .stats-section{position:relative;overflow:hidden;padding:72px 40px;background:linear-gradient(180deg,#0B0603 0%,#180E08 50%,#0F0A06 100%);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+    .stats-grid{position:relative;z-index:1;max-width:760px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:0;}
+    .stat-item{text-align:center;padding:24px;border-right:1px solid var(--border);}
+    .stat-item:last-child{border-right:none;}
+    .stat-num{font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:clamp(44px,7vw,72px);line-height:1;margin-bottom:10px;background:linear-gradient(135deg,var(--brique2) 0%,var(--or) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    .stat-label{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--terre);}
+    @media(max-width:560px){.stats-grid{grid-template-columns:1fr;}.stat-item{border-right:none;border-bottom:1px solid var(--border);}.stat-item:last-child{border-bottom:none;}}
+    .map-section{position:relative;overflow:hidden;background:linear-gradient(180deg,#0F0A06 0%,#150D09 50%,#1A0E08 100%);padding:0 24px 80px;display:flex;justify-content:center;}
+    .map-card{position:relative;z-index:1;width:100%;max-width:620px;border:1px solid rgba(200,67,26,.2);border-radius:24px;overflow:hidden;box-shadow:0 0 0 1px rgba(247,242,232,.04),0 40px 100px rgba(0,0,0,.6);background:rgba(17,12,8,.9);backdrop-filter:blur(16px);}
+    .map-bar{background:rgba(247,242,232,.03);padding:12px 18px;display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--border);}
+    .map-search{flex:1;font-size:12px;color:rgba(247,242,232,.5);background:rgba(247,242,232,.05);border:1px solid var(--border);border-radius:20px;padding:6px 16px;}
+    .map-time{font-size:11px;color:var(--terre);}
+    .map-area{position:relative;height:210px;background:#120A05;overflow:hidden;}
+    .map-pin{position:absolute;display:flex;flex-direction:column;align-items:center;cursor:pointer;transition:transform .2s;}
+    .map-pin:hover{transform:scale(1.2) translateY(-3px);}
+    .pin-dot{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500;color:var(--creme);position:relative;}
+    .pin-ring{position:absolute;inset:-5px;border-radius:50%;border:1px solid currentColor;opacity:0;animation:pulseRing 2.5s ease-out infinite;}
+    .pin-label{font-size:9px;color:rgba(247,242,232,.6);margin-top:4px;white-space:nowrap;}
+    .map-pills{display:flex;gap:8px;padding:14px 18px;flex-wrap:wrap;background:rgba(247,242,232,.02);border-top:1px solid var(--border);}
+    .map-pill{font-size:11px;font-weight:500;padding:5px 14px;border-radius:20px;cursor:pointer;border:1px solid var(--border);color:rgba(247,242,232,.4);background:transparent;transition:all .18s;}
+    .map-pill.on{background:var(--brique);border-color:var(--brique);color:var(--creme);}
+    .map-pill:hover:not(.on){border-color:rgba(247,242,232,.25);color:rgba(247,242,232,.8);}
+    .features{position:relative;overflow:hidden;padding:100px 40px;background:linear-gradient(180deg,#F7F2E8 0%,#EDE6D8 100%);color:var(--night);}
+    .section-label{font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.12em;color:var(--brique);margin-bottom:10px;}
+    .section-h2{font-family:'DM Serif Display',serif;font-style:italic;font-size:clamp(28px,4vw,44px);margin-bottom:10px;}
+    .section-body{font-size:15px;line-height:1.7;max-width:500px;margin-bottom:52px;color:var(--terre);}
+    .feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;}
+    .feat-card{background:white;border:1px solid var(--brume);border-radius:20px;padding:30px 26px;transition:all .35s cubic-bezier(.16,1,.3,1);position:relative;overflow:hidden;}
+    .feat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--brique),var(--or));opacity:0;transition:opacity .3s;}
+    .feat-card:hover{transform:translateY(-6px);box-shadow:0 24px 60px rgba(26,20,16,.12);}
+    .feat-card:hover::before{opacity:1;}
+    .feat-icon{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:18px;}
+    .feat-h3{font-family:'DM Serif Display',serif;font-style:italic;font-size:19px;color:var(--night);margin-bottom:8px;}
+    .feat-body{font-size:13px;color:var(--terre);line-height:1.65;}
+    .steps{position:relative;overflow:hidden;background:linear-gradient(135deg,#0F0906 0%,#1A0E08 40%,#160C07 100%);padding:100px 40px;}
+    .steps-inner{position:relative;z-index:1;max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+    .steps .section-h2{color:var(--creme);}
+    .steps .section-body{color:rgba(247,242,232,.45);}
+    .step-list{margin-top:40px;}
+    .step-item{display:flex;gap:20px;padding:22px 0;border-bottom:1px solid rgba(247,242,232,.06);transition:all .2s;cursor:default;}
+    .step-item:last-child{border-bottom:none;}
+    .step-item:hover .step-num{background:var(--brique);border-color:var(--brique);color:var(--creme);box-shadow:0 0 20px rgba(200,67,26,.4);}
+    .step-num{width:36px;height:36px;flex-shrink:0;border-radius:50%;background:rgba(200,67,26,.08);border:1px solid rgba(200,67,26,.3);color:var(--brique);font-size:13px;font-weight:500;display:flex;align-items:center;justify-content:center;transition:all .25s;}
+    .step-title{font-family:'DM Serif Display',serif;font-style:italic;font-size:19px;color:var(--creme);margin-bottom:5px;}
+    .step-desc{font-size:13px;color:rgba(247,242,232,.45);line-height:1.65;}
+    .phone-wrap{display:flex;justify-content:center;animation:phoneFloat 8s ease-in-out infinite;}
+    .phone-shell{width:250px;background:#0D0805;border-radius:40px;padding:14px;box-shadow:0 50px 120px rgba(0,0,0,.7),0 0 0 1px rgba(247,242,232,.06),0 0 60px rgba(200,67,26,.08);}
+    .phone-notch{width:72px;height:5px;background:#1a1410;border-radius:3px;margin:0 auto 12px;}
+    .phone-top{background:var(--creme);border-radius:16px 16px 0 0;padding:10px 14px;display:flex;justify-content:space-between;align-items:center;}
+    .phone-logo{font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:15px;color:var(--night);}
+    .phone-logo span{color:var(--brique);}
+    .phone-add{font-size:10px;color:var(--brique);font-weight:500;}
+    .phone-map{height:165px;background:#ddd5c8;position:relative;overflow:hidden;}
+    .phone-tabs{background:var(--creme);border-radius:0 0 16px 16px;padding:8px 12px;display:flex;justify-content:space-around;border-top:1px solid #E8E0D0;}
+    .phone-tab{text-align:center;}
+    .phone-tab .ico{font-size:13px;}
+    .phone-tab .lbl{font-size:6px;color:var(--terre);font-family:'DM Sans',sans-serif;}
+    .phone-tab.active .lbl{color:var(--brique);}
+    .phone-fab{width:27px;height:27px;background:var(--brique);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto -4px;font-size:10px;color:white;box-shadow:0 4px 12px rgba(200,67,26,.5);}
+    .phone-bottom{width:52px;height:4px;background:#1a1410;border-radius:2px;margin:7px auto 0;}
+    @media(max-width:768px){.steps-inner{grid-template-columns:1fr;gap:48px;}.phone-wrap{display:none;}}
+    .quotes{position:relative;overflow:hidden;background:linear-gradient(180deg,#F0E8D8 0%,#F7F2E8 100%);padding:88px 40px;color:var(--night);}
+    .quote-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:18px;}
+    .quote-card{background:white;padding:30px 26px;border-radius:20px;border-left:3px solid var(--brique);box-shadow:0 4px 20px rgba(26,20,16,.06);transition:all .3s cubic-bezier(.16,1,.3,1);}
+    .quote-card:hover{transform:translateY(-4px);box-shadow:0 16px 50px rgba(26,20,16,.1);}
+    .quote-text{font-family:'DM Serif Display',serif;font-style:italic;font-size:17px;color:var(--night);line-height:1.65;margin-bottom:16px;}
+    .quote-author{font-size:12px;font-weight:500;color:var(--terre);}
+    .top-section{position:relative;overflow:hidden;background:linear-gradient(180deg,#F7F2E8 0%,#EDE6D8 100%);padding:0 40px 88px;color:var(--night);}
+    .top-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;}
+    .top-card{background:white;border:1px solid var(--brume);border-radius:20px;padding:28px;box-shadow:0 2px 12px rgba(26,20,16,.05);}
+    .top-card-label{color:var(--terre);font-size:11px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:20px;font-weight:500;}
+    .top-row{display:flex;align-items:center;gap:14px;padding:11px 0;border-bottom:1px solid #F0EAE0;}
+    .top-row:last-child{border-bottom:none;}
+    .top-rank{font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:20px;color:var(--brique);width:26px;flex-shrink:0;}
+    .top-name{flex:1;font-size:14px;font-weight:600;color:var(--night);}
+    .top-count{font-size:12px;color:var(--terre);}
+    .cta-section{position:relative;padding:110px 24px;text-align:center;overflow:hidden;background:linear-gradient(135deg,#8B2208 0%,var(--brique) 35%,#E8520A 65%,#A82F10 100%);background-size:300% 300%;animation:gradMove 6s ease infinite;}
+    .cta-inner{position:relative;z-index:1;}
+    .cta-h1{font-family:'Playfair Display',serif;font-weight:700;font-style:italic;font-size:clamp(32px,5.5vw,58px);color:var(--creme);margin-bottom:16px;}
+    .cta-body{font-size:16px;color:rgba(247,242,232,.75);max-width:440px;margin:0 auto 40px;line-height:1.7;}
+    .cta-dual{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:28px;}
+    .cta-btn-dark{padding:15px 36px;font-size:15px;font-weight:500;background:var(--night);color:var(--creme);border:none;border-radius:12px;cursor:pointer;transition:all .25s;text-decoration:none;display:inline-block;box-shadow:0 8px 32px rgba(0,0,0,.4);}
+    .cta-btn-dark:hover{background:var(--night2);transform:translateY(-2px);box-shadow:0 16px 50px rgba(0,0,0,.5);}
+    .cta-divider{display:flex;align-items:center;gap:16px;max-width:380px;margin:0 auto 20px;}
+    .cta-divider::before,.cta-divider::after{content:'';flex:1;height:1px;background:rgba(247,242,232,.2);}
+    .cta-divider span{font-size:12px;color:rgba(247,242,232,.4);white-space:nowrap;}
+    .cta-form{display:flex;gap:8px;max-width:440px;margin:0 auto;flex-wrap:wrap;justify-content:center;}
+    .cta-form input[type="email"]{flex:1;min-width:210px;padding:14px 18px;font-size:14px;font-family:'DM Sans',sans-serif;background:rgba(247,242,232,.1);border:1px solid rgba(247,242,232,.2);border-radius:10px;color:var(--creme);outline:none;transition:border-color .2s;}
+    .cta-form input[type="email"]:focus{border-color:rgba(247,242,232,.5);}
+    .cta-form input[type="email"]::placeholder{color:rgba(247,242,232,.4);}
+    .cta-form button{padding:14px 24px;font-size:14px;font-weight:500;background:rgba(247,242,232,.15);color:var(--creme);border:1px solid rgba(247,242,232,.2);border-radius:10px;cursor:pointer;transition:all .2s;white-space:nowrap;}
+    .cta-form button:hover{background:rgba(247,242,232,.25);}
+    .cta-form button:disabled{opacity:.5;cursor:not-allowed;}
+    .cta-note{margin-top:16px;font-size:12px;color:rgba(247,242,232,.35);}
+    .form-msg{margin-top:12px;font-size:13px;min-height:20px;}
+    .form-msg.ok{color:rgba(247,242,232,.9);}.form-msg.err{color:#ffb3b3;}
+    footer{background:#1A1410;border-top:1px solid rgba(247,242,232,.06);padding:64px 48px 32px;}
+    .footer-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr);gap:32px;margin-bottom:48px;}
+    .footer-col-title{font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:14px;color:var(--creme);margin-bottom:16px;}
+    .footer-col-links{display:flex;flex-direction:column;gap:10px;}
+    .footer-col-link{font-size:13px;color:#8C5A40;transition:color .15s;}
+    .footer-col-link:hover{color:var(--brique);}
+    .footer-bottom{max-width:1100px;margin:0 auto;padding-top:24px;border-top:1px solid rgba(247,242,232,.06);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+    .footer-logo{font-family:'Playfair Display',serif;font-weight:700;font-style:italic;font-size:20px;color:var(--creme);}
+    .footer-logo span{color:var(--brique);}
+    .footer-note{font-size:12px;color:rgba(140,90,64,.6);}
+    @media(max-width:900px){.footer-grid{grid-template-columns:repeat(2,1fr);}}
+    @media(max-width:600px){.features,.quotes,.top-section{padding:64px 20px;}.steps{padding:64px 20px;}footer{padding:48px 20px 24px;}.footer-grid{grid-template-columns:repeat(2,1fr);gap:24px;}}
+    @media(max-width:375px){.footer-grid{grid-template-columns:1fr;}}
+  </style>
+  <meta property="og:type" content="website"/>
+  <meta property="og:site_name" content="LOTBO"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:site" content="@Lotboapp"/>
+  <meta name="twitter:image" content="https://lotbo.app/og-home.jpg"/>
+  <meta property="og:image" content="https://lotbo.app/og-home.jpg"/>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">lot<span>bo</span></a>
+  <div class="nav-links">
+    <a href="/en/" class="nav-link">Home</a>
+    <a href="/a-propos.html" class="nav-link">About</a>
+    <a href="/faq.html" class="nav-link">FAQ</a>
+    <a href="/contact.html" class="nav-link">Contact</a>
+    <a href="https://app.lotbo.app" class="nav-link nav-link-app">Open app →</a>
+  </div>
+  <div class="nav-actions">
+    <div class="lang-switcher">
+      <a href="/" class="lang-item" >🇫🇷 FR</a>
+      <a href="/en/" class="lang-item" style="color:var(--brique);font-weight:600;">🇬🇧 EN</a>
+      <a href="/es/" class="lang-item" >🇪🇸 ES</a>
+      <a href="/pt/" class="lang-item" >🇧🇷 PT</a>
+      <a href="/ht/" class="lang-item" >🇭🇹 KW</a>
+    </div>
+    <a href="https://app.lotbo.app/login" class="btn-primary">Create account →</a>
+    <button class="nav-hamburger" onclick="toggleMobileMenu()" aria-label="Menu">☰</button>
+  </div>
+</nav>
+
+<div class="nav-drawer" id="navDrawer">
+  <div class="nav-drawer-header">
+    <a href="/" class="nav-logo">lot<span>bo</span></a>
+    <button onclick="toggleMobileMenu()" class="nav-drawer-close">✕</button>
+  </div>
+  <div class="nav-drawer-links">
+    <a href="/en/" class="nav-drawer-link">🏠 Home</a>
+    <a href="https://app.lotbo.app" class="nav-drawer-link">🗺️ Open app</a>
+    <a href="https://app.lotbo.app/login" class="nav-drawer-link">👤 Create account</a>
+    <div class="nav-drawer-divider"></div>
+    <a href="/a-propos.html" class="nav-drawer-link">ℹ️ About</a>
+    <a href="/faq.html" class="nav-drawer-link">❓ FAQ</a>
+    <a href="/contact.html" class="nav-drawer-link">✉️ Contact</a>
+  </div>
+  <div class="nav-drawer-lang">
+    <a href="/" class="lang-item">🇫🇷 FR</a>
+    <a href="/en/" class="lang-item">🇬🇧 EN</a>
+    <a href="/es/" class="lang-item">🇪🇸 ES</a>
+    <a href="/pt/" class="lang-item">🇧🇷 PT</a>
+    <a href="/ht/" class="lang-item">🇭🇹 KW</a>
+  </div>
+</div>
+<div class="nav-overlay" id="navOverlay" onclick="toggleMobileMenu()"></div>
+
+<section class="hero" id="hero">
+  <div class="hero-blobs">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+  <div class="hero-left">
+    <div class="hero-badge">✦ Born in Haiti · For the whole world</div>
+    <h1 class="hero-h1">
+      What's happening<br>
+      <span class="accent">around you</span>?
+    </h1>
+    <p class="hero-sub">All events,<br>one place.</p>
+    <p class="hero-body">Tourist, traveler or local — find out what's happening around you right now. Concerts, expos, matches, markets. Everything, everywhere.</p>
+    <div class="hero-ctas">
+      <a href="https://app.lotbo.app/login" class="hero-btn-main">Create my free account →</a>
+      <button onclick="scrollToNewsletter()" class="hero-btn-secondary">📧 Subscribe to newsletter</button>
+    </div>
+    <p class="hero-note">Free · No spam · Global community</p>
+  </div>
+  <div class="hero-right">
+    <img src="/hero-femme.jpg" alt="Lotbo"/>
+    <div class="hero-stat-card">
+      <div class="hero-stat-icon">📅</div>
+      <div class="hero-stat-text">
+        <p id="float-events">— events</p>
+        <span>on LOTBO right now</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="stats-section reveal">
+  <div class="stats-grid">
+    <div class="stat-item"><div class="stat-num" id="stat-events">—</div><div class="stat-label">Events</div></div>
+    <div class="stat-item"><div class="stat-num" id="stat-villes">—</div><div class="stat-label">Cities</div></div>
+    <div class="stat-item"><div class="stat-num" id="stat-pays">—</div><div class="stat-label">Countries</div></div>
+  </div>
+</div>
+
+<div class="map-section reveal">
+  <div class="map-card">
+    <div class="map-bar">
+      <div class="map-search">Port-au-Prince, Haiti</div>
+      <div class="map-time">Tonight</div>
+    </div>
+    <div class="map-area">
+      <svg viewBox="0 0 620 210" style="position:absolute;inset:0;width:100%;height:100%;" xmlns="http://www.w3.org/2000/svg">
+        <rect width="620" height="210" fill="#120A05"/>
+        <line x1="0" y1="70" x2="620" y2="70" stroke="#1E1208" stroke-width="1"/>
+        <line x1="0" y1="140" x2="620" y2="140" stroke="#1E1208" stroke-width="1"/>
+        <line x1="155" y1="0" x2="155" y2="210" stroke="#1E1208" stroke-width="1"/>
+        <line x1="310" y1="0" x2="310" y2="210" stroke="#1E1208" stroke-width="1"/>
+        <line x1="465" y1="0" x2="465" y2="210" stroke="#1E1208" stroke-width="1"/>
+      </svg>
+      <div class="map-pin" style="top:22px;left:65px"><div class="pin-dot" style="background:#C8431A;color:white;"><div class="pin-ring" style="color:#C8431A;"></div>♫</div><div class="pin-label">Concert</div></div>
+      <div class="map-pin" style="top:60px;left:225px"><div class="pin-dot" style="background:#8C5A40;color:white;"><div class="pin-ring" style="color:#8C5A40;"></div>A</div><div class="pin-label">Expo</div></div>
+      <div class="map-pin" style="top:18px;left:358px"><div class="pin-dot" style="background:#D4A820;color:#0B0603;"><div class="pin-ring" style="color:#D4A820;"></div>M</div><div class="pin-label">Market</div></div>
+      <div class="map-pin" style="top:115px;left:120px"><div class="pin-dot" style="background:#0D0A08;border:1px solid #C8431A;color:#C8431A;"><div class="pin-ring" style="color:#C8431A;"></div>B</div><div class="pin-label">Conf.</div></div>
+      <div class="map-pin" style="top:130px;left:285px"><div class="pin-dot" style="background:#8C5A40;color:white;"><div class="pin-ring" style="color:#8C5A40;"></div>F</div><div class="pin-label">Festival</div></div>
+    </div>
+    <div class="map-pills">
+      <button class="map-pill on" onclick="togglePill(this)">All</button>
+      <button class="map-pill" onclick="togglePill(this)">Culture</button>
+      <button class="map-pill" onclick="togglePill(this)">Business</button>
+      <button class="map-pill" onclick="togglePill(this)">Sport</button>
+      <button class="map-pill" onclick="togglePill(this)">Free</button>
+    </div>
+  </div>
+</div>
+
+<section class="features reveal">
+  <div style="max-width:1100px;margin:0 auto;position:relative;z-index:1;">
+    <p class="section-label">Why Lotbo</p>
+    <h2 class="section-h2" style="color:var(--night);">A platform for everyone</h2>
+    <p class="section-body">Whether you organize or you're looking, Lotbo centralizes everything in one place.</p>
+    <div class="feat-grid">
+      <div class="feat-card reveal reveal-delay-1">
+        <div class="feat-icon" style="background:rgba(200,67,26,.08)"><svg width="22" height="22" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="9" r="4.5" stroke="#C8431A" stroke-width="1.5"/><path d="M10 13.5V18M5.5 9H1M14.5 9H19" stroke="#C8431A" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+        <h3 class="feat-h3">Real-time map</h3>
+        <p class="feat-body">Visualize events around you on an interactive map. Filter by date, category or distance.</p>
+      </div>
+      <div class="feat-card reveal reveal-delay-2">
+        <div class="feat-icon" style="background:rgba(212,168,32,.08)"><svg width="22" height="22" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="13" rx="2" stroke="#D4A820" stroke-width="1.5"/><path d="M7 2v3M13 2v3M2 9h16" stroke="#D4A820" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+        <h3 class="feat-h3">Open publishing</h3>
+        <p class="feat-body">Organizer or citizen — add an event in 2 minutes and reach everyone around you.</p>
+      </div>
+      <div class="feat-card reveal reveal-delay-3">
+        <div class="feat-icon" style="background:rgba(140,90,64,.08)"><svg width="22" height="22" viewBox="0 0 20 20" fill="none"><path d="M10 2C7 2 4.5 4.5 4.5 7.5c0 4.5 5.5 10 5.5 10s5.5-5.5 5.5-10C15.5 4.5 13 2 10 2z" stroke="#8C5A40" stroke-width="1.5"/><circle cx="10" cy="7.5" r="2" fill="#8C5A40"/></svg></div>
+        <h3 class="feat-h3">By destination</h3>
+        <p class="feat-body">Arriving in a new city? Lotbo tells you exactly what to do tonight, without searching for hours.</p>
+      </div>
+      <div class="feat-card reveal reveal-delay-4">
+        <div class="feat-icon" style="background:rgba(26,20,16,.04)"><svg width="22" height="22" viewBox="0 0 20 20" fill="none"><path d="M10 2l2.5 5 5.5.8-4 3.9 1 5.5L10 14.5l-5 2.7 1-5.5L2 7.8 7.5 7z" stroke="#1A1410" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+        <h3 class="feat-h3">Community reliability</h3>
+        <p class="feat-body">Events are verified and flagged by the community. You never miss bad information.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="steps reveal">
+  <div class="steps-inner">
+    <div>
+      <p class="section-label">How it works</p>
+      <h2 class="section-h2">Simple as can be</h2>
+      <p class="section-body">Three steps, and you're in the heart of the action.</p>
+      <div class="step-list">
+        <div class="step-item"><div class="step-num">1</div><div><div class="step-title">Open and locate yourself</div><p class="step-desc">The map shows all events near you or in a city of your choice.</p></div></div>
+        <div class="step-item"><div class="step-num">2</div><div><div class="step-title">Filter by your interests</div><p class="step-desc">Culture, business, sport, free, tonight, this weekend — find exactly what you're looking for.</p></div></div>
+        <div class="step-item"><div class="step-num">3</div><div><div class="step-title">Participate or publish</div><p class="step-desc">Save, share, or add your own event in a few clicks.</p></div></div>
+      </div>
+    </div>
+    <div class="phone-wrap">
+      <div class="phone-shell">
+        <div class="phone-notch"></div>
+        <div class="phone-top"><div class="phone-logo">lot<span>bo</span></div><div class="phone-add">+ Add</div></div>
+        <div class="phone-map">
+          <svg viewBox="0 0 222 165" style="width:100%;height:100%;" xmlns="http://www.w3.org/2000/svg"><rect width="222" height="165" fill="#ddd5c8"/><line x1="0" y1="55" x2="222" y2="55" stroke="#c8bfb4" stroke-width="1"/><line x1="0" y1="110" x2="222" y2="110" stroke="#c8bfb4" stroke-width="1"/><line x1="74" y1="0" x2="74" y2="165" stroke="#c8bfb4" stroke-width="1"/><line x1="148" y1="0" x2="148" y2="165" stroke="#c8bfb4" stroke-width="1"/></svg>
+          <div style="position:absolute;top:24px;left:32px;text-align:center;"><div style="width:26px;height:26px;background:#C8431A;border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:11px;margin:0 auto;box-shadow:0 4px 10px rgba(200,67,26,.5);">♫</div><div style="font-size:8px;color:#1A1410;font-family:'DM Sans',sans-serif;margin-top:3px;">Concert</div></div>
+          <div style="position:absolute;top:47px;left:122px;text-align:center;"><div style="width:26px;height:26px;background:#D4A820;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#0B0603;font-size:11px;margin:0 auto;box-shadow:0 4px 10px rgba(212,168,32,.4);">M</div><div style="font-size:8px;color:#1A1410;font-family:'DM Sans',sans-serif;margin-top:3px;">Market</div></div>
+        </div>
+        <div class="phone-tabs">
+          <div class="phone-tab active"><div class="ico">🏠</div><div class="lbl">Home</div></div>
+          <div class="phone-tab"><div class="ico">📅</div><div class="lbl">Events</div></div>
+          <div class="phone-tab"><div class="phone-fab">📍</div><div class="lbl" style="margin-top:4px;">&nbsp;</div></div>
+          <div class="phone-tab"><div class="ico">🔔</div><div class="lbl">Alerts</div></div>
+          <div class="phone-tab"><div class="ico">👤</div><div class="lbl">Profile</div></div>
+        </div>
+        <div class="phone-bottom"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="quotes reveal">
+  <div style="max-width:1100px;margin:0 auto;position:relative;z-index:1;">
+    <p class="section-label">They trust us</p>
+    <h2 class="section-h2" style="color:var(--night);">The first to join</h2>
+    <div class="quote-grid">
+      <div class="quote-card reveal reveal-delay-1"><p class="quote-text">"Finally a platform where I can publish my shows and reach both locals and foreign visitors."</p><div class="quote-author">Marie-Josée D. — Cultural events organizer, Port-au-Prince</div></div>
+      <div class="quote-card reveal reveal-delay-2"><p class="quote-text">"When I travel, I always waste time looking for things to do. Lotbo solves exactly that problem."</p><div class="quote-author">Thomas K. — Traveler, 34 countries visited</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="top-section reveal">
+  <div style="max-width:1100px;margin:0 auto;position:relative;z-index:1;">
+    <p class="section-label">Rankings</p>
+    <h2 class="section-h2" style="color:var(--night);">What's moving on Lotbo</h2>
+    <div class="top-grid">
+      <div class="top-card"><div class="top-card-label">📍 Top Cities</div><div id="top-villes"><div style="color:var(--terre);font-size:13px;">Loading...</div></div></div>
+      <div class="top-card"><div class="top-card-label">🎭 Top Categories</div><div id="top-orgs"><div style="color:var(--terre);font-size:13px;">Loading...</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section reveal" id="newsletter">
+  <div class="cta-inner">
+    <h2 class="cta-h1">Join the LOTBO community</h2>
+    <p class="cta-body">Create your free account or subscribe to the newsletter to receive the best events every week.</p>
+    <div class="cta-dual"><a href="https://app.lotbo.app/login" class="cta-btn-dark">Create my account →</a></div>
+    <div class="cta-divider"><span>or</span></div>
+    <div class="cta-form">
+      <input type="email" id="cta-email" placeholder="your@email.com" autocomplete="email"/>
+      <button onclick="inscrire('cta-email','cta-msg')">Subscribe to newsletter</button>
+    </div>
+    <div class="form-msg" id="cta-msg"></div>
+    <p class="cta-note">No spam · You can unsubscribe at any time</p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-col-title">LOTBO</div>
+      <div class="footer-col-links">
+        <a href="/a-propos.html" class="footer-col-link">About</a>
+        <a href="/a-propos.html" class="footer-col-link">Our story</a>
+        <a href="/a-propos.html" class="footer-col-link">Born in Haiti 🇭🇹</a>
+        <a href="/medias-presse.html" class="footer-col-link">Press</a>
+        <a href="/rejoins-lotbo.html" class="footer-col-link">Careers</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Community</div>
+      <div class="footer-col-links">
+        <a href="/nos-utilisateurs.html" class="footer-col-link">Our users</a>
+        <a href="/charte-membres.html" class="footer-col-link">Member charter</a>
+        <a href="/charte-contributeurs.html" class="footer-col-link">Contributor charter</a>
+        <a href="/charte-organisateurs.html" class="footer-col-link">Organizer charter</a>
+        <a href="/devenir-ambassadeur.html" class="footer-col-link">Become ambassador</a>
+        <a href="/supporters.html" class="footer-col-link">Founding Supporters</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Legal</div>
+      <div class="footer-col-links">
+        <a href="https://app.lotbo.app/cgu" class="footer-col-link">Terms of use</a>
+        <a href="https://app.lotbo.app/politique-confidentialite" class="footer-col-link">Privacy</a>
+        <a href="/moderation.html" class="footer-col-link">Moderation</a>
+        <a href="/cookies.html" class="footer-col-link">Cookies</a>
+        <a href="/mentions-legales.html" class="footer-col-link">Legal notices</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Collaboration</div>
+      <div class="footer-col-links">
+        <a href="/partenariats.html" class="footer-col-link">Partnerships</a>
+        <a href="/partenariats.html" class="footer-col-link">Institutions</a>
+        <a href="/medias-presse.html" class="footer-col-link">Media & Press</a>
+        <a href="/contact.html" class="footer-col-link">Contact form</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Resources</div>
+      <div class="footer-col-links">
+        <a href="/blog.html" class="footer-col-link">Blog</a>
+        <a href="https://app.lotbo.app/aide" class="footer-col-link">Help center</a>
+        <a href="/guide-organisateurs.html" class="footer-col-link">Organizer guide</a>
+        <a href="/roadmap.html" class="footer-col-link">Roadmap</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <a href="/" class="footer-logo">lot<span>bo</span></a>
+    <div class="footer-note">© 2026 · Born in Haiti, for the whole world 🇭🇹</div>
+  </div>
+</footer>
+
+<script>
+  const NEWSLETTER_ERR = "Enter a valid email address.";
+  const NEWSLETTER_ALREADY = "✓ You're already subscribed!";
+  const NEWSLETTER_OK = "✓ Subscribed! You'll receive the best of LOTBO every week.";
+  const NEWSLETTER_NET_ERR = "Network error. Please try again.";
+  const NEWSLETTER_BTN = "Subscribe to newsletter";
+  const TOP_EVENTS_LABEL = "events";
+  const TOP_UNAVAILABLE = "Data unavailable";
+
+  function toggleMobileMenu() {
+    document.getElementById('navDrawer').classList.toggle('open');
+    document.getElementById('navOverlay').classList.toggle('open');
+  }
+  function scrollToNewsletter() {
+    document.getElementById('newsletter').scrollIntoView({ behavior: 'smooth' });
+    setTimeout(() => document.getElementById('cta-email').focus(), 700);
+  }
+  function togglePill(el) {
+    document.querySelectorAll('.map-pill').forEach(p => p.classList.remove('on'));
+    el.classList.add('on');
+  }
+  async function inscrire(inputId, msgId) {
+    const emailInput = document.getElementById(inputId);
+    const msgEl = document.getElementById(msgId);
+    const email = emailInput.value.trim();
+    if (!email || !email.includes('@')) {
+      msgEl.className = 'form-msg err';
+      msgEl.textContent = NEWSLETTER_ERR;
+      return;
+    }
+    const btn = emailInput.nextElementSibling;
+    btn.disabled = true; btn.textContent = '...';
+    msgEl.className = 'form-msg'; msgEl.textContent = '';
+    try {
+      const res = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email })
+      });
+      const data = await res.json();
+      if (data.success) {
+        msgEl.className = 'form-msg ok';
+        msgEl.textContent = data.already ? NEWSLETTER_ALREADY : NEWSLETTER_OK;
+        emailInput.value = '';
+      } else { throw new Error(); }
+    } catch {
+      msgEl.className = 'form-msg err';
+      msgEl.textContent = NEWSLETTER_NET_ERR;
+    }
+    btn.disabled = false;
+    btn.textContent = NEWSLETTER_BTN;
+  }
+  async function chargerStats() {
+    try {
+      const res = await fetch('https://app.lotbo.app/api/stats');
+      const data = await res.json();
+      function animer(el, cible) {
+        let n = 0; const step = cible / 60;
+        const t = setInterval(() => {
+          n += step;
+          if (n >= cible) { n = cible; clearInterval(t); }
+          el.textContent = Math.floor(n).toLocaleString() + '+';
+        }, 16);
+      }
+      animer(document.getElementById('stat-events'), data.total);
+      animer(document.getElementById('stat-villes'), data.villes);
+      animer(document.getElementById('stat-pays'), data.pays);
+      const floatEl = document.getElementById('float-events');
+      if (floatEl && data.total) floatEl.textContent = data.total.toLocaleString() + ' events';
+    } catch {
+      document.getElementById('stat-events').textContent = '1000+';
+      document.getElementById('stat-villes').textContent = '66+';
+      document.getElementById('stat-pays').textContent = '10+';
+    }
+  }
+  chargerStats();
+  setInterval(chargerStats, 5 * 60 * 1000);
+  document.addEventListener('DOMContentLoaded', function() {
+    fetch('https://app.lotbo.app/api/top')
+      .then(r => r.json())
+      .then(data => {
+        document.getElementById('top-villes').innerHTML = data.topVilles.map((v, i) => `
+          <div class="top-row">
+            <span class="top-rank">${i+1}</span>
+            <span class="top-name">${v.ville}</span>
+            <span class="top-count">${v.count} ${TOP_EVENTS_LABEL}</span>
+          </div>`).join('');
+        document.getElementById('top-orgs').innerHTML = (data.topCategories||[]).map((c, i) => `
+          <div class="top-row">
+            <span class="top-rank">${i+1}</span>
+            <span class="top-name">${c.categorie}</span>
+            <span class="top-count">${c.count} ${TOP_EVENTS_LABEL}</span>
+          </div>`).join('');
+      })
+      .catch(() => {
+        document.getElementById('top-villes').innerHTML = '<p style="color:var(--terre);font-size:13px;">' + TOP_UNAVAILABLE + '</p>';
+        document.getElementById('top-orgs').innerHTML = '<p style="color:var(--terre);font-size:13px;">' + TOP_UNAVAILABLE + '</p>';
+      });
+  });
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+<div id="lotbo-preloader" aria-hidden="true">
+  <div class="pl-inner">
+    <div class="pl-mark"><img src="/images/L.png" alt="" class="pl-img"/><span class="pl-dot"></span></div>
+    <div class="pl-wordmark"><span class="pl-lot">lot</span><span class="pl-bo">bo</span></div>
+  </div>
+</div>
+<style>
+#lotbo-preloader{position:fixed;inset:0;z-index:9999;background:#F7F2E8;display:flex;align-items:center;justify-content:center;transition:opacity 0.5s ease;}
+#lotbo-preloader.pl-hide{opacity:0;pointer-events:none;}
+.pl-inner{display:flex;flex-direction:column;align-items:center;gap:20px;}
+.pl-mark{position:relative;display:inline-block;}
+.pl-img{width:48px;height:auto;display:block;}
+.pl-dot{position:absolute;top:2px;right:-4px;width:14px;height:14px;background:#C8431A;border-radius:50%;animation:pl-glow 1.5s ease-in-out infinite;}
+@keyframes pl-glow{0%,100%{opacity:1;box-shadow:0 0 8px 4px rgba(200,67,26,0.6),0 0 16px 6px rgba(200,67,26,0.25);}50%{opacity:0.4;box-shadow:0 0 3px 1px rgba(200,67,26,0.2);}}
+.pl-wordmark{font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:26px;letter-spacing:0.01em;user-select:none;}
+.pl-lot{color:#1A1410;}.pl-bo{color:#C8431A;}
+</style>
+<script>
+(function(){
+  const el=document.getElementById('lotbo-preloader');
+  function hide(){el.classList.add('pl-hide');setTimeout(function(){el.style.display='none';},520);}
+  const t=setTimeout(hide,1500);
+  window.addEventListener('load',function(){clearTimeout(t);hide();});
+})();
+</script>
+</body>
+</html>
