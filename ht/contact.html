@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kontak — Lotbo</title>
+  <meta name="description" content="Kontakte ekip Lotbo a: kesyon jeneral, patenarya, bug oswa laprès. Repons nan 48h travay."/>
+  <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png"/>
+  <meta name="theme-color" content="#0B0603"/>
+  <link rel="alternate" hreflang="fr" href="https://lotbo.app/contact"/>
+  <link rel="alternate" hreflang="en" href="https://lotbo.app/en/contact"/>
+  <link rel="alternate" hreflang="es" href="https://lotbo.app/es/contact"/>
+  <link rel="alternate" hreflang="pt" href="https://lotbo.app/pt/contact"/>
+  <link rel="alternate" hreflang="ht" href="https://lotbo.app/ht/contact"/>
+  <link rel="alternate" hreflang="x-default" href="https://lotbo.app/contact"/>
+  <meta property="og:title" content="Kontak — Lotbo"/>
+  <meta property="og:description" content="Kontakte ekip Lotbo a. Repons nan 48h travay."/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:site_name" content="LOTBO"/>
+  <meta property="og:url" content="https://lotbo.app/ht/contact"/>
+  <meta property="og:image" content="https://lotbo.app/og-home.jpg"/>
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:site" content="@Lotboapp"/>
+  <meta name="twitter:image" content="https://lotbo.app/og-home.jpg"/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --night:   #0B0603;
+      --night2:  #110C08;
+      --brique:  #C8431A;
+      --brique2: #FF5A1F;
+      --or:      #D4A820;
+      --creme:   #F7F2E8;
+      --terre:   #8C5A40;
+      --brume:   #E8E0D0;
+      --border:  rgba(247,242,232,0.08);
+      --glass:   rgba(247,242,232,0.04);
+      --glass2:  rgba(247,242,232,0.08);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--night); color: var(--creme); line-height: 1.6; overflow-x: hidden; }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    @keyframes shimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity .5s ease, transform .5s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    nav { position: sticky; top: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 14px 48px; background: rgba(11,6,3,.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+    .nav-logo { font-family: 'Playfair Display', serif; font-weight: 700; font-style: italic; font-size: 24px; color: var(--creme); flex-shrink: 0; }
+    .nav-logo span { color: var(--brique); }
+    .nav-links { display: flex; gap: 28px; flex: 1; justify-content: center; }
+    .nav-link { font-size: 13px; color: rgba(247,242,232,.45); transition: color .2s; }
+    .nav-link:hover { color: var(--creme); }
+    .nav-link-app { color: var(--brique) !important; border: 1px solid rgba(200,67,26,.3); border-radius: 6px; padding: 4px 12px; }
+    .nav-link-app:hover { background: rgba(200,67,26,.08); color: var(--brique2) !important; border-color: var(--brique); }
+    .nav-actions { display: flex; gap: 10px; align-items: center; flex-shrink: 0; }
+    .btn-primary { padding: 8px 18px; background: var(--brique); border-radius: 8px; font-size: 13px; font-weight: 500; color: var(--creme); transition: all .2s; white-space: nowrap; }
+    .btn-primary:hover { background: var(--brique2); }
+    .nav-hamburger { display: none; background: var(--glass); border: 1px solid var(--border); color: var(--creme); border-radius: 6px; padding: 7px 10px; font-size: 16px; cursor: pointer; }
+    .nav-drawer { position: fixed; top: 0; left: 0; bottom: 0; width: 280px; z-index: 200; background: #0F0A07; border-right: 1px solid var(--border); transform: translateX(-100%); transition: transform .3s ease; display: flex; flex-direction: column; }
+    .nav-drawer.open { transform: translateX(0); }
+    .nav-drawer-header { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; border-bottom: 1px solid var(--border); }
+    .nav-drawer-close { background: none; border: none; color: rgba(247,242,232,.4); font-size: 20px; cursor: pointer; }
+    .nav-drawer-links { display: flex; flex-direction: column; padding: 16px 0; }
+    .nav-drawer-link { font-size: 15px; color: rgba(247,242,232,.7); text-decoration: none; padding: 13px 20px; transition: background .15s; display: block; }
+    .nav-drawer-link:hover { background: var(--glass); color: var(--creme); }
+    .nav-drawer-divider { height: 1px; background: var(--border); margin: 8px 0; }
+    .nav-overlay { display: none; position: fixed; inset: 0; z-index: 199; background: rgba(0,0,0,.7); }
+    .nav-overlay.open { display: block; }
+    .lang-switcher{display:flex;align-items:center;gap:6px;background:rgba(247,242,232,0.04);border:1px solid rgba(247,242,232,0.08);border-radius:20px;padding:4px 10px;}
+    .lang-item{font-size:11px;color:rgba(247,242,232,.5);transition:color .2s;white-space:nowrap;padding:2px 4px;border-radius:4px;}
+    .lang-item:hover{color:#F7F2E8;}
+    .lang-item.active{color:#C8431A;font-weight:600;}
+    .nav-drawer-lang{padding:12px 20px;display:flex;flex-wrap:wrap;gap:8px;border-top:1px solid rgba(247,242,232,0.08);margin-top:8px;}
+    @media(max-width:768px){nav{padding:12px 16px;}.nav-links{display:none;}.btn-primary{display:none;}.nav-hamburger{display:flex;}.lang-switcher{display:none;}}
+    .hero-contact { position: relative; overflow: hidden; padding: 60px 48px 52px; text-align: center; background: var(--night); }
+    .hero-blobs { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+    .blob { position: absolute; border-radius: 50%; filter: blur(80px); opacity: .18; }
+    .blob-1 { width: 500px; height: 500px; background: var(--brique); top: -160px; left: -100px; }
+    .blob-2 { width: 400px; height: 400px; background: var(--or); bottom: -140px; right: -60px; }
+    .hero-contact-inner { position: relative; z-index: 1; max-width: 640px; margin: 0 auto; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 6px; padding: 5px 14px; border-radius: 20px; background: rgba(200,67,26,.12); border: 1px solid rgba(200,67,26,.25); font-size: 12px; font-weight: 500; color: var(--brique2); letter-spacing: .06em; text-transform: uppercase; margin-bottom: 20px; animation: fadeUp .5s ease both; }
+    .hero-contact-inner h1 { font-family: 'DM Serif Display', serif; font-style: italic; font-size: clamp(32px, 5vw, 52px); color: var(--creme); line-height: 1.15; margin-bottom: 14px; animation: fadeUp .5s .1s ease both; }
+    .hero-contact-sub { font-size: 16px; color: rgba(247,242,232,.5); max-width: 480px; margin: 0 auto; animation: fadeUp .5s .2s ease both; }
+    @media(max-width:768px){ .hero-contact{ padding: 48px 20px 40px; } }
+    .section-light { background: #F7F2E8; color: #1A1410; padding: 72px 48px; }
+    .section-light-inner { max-width: 1100px; margin: 0 auto; }
+    @media(max-width:768px){ .section-light{ padding: 48px 20px; } }
+    .contact-grid { display: grid; grid-template-columns: 1fr; gap: 32px; }
+    @media(min-width:768px){ .contact-grid{ grid-template-columns: 1.4fr 1fr; gap: 48px; } }
+    .form-card { background: white; border: 1px solid #E8E0D0; border-radius: 16px; padding: 36px; }
+    .form-title { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 22px; color: #1A1410; margin-bottom: 6px; }
+    .form-subtitle { font-size: 13px; color: #8C5A40; margin-bottom: 28px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media(max-width:520px){ .form-row{ grid-template-columns: 1fr; } }
+    .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+    .form-group label { font-size: 12px; font-weight: 500; color: #8C5A40; letter-spacing: .06em; text-transform: uppercase; }
+    .form-group input, .form-group select, .form-group textarea { background: white; border: 1px solid #E8E0D0; border-radius: 8px; padding: 10px 14px; font-family: 'DM Sans', sans-serif; font-size: 14px; color: #1A1410; outline: none; transition: border-color .2s; width: 100%; }
+    .form-group select option { background: white; color: #1A1410; }
+    .form-group input::placeholder, .form-group textarea::placeholder { color: #B8A898; }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: #C8431A; background: rgba(200,67,26,.03); }
+    .form-group textarea { resize: vertical; min-height: 120px; }
+    .form-submit { display: inline-flex; align-items: center; gap: 8px; padding: 12px 28px; background: #C8431A; border: none; border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; color: white; cursor: pointer; box-shadow: 0 4px 20px rgba(200,67,26,.3); transition: all .25s; position: relative; overflow: hidden; margin-top: 4px; }
+    .form-submit::after { content: ''; position: absolute; top: 0; left: -100%; width: 60%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,.2), transparent); animation: shimmer 3s infinite; }
+    .form-submit:hover { background: #E8520A; box-shadow: 0 6px 28px rgba(200,67,26,.45); transform: translateY(-1px); }
+    .form-note { font-size: 12px; color: #8C5A40; margin-top: 14px; }
+    .form-note a { color: #C8431A; border-bottom: 1px solid rgba(200,67,26,.25); transition: color .15s; }
+    .form-note a:hover { color: #E8520A; }
+    .contact-info { display: flex; flex-direction: column; gap: 16px; }
+    .info-card { background: white; border: 1px solid #E8E0D0; border-radius: 12px; padding: 20px 22px; display: flex; align-items: flex-start; gap: 14px; transition: border-color .2s, box-shadow .2s; }
+    .info-card:hover { border-color: rgba(200,67,26,.3); box-shadow: 0 4px 16px rgba(200,67,26,.1); }
+    .info-icon { font-size: 22px; flex-shrink: 0; margin-top: 1px; }
+    .info-body { min-width: 0; }
+    .info-label { font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: #C8431A; margin-bottom: 4px; }
+    .info-value { font-size: 14px; color: #1A1410; font-weight: 500; word-break: break-all; }
+    .info-hint { font-size: 12px; color: #8C5A40; margin-top: 2px; }
+    .delay-card { background: rgba(200,67,26,.08); border: 1px solid rgba(200,67,26,.2); border-radius: 12px; padding: 16px 22px; display: flex; align-items: center; gap: 12px; }
+    .delay-icon { font-size: 20px; }
+    .delay-text { font-size: 13px; color: #1A1410; }
+    .delay-text strong { color: #C8431A; font-weight: 600; }
+    .social-section-label { font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: #8C5A40; margin-bottom: 10px; }
+    .social-row { display: flex; gap: 10px; flex-wrap: wrap; }
+    .social-btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; border-radius: 999px; background: #1A1410; border: 1px solid #1A1410; color: #F7F2E8; text-decoration: none; font-size: 14px; font-weight: 500; transition: all 0.2s; }
+    .social-btn:hover { background: #2A1E16; border-color: #C8431A; color: white; }
+    .section-dark { background: #1A1410; color: #F7F2E8; padding: 72px 48px; }
+    .section-dark-inner { max-width: 1100px; margin: 0 auto; }
+    @media(max-width:768px){ .section-dark{ padding: 48px 20px; } }
+    .section-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--terre); margin-bottom: 10px; }
+    .section-h2 { font-family: 'DM Serif Display', serif; font-style: italic; font-size: clamp(22px, 3vw, 30px); color: #F7F2E8; margin-bottom: 32px; }
+    .faq-rapide { display: grid; grid-template-columns: 1fr; gap: 20px; }
+    @media(min-width:768px){ .faq-rapide{ grid-template-columns: repeat(3, 1fr); gap: 24px; } }
+    .faq-rapide-card { background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); border-radius: 12px; padding: 24px; transition: border-color .2s, background .2s; }
+    .faq-rapide-card:hover { border-color: rgba(200,67,26,.3); background: rgba(200,67,26,.06); }
+    .faq-rapide-tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; letter-spacing: .06em; background: rgba(200,67,26,.15); color: #FF5A1F; margin-bottom: 10px; }
+    .faq-rapide-q { font-size: 14px; font-weight: 600; color: #C8431A; margin-bottom: 10px; line-height: 1.45; }
+    .faq-rapide-a { font-size: 13px; color: rgba(247,242,232,.55); line-height: 1.6; }
+    .faq-rapide-a a { color: #8C5A40; border-bottom: 1px solid rgba(140,90,64,.3); transition: color .15s; }
+    .faq-rapide-a a:hover { color: var(--brique); }
+    .faq-rapide-a strong { color: #F7F2E8; }
+    footer{ background: #1A1410; border-top: 1px solid rgba(247,242,232,.06); padding: 64px 48px 32px; }
+    .footer-grid{ max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(5,1fr); gap: 32px; margin-bottom: 48px; }
+    .footer-col-title{ font-family: 'Playfair Display', serif; font-style: italic; font-weight: 700; font-size: 14px; color: var(--creme); margin-bottom: 16px; }
+    .footer-col-links{ display: flex; flex-direction: column; gap: 10px; }
+    .footer-col-link{ font-size: 13px; color: #8C5A40; transition: color .15s; }
+    .footer-col-link:hover{ color: var(--brique); }
+    .footer-bottom{ max-width: 1100px; margin: 0 auto; padding-top: 24px; border-top: 1px solid rgba(247,242,232,.06); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .footer-logo{ font-family: 'Playfair Display', serif; font-weight: 700; font-style: italic; font-size: 20px; color: var(--creme); }
+    .footer-logo span{ color: var(--brique); }
+    .footer-note{ font-size: 12px; color: rgba(140,90,64,.6); }
+    @media(max-width:900px){ .footer-grid{ grid-template-columns: repeat(2,1fr); } }
+    @media(max-width:600px){ footer{ padding: 48px 20px 24px; } .footer-grid{ grid-template-columns: repeat(2,1fr); gap: 24px; } }
+    @media(max-width:375px){ .footer-grid{ grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">lot<span>bo</span></a>
+  <div class="nav-links">
+    <a href="/" class="nav-link">Akèy</a>
+    <a href="/ht/a-propos" class="nav-link">Konsènan</a>
+    <a href="/ht/faq" class="nav-link">FAQ</a>
+    <a href="/ht/contact" class="nav-link">Kontak</a>
+    <a href="https://app.lotbo.app" class="nav-link nav-link-app">Ouvri app →</a>
+  </div>
+  <div class="nav-actions">
+    <div class="lang-switcher">
+      <a href="/contact" class="lang-item">🇫🇷 FR</a>
+      <a href="/en/contact" class="lang-item">🇬🇧 EN</a>
+      <a href="/es/contact" class="lang-item">🇪🇸 ES</a>
+      <a href="/pt/contact" class="lang-item">🇧🇷 PT</a>
+      <a href="/ht/contact" class="lang-item active">🇭🇹 HT</a>
+    </div>
+    <a href="https://app.lotbo.app/login" class="btn-primary">Kreye kont →</a>
+    <button class="nav-hamburger" onclick="toggleMobileMenu()" aria-label="Menu">☰</button>
+  </div>
+</nav>
+
+<div class="nav-drawer" id="navDrawer">
+  <div class="nav-drawer-header">
+    <a href="/" class="nav-logo">lot<span>bo</span></a>
+    <button onclick="toggleMobileMenu()" class="nav-drawer-close">✕</button>
+  </div>
+  <div class="nav-drawer-links">
+    <a href="/" class="nav-drawer-link">🏠 Akèy</a>
+    <a href="https://app.lotbo.app" class="nav-drawer-link">🗺️ Ouvri app</a>
+    <a href="https://app.lotbo.app/login" class="nav-drawer-link">👤 Kreye kont</a>
+    <div class="nav-drawer-divider"></div>
+    <a href="/ht/a-propos" class="nav-drawer-link">ℹ️ Konsènan</a>
+    <a href="/ht/faq" class="nav-drawer-link">❓ FAQ</a>
+    <a href="/ht/contact" class="nav-drawer-link">✉️ Kontak</a>
+    <div class="nav-drawer-lang">
+      <a href="/contact" class="lang-item">🇫🇷 FR</a>
+      <a href="/en/contact" class="lang-item">🇬🇧 EN</a>
+      <a href="/es/contact" class="lang-item">🇪🇸 ES</a>
+      <a href="/pt/contact" class="lang-item">🇧🇷 PT</a>
+      <a href="/ht/contact" class="lang-item active">🇭🇹 HT</a>
+    </div>
+  </div>
+</div>
+<div class="nav-overlay" id="navOverlay" onclick="toggleMobileMenu()"></div>
+
+<section class="hero-contact">
+  <div style="position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1400&q=80');background-size:cover;background-position:center;opacity:0.25;"></div>
+  <div class="hero-blobs">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+  </div>
+  <div class="hero-contact-inner">
+    <div class="hero-badge">✉️ Kontak</div>
+    <h1>Nou la pou ou</h1>
+    <p class="hero-contact-sub">Yon kesyon, yon bug, yon patenarya? Ekri nou — nou reponn nan 48h travay.</p>
+  </div>
+</section>
+
+<section class="section-light">
+  <div class="section-light-inner">
+    <div class="contact-grid reveal">
+
+      <div class="form-card">
+        <div class="form-title">Voye nou yon mesaj</div>
+        <div class="form-subtitle">Tout chan yo obligatwa.</div>
+        <form id="contactForm" onsubmit="submitForm(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="prenom">Prenon</label>
+              <input type="text" id="prenom" name="prenom" placeholder="Prenon ou" required autocomplete="given-name"/>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="ou@egzanp.com" required autocomplete="email"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="sujet">Sijè</label>
+            <select id="sujet" name="sujet" required>
+              <option value="" disabled selected>Chwazi yon sijè…</option>
+              <option value="Kesyon jeneral">Kesyon jeneral</option>
+              <option value="Patenarya">Patenarya</option>
+              <option value="Bug">Bug</option>
+              <option value="Laprès">Laprès</option>
+              <option value="Lòt">Lòt</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Mesaj</label>
+            <textarea id="message" name="message" rows="5" placeholder="Dekri demann ou…" required></textarea>
+          </div>
+          <button type="submit" class="form-submit">Voye mesaj →</button>
+        </form>
+        <p class="form-note">
+          Oswa ekri nou dirèkteman nan <a href="mailto:hello@lotbo.app">hello@lotbo.app</a>
+        </p>
+      </div>
+
+      <div class="contact-info">
+
+        <a href="mailto:hello@lotbo.app" class="info-card">
+          <span class="info-icon">📧</span>
+          <div class="info-body">
+            <div class="info-label">Email jeneral</div>
+            <div class="info-value">hello@lotbo.app</div>
+            <div class="info-hint">Pou nenpòt kesyon oswa demann</div>
+          </div>
+        </a>
+
+        <a href="mailto:hello@lotbo.app?subject=[Partnership]" class="info-card">
+          <span class="info-icon">🤝</span>
+          <div class="info-body">
+            <div class="info-label">Patenarya</div>
+            <div class="info-value">hello@lotbo.app</div>
+            <div class="info-hint">Sijè: [Patenarya]</div>
+          </div>
+        </a>
+
+        <a href="mailto:hello@lotbo.app?subject=[Bug]" class="info-card">
+          <span class="info-icon">🐛</span>
+          <div class="info-body">
+            <div class="info-label">Rapòte yon bug</div>
+            <div class="info-value">hello@lotbo.app</div>
+            <div class="info-hint">Sijè: [Bug]</div>
+          </div>
+        </a>
+
+        <a href="mailto:privacy@lotbo.app" class="info-card">
+          <span class="info-icon">🔒</span>
+          <div class="info-body">
+            <div class="info-label">Done pèsonèl</div>
+            <div class="info-value">privacy@lotbo.app</div>
+            <div class="info-hint">RGPD · Aksè, koreksyon, efasman</div>
+          </div>
+        </a>
+
+        <div class="delay-card">
+          <span class="delay-icon">⏱️</span>
+          <div class="delay-text">Delè repons abityèl: <strong>48h travay</strong></div>
+        </div>
+
+        <div>
+          <div class="social-section-label">Rezo sosyal</div>
+          <div class="social-row">
+            <a href="https://x.com/Lotboapp" target="_blank" rel="noopener" class="social-btn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.259 5.63L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+              X
+            </a>
+            <a href="https://www.facebook.com/lotboapp" target="_blank" rel="noopener" class="social-btn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+              Facebook
+            </a>
+            <a href="https://www.instagram.com/lotboapp/" target="_blank" rel="noopener" class="social-btn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+              Instagram
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-dark">
+  <div class="section-dark-inner reveal">
+    <div class="section-eyebrow">Kesyon souvan poze</div>
+    <h2 class="section-h2">Repons rapid</h2>
+    <div class="faq-rapide">
+
+      <div class="faq-rapide-card">
+        <div class="faq-rapide-tag">⚠️ Rapò</div>
+        <div class="faq-rapide-q">Kijan pou rapòte yon evènman ki pa kòrèk?</div>
+        <div class="faq-rapide-a">Ouvri paj evènman an nan app la epi itilize bouton <strong>⚠️ Rapòte</strong> a. Ekip nou an egzamine chak rapò nan 24h.</div>
+      </div>
+
+      <div class="faq-rapide-card">
+        <div class="faq-rapide-tag">+ Soumèt</div>
+        <div class="faq-rapide-q">Kijan pou soumèt yon evènman?</div>
+        <div class="faq-rapide-a">Nan app la, peze <strong>+ Ajoute yon evènman</strong> epi swiv etap yo. Evènman ou a egzamine epi pibliye nan 48h. <a href="https://app.lotbo.app" target="_blank" rel="noopener">Ouvri app →</a></div>
+      </div>
+
+      <div class="faq-rapide-card">
+        <div class="faq-rapide-tag">⏳ Piblikasyon</div>
+        <div class="faq-rapide-q">Evènman mwen an pa pibliye apre 48h?</div>
+        <div class="faq-rapide-a">Tcheke spam ou, lèfini kontakte nou ak tit ak dat evènman an nan <a href="mailto:hello@lotbo.app?subject=[Piblikasyon]">hello@lotbo.app</a>.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section style="background: linear-gradient(135deg, #C8431A 0%, #E8620A 100%); padding: 80px 24px; text-align: center;">
+  <p style="color:rgba(255,255,255,0.8);font-size:13px;text-transform:uppercase;letter-spacing:2px;margin-bottom:12px;">LOTBO</p>
+  <h2 style="color:white;font-size:clamp(28px,4vw,42px);font-family:Georgia,serif;font-style:italic;margin-bottom:16px;">
+    Tout evènman,<br>yon sèl kote.
+  </h2>
+  <a href="https://app.lotbo.app" style="display:inline-block;background:white;color:#C8431A;padding:14px 32px;border-radius:999px;font-weight:bold;text-decoration:none;font-size:15px;margin-top:8px;">
+    Ouvri app →
+  </a>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-col-title">LOTBO</div>
+      <div class="footer-col-links">
+        <a href="/ht/a-propos" class="footer-col-link">Konsènan</a>
+        <a href="/ht/a-propos" class="footer-col-link">Istwa nou</a>
+        <a href="/ht/a-propos" class="footer-col-link">Fèt ann Ayiti 🇭🇹</a>
+        <a href="/medias-presse" class="footer-col-link">Pres</a>
+        <a href="/rejoins-lotbo" class="footer-col-link">Karyè</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Kominote</div>
+      <div class="footer-col-links">
+        <a href="/nos-utilisateurs" class="footer-col-link">Itilizatè nou yo</a>
+        <a href="/charte-membres" class="footer-col-link">Charte manm yo</a>
+        <a href="/charte-contributeurs" class="footer-col-link">Charte kontribitè yo</a>
+        <a href="/charte-organisateurs" class="footer-col-link">Charte òganizatè yo</a>
+        <a href="/devenir-ambassadeur" class="footer-col-link">Vin anbасadè</a>
+        <a href="/supporters" class="footer-col-link">Sipòtè Fondatè yo</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Legal</div>
+      <div class="footer-col-links">
+        <a href="https://app.lotbo.app/cgu" class="footer-col-link">Kondisyon itilizasyon</a>
+        <a href="https://app.lotbo.app/politique-confidentialite" class="footer-col-link">Konfidansyalite</a>
+        <a href="/moderation" class="footer-col-link">Moderasyon</a>
+        <a href="/cookies" class="footer-col-link">Cookies</a>
+        <a href="/mentions-legales" class="footer-col-link">Mentions légales</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Kolaborasyon</div>
+      <div class="footer-col-links">
+        <a href="/partenariats" class="footer-col-link">Patenarya</a>
+        <a href="/partenariats" class="footer-col-link">Enstitisyon</a>
+        <a href="/medias-presse" class="footer-col-link">Medya &amp; Pres</a>
+        <a href="/contact" class="footer-col-link">Fòmilè kontak</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Resous</div>
+      <div class="footer-col-links">
+        <a href="/blog" class="footer-col-link">Blog</a>
+        <a href="https://app.lotbo.app/aide" class="footer-col-link">Sant èd</a>
+        <a href="/guide-organisateurs" class="footer-col-link">Gid òganizatè yo</a>
+        <a href="/roadmap" class="footer-col-link">Roadmap</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <a href="/" class="footer-logo">lot<span>bo</span></a>
+    <div class="footer-note">© 2026 · Fèt ann Ayiti, pou tout mond lan 🇭🇹</div>
+  </div>
+</footer>
+
+<script>
+  function toggleMobileMenu() {
+    document.getElementById('navDrawer').classList.toggle('open');
+    document.getElementById('navOverlay').classList.toggle('open');
+  }
+
+  function submitForm(e) {
+    e.preventDefault();
+    const prenom  = document.getElementById('prenom').value.trim();
+    const email   = document.getElementById('email').value.trim();
+    const sujet   = document.getElementById('sujet').value;
+    const message = document.getElementById('message').value.trim();
+    const body    = encodeURIComponent(`Prenon: ${prenom}\nEmail: ${email}\n\n${message}`);
+    window.location.href = `mailto:hello@lotbo.app?subject=[${sujet}] Mesaj de ${prenom}&body=${body}`;
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
