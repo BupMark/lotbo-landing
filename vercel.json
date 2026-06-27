@@ -23,6 +23,18 @@
     { "source": "/moderation", "destination": "/moderation.html" },
     { "source": "/cookies", "destination": "/cookies.html" },
     { "source": "/mentions-legales", "destination": "/mentions-legales.html" },
-    { "source": "/blog", "destination": "/blog.html" }
+    { "source": "/blog", "destination": "/blog.html" },
+    { "source": "/en", "destination": "/en/index.html" },
+    { "source": "/en/a-propos", "destination": "/en/a-propos.html" },
+    { "source": "/en/faq", "destination": "/en/faq.html" },
+    { "source": "/es", "destination": "/es/index.html" },
+    { "source": "/es/a-propos", "destination": "/es/a-propos.html" },
+    { "source": "/es/faq", "destination": "/es/faq.html" },
+    { "source": "/pt", "destination": "/pt/index.html" },
+    { "source": "/pt/a-propos", "destination": "/pt/a-propos.html" },
+    { "source": "/pt/faq", "destination": "/pt/faq.html" },
+    { "source": "/ht", "destination": "/ht/index.html" },
+    { "source": "/ht/a-propos", "destination": "/ht/a-propos.html" },
+    { "source": "/ht/faq", "destination": "/ht/faq.html" }
   ]
 }
