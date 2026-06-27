@@ -131,6 +131,27 @@
     @media (max-width: 900px) { .footer-grid { grid-template-columns: repeat(2,1fr); } }
     @media (max-width: 600px) { footer { padding: 48px 20px 24px; } .footer-grid { grid-template-columns: repeat(2,1fr); gap: 24px; } }
     @media (max-width: 375px) { .footer-grid { grid-template-columns: 1fr; } }
+
+    /* Main content — legal page format */
+    main { background: #F7F2E8; color: #1A1410; }
+    .page-hero { padding: 48px 20px 36px; border-bottom: 1px solid #E8E0D0; max-width: 720px; margin: 0 auto; }
+    .page-hero h1 { font-family: 'DM Serif Display', serif; font-size: 2rem; color: #1A1410; margin-bottom: 8px; }
+    .page-hero p { font-size: 0.87rem; color: #8C5A40; }
+    .content-wrap { max-width: 720px; margin: 0 auto; padding: 40px 20px 80px; }
+    .legal-section { margin-bottom: 36px; }
+    .legal-section h2 { font-family: 'DM Serif Display', serif; font-size: 1.2rem; color: #1A1410; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid #E8E0D0; }
+    .legal-section p { font-size: 0.93rem; color: #8C5A40; margin-bottom: 8px; line-height: 1.75; }
+    .legal-section strong { color: #1A1410; font-weight: 600; }
+    .legal-section a { color: #C8431A; }
+    .legal-section ul { list-style: none; margin: 10px 0; }
+    .legal-section ul li { font-size: 0.93rem; color: #8C5A40; padding: 5px 0; display: flex; gap: 8px; align-items: flex-start; line-height: 1.55; }
+    .legal-section ul li::before { content: '—'; color: #C8431A; font-weight: 700; flex-shrink: 0; }
+    .address-box { background: white; border-radius: 10px; padding: 14px 16px; margin: 12px 0; box-shadow: 0 1px 4px rgba(26,20,16,0.08); }
+    .address-box p { font-size: 14px; line-height: 1.8; color: #1A1410; margin: 0; }
+    .contact-cta { background: rgba(200,67,26,0.08); border: 1px solid rgba(200,67,26,0.2); border-radius: 16px; padding: 24px 20px; text-align: center; margin-top: 8px; }
+    .contact-cta p { color: #1A1410; font-size: 15px; font-weight: 600; margin-bottom: 8px; }
+    .contact-cta .sub { color: #8C5A40; font-size: 13px; margin-bottom: 16px; }
+    .btn-brand { background: #C8431A; color: white; padding: 12px 24px; border-radius: 10px; font-size: 14px; font-weight: bold; display: inline-block; text-decoration: none; }
   </style>
 </head>
 <body>
@@ -166,95 +187,62 @@
 </div>
 <div class="nav-overlay" id="navOverlay" onclick="toggleMobileMenu()"></div>
 
-<section class="hero">
-  <div class="hero-badge">📋 Légal</div>
-  <h1>Mentions légales</h1>
-  <p class="hero-sub">Informations légales sur LOTBO et Bup Mark Ltd.</p>
-</section>
-
-<!-- SECTION 1 — CLAIR : Éditeur -->
-<section data-theme="light" class="section">
-  <div class="section-inner reveal">
-    <p class="section-label">Éditeur</p>
-    <h2 class="section-h2">Éditeur du site</h2>
-    <div class="info-grid">
-      <div class="info-card reveal reveal-delay-1">
-        <div class="info-key">Société</div>
-        <div class="info-val">Bup Mark Ltd</div>
+<main>
+  <div class="page-hero">
+    <h1>Mentions Légales</h1>
+    <p>Dernière mise à jour : 26 juin 2026</p>
+  </div>
+  <div class="content-wrap">
+    <div class="legal-section">
+      <h2>1. Éditeur de la plateforme</h2>
+      <p>LOTBO est édité par :</p>
+      <div class="address-box">
+        <p><strong>Bup Mark Ltd</strong><br/>Société enregistrée en Angleterre et au Pays de Galles<br/>Numéro d'immatriculation : 15840780<br/>Office 12, Initial Business Centre, Wilson Business Park, Manchester, M40 8WN, Royaume-Uni</p>
       </div>
-      <div class="info-card reveal reveal-delay-1">
-        <div class="info-key">Numéro d'enregistrement</div>
-        <div class="info-val">15840780</div>
-      </div>
-      <div class="info-card reveal reveal-delay-2">
-        <div class="info-key">Siège social</div>
-        <div class="info-val">Manchester, England &amp; Wales, UK 🇬🇧</div>
-      </div>
-      <div class="info-card reveal reveal-delay-2">
-        <div class="info-key">Directeur de publication</div>
-        <div class="info-val">Handgod Abraham</div>
-      </div>
-      <div class="info-card reveal reveal-delay-2" style="grid-column:1/-1;">
-        <div class="info-key">Email</div>
-        <div class="info-val"><a href="mailto:lotbo@bup-mark.com" style="color:var(--brique);">lotbo@bup-mark.com</a></div>
-      </div>
+      <p>Fondateur et directeur de la publication : <strong>Handgod Abraham</strong></p>
+      <p>Contact : <a href="mailto:hello@lotbo.app">hello@lotbo.app</a></p>
+    </div>
+    <div class="legal-section">
+      <h2>2. Hébergement</h2>
+      <p>La plateforme LOTBO est hébergée par <strong>Vercel Inc.</strong> (340 Pine Street, Suite 900, San Francisco, CA 94104, États-Unis — <a href="https://vercel.com" target="_blank">vercel.com</a>).</p>
+      <p>La base de données est hébergée par <strong>Supabase Inc.</strong> (<a href="https://supabase.com" target="_blank">supabase.com</a>).</p>
+    </div>
+    <div class="legal-section">
+      <h2>3. Propriété intellectuelle</h2>
+      <p>Le nom LOTBO, le logo, le design et l'ensemble du contenu éditorial de la plateforme sont la propriété exclusive de Bup Mark Ltd. Bup Mark Ltd se réserve tous les droits sur ces éléments.</p>
+      <p>Toute reproduction, représentation, modification, publication ou adaptation de tout ou partie des éléments de la plateforme est interdite sans l'autorisation préalable écrite de Bup Mark Ltd.</p>
+      <p>Les données issues de sources tierces sont utilisées conformément à leurs licences respectives :</p>
+      <ul>
+        <li>OpenStreetMap : licence ODbL</li>
+        <li>Wikimedia Commons : licence CC BY-SA</li>
+        <li>Unsplash : licence Unsplash</li>
+      </ul>
+    </div>
+    <div class="legal-section">
+      <h2>4. Données personnelles</h2>
+      <p>LOTBO traite des données personnelles conformément au RGPD et au UK GDPR. Responsable du traitement : Bup Mark Ltd.</p>
+      <p>Pour toute demande relative à vos données personnelles : <a href="mailto:privacy@lotbo.app">privacy@lotbo.app</a></p>
+      <p>Pour plus d'informations, consultez notre <a href="/legal/confidentialite">Politique de confidentialité</a>.</p>
+    </div>
+    <div class="legal-section">
+      <h2>5. Cookies</h2>
+      <p>LOTBO utilise des cookies techniques essentiels au fonctionnement de la plateforme. Des analytics anonymisés peuvent être utilisés avec votre consentement explicite. Aucun cookie publicitaire ni tracker tiers.</p>
+    </div>
+    <div class="legal-section">
+      <h2>6. Liens hypertextes</h2>
+      <p>LOTBO peut contenir des liens vers des sites tiers. Bup Mark Ltd n'exerce aucun contrôle sur ces sites et décline toute responsabilité quant à leur contenu.</p>
+    </div>
+    <div class="legal-section">
+      <h2>7. Droit applicable</h2>
+      <p>Les présentes mentions légales sont régies par le droit anglais et gallois. Tout litige relatif à leur interprétation sera soumis à la compétence exclusive des tribunaux d'Angleterre et du Pays de Galles.</p>
+    </div>
+    <div class="contact-cta">
+      <p>Une question ?</p>
+      <p class="sub">Bup Mark Ltd · Office 12, Initial Business Centre, Manchester M40 8WN, UK</p>
+      <a href="mailto:hello@lotbo.app" class="btn-brand">hello@lotbo.app</a>
     </div>
   </div>
-</section>
-
-<!-- SECTION 2 — SOMBRE : Hébergement -->
-<section data-theme="dark" class="section">
-  <div class="section-inner reveal">
-    <p class="section-label">Infrastructure</p>
-    <h2 class="section-h2">Hébergement</h2>
-    <div class="hebergement-list">
-      <div class="heberg-item">
-        <span class="heberg-key">Plateforme</span>
-        <span class="heberg-val">Vercel Inc. · <a href="https://vercel.com" target="_blank" rel="noopener">vercel.com</a></span>
-      </div>
-      <div class="heberg-item">
-        <span class="heberg-key">Adresse</span>
-        <span class="heberg-val">340 Pine Street, Suite 701, San Francisco, CA 94104, USA</span>
-      </div>
-      <div class="heberg-item">
-        <span class="heberg-key">Base de données</span>
-        <span class="heberg-val">Supabase (PostgreSQL) — San Jose, CA, USA</span>
-      </div>
-      <div class="heberg-item">
-        <span class="heberg-key">CDN</span>
-        <span class="heberg-val">Vercel Edge Network (mondial)</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SECTION 3 — CLAIR : Propriété intellectuelle -->
-<section data-theme="light" class="section">
-  <div class="section-inner reveal">
-    <p class="section-label">Propriété intellectuelle</p>
-    <h2 class="section-h2">Propriété intellectuelle</h2>
-    <p class="body-text">Le nom LOTBO, le logo, la charte graphique et l'ensemble des contenus éditoriaux sont la propriété exclusive de Bup Mark Ltd. Toute reproduction sans autorisation écrite est interdite.</p>
-    <p class="body-text">Les événements soumis par les utilisateurs restent la propriété de leurs auteurs. LOTBO dispose d'une licence d'affichage non exclusive sur ces contenus.</p>
-  </div>
-</section>
-
-<!-- SECTION 4 — SOMBRE : Données personnelles -->
-<section data-theme="dark" class="section">
-  <div class="section-inner reveal">
-    <p class="section-label">Données personnelles</p>
-    <h2 class="section-h2">Données personnelles</h2>
-    <p style="font-size:15px;color:rgba(247,242,232,.7);line-height:1.8;margin-bottom:20px;">LOTBO collecte uniquement les données nécessaires au fonctionnement de la plateforme : email, nom d'affichage, événements soumis. Aucune donnée n'est vendue à des tiers.</p>
-    <a href="https://app.lotbo.app/politique-confidentialite" class="data-link">Voir notre politique de confidentialité →</a>
-  </div>
-</section>
-
-<!-- CTA compact -->
-<section class="cta-section">
-  <div class="cta-inner">
-    <h2 class="cta-h2">Une question légale ?</h2>
-    <a href="mailto:lotbo@bup-mark.com?subject=Question légale LOTBO" class="cta-email">lotbo@bup-mark.com</a>
-  </div>
-</section>
+</main>
 
 <footer>
   <div class="footer-grid">
