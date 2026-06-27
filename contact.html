@@ -405,37 +405,46 @@
           <button type="submit" class="form-submit">Envoyer le message →</button>
         </form>
         <p class="form-note">
-          Ou écris-nous directement à <a href="mailto:lotbo@bup-mark.com">lotbo@bup-mark.com</a>
+          Ou écris-nous directement à <a href="mailto:hello@lotbo.app">hello@lotbo.app</a>
         </p>
       </div>
 
       <!-- COLONNE DROITE — INFOS CONTACT -->
       <div class="contact-info">
 
-        <a href="mailto:lotbo@bup-mark.com" class="info-card">
+        <a href="mailto:hello@lotbo.app" class="info-card">
           <span class="info-icon">📧</span>
           <div class="info-body">
             <div class="info-label">Email général</div>
-            <div class="info-value">lotbo@bup-mark.com</div>
+            <div class="info-value">hello@lotbo.app</div>
             <div class="info-hint">Pour toute question ou demande</div>
           </div>
         </a>
 
-        <a href="mailto:lotbo@bup-mark.com?subject=[Partenariat]" class="info-card">
+        <a href="mailto:hello@lotbo.app?subject=[Partenariat]" class="info-card">
           <span class="info-icon">🤝</span>
           <div class="info-body">
             <div class="info-label">Partenariats</div>
-            <div class="info-value">lotbo@bup-mark.com</div>
+            <div class="info-value">hello@lotbo.app</div>
             <div class="info-hint">Objet : [Partenariat]</div>
           </div>
         </a>
 
-        <a href="mailto:lotbo@bup-mark.com?subject=[Bug]" class="info-card">
+        <a href="mailto:hello@lotbo.app?subject=[Bug]" class="info-card">
           <span class="info-icon">🐛</span>
           <div class="info-body">
             <div class="info-label">Signaler un bug</div>
-            <div class="info-value">lotbo@bup-mark.com</div>
+            <div class="info-value">hello@lotbo.app</div>
             <div class="info-hint">Objet : [Bug]</div>
+          </div>
+        </a>
+
+        <a href="mailto:privacy@lotbo.app" class="info-card">
+          <span class="info-icon">🔒</span>
+          <div class="info-body">
+            <div class="info-label">Données personnelles</div>
+            <div class="info-value">privacy@lotbo.app</div>
+            <div class="info-hint">RGPD · Accès, rectification, suppression</div>
           </div>
         </a>
 
@@ -504,7 +513,7 @@
         <div class="faq-rapide-q">Mon événement n'est pas publié après 48h ?</div>
         <div class="faq-rapide-a">
           Vérifie tes spams, puis contacte-nous avec le titre et la date de l'événement à
-          <a href="mailto:lotbo@bup-mark.com?subject=[Publication]">lotbo@bup-mark.com</a>.
+          <a href="mailto:hello@lotbo.app?subject=[Publication]">hello@lotbo.app</a>.
         </div>
       </div>
 
@@ -595,7 +604,7 @@
     const sujet   = document.getElementById('sujet').value;
     const message = document.getElementById('message').value.trim();
     const body    = encodeURIComponent(`Prénom : ${prenom}\nEmail : ${email}\n\n${message}`);
-    window.location.href = `mailto:lotbo@bup-mark.com?subject=[${sujet}] Message de ${prenom}&body=${body}`;
+    window.location.href = `mailto:hello@lotbo.app?subject=[${sujet}] Message de ${prenom}&body=${body}`;
   }
 
   const observer = new IntersectionObserver((entries) => {
