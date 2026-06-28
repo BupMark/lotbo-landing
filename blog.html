@@ -132,6 +132,21 @@
     @media(max-width:900px){.footer-grid{grid-template-columns:repeat(2,1fr);}}
     @media(max-width:600px){footer{padding:48px 20px 24px;}.footer-grid{grid-template-columns:repeat(2,1fr);gap:24px;}}
     @media(max-width:375px){.footer-grid{grid-template-columns:1fr;}}
+    @media(min-width:1024px){.blog-layout-grid{display:grid;grid-template-columns:1fr 320px;gap:48px;align-items:start;}.blog-sidebar-sticky{position:sticky;top:80px;}}
+    @media(max-width:1023px){.blog-sidebar-desktop{display:none;}}
+    .sidebar-block{background:white;border:1px solid #E8E0D0;border-radius:16px;padding:20px;margin-bottom:20px;}
+    .sidebar-label{font-size:11px;font-weight:700;color:#C8431A;text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px;display:block;}
+    .sidebar-about-text{font-size:13px;color:#8C5A40;line-height:1.6;}
+    .sidebar-cat-item{display:flex;justify-content:space-between;align-items:center;color:#1A1410;font-size:14px;padding:6px 0;border-bottom:1px solid #F7F2E8;text-decoration:none;}
+    .sidebar-cat-item:last-child{border-bottom:none;}
+    .sidebar-cat-item:hover{color:#C8431A;}
+    .sidebar-count{background:#F7F2E8;color:#8C5A40;padding:2px 8px;border-radius:999px;font-size:11px;}
+    .sidebar-tags{display:flex;flex-wrap:wrap;gap:6px;}
+    .sidebar-tag{background:#F7F2E8;color:#8C5A40;padding:4px 10px;border-radius:999px;font-size:12px;}
+    .sidebar-tag:hover{color:#C8431A;}
+    .sidebar-newsletter{background:linear-gradient(135deg,#C8431A,#E8620A);border-radius:16px;padding:20px;}
+    .sidebar-newsletter .sidebar-label{color:rgba(255,255,255,.8);}
+    .sidebar-newsletter-text{font-size:13px;color:rgba(255,255,255,.9);margin-bottom:16px;line-height:1.5;}
   </style>
 </head>
 <body>
@@ -182,7 +197,8 @@
 
 <!-- ARTICLES -->
 <section class="blog-index">
-  <div class="blog-index-inner">
+  <div class="blog-index-inner blog-layout-grid">
+    <div>
 
     <!-- Article 2 — le plus récent en premier -->
     <article class="article-card reveal">
@@ -220,7 +236,7 @@
     </article>
 
     <!-- Article 1 -->
-    <article class="article-card reveal">
+    <article class="article-card reveal" style="margin-top:48px;">
       <a href="/actualites/ne-en-haiti">
         <div class="article-card-img">
           <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=1000&q=80" alt="LOTBO né en Haïti" crossorigin="anonymous" loading="lazy"/>
@@ -255,7 +271,7 @@
     </article>
 
     <!-- Newsletter -->
-    <div class="blog-newsletter reveal">
+    <div class="blog-newsletter reveal" style="margin-top:48px;">
       <h3 class="blog-newsletter-title">Reçois les prochains articles</h3>
       <p class="blog-newsletter-sub">Les coulisses de LOTBO, nos réflexions et nos avancées — directement dans ta boîte mail.</p>
       <form class="nl-form" onsubmit="handleNewsletter(event)">
@@ -265,6 +281,46 @@
       <p id="nl-msg" class="nl-msg">✅ Merci ! Tu recevras nos prochains articles.</p>
     </div>
 
+    </div>
+    <aside class="blog-sidebar-desktop blog-sidebar-sticky">
+      <div class="sidebar-block">
+        <span class="sidebar-label">Le blog LOTBO</span>
+        <p class="sidebar-about-text">Les coulisses de la plateforme — histoire, produit, communauté et partenariats.</p>
+      </div>
+      <div class="sidebar-block">
+        <span class="sidebar-label">Catégories</span>
+        <a href="/blog" class="sidebar-cat-item"><span>📖 Histoire</span><span class="sidebar-count">1</span></a>
+        <a href="/blog" class="sidebar-cat-item"><span>🇭🇹 Haïti</span><span class="sidebar-count">1</span></a>
+        <a href="/blog" class="sidebar-cat-item"><span>🌍 Communauté</span><span class="sidebar-count">1</span></a>
+        <a href="/blog" class="sidebar-cat-item"><span>🛠️ Produit</span><span class="sidebar-count">0</span></a>
+        <a href="/blog" class="sidebar-cat-item"><span>🤝 Partenariats</span><span class="sidebar-count">0</span></a>
+      </div>
+      <div class="sidebar-block">
+        <span class="sidebar-label">Tags</span>
+        <div class="sidebar-tags">
+          <a href="#" class="sidebar-tag">#Haïti</a>
+          <a href="#" class="sidebar-tag">#Jacmel</a>
+          <a href="#" class="sidebar-tag">#terrain</a>
+          <a href="#" class="sidebar-tag">#startup</a>
+          <a href="#" class="sidebar-tag">#événements</a>
+          <a href="#" class="sidebar-tag">#culture</a>
+          <a href="#" class="sidebar-tag">#LOTBO</a>
+        </div>
+      </div>
+      <div class="sidebar-block">
+        <span class="sidebar-label">Archives</span>
+        <a href="/blog" class="sidebar-cat-item"><span>Juin 2026</span><span class="sidebar-count">2</span></a>
+      </div>
+      <div class="sidebar-newsletter">
+        <span class="sidebar-label">Newsletter</span>
+        <p class="sidebar-newsletter-text">Reçois les prochains articles et les nouveautés LOTBO.</p>
+        <form onsubmit="handleNewsletter(event)">
+          <input type="email" class="nl-input" placeholder="ton@email.com" required/>
+          <button type="submit" class="nl-btn">S'abonner →</button>
+        </form>
+        <p id="nl-msg" class="nl-msg">✅ Merci ! Tu recevras nos prochains articles.</p>
+      </div>
+    </aside>
   </div>
 </section>
 
