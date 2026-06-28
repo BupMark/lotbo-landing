@@ -71,7 +71,7 @@ module.exports = async function handler(req, res) {
       },
       body: JSON.stringify({
         sender: { name: 'LOTBO Partenariats', email: 'no-reply@lotbo.app' },
-        to: [{ email: 'lotbo@bup-mark.com', name: 'LOTBO Équipe' }],
+        to: [{ email: 'hello@lotbo.app', name: 'LOTBO Équipe' }],
         replyTo: { email, name: nom },
         subject: `Nouvelle proposition de partenariat — ${organisation}`,
         htmlContent: `
