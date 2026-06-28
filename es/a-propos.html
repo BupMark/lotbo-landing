@@ -399,8 +399,15 @@
     document.querySelectorAll('.lang-switcher a, .nav-drawer-lang a').forEach(function(a) {
       var href = a.getAttribute('href');
       if (!href) return;
-      var langMatch = href.match(/^\/(en|es|pt|ht)(\/|$)/);
-      var targetLang = langMatch ? langMatch[1] : 'fr';
+      // Détecter la langue cible depuis le emoji/texte du lien
+      var text = a.textContent || '';
+      var targetLang = null;
+      if (text.indexOf('FR') !== -1) targetLang = 'fr';
+      else if (text.indexOf('EN') !== -1) targetLang = 'en';
+      else if (text.indexOf('ES') !== -1) targetLang = 'es';
+      else if (text.indexOf('PT') !== -1) targetLang = 'pt';
+      else if (text.indexOf('HT') !== -1 || text.indexOf('KW') !== -1) targetLang = 'ht';
+      if (!targetLang) return;
       var newHref;
       if (targetLang === 'fr') {
         newHref = targetPage ? '/' + targetPage : '/';
