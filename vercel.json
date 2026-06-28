@@ -24,6 +24,8 @@
     { "source": "/cookies", "destination": "/cookies.html" },
     { "source": "/mentions-legales", "destination": "/mentions-legales.html" },
     { "source": "/blog", "destination": "/blog.html" },
+    { "source": "/actualites/ne-en-haiti", "destination": "/actualites/ne-en-haiti.html" },
+    { "source": "/actualites/133-personnes-jacmel", "destination": "/actualites/133-personnes-jacmel.html" },
     { "source": "/en", "destination": "/en/index.html" },
     { "source": "/en/a-propos", "destination": "/en/a-propos.html" },
     { "source": "/en/faq", "destination": "/en/faq.html" },
