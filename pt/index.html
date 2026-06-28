@@ -633,7 +633,7 @@
     // Liens nav — ajouter préfixe langue si hors FR
     if (currentLang !== 'fr') {
       var prefix = '/' + currentLang;
-      document.querySelectorAll('nav a[href], .nav-drawer-links a[href]').forEach(function(a) {
+      document.querySelectorAll('nav a[href]:not(.lang-item), .nav-drawer-links a[href]').forEach(function(a) {
         var href = a.getAttribute('href');
         if (!href || href.startsWith('http') || href.startsWith('#')) return;
         if (href.startsWith(prefix)) return;
