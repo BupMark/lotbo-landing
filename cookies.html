@@ -320,7 +320,7 @@
 </script>
 <div id="lotbo-preloader" aria-hidden="true">
   <div class="pl-inner">
-    <div class="pl-mark"><span class="pl-l">L</span><span class="pl-dot"></span><span class="pl-pulse"></span></div>
+    <div class="pl-mark"><img src="/images/L.png" alt="" class="pl-img"/><span class="pl-dot"></span></div>
     <div class="pl-wordmark"><span class="pl-lot">lot</span><span class="pl-bo">bo</span></div>
   </div>
 </div>
@@ -328,11 +328,10 @@
 #lotbo-preloader { position: fixed; inset: 0; z-index: 9999; background: #1A1410; display: flex; align-items: center; justify-content: center; transition: opacity 0.5s ease; }
 #lotbo-preloader.pl-hide { opacity: 0; pointer-events: none; }
 .pl-inner { display: flex; flex-direction: column; align-items: center; gap: 10px; }
-.pl-mark { position: relative; width: 90px; height: 72px; }
-.pl-l { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 700; font-size: 72px; color: #fff; line-height: 1; display: block; user-select: none; }
-.pl-dot { position: absolute; top: 22px; left: 60px; width: 10px; height: 10px; background: #E8620A; border-radius: 50%; }
-.pl-pulse { position: absolute; top: 22px; left: 60px; width: 10px; height: 10px; border-radius: 50%; border: 2px solid #E8620A; animation: pl-ring 1.4s ease-out infinite; }
-@keyframes pl-ring { 0% { transform: scale(1); opacity: .9; } 100% { transform: scale(3.2); opacity: 0; } }
+.pl-mark{position:relative;display:inline-block;}
+.pl-img{width:48px;height:auto;display:block;}
+.pl-dot{position:absolute;top:2px;right:-4px;width:14px;height:14px;background:#C8431A;border-radius:50%;animation:pl-glow 1.5s ease-in-out infinite;}
+@keyframes pl-glow{0%,100%{opacity:1;box-shadow:0 0 8px 4px rgba(200,67,26,0.6),0 0 16px 6px rgba(200,67,26,0.25);}50%{opacity:0.4;box-shadow:0 0 3px 1px rgba(200,67,26,0.2);}}
 .pl-wordmark { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 700; font-size: 26px; letter-spacing: .01em; user-select: none; }
 .pl-lot { color: #fff; } .pl-bo { color: #C8431A; }
 </style>
