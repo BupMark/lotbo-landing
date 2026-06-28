@@ -386,22 +386,42 @@
     }
     chargerStats();
   
-  // Navigation multilingue — préfixe langue depuis URL
+  // Navigation multilingue — switcher langue contextuel
   (function() {
-    const path = window.location.pathname;
-    const match = path.match(/^\/(en|es|pt|ht)(\/|$)/);
-    const prefix = match ? '/' + match[1] : '';
-    if (!prefix) return;
-    document.querySelectorAll('nav a[href], .nav-drawer a[href]').forEach(function(a) {
-      const href = a.getAttribute('href');
+    var path = window.location.pathname;
+    var match = path.match(/^\/(en|es|pt|ht)(\/(.*))?$/);
+    var currentLang = match ? match[1] : 'fr';
+    var currentPage = match ? (match[3] || '').replace(/\.html$/, '') : path.replace(/^\//, '').replace(/\.html$/, '');
+    var validPages = ['', 'a-propos', 'faq', 'contact'];
+    var targetPage = validPages.indexOf(currentPage) !== -1 ? currentPage : '';
+
+    // Switcher langue — pointer vers la même page dans la langue cible
+    document.querySelectorAll('.lang-switcher a, .nav-drawer-lang a').forEach(function(a) {
+      var href = a.getAttribute('href');
       if (!href) return;
-      if (href.startsWith('http') || href.startsWith('#')) return;
-      if (href.startsWith(prefix)) return;
-      const pages = ['/', '/a-propos', '/faq', '/contact'];
-      if (pages.includes(href)) {
-        a.setAttribute('href', prefix + (href === '/' ? '/' : href));
+      var langMatch = href.match(/^\/(en|es|pt|ht)(\/|$)/);
+      var targetLang = langMatch ? langMatch[1] : 'fr';
+      var newHref;
+      if (targetLang === 'fr') {
+        newHref = targetPage ? '/' + targetPage : '/';
+      } else {
+        newHref = '/' + targetLang + (targetPage ? '/' + targetPage : '/');
       }
+      a.setAttribute('href', newHref);
     });
+
+    // Liens nav — ajouter préfixe langue si hors FR
+    if (currentLang !== 'fr') {
+      var prefix = '/' + currentLang;
+      document.querySelectorAll('nav a[href], .nav-drawer-links a[href]').forEach(function(a) {
+        var href = a.getAttribute('href');
+        if (!href || href.startsWith('http') || href.startsWith('#')) return;
+        if (href.startsWith(prefix)) return;
+        if (validPages.indexOf(href.replace(/^\//, '')) !== -1 || href === '/') {
+          a.setAttribute('href', prefix + (href === '/' ? '/' : href));
+        }
+      });
+    }
   })();
 </script>
 </body>
