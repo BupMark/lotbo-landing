@@ -19,6 +19,7 @@
     { "source": "/medias-presse", "destination": "/medias-presse.html" },
     { "source": "/enquete-2026", "destination": "/enquete-2026.html" },
     { "source": "/terrain", "destination": "/terrain.html" },
+    { "source": "/enqueteurs", "destination": "/enqueteurs.html" },
     { "source": "/404", "destination": "/404.html" },
     { "source": "/moderation", "destination": "/moderation.html" },
     { "source": "/cookies", "destination": "/cookies.html" },

@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Programme Terrain LOTBO — Deviens enquêteur</title>
+  <meta name="description" content="Rejoins le Programme Terrain LOTBO. Couvre ta zone, enrichis les événements, rejoins une communauté mondiale d'enquêteurs volontaires."/>
+  <meta property="og:title" content="Programme Terrain LOTBO — Deviens enquêteur"/>
+  <meta property="og:description" content="Tu connais ta ville mieux que n'importe quel algorithme. Rejoins le Programme Terrain LOTBO."/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:site_name" content="LOTBO"/>
+  <meta property="og:url" content="https://lotbo.app/enqueteurs"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
+  <meta name="theme-color" content="#0B0603"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --night:   #0B0603;
+      --night2:  #110C08;
+      --brique:  #C8431A;
+      --brique2: #FF5A1F;
+      --or:      #D4A820;
+      --creme:   #F7F2E8;
+      --terre:   #8C5A40;
+      --brume:   #E8E0D0;
+      --border:  rgba(247,242,232,0.08);
+      --glass:   rgba(247,242,232,0.04);
+      --glass2:  rgba(247,242,232,0.08);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--night);
+      color: var(--creme);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+
+    .reveal { opacity: 0; transform: translateY(40px); transition: opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: .1s; }
+    .reveal-delay-2 { transition-delay: .2s; }
+    .reveal-delay-3 { transition-delay: .3s; }
+    .reveal-delay-4 { transition-delay: .4s; }
+
+    /* ── LANGUE FR/HT — bascule sans changement d'URL ────────── */
+    .lang-ht-content { display: none; }
+    body.mode-ht .lang-fr-content { display: none; }
+    body.mode-ht .lang-ht-content { display: block; }
+    .lang-fr-inline { display: inline; }
+    .lang-ht-inline { display: none; }
+    body.mode-ht .lang-fr-inline { display: none; }
+    body.mode-ht .lang-ht-inline { display: inline; }
+
+    .enq-lang-toggle {
+      position: sticky; top: 62px; z-index: 90;
+      display: flex; justify-content: center; gap: 8px;
+      padding: 12px 0;
+      background: rgba(11,6,3,0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .lang-toggle-btn {
+      font-size: 12px; font-weight: 500; padding: 6px 18px;
+      background: var(--glass); border: 1px solid var(--border);
+      border-radius: 20px; color: rgba(247,242,232,.55);
+      cursor: pointer; transition: all .2s;
+    }
+    .lang-toggle-btn.active { background: var(--brique); border-color: var(--brique); color: var(--creme); }
+
+    /* ── NAV (identique au site) ─────────────── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 48px;
+      background: rgba(11,6,3,0.8);
+      backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { font-family: 'Playfair Display', serif; font-weight: 700; font-style: italic; font-size: 24px; color: var(--creme); flex-shrink: 0; }
+    .nav-logo span { color: var(--brique); }
+    .nav-links { display: flex; gap: 28px; flex: 1; justify-content: center; }
+    .nav-link { font-size: 13px; color: rgba(247,242,232,.45); transition: color .2s; }
+    .nav-link:hover { color: var(--creme); }
+    .nav-link-app { color: var(--brique) !important; border: 1px solid rgba(200,67,26,.3); border-radius: 6px; padding: 4px 12px; }
+    .nav-link-app:hover { background: rgba(200,67,26,.08); color: var(--brique2) !important; border-color: var(--brique); }
+    .nav-actions { display: flex; gap: 10px; align-items: center; flex-shrink: 0; }
+    .btn-primary {
+      font-size: 13px; font-weight: 500; padding: 9px 22px;
+      background: var(--brique); border: none; border-radius: 8px;
+      color: var(--creme); cursor: pointer; transition: all .25s;
+      white-space: nowrap; display: inline-block;
+      box-shadow: 0 0 24px rgba(200,67,26,.35);
+    }
+    .btn-primary:hover { box-shadow: 0 0 40px rgba(200,67,26,.6); transform: translateY(-1px); }
+    .nav-hamburger { display: none; background: var(--glass); border: 1px solid var(--border); color: var(--creme); border-radius: 6px; padding: 7px 10px; font-size: 16px; cursor: pointer; }
+
+    .nav-drawer {
+      position: fixed; top: 0; left: 0; bottom: 0; width: 280px; z-index: 200;
+      background: #0F0A07; border-right: 1px solid var(--border);
+      transform: translateX(-100%); transition: transform .3s ease;
+      display: flex; flex-direction: column;
+    }
+    .nav-drawer.open { transform: translateX(0); }
+    .nav-drawer-header { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; border-bottom: 1px solid var(--border); }
+    .nav-drawer-close { background: none; border: none; color: rgba(247,242,232,.4); font-size: 20px; cursor: pointer; }
+    .nav-drawer-links { display: flex; flex-direction: column; padding: 16px 0; }
+    .nav-drawer-link { font-size: 15px; color: rgba(247,242,232,.7); text-decoration: none; padding: 13px 20px; transition: background .15s; }
+    .nav-drawer-link:hover { background: var(--glass); color: var(--creme); }
+    .nav-overlay { display: none; position: fixed; inset: 0; z-index: 199; background: rgba(0,0,0,.7); }
+    .nav-overlay.open { display: block; }
+
+    @media (max-width: 768px) {
+      nav { padding: 12px 16px; }
+      .nav-links, .nav-desktop { display: none; }
+      .nav-hamburger { display: flex; }
+      .enq-lang-toggle { top: 54px; }
+    }
+
+    /* ── HERO enquêteur ───────────────────────── */
+    .enq-hero {
+      position: relative; overflow: hidden;
+      background: linear-gradient(135deg, #0F0906 0%, #1A0E08 40%, #160C07 100%);
+      padding: 90px 40px 80px; text-align: center;
+    }
+    .enq-hero::before {
+      content: ''; position: absolute; top: -200px; left: 50%; transform: translateX(-50%);
+      width: 800px; height: 500px;
+      background: radial-gradient(ellipse, rgba(200,67,26,.14) 0%, transparent 70%);
+    }
+    .enq-hero-inner { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
+      padding: 6px 14px; border-radius: 20px; margin-bottom: 24px;
+      border: 1px solid rgba(200,67,26,.3);
+      background: rgba(200,67,26,.06);
+      color: rgba(200,67,26,.9);
+    }
+    .enq-hero-h1 {
+      font-family: 'Playfair Display', serif; font-weight: 700; font-style: italic;
+      font-size: clamp(32px, 5.5vw, 56px); line-height: 1.08; margin-bottom: 18px;
+      color: var(--creme);
+    }
+    .enq-hero-sub { font-size: 16px; color: rgba(247,242,232,.6); line-height: 1.7; margin-bottom: 20px; }
+    .enq-hero-quote {
+      font-family: 'DM Serif Display', serif; font-style: italic;
+      font-size: clamp(17px, 2vw, 21px); color: var(--or); margin-bottom: 36px;
+    }
+    .enq-hero-cta {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 15px 34px; font-size: 15px; font-weight: 500;
+      background: linear-gradient(135deg, var(--brique), var(--brique2));
+      color: var(--creme); border: none; border-radius: 12px;
+      cursor: pointer; transition: all .3s;
+      box-shadow: 0 0 40px rgba(200,67,26,.4);
+    }
+    .enq-hero-cta:hover { transform: translateY(-2px); box-shadow: 0 0 60px rgba(200,67,26,.6); }
+
+    /* ── SECTION 2 — Né à Jacmel (claire) ────── */
+    .jacmel-section {
+      position: relative; overflow: hidden;
+      padding: 90px 40px;
+      background: linear-gradient(180deg, #F7F2E8 0%, #EDE6D8 100%);
+      color: var(--night);
+    }
+    .section-label { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: .12em; color: var(--brique); margin-bottom: 10px; text-align: center; }
+    .section-h2 { font-family: 'DM Serif Display', serif; font-style: italic; font-size: clamp(26px, 4vw, 40px); margin-bottom: 10px; text-align: center; }
+    .section-body-center { font-size: 15px; line-height: 1.8; max-width: 620px; margin: 0 auto 48px; color: var(--terre); text-align: center; }
+    .jacmel-stat {
+      text-align: center; margin-bottom: 48px;
+    }
+    .jacmel-stat-num {
+      font-family: 'Playfair Display', serif; font-style: italic; font-weight: 700;
+      font-size: clamp(48px, 7vw, 80px); line-height: 1;
+      background: linear-gradient(135deg, var(--brique2) 0%, var(--or) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .jacmel-stat-label { font-size: 13px; color: var(--terre); margin-top: 6px; }
+    .jacmel-grid {
+      max-width: 900px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(190px,1fr)); gap: 18px;
+    }
+    .jacmel-card {
+      background: white; border: 1px solid var(--brume); border-radius: 18px;
+      padding: 24px 18px; text-align: center;
+    }
+    .jacmel-avatar {
+      width: 64px; height: 64px; border-radius: 50%; margin: 0 auto 14px;
+      background: #E8E0D0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 26px; color: #B4AB9C;
+    }
+    .jacmel-name { font-weight: bold; font-size: 14px; color: var(--night); margin-bottom: 4px; }
+    .jacmel-meta { font-size: 12px; color: var(--terre); }
+    .jacmel-placeholder-note {
+      text-align: center; margin-top: 28px; font-size: 12px; color: var(--terre); font-style: italic;
+    }
+
+    /* ── SECTION 3 — Comment ça marche (sombre, reprend .steps) */
+    .steps {
+      position: relative; overflow: hidden;
+      background: linear-gradient(135deg, #0F0906 0%, #1A0E08 40%, #160C07 100%);
+      padding: 90px 40px;
+    }
+    .steps .section-label, .steps .section-h2, .steps .section-body-center { color: var(--creme); }
+    .steps .section-label { color: var(--brique); }
+    .steps .section-body-center { color: rgba(247,242,232,.5); }
+    .step-grid {
+      max-width: 1000px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: 24px;
+    }
+    .step-card { text-align: center; padding: 20px; }
+    .step-num {
+      width: 44px; height: 44px; border-radius: 50%; margin: 0 auto 18px;
+      background: rgba(200,67,26,.1); border: 1px solid rgba(200,67,26,.35);
+      color: var(--brique); font-family: 'Playfair Display', serif; font-style: italic; font-weight: 700;
+      font-size: 18px; display: flex; align-items: center; justify-content: center;
+    }
+    .step-title { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 19px; color: var(--creme); margin-bottom: 8px; }
+    .step-desc { font-size: 13px; color: rgba(247,242,232,.5); line-height: 1.65; }
+
+    /* ── SECTION 4 — Ce que tu reçois (claire, reprend .features) */
+    .features {
+      position: relative; overflow: hidden;
+      padding: 90px 40px;
+      background: linear-gradient(180deg, #F7F2E8 0%, #EDE6D8 100%);
+      color: var(--night);
+    }
+    .feat-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; }
+    .feat-card { background: white; border: 1px solid var(--brume); border-radius: 20px; padding: 28px 24px; }
+    .feat-icon { font-size: 26px; margin-bottom: 14px; }
+    .feat-h3 { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 17px; color: var(--night); margin-bottom: 8px; }
+    .feat-body { font-size: 13px; color: var(--terre); line-height: 1.6; }
+
+    /* ── SECTION 5 — FAQ (claire chaude) ─────── */
+    .enq-faq {
+      position: relative; overflow: hidden;
+      background: linear-gradient(180deg, #F0E8D8 0%, #F7F2E8 100%);
+      padding: 90px 40px; color: var(--night);
+    }
+    .faq-list { max-width: 720px; margin: 0 auto; }
+    .faq-item {
+      background: white; border-radius: 16px; padding: 22px 26px; margin-bottom: 12px;
+      border-left: 3px solid var(--brique);
+      box-shadow: 0 4px 20px rgba(26,20,16,.05);
+    }
+    .faq-q { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 16px; color: var(--night); margin-bottom: 8px; }
+    .faq-a { font-size: 14px; color: var(--terre); line-height: 1.65; }
+
+    /* ── SECTION 6 — CTA final ────────────────── */
+    .cta-section {
+      position: relative; padding: 100px 24px; text-align: center; overflow: hidden;
+      background: linear-gradient(135deg, #8B2208 0%, var(--brique) 35%, #E8520A 65%, #A82F10 100%);
+    }
+    .cta-inner { position: relative; z-index: 1; max-width: 560px; margin: 0 auto; }
+    .cta-h1 { font-family: 'Playfair Display', serif; font-weight: 700; font-style: italic; font-size: clamp(28px, 5vw, 48px); color: var(--creme); margin-bottom: 14px; }
+    .cta-body { font-size: 15px; color: rgba(247,242,232,.8); margin-bottom: 20px; line-height: 1.7; }
+    .cta-mentions { font-size: 12px; color: rgba(247,242,232,.6); margin-bottom: 32px; }
+    .cta-btn-dark {
+      padding: 15px 36px; font-size: 15px; font-weight: 500;
+      background: var(--night); color: var(--creme);
+      border: none; border-radius: 12px; cursor: pointer;
+      transition: all .25s; text-decoration: none; display: inline-block;
+      box-shadow: 0 8px 32px rgba(0,0,0,.4);
+    }
+    .cta-btn-dark:hover { background: var(--night2); transform: translateY(-2px); box-shadow: 0 16px 50px rgba(0,0,0,.5); }
+
+    /* ── FOOTER (identique au site) ───────────── */
+    footer { background: #1A1410; border-top: 1px solid rgba(247,242,232,.06); padding: 48px 48px 28px; }
+    .footer-bottom {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+    }
+    .footer-logo { font-family: 'Playfair Display', serif; font-weight: 700; font-style: italic; font-size: 20px; color: var(--creme); }
+    .footer-logo span { color: var(--brique); }
+    .footer-note { font-size: 12px; color: rgba(140,90,64,.6); }
+
+    @media (max-width: 600px) {
+      .enq-hero, .jacmel-section, .steps, .features, .enq-faq { padding: 56px 20px; }
+      .cta-section { padding: 70px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">lot<span>bo</span></a>
+  <div class="nav-links">
+    <a href="/" class="nav-link">Accueil</a>
+    <a href="/a-propos" class="nav-link">À propos</a>
+    <a href="/faq" class="nav-link">FAQ</a>
+    <a href="/contact" class="nav-link">Contact</a>
+    <a href="https://app.lotbo.app" class="nav-link nav-link-app">Ouvrir l'app →</a>
+  </div>
+  <div class="nav-actions">
+    <a href="https://app.lotbo.app/login" class="btn-primary">Créer un compte →</a>
+    <button class="nav-hamburger" onclick="toggleMobileMenu()" aria-label="Menu">☰</button>
+  </div>
+</nav>
+
+<div class="nav-drawer" id="navDrawer">
+  <div class="nav-drawer-header">
+    <a href="/" class="nav-logo">lot<span>bo</span></a>
+    <button onclick="toggleMobileMenu()" class="nav-drawer-close">✕</button>
+  </div>
+  <div class="nav-drawer-links">
+    <a href="/" class="nav-drawer-link">🏠 Accueil</a>
+    <a href="https://app.lotbo.app" class="nav-drawer-link">🗺️ Ouvrir l'app</a>
+    <a href="https://app.lotbo.app/login" class="nav-drawer-link">👤 Créer un compte</a>
+  </div>
+</div>
+<div class="nav-overlay" id="navOverlay" onclick="toggleMobileMenu()"></div>
+
+<!-- LANGUE FR/HT -->
+<div class="enq-lang-toggle">
+  <button class="lang-toggle-btn active" id="btn-fr" onclick="setLangue('fr')">🇫🇷 FR</button>
+  <button class="lang-toggle-btn" id="btn-ht" onclick="setLangue('ht')">🇭🇹 HT</button>
+</div>
+
+<!-- SECTION 1 — HERO -->
+<section class="enq-hero reveal">
+  <div class="enq-hero-inner">
+    <div class="hero-badge">✦ Programme Terrain LOTBO · 2026</div>
+
+    <div class="lang-fr-content">
+      <h1 class="enq-hero-h1">Rejoins le Programme Terrain LOTBO</h1>
+      <p class="enq-hero-sub">Couvre ta zone. Enrichis les événements. Rejoins une communauté mondiale.</p>
+      <p class="enq-hero-quote">« Tu connais ta ville mieux que n'importe quel algorithme. »</p>
+      <a href="https://app.lotbo.app/enqueteur/consentement" class="enq-hero-cta">Je veux rejoindre →</a>
+    </div>
+    <div class="lang-ht-content">
+      <h1 class="enq-hero-h1">Antre nan Pwogram Tèren LOTBO</h1>
+      <p class="enq-hero-sub">Kouvri zòn ou. Anrichi evènman yo. Antre nan yon kominote mondyal.</p>
+      <p class="enq-hero-quote">« Ou konnen vil ou a pi byen pase nenpòt algoritm. »</p>
+      <a href="https://app.lotbo.app/enqueteur/consentement" class="enq-hero-cta">Mwen vle antre →</a>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2 — Né à Jacmel -->
+<section class="jacmel-section reveal">
+  <div class="lang-fr-content">
+    <p class="section-label">Nos origines</p>
+    <h2 class="section-h2">Né à Jacmel</h2>
+    <p class="section-body-center">Le programme terrain LOTBO est né en juin 2026, dans les rues de Jacmel. Quatre enquêteurs ont passé trois jours à interviewer 133 personnes sur leur vie événementielle locale.</p>
+  </div>
+  <div class="lang-ht-content">
+    <p class="section-label">Kote nou soti</p>
+    <h2 class="section-h2">Fèt Jakmèl</h2>
+    <p class="section-body-center">Pwogram tèren LOTBO a te fèt nan mwa jen 2026, nan lari Jakmèl. Kat ankètè te pase twa jou ap fè entèvyou ak 133 moun sou lavi evènman lokal yo.</p>
+  </div>
+
+  <div class="jacmel-stat">
+    <div class="jacmel-stat-num">88%</div>
+    <div class="jacmel-stat-label">
+      <span class="lang-fr-inline">avaient déjà raté un événement faute d'information. C'est pour ça que ce programme existe.</span>
+      <span class="lang-ht-inline">te deja rate yon evènman paske enfòmasyon an pa t rive jwenn yo. Se poutèt sa pwogram sa a egziste.</span>
+    </div>
+  </div>
+
+  <div class="jacmel-grid">
+    <div class="jacmel-card">
+      <div class="jacmel-avatar">👤</div>
+      <div class="jacmel-name">Aïcha Jeffkina Gaëlla Moreau</div>
+      <div class="jacmel-meta">37 fiches · Jacmel</div>
+    </div>
+    <div class="jacmel-card">
+      <div class="jacmel-avatar">👤</div>
+      <div class="jacmel-name">Syndia Alexis</div>
+      <div class="jacmel-meta">25 fiches · Jacmel</div>
+    </div>
+    <div class="jacmel-card">
+      <div class="jacmel-avatar">👤</div>
+      <div class="jacmel-name">Osny Pierre Louis</div>
+      <div class="jacmel-meta">24 fiches · Jacmel</div>
+    </div>
+    <div class="jacmel-card">
+      <div class="jacmel-avatar">👤</div>
+      <div class="jacmel-name">Gaetchens Pierre Louis</div>
+      <div class="jacmel-meta">21 fiches · Jacmel</div>
+    </div>
+  </div>
+  <p class="jacmel-placeholder-note">
+    <span class="lang-fr-inline">Profils en attente de publication — consentements en cours de validation.</span>
+    <span class="lang-ht-inline">Pwofil yo poko pibliye — konsantman yo ap valide kounye a.</span>
+  </p>
+</section>
+
+<!-- SECTION 3 — Comment ça marche -->
+<section class="steps reveal">
+  <div class="lang-fr-content">
+    <p class="section-label">Comment ça marche</p>
+    <h2 class="section-h2">Trois étapes</h2>
+  </div>
+  <div class="lang-ht-content">
+    <p class="section-label">Kijan sa mache</p>
+    <h2 class="section-h2">Twa etap</h2>
+  </div>
+
+  <div class="step-grid">
+    <div class="step-card">
+      <div class="step-num">1</div>
+      <div class="lang-fr-content">
+        <div class="step-title">Candidater</div>
+        <p class="step-desc">Envoie ta candidature sur lotbo.app/enqueteurs. Nous validons sous 48h.</p>
+      </div>
+      <div class="lang-ht-content">
+        <div class="step-title">Kandida</div>
+        <p class="step-desc">Voye kandidati ou sou lotbo.app/enqueteurs. N ap valide nan 48è.</p>
+      </div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">2</div>
+      <div class="lang-fr-content">
+        <div class="step-title">Choisir ta zone</div>
+        <p class="step-desc">Ta rue, ton quartier, ton lieu de travail. Commence par ce que tu connais le mieux.</p>
+      </div>
+      <div class="lang-ht-content">
+        <div class="step-title">Chwazi zòn ou</div>
+        <p class="step-desc">Lari bò lakay ou, katye w, nan travay ou. Kòmanse ak sa ou konnen pi byen.</p>
+      </div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">3</div>
+      <div class="lang-fr-content">
+        <div class="step-title">Contribuer</div>
+        <p class="step-desc">Ajoute des fiches événements sur app.lotbo.app. Chaque fiche compte dans ta progression.</p>
+      </div>
+      <div class="lang-ht-content">
+        <div class="step-title">Kontribye</div>
+        <p class="step-desc">Ajoute fich evènman sou app.lotbo.app. Chak fich konte nan pwogresyon ou.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4 — Ce que tu reçois -->
+<section class="features reveal">
+  <div class="lang-fr-content">
+    <p class="section-label" style="text-align:center;">Avantages</p>
+    <h2 class="section-h2">Ce que tu reçois</h2>
+  </div>
+  <div class="lang-ht-content">
+    <p class="section-label" style="text-align:center;">Avantaj</p>
+    <h2 class="section-h2">Sa ou resevwa</h2>
+  </div>
+  <p class="section-body-center">&nbsp;</p>
+
+  <div class="feat-grid">
+    <div class="feat-card">
+      <div class="feat-icon">🏅</div>
+      <div class="lang-fr-content"><h3 class="feat-h3">Badge numérique</h3><p class="feat-body">"Enquêteur Terrain", visible sur ton profil dès validation.</p></div>
+      <div class="lang-ht-content"><h3 class="feat-h3">Badj nimerik</h3><p class="feat-body">"Ankètè Tèren", vizib sou pwofil ou depi yo valide.</p></div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">🌐</div>
+      <div class="lang-fr-content"><h3 class="feat-h3">Page publique</h3><p class="feat-body">Sur lotbo.app/enqueteurs, dès inscription validée.</p></div>
+      <div class="lang-ht-content"><h3 class="feat-h3">Paj piblik</h3><p class="feat-body">Sou lotbo.app/enqueteurs, depi enskripsyon valide.</p></div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">⚡</div>
+      <div class="lang-fr-content"><h3 class="feat-h3">Accès early features</h3><p class="feat-body">Tu testes avant tout le monde (ex. Loyita beta).</p></div>
+      <div class="lang-ht-content"><h3 class="feat-h3">Aksè an premye nan nouvo fonksyon LOTBO</h3><p class="feat-body">Ou teste anvan tout moun (egz. Loyita beta).</p></div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">📊</div>
+      <div class="lang-fr-content"><h3 class="feat-h3">Barre de progression</h3><p class="feat-body">Chaque fiche, chaque referral fait avancer ta barre.</p></div>
+      <div class="lang-ht-content"><h3 class="feat-h3">Ba pwogresyon aktif</h3><p class="feat-body">Chak fich, chak referans fè ba ou avanse.</p></div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">👕</div>
+      <div class="lang-fr-content"><h3 class="feat-h3">T-shirt LOTBO disponible</h3><p class="feat-body">Template officiel téléchargeable, impression locale à ta charge.</p></div>
+      <div class="lang-ht-content"><h3 class="feat-h3">Mayo LOTBO disponib</h3><p class="feat-body">Modèl ofisyèl telechajab, enprimri lokal se responsablite pa ou.</p></div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">📜</div>
+      <div class="lang-fr-content"><h3 class="feat-h3">Certificat officiel</h3><p class="feat-body">À 20 fiches. FR + EN avec QR code vérifiable. Badge physique sur demande.</p></div>
+      <div class="lang-ht-content"><h3 class="feat-h3">Sètifika ofisyèl</h3><p class="feat-body">Nan 20 fich. FR + EN ak kòd QR verifiyab. Badj fizik sou demann.</p></div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">🔄</div>
+      <div class="lang-fr-content"><h3 class="feat-h3">Cycles renouvelables</h3><p class="feat-body">Chaque mois, un nouvel objectif. Total cumulatif conservé à vie.</p></div>
+      <div class="lang-ht-content"><h3 class="feat-h3">Sik renouvlab</h3><p class="feat-body">Chak mwa, yon nouvo objektif. Total ou konsève pou tout lavi.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5 — FAQ -->
+<section class="enq-faq reveal">
+  <div class="lang-fr-content"><p class="section-label">Questions fréquentes</p><h2 class="section-h2">FAQ</h2></div>
+  <div class="lang-ht-content"><p class="section-label">Kesyon souvan</p><h2 class="section-h2">FAQ</h2></div>
+  <p class="section-body-center">&nbsp;</p>
+
+  <div class="faq-list">
+    <div class="faq-item">
+      <div class="lang-fr-content"><p class="faq-q">Quel est l'âge minimum ?</p><p class="faq-a">16 ans.</p></div>
+      <div class="lang-ht-content"><p class="faq-q">Ki laj minimòm nan?</p><p class="faq-a">16 an.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="lang-fr-content"><p class="faq-q">Est-ce rémunéré ?</p><p class="faq-a">Non. Contribution volontaire. Aucune rémunération promise, maintenant ni dans le futur.</p></div>
+      <div class="lang-ht-content"><p class="faq-q">Èske li peye?</p><p class="faq-a">Non. Se yon kontribisyon volontè. Pa gen okenn peman pwomèt, kounye a ni nan lavni.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="lang-fr-content"><p class="faq-q">Mon objectif est-il fixé par LOTBO ?</p><p class="faq-a">Non. Tu le choisis librement.</p></div>
+      <div class="lang-ht-content"><p class="faq-q">Èske se LOTBO ki fikse objektif mwen?</p><p class="faq-a">Non. Ou chwazi li lib.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="lang-fr-content"><p class="faq-q">Combien de temps dure le programme ?</p><p class="faq-a">Un cycle d'un mois, renouvelable à volonté.</p></div>
+      <div class="lang-ht-content"><p class="faq-q">Konbyen tan pwogram nan dire?</p><p class="faq-a">Yon sik yon mwa, renouvlab jan ou vle.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="lang-fr-content"><p class="faq-q">Mes informations sont-elles publiques ?</p><p class="faq-a">Seulement avec ton consentement explicite, après double opt-in.</p></div>
+      <div class="lang-ht-content"><p class="faq-q">Èske enfòmasyon mwen yo piblik?</p><p class="faq-a">Sèlman ak konsantman eksplisit ou, apre doub opt-in.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="lang-fr-content"><p class="faq-q">Le t-shirt est-il offert par LOTBO ?</p><p class="faq-a">Non. LOTBO met le template à disposition gratuitement. L'impression et les frais sont à ta charge.</p></div>
+      <div class="lang-ht-content"><p class="faq-q">Èske se LOTBO ki ofri mayo a?</p><p class="faq-a">Non. LOTBO mete modèl la disponib gratis. Enprimri a ak frè yo se responsablite pa ou.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 6 — CTA final -->
+<section class="cta-section reveal">
+  <div class="cta-inner">
+    <div class="lang-fr-content">
+      <h2 class="cta-h1">Prêt à couvrir ta zone ?</h2>
+      <p class="cta-body">Rejoins les enquêteurs terrain LOTBO partout dans le monde.</p>
+      <p class="cta-mentions">Contribution volontaire · Âge minimum 16 ans · Mondial</p>
+      <a href="https://app.lotbo.app/enqueteur/consentement" class="cta-btn-dark">Envoyer ma candidature →</a>
+    </div>
+    <div class="lang-ht-content">
+      <h2 class="cta-h1">Pare pou kouvri zòn ou?</h2>
+      <p class="cta-body">Antre nan ankètè tèren LOTBO toupatou nan mond lan.</p>
+      <p class="cta-mentions">Kontribisyon volontè · Laj minimòm 16 an · Mondyal</p>
+      <a href="https://app.lotbo.app/enqueteur/consentement" class="cta-btn-dark">Soumèt kandidati mwen →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-bottom">
+    <a href="/" class="footer-logo">lot<span>bo</span></a>
+    <div class="footer-note">© 2026 · Né en Haïti, pour le monde entier 🇭🇹</div>
+  </div>
+</footer>
+
+<script>
+  function toggleMobileMenu() {
+    document.getElementById('navDrawer').classList.toggle('open');
+    document.getElementById('navOverlay').classList.toggle('open');
+  }
+
+  function setLangue(l) {
+    document.body.classList.toggle('mode-ht', l === 'ht');
+    document.getElementById('btn-fr').classList.toggle('active', l === 'fr');
+    document.getElementById('btn-ht').classList.toggle('active', l === 'ht');
+    try { localStorage.setItem('lotbo-enqueteurs-langue', l); } catch (e) {}
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    try {
+      const saved = localStorage.getItem('lotbo-enqueteurs-langue');
+      if (saved === 'ht') setLangue('ht');
+    } catch (e) {}
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
