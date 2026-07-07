@@ -275,18 +275,37 @@
     .cta-btn-dark:hover { background: var(--night2); transform: translateY(-2px); box-shadow: 0 16px 50px rgba(0,0,0,.5); }
 
     /* ── FOOTER (identique au site) ───────────── */
-    footer { background: #1A1410; border-top: 1px solid rgba(247,242,232,.06); padding: 48px 48px 28px; }
+    footer { background: #1A1410; border-top: 1px solid rgba(247,242,232,.06); padding: 64px 48px 32px; }
+    .footer-grid {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(5,1fr);
+      gap: 32px; margin-bottom: 48px;
+    }
+    .footer-col-title {
+      font-family: 'Playfair Display', serif; font-style: italic; font-weight: 700;
+      font-size: 14px; color: var(--creme); margin-bottom: 16px;
+    }
+    .footer-col-links { display: flex; flex-direction: column; gap: 10px; }
+    .footer-col-link { font-size: 13px; color: #8C5A40; transition: color .15s; }
+    .footer-col-link:hover { color: var(--brique); }
     .footer-bottom {
       max-width: 1100px; margin: 0 auto;
-      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+      padding-top: 24px; border-top: 1px solid rgba(247,242,232,.06);
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 12px;
     }
     .footer-logo { font-family: 'Playfair Display', serif; font-weight: 700; font-style: italic; font-size: 20px; color: var(--creme); }
     .footer-logo span { color: var(--brique); }
     .footer-note { font-size: 12px; color: rgba(140,90,64,.6); }
 
+    @media (max-width: 900px) {
+      .footer-grid { grid-template-columns: repeat(2,1fr); }
+    }
     @media (max-width: 600px) {
       .enq-hero, .jacmel-section, .steps, .features, .enq-faq { padding: 56px 20px; }
       .cta-section { padding: 70px 20px; }
+      footer { padding: 48px 20px 24px; }
+      .footer-grid { grid-template-columns: repeat(2,1fr); gap: 24px; }
     }
   </style>
 </head>
@@ -549,6 +568,57 @@
 
 <!-- FOOTER -->
 <footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-col-title">LOTBO</div>
+      <div class="footer-col-links">
+        <a href="/a-propos" class="footer-col-link">À propos</a>
+        <a href="/a-propos" class="footer-col-link">Notre histoire</a>
+        <a href="/a-propos" class="footer-col-link">Né en Haïti 🇭🇹</a>
+        <a href="/medias-presse" class="footer-col-link">Presse</a>
+        <a href="/rejoins-lotbo" class="footer-col-link">Carrières</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Communauté</div>
+      <div class="footer-col-links">
+        <a href="/nos-utilisateurs" class="footer-col-link">Nos utilisateurs</a>
+        <a href="/charte-membres" class="footer-col-link">Charte membres</a>
+        <a href="/charte-contributeurs" class="footer-col-link">Charte contributeurs</a>
+        <a href="/charte-organisateurs" class="footer-col-link">Charte organisateurs</a>
+        <a href="/devenir-ambassadeur" class="footer-col-link">Devenir ambassadeur</a>
+        <a href="/supporters" class="footer-col-link">Supporters Fondateurs</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Légal</div>
+      <div class="footer-col-links">
+        <a href="https://app.lotbo.app/cgu" class="footer-col-link">CGU</a>
+        <a href="https://app.lotbo.app/politique-confidentialite" class="footer-col-link">Confidentialité</a>
+        <a href="/moderation" class="footer-col-link">Modération</a>
+        <a href="/cookies" class="footer-col-link">Cookies</a>
+        <a href="/mentions-legales" class="footer-col-link">Mentions légales</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Collaboration</div>
+      <div class="footer-col-links">
+        <a href="/partenariats" class="footer-col-link">Partenariats</a>
+        <a href="/partenariats" class="footer-col-link">Institutions</a>
+        <a href="/medias-presse" class="footer-col-link">Médias &amp; Presse</a>
+        <a href="#" class="footer-col-link">Formulaire contact</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Ressources</div>
+      <div class="footer-col-links">
+        <a href="/blog" class="footer-col-link">Blog</a>
+        <a href="https://app.lotbo.app/aide" class="footer-col-link">Centre d'aide</a>
+        <a href="/guide-organisateurs" class="footer-col-link">Guide organisateurs</a>
+        <a href="/roadmap" class="footer-col-link">Roadmap</a>
+      </div>
+    </div>
+  </div>
   <div class="footer-bottom">
     <a href="/" class="footer-logo">lot<span>bo</span></a>
     <div class="footer-note">© 2026 · Né en Haïti, pour le monde entier 🇭🇹</div>
