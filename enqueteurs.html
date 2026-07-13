@@ -389,32 +389,8 @@
     </div>
   </div>
 
-  <div class="jacmel-grid">
-    <div class="jacmel-card">
-      <div class="jacmel-avatar">👤</div>
-      <div class="jacmel-name">Aïcha Jeffkina Gaëlla Moreau</div>
-      <div class="jacmel-meta">37 fiches · Jacmel</div>
-    </div>
-    <div class="jacmel-card">
-      <div class="jacmel-avatar">👤</div>
-      <div class="jacmel-name">Syndia Alexis</div>
-      <div class="jacmel-meta">25 fiches · Jacmel</div>
-    </div>
-    <div class="jacmel-card">
-      <div class="jacmel-avatar">👤</div>
-      <div class="jacmel-name">Osny Pierre Louis</div>
-      <div class="jacmel-meta">24 fiches · Jacmel</div>
-    </div>
-    <div class="jacmel-card">
-      <div class="jacmel-avatar">👤</div>
-      <div class="jacmel-name">Gaetchens Pierre Louis</div>
-      <div class="jacmel-meta">21 fiches · Jacmel</div>
-    </div>
-  </div>
-  <p class="jacmel-placeholder-note">
-    <span class="lang-fr-inline">Profils en attente de publication — consentements en cours de validation.</span>
-    <span class="lang-ht-inline">Pwofil yo poko pibliye — konsantman yo ap valide kounye a.</span>
-  </p>
+  <div class="jacmel-grid" id="enqueteurs-grid"></div>
+  <p class="jacmel-placeholder-note" id="enqueteurs-empty" style="display:none">Aucun enquêteur publié pour le moment.</p>
 </section>
 
 <!-- SECTION 3 — Comment ça marche -->
@@ -662,6 +638,25 @@
     entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
   }, { threshold: 0.08 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+<script>
+fetch('https://app.lotbo.app/api/enqueteurs-publics')
+  .then(r => r.json())
+  .then(data => {
+    const grid = document.getElementById('enqueteurs-grid')
+    const empty = document.getElementById('enqueteurs-empty')
+    const liste = data.enqueteurs || []
+    if (liste.length === 0) { empty.style.display = 'block'; return }
+    grid.innerHTML = liste.map(e => `
+      <div class="jacmel-card">
+        <div class="jacmel-avatar">${e.photo_url ? `<img src="${e.photo_url}" alt="${e.nom_affichage}" style="width:100%;height:100%;object-fit:cover;border-radius:50%">` : '👤'}</div>
+        <div class="jacmel-name">${e.nom_affichage}</div>
+        <div class="jacmel-meta">${e.fiches_total || 0} fiches · ${e.ville || ''}</div>
+      </div>
+    `).join('')
+  })
+  .catch(() => { document.getElementById('enqueteurs-empty').style.display = 'block' })
 </script>
 
 </body>
