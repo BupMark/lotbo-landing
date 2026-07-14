@@ -650,7 +650,7 @@ fetch('https://app.lotbo.app/api/enqueteurs-publics')
     if (liste.length === 0) { empty.style.display = 'block'; return }
     grid.innerHTML = liste.map(e => `
       <div class="jacmel-card">
-        <div class="jacmel-avatar">${e.photo_url ? `<img src="${e.photo_url}" alt="${e.nom_affichage}" style="width:100%;height:100%;object-fit:cover;border-radius:50%">` : '👤'}</div>
+        <div class="jacmel-avatar">${e.photo_url ? `<img src="${e.photo_url}" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:50%;background:#E8E0D0;color:transparent" onerror="this.parentElement.innerHTML='👤'">` : '👤'}</div>
         <div class="jacmel-name">${e.nom_affichage}</div>
         <div class="jacmel-meta">${e.fiches_total || 0} fiches · ${e.ville || ''}</div>
       </div>
