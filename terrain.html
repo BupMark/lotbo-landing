@@ -125,12 +125,7 @@
       <div class="ctx-field">
         <label>ENQUÊTEUR</label>
         <select name="enqueteur" id="enqueteur">
-          <option value="">Choisir...</option>
-          <option value="gaetchens">Gaetchens Pierre Louis</option>
-          <option value="nancy">Nancy Gilot</option>
-          <option value="aicha">Aïcha Jeffkina Gaëlla</option>
-          <option value="syndia">Syndia Alexis</option>
-          <option value="osny">Osny Pierre Louis</option>
+          <option value="">Chargement...</option>
         </select>
       </div>
       <div class="ctx-field">
@@ -426,15 +421,8 @@ const QUEUE_KEY = 'lotbo_enquetes_pending'
 let isFlushing = false
 
 // Remplissage automatique du genre selon l'enquêteur
-const ENQUETEUR_GENRE = {
-  'gaetchens': 'f',
-  'nancy':     'f',
-  'aicha':     'f',
-  'syndia':    'f',
-  'osny':      'h',
-}
 document.getElementById('enqueteur').addEventListener('change', function() {
-  const genre = ENQUETEUR_GENRE[this.value]
+  const genre = this.selectedOptions[0]?.dataset.genre
   const genreSelect = document.querySelector('select[name="genre"]')
   if (genre && genreSelect) genreSelect.value = genre
 })
@@ -640,6 +628,19 @@ async function flushQueue() {
 updatePendingBanner()
 flushQueue()
 window.addEventListener('online', flushQueue)
+
+fetch('https://app.lotbo.app/api/enqueteurs-publics')
+  .then(r => r.json())
+  .then(data => {
+    const select = document.getElementById('enqueteur')
+    const liste = data.enqueteurs || []
+    select.innerHTML = '<option value="">Choisir...</option>' + liste.map(e =>
+      `<option value="${e.nom_affichage}" data-genre="${e.genre || ''}">${e.nom_affichage}</option>`
+    ).join('')
+  })
+  .catch(() => {
+    document.getElementById('enqueteur').innerHTML = '<option value="">Erreur de chargement</option>'
+  })
 </script>
 </body>
 </html>
