@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LOTBO — Fiche Terrain Jacmel</title>
+<title>LOTBO — Fiche Terrain Enquêteur</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -109,7 +109,7 @@
 <div class="top-bar">
   <div class="logo">lot<span>bo</span></div>
   <span class="top-badge">TERRAIN</span>
-  <div class="top-tag">JACMEL · FICHE ENQUÊTEUR</div>
+  <div class="top-tag">FICHE ENQUÊTEUR TERRAIN</div>
 </div>
 <div class="pending-banner" id="pending-banner"></div>
 
@@ -159,16 +159,42 @@
         <input type="text" name="lieu" placeholder="Rue, quartier...">
       </div>
       <div class="ctx-field full">
-        <label>ZONE JACMEL</label>
+        <label>COMMUNE</label>
         <select name="zone" id="zone-select" onchange="toggleAutreZone(this.value)">
           <option value="">Sélectionner...</option>
-          <option>Centre-ville Jacmel</option>
-          <option>Cayes-Jacmel</option>
-          <option>Marigot</option>
-          <option>La Vallée</option>
-          <option value="autre">Autre zone</option>
+          <optgroup label="Ouest">
+            <option>Port-au-Prince</option><option>Carrefour</option><option>Delmas</option><option>Pétion-Ville</option><option>Tabarre</option><option>Cité Soleil</option><option>Kenscoff</option><option>Croix-des-Bouquets</option><option>Gressier</option><option>Léogâne</option><option>Grand-Goâve</option><option>Petit-Goâve</option><option>Cornillon</option><option>Fonds-Verrettes</option><option>Ganthier</option><option>Thomazeau</option><option>Arcahaie</option><option>Cabaret</option><option>Anse-à-Galets</option><option>Pointe-à-Raquette</option>
+          </optgroup>
+          <optgroup label="Sud-Est">
+            <option>Jacmel</option><option>Cayes-Jacmel</option><option>Marigot</option><option>La Vallée</option><option>Bainet</option><option>Côtes-de-Fer</option><option>Belle-Anse</option><option>Grand-Gosier</option><option>Thiotte</option><option>Anse-à-Pitres</option>
+          </optgroup>
+          <optgroup label="Nord">
+            <option>Cap-Haïtien</option><option>Acul-du-Nord</option><option>Grande-Rivière-du-Nord</option><option>Limbé</option><option>Plaisance</option><option>Pilate</option><option>Port-Margot</option><option>Borgne</option><option>Bas-Limbé</option><option>Milot</option><option>Quartier-Morin</option><option>Limonade</option><option>Plaine-du-Nord</option><option>Sainte-Suzanne</option><option>Dondon</option><option>Ranquitte</option><option>La Victoire</option><option>Pignon</option><option>Bahon</option>
+          </optgroup>
+          <optgroup label="Nord-Est">
+            <option>Fort-Liberté</option><option>Ouanaminthe</option><option>Trou-du-Nord</option><option>Terrier-Rouge</option><option>Caracol</option><option>Ferrier</option><option>Capotille</option><option>Mont-Organisé</option><option>Mombin-Crochu</option><option>Vallières</option><option>Carice</option><option>Sainte-Suzanne</option>
+          </optgroup>
+          <optgroup label="Artibonite">
+            <option>Gonaïves</option><option>Ennery</option><option>L'Estère</option><option>Gros-Morne</option><option>Anse-Rouge</option><option>Terre-Neuve</option><option>Saint-Marc</option><option>La Chapelle</option><option>Verrettes</option><option>Grande-Saline</option><option>Desdunes</option><option>Petite-Rivière-de-l'Artibonite</option><option>Dessalines</option><option>Marchand-Dessalines</option><option>Saint-Michel-de-l'Attalaye</option>
+          </optgroup>
+          <optgroup label="Centre">
+            <option>Hinche</option><option>Maïssade</option><option>Thomassique</option><option>Cerca-Carvajal</option><option>Cerca-la-Source</option><option>Mirebalais</option><option>Saut-d'Eau</option><option>Boucan-Carré</option><option>Lascahobas</option><option>Belladère</option><option>Savanette</option><option>Thomonde</option>
+          </optgroup>
+          <optgroup label="Nord-Ouest">
+            <option>Port-de-Paix</option><option>La Tortue</option><option>Bassin-Bleu</option><option>Chansolme</option><option>Saint-Louis-du-Nord</option><option>Anse-à-Foleur</option><option>Môle-Saint-Nicolas</option><option>Baie-de-Henne</option><option>Bombardopolis</option><option>Jean-Rabel</option>
+          </optgroup>
+          <optgroup label="Sud">
+            <option>Les Cayes</option><option>Camp-Perrin</option><option>Chantal</option><option>Torbeck</option><option>Île-à-Vache</option><option>Saint-Louis-du-Sud</option><option>Cavaillon</option><option>Aquin</option><option>Fonds-des-Nègres</option><option>Chardonnières</option><option>Les Anglais</option><option>Tiburon</option><option>Coteaux</option><option>Roche-à-Bateau</option><option>Port-à-Piment</option><option>Port-Salut</option><option>Saint-Jean-du-Sud</option><option>Arniquet</option>
+          </optgroup>
+          <optgroup label="Grand'Anse">
+            <option>Jérémie</option><option>Abricots</option><option>Bonbon</option><option>Corail</option><option>Beaumont</option><option>Chambellan</option><option>Roseaux</option><option>Pestel</option><option>Dame-Marie</option><option>Anse-d'Hainault</option><option>Les Irois</option><option>Moron</option>
+          </optgroup>
+          <optgroup label="Nippes">
+            <option>Miragoâne</option><option>Petit-Trou-de-Nippes</option><option>Anse-à-Veau</option><option>Petite-Rivière-de-Nippes</option><option>L'Asile</option><option>Fonds-des-Blancs</option><option>Baradères</option><option>Arnaud</option>
+          </optgroup>
+          <option value="autre">Autre commune</option>
         </select>
-        <input type="text" id="zone-autre" name="zone_autre" class="field-input" placeholder="Préciser la zone..." style="display:none; margin-top:6px;">
+        <input type="text" id="zone-autre" name="zone_autre" class="field-input" placeholder="Préciser la commune..." style="display:none; margin-top:6px;">
       </div>
     </div>
   </div>
@@ -195,8 +221,8 @@
     <div class="section-label green">Questions grand public — A1 à A7</div>
 
     <div class="q-block">
-      <div class="q-text">A1 — Comment il/elle trouve les événements à Jacmel ? <span class="required">*</span></div>
-      <div class="q-kreyol">"Ki jan ou konn sa k ap pase kòm evènman Jacmel ?"</div>
+      <div class="q-text">A1 — Comment il/elle trouve les événements dans sa zone ? <span class="required">*</span></div>
+      <div class="q-kreyol">"Ki jan ou konn sa k ap pase kòm evènman nan zòn ou ?"</div>
       <div class="opts">
         <label class="opt"><input type="checkbox" name="a1" value="bouche"><span class="opt-box"></span><span class="opt-label">Bouche à oreille / amis</span></label>
         <label class="opt"><input type="checkbox" name="a1" value="facebook"><span class="opt-box"></span><span class="opt-label">Facebook / réseaux sociaux</span></label>
@@ -386,10 +412,10 @@
     </div>
 
     <div class="contact-block">
-      <div class="obs-title">CONTACT COLLECTÉ → Brevo Jacmel-Terrain</div>
+      <div class="obs-title">CONTACT COLLECTÉ → Brevo Terrain</div>
       <input type="tel" class="field-input" id="terrain-whatsapp" placeholder="📱 WhatsApp" style="margin-bottom:8px;">
       <input type="email" class="field-input" id="terrain-email" placeholder="✉️ Email">
-      <div class="contact-note">→ Ce contact sera ajouté automatiquement à la liste Brevo Jacmel-Terrain</div>
+      <div class="contact-note">→ Ce contact sera ajouté automatiquement à la liste Brevo Terrain</div>
     </div>
 
     <div style="margin-top:20px;">
@@ -457,6 +483,9 @@ function toggleAutreZone(val) {
   const input = document.getElementById('zone-autre')
   input.style.display = val === 'autre' ? 'block' : 'none'
   if (val !== 'autre') input.value = ''
+  if (val && val !== 'autre') {
+    try { localStorage.setItem('lotbo_terrain_commune', val) } catch {}
+  }
 }
 
 async function submitTerrain() {
@@ -641,6 +670,16 @@ fetch('https://app.lotbo.app/api/enqueteurs-publics')
   .catch(() => {
     document.getElementById('enqueteur').innerHTML = '<option value="">Erreur de chargement</option>'
   })
+</script>
+<script>
+  try {
+    const derniereCommune = localStorage.getItem('lotbo_terrain_commune')
+    if (derniereCommune) {
+      const select = document.getElementById('zone-select')
+      const optionExiste = Array.from(select.options).some(o => o.value === derniereCommune)
+      if (optionExiste) select.value = derniereCommune
+    }
+  } catch {}
 </script>
 </body>
 </html>
