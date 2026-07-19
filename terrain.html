@@ -664,7 +664,7 @@ fetch('https://app.lotbo.app/api/enqueteurs-publics')
     const select = document.getElementById('enqueteur')
     const liste = data.enqueteurs || []
     select.innerHTML = '<option value="">Choisir...</option>' + liste.map(e =>
-      `<option value="${e.nom_affichage}" data-genre="${e.genre || ''}">${e.nom_affichage}</option>`
+      `<option value="${e.id}" data-genre="${e.genre || ''}">${e.nom_affichage}</option>`
     ).join('')
   })
   .catch(() => {

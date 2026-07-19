@@ -25,11 +25,31 @@ module.exports = async function handler(req, res) {
 
   const { email, whatsapp, type, enqueteur, profil, reponses } = body
 
+  // Nom lisible de l'enquêteur — rempli seulement pour le type 'terrain', reste null sinon
+  let nomAffiche = null
+
   // ── Sauvegarde Supabase si type terrain ──────────────────────────────────
   if (type === 'terrain' && reponses) {
     const r = reponses
-    await supabase.from('enquetes_terrain').insert([{
-      enqueteur:        r.enqueteur || enqueteur || null,
+    const enqueteurId = r.enqueteur || enqueteur || null
+
+    // Lookup du nom lisible depuis l'id — best effort, ne bloque jamais la soumission
+    if (enqueteurId) {
+      try {
+        const { data: enq } = await supabase
+          .from('enqueteurs')
+          .select('nom_affichage')
+          .eq('id', enqueteurId)
+          .single()
+        nomAffiche = enq?.nom_affichage || null
+      } catch {
+        nomAffiche = null
+      }
+    }
+
+    const { error: insertError } = await supabase.from('enquetes_terrain').insert([{
+      enqueteur:        nomAffiche,
+      enqueteur_id:     enqueteurId,
       date:             r.date || null,
       heure:            r.heure || null,
       zone:             r.zone || null,
@@ -56,6 +76,16 @@ module.exports = async function handler(req, res) {
       contact_whatsapp: whatsapp || null,
       contact_email:    email || null,
     }])
+
+    // Incrément non-bloquant — une fiche terrain ne doit jamais être perdue
+    // à cause d'un échec de comptage
+    if (!insertError && enqueteurId) {
+      try {
+        await supabase.rpc('increment_fiches_total', { p_enqueteur_id: enqueteurId })
+      } catch (incrErr) {
+        console.error('INCREMENT_FICHES_TOTAL_ERROR', incrErr)
+      }
+    }
   }
 
   const emailFinal = email && email.includes('@') ? email : null
@@ -100,7 +130,7 @@ module.exports = async function handler(req, res) {
 
   if (emailFinal) {
     const attributes = {}
-    if (enqueteur)              attributes.ENQUETEUR  = enqueteur
+    if (nomAffiche)             attributes.ENQUETEUR  = nomAffiche
     if (profil)                 attributes.PROFIL     = profil
     if (body.whatsapp)          attributes.WHATSAPP   = body.whatsapp
     if (body.newsletter === true) attributes.NEWSLETTER = true
