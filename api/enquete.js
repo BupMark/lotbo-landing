@@ -77,11 +77,34 @@ module.exports = async function handler(req, res) {
       contact_email:    email || null,
     }])
 
-    // Incrément non-bloquant — une fiche terrain ne doit jamais être perdue
-    // à cause d'un échec de comptage
+    // Incrément non-bloquant + détection objectif/certificat — une fiche terrain
+    // ne doit jamais être perdue à cause d'un échec de comptage ou de log
     if (!insertError && enqueteurId) {
       try {
         await supabase.rpc('increment_fiches_total', { p_enqueteur_id: enqueteurId })
+
+        // Vérifie si l'objectif ou le seuil certificat (20) est atteint
+        const { data: enqApres } = await supabase
+          .from('enqueteurs')
+          .select('fiches_total, objectif_fiches, ville')
+          .eq('id', enqueteurId)
+          .single()
+
+        if (enqApres && (enqApres.fiches_total === enqApres.objectif_fiches || enqApres.fiches_total === 20)) {
+          const resLog = await fetch('https://app.lotbo.app/api/activite-communautaire/log', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'x-internal-secret': process.env.INTERNAL_API_SECRET },
+            body: JSON.stringify({
+              type: 'objectif_enqueteur',
+              user_id: null,
+              ville: enqApres.ville,
+              contenu: { objectif: enqApres.objectif_fiches, ville: enqApres.ville, certificat: enqApres.fiches_total === 20 },
+            }),
+          })
+          if (!resLog.ok) {
+            console.error('[Terrain] activite-communautaire/log a échoué:', resLog.status, await resLog.text())
+          }
+        }
       } catch (incrErr) {
         console.error('INCREMENT_FICHES_TOTAL_ERROR', incrErr)
       }
